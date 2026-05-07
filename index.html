@@ -19,12 +19,8 @@
       height: 100vh;
       overflow: hidden;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
       font-family: 'Orbitron', sans-serif;
 
-      /* Dark futuristic background */
       background:
         radial-gradient(circle at top, rgba(0, 255, 200, 0.08), transparent 35%),
         linear-gradient(to bottom, #05070d 0%, #0b1220 45%, #020305 100%);
@@ -33,10 +29,11 @@
       position: relative;
     }
 
-    /* Digital grid */
+    /* Background grid */
     .grid {
       position: absolute;
       inset: 0;
+
       background-image:
         linear-gradient(rgba(0, 255, 200, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 255, 200, 0.05) 1px, transparent 1px);
@@ -45,42 +42,131 @@
       z-index: 0;
     }
 
-    /* Glow ring */
-    .ring {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      border: 2px solid rgba(0, 255, 200, 0.12);
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      height: 100vh;
+
+      background: rgba(10, 18, 30, 0.9);
+      border-right: 1px solid rgba(0,255,200,0.15);
+
+      backdrop-filter: blur(8px);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding-top: 40px;
+
+      z-index: 2;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+
+      color: #c8ffff;
+
+      margin-bottom: 50px;
+
+      text-shadow:
+        0 0 10px rgba(0,255,200,0.4);
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 0 25px;
+    }
+
+    .nav-buttons button {
+      background: rgba(255,255,255,0.03);
+
+      border: 1px solid rgba(0,255,200,0.18);
+      border-radius: 12px;
+
+      color: #9ed9e8;
+
+      padding: 15px;
+      font-size: 0.9rem;
+      font-family: 'Orbitron', sans-serif;
+
+      letter-spacing: 2px;
+      cursor: pointer;
+
+      transition: all 0.25s ease;
+    }
+
+    .nav-buttons button:hover {
+      background: rgba(0,255,200,0.08);
+
+      color: #d8ffff;
+
+      transform: translateX(5px);
 
       box-shadow:
-        0 0 30px rgba(0, 255, 200, 0.15),
-        inset 0 0 30px rgba(0, 255, 200, 0.08);
+        0 0 15px rgba(0,255,200,0.15);
+    }
+
+    /* Main content area */
+    .main {
+      flex: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Futuristic ring */
+    .ring {
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      border-radius: 50%;
+      border: 2px solid rgba(0,255,200,0.12);
+
+      box-shadow:
+        0 0 30px rgba(0,255,200,0.15),
+        inset 0 0 30px rgba(0,255,200,0.08);
 
       z-index: 0;
     }
 
-    /* Main content */
+    /* Center content box */
     .content {
       position: relative;
       z-index: 2;
-      padding: 40px;
-      backdrop-filter: blur(6px);
+
+      padding: 45px;
 
       background: rgba(255,255,255,0.03);
 
       border: 1px solid rgba(0,255,200,0.12);
       border-radius: 18px;
 
+      backdrop-filter: blur(6px);
+
+      text-align: center;
+
       box-shadow:
         0 0 25px rgba(0,255,200,0.08);
     }
 
     h1 {
-      font-size: 4.5rem;
+      font-size: 4.2rem;
       font-weight: 800;
       letter-spacing: 10px;
-      margin-bottom: 25px;
+
+      margin-bottom: 20px;
 
       color: #c8ffff;
 
@@ -90,64 +176,56 @@
     }
 
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 400;
+
       letter-spacing: 4px;
       text-transform: uppercase;
 
-      color: #8abdcf;
-
-      text-shadow:
-        0 0 10px rgba(0,255,200,0.18);
-
       line-height: 1.8;
+
+      color: #8abdcf;
     }
 
-    /* Subtle scanning line animation */
-    .scan {
-      position: absolute;
-      top: -100%;
-      left: 0;
-      width: 100%;
-      height: 200%;
-
-      background:
-        linear-gradient(
-          to bottom,
-          transparent 0%,
-          rgba(0,255,200,0.05) 50%,
-          transparent 100%
-        );
-
-      animation: scanMove 8s linear infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    @keyframes scanMove {
-      from {
-        transform: translateY(-50%);
-      }
-
-      to {
-        transform: translateY(50%);
-      }
-    }
-
+    /* Mobile */
     @media (max-width: 768px) {
 
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+
+        padding: 20px;
+      }
+
+      .nav-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-buttons button {
+        width: 45%;
+      }
+
+      .main {
+        padding: 20px;
+      }
+
       .content {
-        width: 90%;
-        padding: 25px;
+        width: 95%;
       }
 
       h1 {
-        font-size: 2.6rem;
-        letter-spacing: 5px;
+        font-size: 2.5rem;
+        letter-spacing: 4px;
       }
 
       h2 {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         letter-spacing: 2px;
       }
 
@@ -156,24 +234,46 @@
         height: 300px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
   <div class="grid"></div>
-  <div class="ring"></div>
 
-  <div class="content">
-    <div class="scan"></div>
+  <!-- Sidebar -->
+  <aside class="sidebar">
 
-    <h1>ORLD 5050</h1>
+    <div class="logo">ORLD 5050</div>
 
-    <h2>
-      Ethical Evidence-Based<br>
-      Decision-Making
-    </h2>
-  </div>
+    <div class="nav-buttons">
+      <button>HOME</button>
+      <button>ABOUT</button>
+      <button>ASSIGNMENTS</button>
+      <button>PROJECTS</button>
+      <button>CONTACT</button>
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <div class="ring"></div>
+
+    <div class="content">
+
+      <h1>ORLD 5050</h1>
+
+      <h2>
+        Ethical Evidence-Based<br>
+        Decision-Making
+      </h2>
+
+    </div>
+
+  </main>
 
 </body>
 </html>
