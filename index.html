@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ORLD 5050</title>
+
+  <!-- Retro Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -14,79 +17,138 @@
 
     body {
       height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Orbitron', sans-serif;
       color: white;
-      overflow: hidden;
 
-      /* Space/Nebula Background */
+      /* Synthwave background */
       background:
-        radial-gradient(circle at 20% 30%, rgba(128, 0, 255, 0.5), transparent 30%),
-        radial-gradient(circle at 80% 20%, rgba(0, 150, 255, 0.4), transparent 30%),
-        radial-gradient(circle at 50% 80%, rgba(255, 0, 128, 0.35), transparent 35%),
-        radial-gradient(circle at 70% 60%, rgba(0, 255, 255, 0.25), transparent 30%),
-        linear-gradient(to bottom, #050816, #0a0f2c, #140b29);
-
-      background-size: cover;
+        radial-gradient(circle at top, rgba(255,0,128,0.35), transparent 40%),
+        linear-gradient(to bottom, #05010f 0%, #12001f 40%, #1a0033 70%, #000000 100%);
       position: relative;
     }
 
-    /* Stars */
+    /* Neon grid floor */
     body::before {
       content: "";
       position: absolute;
-      width: 100%;
-      height: 100%;
+      bottom: -20%;
+      left: -50%;
+      width: 200%;
+      height: 70%;
       background-image:
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(white 2px, transparent 2px);
-      background-size: 100px 100px, 150px 150px, 200px 200px;
-      background-position: 0 0, 40px 60px, 130px 270px;
-      opacity: 0.6;
+        linear-gradient(rgba(0,255,255,0.35) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0,255,255,0.35) 2px, transparent 2px);
+
+      background-size: 80px 80px;
+
+      transform:
+        perspective(500px)
+        rotateX(75deg);
+
+      animation: gridMove 10s linear infinite;
       z-index: 0;
     }
 
+    @keyframes gridMove {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 0 80px;
+      }
+    }
+
+    /* Sun glow */
+    .sun {
+      position: absolute;
+      top: 18%;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #ff5fd2 0%, #ff0080 60%, transparent 75%);
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    /* Main content */
     .content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       padding: 20px;
     }
 
     h1 {
-      font-size: 4rem;
-      letter-spacing: 4px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 15px rgba(255,255,255,0.8);
+      font-size: 5rem;
+      letter-spacing: 8px;
+      margin-bottom: 25px;
+
+      color: #00ffff;
+
+      text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #ff00ff,
+        0 0 80px #ff00ff;
     }
 
     h2 {
       font-size: 1.5rem;
-      font-weight: 300;
-      max-width: 800px;
-      line-height: 1.5;
-      text-shadow: 0 0 10px rgba(255,255,255,0.6);
+      color: #ff7be5;
+      letter-spacing: 3px;
+
+      text-shadow:
+        0 0 5px #ff00ff,
+        0 0 15px #ff00ff;
     }
 
+    /* Glow pulse */
+    h1, h2 {
+      animation: glowPulse 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.03);
+      }
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
+        letter-spacing: 4px;
       }
 
       h2 {
-        font-size: 1.1rem;
+        font-size: 1rem;
+      }
+
+      .sun {
+        width: 220px;
+        height: 220px;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <div class="sun"></div>
+
   <div class="content">
     <h1>ORLD 5050</h1>
     <h2>Ethical Evidence-Based Decision-Making</h2>
   </div>
+
 </body>
 </html>
