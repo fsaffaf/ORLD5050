@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ORLD 5050</title>
 
-  <!-- Easier-to-read modern font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Futuristic Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -19,9 +19,7 @@
       height: 100vh;
       overflow: hidden;
       display: flex;
-
-      /* UPDATED FONT */
-      font-family: 'Inter', sans-serif;
+      font-family: 'Orbitron', sans-serif;
 
       background:
         radial-gradient(circle at top, rgba(0, 255, 200, 0.08), transparent 35%),
@@ -29,9 +27,6 @@
 
       color: white;
       position: relative;
-
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Background grid */
@@ -67,18 +62,16 @@
     }
 
     .logo {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 800;
+      letter-spacing: 4px;
 
-      /* reduced spacing for readability */
-      letter-spacing: 2px;
-
-      color: #d8ffff;
+      color: #c8ffff;
 
       margin-bottom: 50px;
 
       text-shadow:
-        0 0 10px rgba(0,255,200,0.25);
+        0 0 10px rgba(0,255,200,0.4);
     }
 
     /* Navigation buttons */
@@ -90,31 +83,19 @@
       padding: 0 25px;
     }
 
-    .nav-buttons a {
-      text-decoration: none;
-      width: 100%;
-    }
-
     .nav-buttons button {
-      width: 100%;
-
       background: rgba(255,255,255,0.03);
 
       border: 1px solid rgba(0,255,200,0.18);
-      border-radius: 14px;
+      border-radius: 12px;
 
-      color: #b8e7f2;
+      color: #9ed9e8;
 
       padding: 15px;
+      font-size: 0.9rem;
+      font-family: 'Orbitron', sans-serif;
 
-      font-size: 0.92rem;
-      font-weight: 600;
-
-      /* reduced spacing */
-      letter-spacing: 1px;
-
-      font-family: 'Inter', sans-serif;
-
+      letter-spacing: 2px;
       cursor: pointer;
 
       transition: all 0.25s ease;
@@ -123,7 +104,7 @@
     .nav-buttons button:hover {
       background: rgba(0,255,200,0.08);
 
-      color: #ffffff;
+      color: #d8ffff;
 
       transform: translateX(5px);
 
@@ -165,12 +146,12 @@
       position: relative;
       z-index: 2;
 
-      padding: 50px;
+      padding: 45px;
 
       background: rgba(255,255,255,0.03);
 
       border: 1px solid rgba(0,255,200,0.12);
-      border-radius: 20px;
+      border-radius: 18px;
 
       backdrop-filter: blur(6px);
 
@@ -181,31 +162,29 @@
     }
 
     h1 {
-      font-size: 4rem;
+      font-size: 4.2rem;
       font-weight: 800;
-
-      /* MUCH easier to read */
-      letter-spacing: 4px;
+      letter-spacing: 10px;
 
       margin-bottom: 20px;
 
-      color: #e6ffff;
+      color: #c8ffff;
 
       text-shadow:
-        0 0 8px rgba(0,255,200,0.35),
-        0 0 18px rgba(0,255,200,0.18);
+        0 0 8px rgba(0,255,200,0.5),
+        0 0 18px rgba(0,255,200,0.25);
     }
 
     h2 {
-      font-size: 1.05rem;
-      font-weight: 500;
+      font-size: 1.1rem;
+      font-weight: 400;
 
-      letter-spacing: 1.5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
 
-      line-height: 1.9;
+      line-height: 1.8;
 
-      color: #9fd0dc;
+      color: #8abdcf;
     }
 
     /* Mobile */
@@ -229,7 +208,7 @@
       }
 
       .nav-buttons button {
-        width: 100%;
+        width: 45%;
       }
 
       .main {
@@ -242,12 +221,12 @@
 
       h1 {
         font-size: 2.5rem;
-        letter-spacing: 2px;
+        letter-spacing: 4px;
       }
 
       h2 {
         font-size: 0.85rem;
-        letter-spacing: 1px;
+        letter-spacing: 2px;
       }
 
       .ring {
@@ -268,29 +247,29 @@
 
     <div class="logo">ORLD 5050</div>
 
-    <div class="nav-buttons">
+<div class="nav-buttons">
 
-      <a href="index.html">
-        <button>HOME</button>
-      </a>
+  <a href="index.html">
+    <button>HOME</button>
+  </a>
 
-      <a href="lecture.html">
-        <button>LECTURE 1</button>
-      </a>
+  <a href="lecture.html">
+    <button>LECTURE 1</button>
+  </a>
 
-      <a href="lecture2.html">
-        <button>READINGS</button>
-      </a>
+  <a href="lecture2.html">
+    <button>READINGS</button>
+  </a>
 
-      <a href="#">
-        <button>PROJECTS</button>
-      </a>
+  <a href="#">
+    <button>PROJECTS</button>
+  </a>
 
-      <a href="#">
-        <button>CONTACT</button>
-      </a>
+  <a href="#">
+    <button>CONTACT</button>
+  </a>
 
-    </div>
+</div>
 
   </aside>
 
