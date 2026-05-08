@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ORLD 5050 | Lecture</title>
 
-  <!-- Futuristic Font -->
+  <!-- Orbitron for headings -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Inter for readable content -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
 
@@ -19,7 +22,6 @@
     body {
       min-height: 100vh;
       display: flex;
-      font-family: 'Orbitron', sans-serif;
 
       background:
         radial-gradient(circle at top, rgba(0,255,200,0.06), transparent 35%),
@@ -28,6 +30,12 @@
       color: white;
       overflow-x: hidden;
       position: relative;
+
+      /* readable default font */
+      font-family: 'Inter', sans-serif;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Grid background */
@@ -66,6 +74,8 @@
     }
 
     .logo {
+      font-family: 'Orbitron', sans-serif;
+
       font-size: 1.4rem;
       font-weight: 800;
 
@@ -97,7 +107,10 @@
 
       border-radius: 12px;
 
+      /* keep futuristic feel */
       font-family: 'Orbitron', sans-serif;
+
+      font-size: 0.8rem;
 
       letter-spacing: 2px;
 
@@ -155,11 +168,13 @@
 
     .hero h1 {
 
+      font-family: 'Orbitron', sans-serif;
+
       font-size: 3rem;
 
       letter-spacing: 6px;
 
-      margin-bottom: 20px;
+      margin-bottom: 22px;
 
       color: #c8ffff;
 
@@ -169,11 +184,13 @@
 
     .hero p {
 
-      color: #9db6c4;
+      color: #b4c7d1;
 
       line-height: 2;
 
-      font-size: 0.95rem;
+      font-size: 1rem;
+
+      font-weight: 400;
 
       max-width: 900px;
     }
@@ -215,22 +232,28 @@
 
     .card h2 {
 
-      font-size: 1.1rem;
+      font-family: 'Orbitron', sans-serif;
 
-      letter-spacing: 3px;
+      font-size: 1rem;
 
-      margin-bottom: 20px;
+      font-weight: 600;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 18px;
 
       color: #b9ffff;
     }
 
     .card p {
 
-      color: #9fb4c0;
+      color: #b3c2cb;
 
       line-height: 1.9;
 
-      font-size: 0.85rem;
+      font-size: 0.97rem;
+
+      font-weight: 400;
     }
 
     /* Mobile */
