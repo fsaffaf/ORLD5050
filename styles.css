@@ -10,116 +10,35 @@
 
 body {
   height: 100vh;
+  overflow: hidden;
   display: flex;
 
   font-family: 'Orbitron', sans-serif;
 
   background:
-    radial-gradient(circle at top, rgba(0,255,200,0.08), transparent 35%),
+    radial-gradient(circle at top, rgba(0, 255, 200, 0.08), transparent 35%),
     linear-gradient(to bottom, #05070d 0%, #0b1220 45%, #020305 100%);
 
   color: white;
-
-  overflow: hidden;
 
   position: relative;
 }
 
 /* =========================
-   COMPUTER SUBSTRATE GRID
-========================= */
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  z-index: 0;
-
-  background:
-    linear-gradient(rgba(0,255,200,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,200,0.03) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
-
-  background-size:
-    40px 40px,
-    40px 40px,
-    6px 6px;
-
-  opacity: 0.35;
-
-  pointer-events: none;
-}
-
-/* =========================
-   HUD GRID (PRIMARY STRUCTURE)
+   BACKGROUND GRID (FROM YOUR FILE)
 ========================= */
 
 .grid {
   position: absolute;
   inset: 0;
 
-  z-index: 1;
-
   background-image:
-    linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(0, 255, 200, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 200, 0.05) 1px, transparent 1px);
 
   background-size: 60px 60px;
 
-  opacity: 0.4;
-}
-
-/* =========================
-   SCAN LINE (CORE SYSTEM BEHAVIOR)
-========================= */
-
-.scan-line {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-
-  z-index: 2;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0,255,200,0.9),
-    transparent
-  );
-
-  box-shadow: 0 0 15px rgba(0,255,200,0.5);
-
-  animation: scanMove 4s linear infinite;
-}
-
-@keyframes scanMove {
-  0%   { top: 0%; opacity: 0.2; }
-  50%  { opacity: 1; }
-  100% { top: 100%; opacity: 0.2; }
-}
-
-/* =========================
-   FOG / ATMOSPHERIC DEPTH
-========================= */
-
-.fog {
-  position: absolute;
-  inset: -20%;
-
-  z-index: 1;
-
-  background:
-    radial-gradient(circle at 30% 40%, rgba(0,255,200,0.08), transparent 60%),
-    radial-gradient(circle at 70% 60%, rgba(0,255,200,0.05), transparent 60%);
-
-  animation: drift 12s ease-in-out infinite alternate;
-}
-
-@keyframes drift {
-  0%   { transform: translate(-2%, -2%); }
-  100% { transform: translate(2%, 2%); }
+  z-index: 0;
 }
 
 /* =========================
@@ -130,10 +49,10 @@ body::before {
   width: 240px;
   height: 100vh;
 
-  background: rgba(10, 18, 30, 0.85);
+  background: rgba(10, 18, 30, 0.9);
   border-right: 1px solid rgba(0,255,200,0.15);
 
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 
   display: flex;
   flex-direction: column;
@@ -141,8 +60,7 @@ body::before {
 
   padding-top: 40px;
 
-  z-index: 3;
-  position: relative;
+  z-index: 2;
 }
 
 .logo {
@@ -156,6 +74,10 @@ body::before {
 
   text-shadow: 0 0 10px rgba(0,255,200,0.4);
 }
+
+/* =========================
+   NAV BUTTONS
+========================= */
 
 .nav-buttons {
   width: 100%;
@@ -180,17 +102,20 @@ body::before {
 
   cursor: pointer;
 
-  transition: 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .nav-buttons button:hover {
   background: rgba(0,255,200,0.08);
-  transform: translateX(5px);
   color: #d8ffff;
+
+  transform: translateX(5px);
+
+  box-shadow: 0 0 15px rgba(0,255,200,0.15);
 }
 
 /* =========================
-   MAIN CORE (DECISION CENTER)
+   MAIN AREA
 ========================= */
 
 .main {
@@ -202,10 +127,13 @@ body::before {
 
   position: relative;
 
-  z-index: 3;
+  z-index: 1;
 }
 
-/* decision ring */
+/* =========================
+   CENTRAL RING
+========================= */
+
 .ring {
   position: absolute;
 
@@ -221,9 +149,13 @@ body::before {
     inset 0 0 30px rgba(0,255,200,0.08);
 }
 
-/* central panel */
+/* =========================
+   CONTENT PANEL
+========================= */
+
 .content {
   position: relative;
+  z-index: 2;
 
   padding: 45px;
 
@@ -232,27 +164,90 @@ body::before {
   border: 1px solid rgba(0,255,200,0.12);
   border-radius: 18px;
 
+  backdrop-filter: blur(6px);
+
   text-align: center;
 
-  backdrop-filter: blur(6px);
+  box-shadow: 0 0 25px rgba(0,255,200,0.08);
 }
 
+/* =========================
+   TYPOGRAPHY
+========================= */
+
 h1 {
-  font-size: 4rem;
-  letter-spacing: 8px;
+  font-size: 4.2rem;
+  font-weight: 800;
+  letter-spacing: 10px;
+
+  margin-bottom: 20px;
 
   color: #c8ffff;
 
-  text-shadow: 0 0 18px rgba(0,255,200,0.3);
+  text-shadow:
+    0 0 8px rgba(0,255,200,0.5),
+    0 0 18px rgba(0,255,200,0.25);
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 400;
 
-  letter-spacing: 3px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  line-height: 1.8;
 
   color: #8abdcf;
+}
 
-  margin-top: 10px;
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+
+    padding: 20px;
+  }
+
+  .nav-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-buttons button {
+    width: 45%;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .content {
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+
+  h2 {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  .ring {
+    width: 300px;
+    height: 300px;
+  }
 }
