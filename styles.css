@@ -1,21 +1,21 @@
 /* =========================
-   ROOT THEME (UNIFIED)
+   ROOT THEME (BALANCED SCI-FI)
 ========================= */
 
 :root {
   --bg: #020617;
-  --bg-2: #0f172a;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-strong: rgba(255, 255, 255, 0.06);
 
   --text: #e5e7eb;
   --muted: #94a3b8;
-  --soft: #cbd5e1;
 
   --accent: #38bdf8;
   --accent-2: #a78bfa;
-  --accent-3: #22c55e;
 
-  --border: rgba(148, 163, 184, 0.22);
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+  --border: rgba(148, 163, 184, 0.2);
+
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
 }
 
 /* =========================
@@ -28,27 +28,17 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+body {
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.75;
 }
 
 /* =========================
-   BASE BACKGROUND
+   BACKGROUND GRID (RESTORED DEPTH)
 ========================= */
 
-body {
-  min-height: 100vh;
-  font-family: Inter, system-ui, sans-serif;
-  color: var(--text);
-  line-height: 1.75;
-
-  background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 32rem),
-    radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 34rem),
-    linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
-}
-
-/* GRID BACKGROUND (SHARED ACROSS ALL PAGES) */
 body::before {
   content: "";
   position: fixed;
@@ -56,62 +46,79 @@ body::before {
   pointer-events: none;
 
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
 
-  background-size: 44px 44px;
+  background-size: 48px 48px;
+  opacity: 0.6;
 
-  mask-image: linear-gradient(to bottom, black, transparent 85%);
-  opacity: 0.65;
+  mask-image: radial-gradient(circle at top, black 60%, transparent 100%);
+}
+
+/* subtle glow layer */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.12), transparent 40%),
+    radial-gradient(circle at 70% 30%, rgba(167, 139, 250, 0.10), transparent 45%);
+
   z-index: -1;
 }
 
 /* =========================
-   HOMEPAGE LAYOUT
+   HOMEPAGE (IMPORTANT RESTORE)
 ========================= */
 
 .main {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
 
+.content {
+  text-align: center;
+  padding: 3rem;
   position: relative;
 }
 
-/* GLASS HERO CONTAINER */
-.content {
-  text-align: center;
-
-  padding: 3rem 2.5rem;
-
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow);
-}
-
-/* HOMEPAGE TITLE (CLEAN, THIN, TEXT ONLY) */
+/* homepage title = strong identity */
 .content h1 {
-  font-size: 3.5rem;
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
 
   color: var(--text);
 }
 
-/* HOMEPAGE SUBTITLE */
+/* subtitle */
 .content h2 {
   margin-top: 1rem;
 
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 
   color: var(--muted);
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
+}
+
+/* optional homepage glow ring (RESTORED FEEL) */
+.content::before {
+  content: "";
+  position: absolute;
+  inset: -80px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.08);
+
+  z-index: -1;
 }
 
 /* =========================
@@ -125,39 +132,32 @@ body::before {
 }
 
 /* =========================
-   HEADINGS (LECTURE)
+   TYPOGRAPHY (FIXED HIERARCHY)
 ========================= */
 
 h1 {
-  font-family: "Exo 2", system-ui, sans-serif;
-
   font-size: 3rem;
-  font-weight: 550;
+  font-weight: 650;
   letter-spacing: -0.03em;
-
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
-  font-family: "Exo 2", system-ui, sans-serif;
-
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 550;
 
   margin-top: 3rem;
   margin-bottom: 1rem;
 
-  padding-left: 0.85rem;
+  padding-left: 0.9rem;
 
-  border-left: 3px solid rgba(56, 189, 248, 0.55);
+  border-left: 3px solid var(--accent);
 }
 
 h3 {
-  font-family: Inter, sans-serif;
+  font-size: 1.15rem;
   font-weight: 600;
-
   margin-top: 2rem;
-  margin-bottom: 0.75rem;
 }
 
 /* =========================
@@ -166,74 +166,41 @@ h3 {
 
 p {
   max-width: 75ch;
-  margin: 0.9rem 0;
+  margin: 1rem 0;
 
-  color: var(--soft);
-  font-size: 1.05rem;
-}
-
-strong {
-  color: #fff;
-}
-
-em {
-  color: var(--muted);
-}
-
-hr {
-  border: none;
-  height: 1px;
-  margin: 3rem 0;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(56, 189, 248, 0.4),
-    rgba(167, 139, 250, 0.3),
-    transparent
-  );
+  color: #cbd5e1;
 }
 
 /* =========================
-   CARDS (GLASS IMPROVED)
+   CARDS (FIXED BALANCE)
 ========================= */
 
-.card,
-.callout {
-  margin: 2rem 0;
+.card {
+  margin: 1.2rem 0; /* FIXED spacing issue */
+
   padding: 1.4rem 1.5rem;
 
-  background: rgba(255, 255, 255, 0.045);
-
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 16px;
 
-  backdrop-filter: blur(14px);
-
-  box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.25),
-    inset 0 0 20px rgba(56, 189, 248, 0.03);
-
-  transition: transform 0.2s ease;
+  transition: 0.2s ease;
 }
 
+/* subtle hover only (no heavy glow) */
 .card:hover {
-  transform: translateY(-3px);
+  background: var(--panel-strong);
 }
 
-/* REMOVE EXTRA GAP ABOVE CARD TITLE (FIX YOU ASKED FOR) */
+/* remove extra gap above titles */
 .card-header {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
-/* CARD TITLE */
 .card h2 {
   margin: 0;
-  padding: 0;
-
-  font-size: 1.25rem;
-  font-weight: 500;
-
+  font-size: 1.2rem;
+  font-weight: 600;
   border: none;
 }
 
@@ -242,22 +209,22 @@ hr {
 ========================= */
 
 ul {
-  margin: 1.25rem 0;
-  padding: 1.2rem 1.4rem;
+  margin: 1.2rem 0;
+  padding: 1rem 1.2rem;
 
   list-style: none;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 14px;
 }
 
 ul li {
   position: relative;
-  padding-left: 1.5rem;
-  margin: 0.6rem 0;
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
 
-  color: var(--soft);
+  color: #cbd5e1;
 }
 
 ul li::before {
@@ -266,11 +233,11 @@ ul li::before {
   left: 0;
   top: 0.7em;
 
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
 
-  background: var(--accent-3);
+  background: var(--accent);
 }
 
 /* =========================
@@ -288,46 +255,21 @@ a:hover {
 }
 
 /* =========================
-   BACK BUTTON
+   BACK LINK
 ========================= */
 
 .back-link {
   display: inline-block;
-
   margin-top: 2rem;
-  padding: 0.85rem 1.15rem;
+
+  padding: 0.75rem 1rem;
 
   border-radius: 999px;
 
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-
-  color: #e0f2fe;
-  font-weight: 700;
+  border: 1px solid var(--border);
+  background: var(--panel);
 }
 
 .back-link:hover {
-  background: rgba(56, 189, 248, 0.2);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 720px) {
-  .main-container {
-    padding: 2.5rem 1rem 4rem;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  h2 {
-    font-size: 1.3rem;
-  }
-
-  .card {
-    padding: 1.2rem;
-  }
+  background: var(--panel-strong);
 }
