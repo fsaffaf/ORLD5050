@@ -334,17 +334,7 @@ body {
   color: #cfefff;
 }
 
-/* Lecture h3 stays Inter */
-.lecture h3 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  color: #cfefff;
-}
-
-/* Lecture headings: readable but still structured */
-.lecture h1,
-.lecture h2,
+/* Lecture h3 stays readable with Inter */
 .lecture h3 {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
