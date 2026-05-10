@@ -295,3 +295,53 @@ body.lecture-page .content {
     font-size: 0.85rem;
   }
 }
+
+/* =========================
+   TYPOGRAPHY OVERRIDE
+   (Readable lecture system)
+========================= */
+
+/* Default body font becomes readable */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Keep UI / system aesthetic for headers */
+h1, .logo {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Sidebar UI stays “console-like” */
+.nav-item {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Lecture text system */
+.lecture {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #e6eef2;
+}
+
+/* Lecture headings: readable but still structured */
+.lecture h1,
+.lecture h2,
+.lecture h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #cfefff;
+}
+
+/* Paragraph spacing improvement */
+.lecture p {
+  margin-bottom: 14px;
+}
+
+/* Callout readability boost */
+.callout {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
