@@ -1,5 +1,5 @@
 /* =========================
-   LECTURE SYSTEM CORE
+   LECTURE SYSTEM (CONTENT LAYER)
 ========================= */
 
 .lecture {
@@ -13,6 +13,7 @@
 
   line-height: 1.7;
 
+  position: relative;
   z-index: 3;
 }
 
@@ -30,25 +31,25 @@
 
   letter-spacing: 2px;
 
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 
   text-shadow: 0 0 12px rgba(0,255,200,0.2);
 }
 
 .lecture-subtitle {
-  color: #8abdcf;
   font-size: 0.95rem;
+  color: #8abdcf;
 }
 
 .lecture-hint {
   font-size: 0.8rem;
   opacity: 0.7;
-  margin-bottom: 8px;
   color: #8abdcf;
+  margin-bottom: 8px;
 }
 
 /* =========================
-   SECTIONS (BLOCKS)
+   STRUCTURE BLOCKS
 ========================= */
 
 .block {
@@ -66,11 +67,20 @@
 }
 
 /* =========================
-   CALLOUTS (DEFINITIONS)
+   PARAGRAPHS
+========================= */
+
+.lecture p {
+  margin-bottom: 12px;
+  color: #cfefff;
+}
+
+/* =========================
+   CALLOUT BOXES (DEFINITIONS)
 ========================= */
 
 .callout {
-  margin: 12px 0;
+  margin: 14px 0;
   padding: 14px 16px;
 
   background: rgba(0,255,200,0.05);
@@ -88,17 +98,19 @@
 
 .example {
   margin: 10px 0;
-  padding: 10px 14px;
+  padding: 12px 14px;
 
   background: rgba(255,255,255,0.03);
 
   border: 1px solid rgba(0,255,200,0.12);
 
   border-radius: 10px;
+
+  color: #cfefff;
 }
 
 /* =========================
-   TAKEAWAYS
+   LISTS (TAKEAWAYS)
 ========================= */
 
 .takeaways {
@@ -108,4 +120,18 @@
 .takeaways li {
   margin-bottom: 6px;
   color: #cfefff;
+}
+
+/* =========================
+   RESPONSIVE SAFETY
+========================= */
+
+@media (max-width: 768px) {
+  .lecture {
+    padding: 20px;
+  }
+
+  .lecture-title {
+    font-size: 1.5rem;
+  }
 }
