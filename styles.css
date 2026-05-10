@@ -1,21 +1,4 @@
 /* =========================
-   ROOT THEME
-========================= */
-
-:root {
-  --bg1: #020617;
-  --bg2: #0f172a;
-
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-
-  --accent: #38bdf8;
-  --accent-soft: rgba(56, 189, 248, 0.12);
-
-  --border: rgba(255, 255, 255, 0.12);
-}
-
-/* =========================
    RESET
 ========================= */
 
@@ -26,51 +9,56 @@
 }
 
 /* =========================
-   BASE LAYOUT
+   GLOBAL LAYOUT
 ========================= */
 
 body {
   min-height: 100vh;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-
-  background: radial-gradient(circle at top, var(--bg1), var(--bg2));
-  color: var(--text);
+  overflow-x: hidden;
 
   display: flex;
-  overflow-x: hidden;
+
+  font-family: 'Inter', sans-serif;
+
+  background:
+    radial-gradient(circle at top, rgba(0,255,200,0.08), transparent 35%),
+    linear-gradient(to bottom, #05070d 0%, #0b1220 45%, #020305 100%);
+
+  color: #e6eef2;
 }
 
 /* =========================
-   GRID BACKGROUND
+   BACKGROUND GRID
 ========================= */
 
 .grid {
   position: fixed;
   inset: 0;
-  z-index: 0;
-  opacity: 0.15;
 
   background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
 
   background-size: 60px 60px;
+
+  opacity: 0.5;
+  z-index: 0;
 }
 
 /* =========================
-   SIDEBAR
+   SIDEBAR (CONTROL PANEL)
 ========================= */
 
 .sidebar {
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
 
   width: 240px;
   height: 100vh;
 
-  background: rgba(2, 6, 23, 0.85);
-  border-right: 1px solid var(--border);
+  background: rgba(10, 18, 30, 0.9);
+  border-right: 1px solid rgba(0,255,200,0.15);
 
   backdrop-filter: blur(10px);
 
@@ -78,98 +66,158 @@ body {
   flex-direction: column;
   align-items: center;
 
-  padding-top: 32px;
+  padding-top: 40px;
 
   z-index: 2;
 }
 
 .logo {
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 40px;
+  font-family: 'Orbitron', sans-serif;
+
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+
+  color: #c8ffff;
+
+  margin-bottom: 50px;
+
+  text-shadow: 0 0 10px rgba(0,255,200,0.4);
 }
 
-/* nav */
+/* =========================
+   NAVIGATION
+========================= */
+
 .nav-buttons {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 0 16px;
+  gap: 14px;
+  padding: 0 20px;
 }
 
 .nav-item {
+  font-family: 'Orbitron', sans-serif;
+
+  width: 100%;
+  height: 52px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  height: 48px;
+  border: 1px solid rgba(0,255,200,0.18);
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.03);
+
+  color: #9ed9e8;
+
+  font-size: 0.85rem;
+  letter-spacing: 2px;
 
   text-decoration: none;
-  color: var(--muted);
 
-  border: 1px solid var(--border);
-  border-radius: 10px;
-
-  background: rgba(255,255,255,0.02);
-
-  transition: 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .nav-item:hover {
-  color: var(--text);
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  background: rgba(0,255,200,0.08);
+  color: #d8ffff;
+
+  transform: translateX(6px);
+
+  box-shadow: 0 0 15px rgba(0,255,200,0.12);
 }
 
 .nav-item.active {
-  color: var(--text);
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  background: rgba(0,255,200,0.12);
+  border: 1px solid rgba(0,255,200,0.35);
+  color: #c8ffff;
+
+  box-shadow:
+    0 0 18px rgba(0,255,200,0.18),
+    inset 0 0 12px rgba(0,255,200,0.08);
 }
 
 /* =========================
-   MAIN LAYOUT (HOME)
+   HOME MAIN AREA
 ========================= */
 
 .main {
-  margin-left: 240px;
   flex: 1;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
+  margin-left: 240px;
 
   position: relative;
   z-index: 1;
 }
 
-/* homepage card */
-.content {
-  text-align: center;
-  padding: 40px;
+/* =========================
+   HOME VISUAL CORE
+========================= */
 
-  border: 1px solid var(--border);
-  border-radius: 16px;
+.ring {
+  position: absolute;
+  width: 500px;
+  height: 500px;
 
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(8px);
+  border-radius: 50%;
+
+  border: 2px solid rgba(0,255,200,0.12);
+
+  box-shadow:
+    0 0 30px rgba(0,255,200,0.15),
+    inset 0 0 30px rgba(0,255,200,0.08);
 }
 
-h1 {
-  font-size: 2.8rem;
+.content {
+  position: relative;
+
+  padding: 45px;
+
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,255,200,0.12);
+  border-radius: 18px;
+
+  text-align: center;
+
+  backdrop-filter: blur(6px);
+}
+
+.content h1 {
+  font-family: 'Orbitron', sans-serif;
+
+  font-size: 4.2rem;
   font-weight: 800;
-  margin-bottom: 10px;
+  letter-spacing: 10px;
+
+  color: #c8ffff;
+
+  text-shadow:
+    0 0 8px rgba(0,255,200,0.5),
+    0 0 18px rgba(0,255,200,0.25);
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  color: var(--muted);
+
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  line-height: 1.8;
+
+  color: #8abdcf;
 }
 
 /* =========================
-   LECTURE MODE (CRITICAL FIX)
+   LECTURE MODE SWITCH
 ========================= */
 
 body.lecture-page {
@@ -177,72 +225,16 @@ body.lecture-page {
   overflow-y: auto;
 }
 
-/* main becomes document flow */
-body.lecture-page .main {
-  display: block;
-  margin-left: 240px;
-
-  padding: 60px 40px;
-}
-
-/* hide homepage UI */
+/* hide home UI */
+body.lecture-page .main,
+body.lecture-page .ring,
 body.lecture-page .content {
-  display: none;
+  display: none !important;
 }
 
-/* =========================
-   LECTURE LAYOUT
-========================= */
-
-.lecture {
-  max-width: 900px;
-  margin: auto;
-
-  font-size: 1.05rem;
-  line-height: 1.75;
-}
-
-/* headings */
-.lecture h1 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-}
-
-.lecture h2 {
-  font-size: 1.3rem;
-  margin-top: 32px;
-  margin-bottom: 12px;
-
-  border-left: 3px solid var(--accent);
-  padding-left: 10px;
-}
-
-/* text */
-.lecture p {
-  margin-bottom: 14px;
-  color: var(--text);
-}
-
-/* callouts */
-.callout {
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.03);
-
-  padding: 14px;
-  border-radius: 12px;
-
-  margin: 14px 0;
-}
-
-/* lists */
-.takeaways {
-  padding-left: 18px;
-  margin-top: 10px;
-}
-
-.takeaways li {
-  margin-bottom: 8px;
-  color: var(--text);
+/* soften background for readability */
+body.lecture-page .grid {
+  opacity: 0.10;
 }
 
 /* =========================
@@ -250,6 +242,10 @@ body.lecture-page .content {
 ========================= */
 
 @media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+  }
 
   .sidebar {
     position: relative;
@@ -259,10 +255,33 @@ body.lecture-page .content {
 
   .main {
     margin-left: 0;
-    padding: 20px;
   }
 
-  body.lecture-page .main {
-    margin-left: 0;
+  .nav-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+  .nav-item {
+    width: 45%;
+  }
+}
+
+/* =========================
+   FORCE LECTURE TYPOGRAPHY CLEAN
+========================= */
+
+body.lecture-page {
+  font-family: 'Inter', sans-serif;
+}
+
+body.lecture-page h1,
+body.lecture-page h2,
+body.lecture-page h3,
+body.lecture-page p,
+body.lecture-page li,
+body.lecture-page td,
+body.lecture-page th {
+  font-family: 'Inter', sans-serif;
 }
