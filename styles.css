@@ -295,15 +295,6 @@ body.lecture-page .content {
   }
 }
 
-/* =========================
-   TYPOGRAPHY OVERRIDE
-   (Readable lecture system)
-========================= */
-
-/* Default body font becomes readable */
-body {
-  font-family: 'Inter', sans-serif;
-}
 
 /* =========================
    FUTURISTIC UI ELEMENTS ONLY
