@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
 body {
     margin: 0;
     overflow: hidden;
@@ -21,6 +25,7 @@ h1 {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 1;
     background-image:
         radial-gradient(white 2px, transparent 2px),
         radial-gradient(white 1px, transparent 1px);
@@ -37,3 +42,12 @@ h1 {
         background-position: 0 800px, 25px 825px;
     }
 }
+</style>
+</head>
+<body>
+
+<div class="snow"></div>
+<h1>Snow Effect ❄️</h1>
+
+</body>
+</html>
