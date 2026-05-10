@@ -425,7 +425,7 @@ code {
   }
 
   .main-container > h1:first-child {
-    font-size: clamp(2rem, 12vw, 3.2rem);
+    font-size: clamp(2rem, 4vw, 3.2rem);
   }
 
   h1 {
