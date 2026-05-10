@@ -8,6 +8,9 @@
   box-sizing: border-box;
 }
 
+/* Make Orbitron ALWAYS available everywhere */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;600;700;800;900&display=swap');
+
 /* =========================
    ROOT LAYOUT
 ========================= */
@@ -20,8 +23,8 @@ body {
   font-family: 'Inter', sans-serif;
 
   background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.10), transparent 35%),
-    radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.08), transparent 40%),
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.10), transparent 40%),
     linear-gradient(to bottom, #020617 0%, #0f172a 55%, #020617 100%);
 
   color: #e5e7eb;
@@ -29,7 +32,7 @@ body {
 }
 
 /* =========================
-   BACKGROUND GRID (BRIGHTER BLUE)
+   BACKGROUND GRID (BRIGHT BLUE + PULSE)
 ========================= */
 
 .grid {
@@ -37,8 +40,8 @@ body {
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.14) 1px, transparent 1px);
+    linear-gradient(rgba(56, 189, 248, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.18) 1px, transparent 1px);
 
   background-size: 60px 60px;
 
@@ -47,18 +50,41 @@ body {
   z-index: 0;
   pointer-events: none;
 
-  animation: gridPulse 7s ease-in-out infinite;
+  animation: gridPulse 6s ease-in-out infinite;
 }
 
 @keyframes gridPulse {
   0%, 100% {
-    opacity: 0.30;
+    opacity: 0.28;
     filter: drop-shadow(0 0 0px rgba(56,189,248,0));
   }
   50% {
-    opacity: 0.55;
-    filter: drop-shadow(0 0 6px rgba(56,189,248,0.25));
+    opacity: 0.60;
+    filter: drop-shadow(0 0 8px rgba(56,189,248,0.25));
   }
+}
+
+/* =========================
+   SHIMMER BACKGROUND LAYER
+========================= */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.07), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.06), transparent 45%);
+
+  animation: glowShift 10s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes glowShift {
+  0%, 100% { transform: translateY(0px); opacity: 0.35; }
+  50% { transform: translateY(-12px); opacity: 0.65; }
 }
 
 /* =========================
@@ -73,10 +99,10 @@ body {
   width: 240px;
   height: 100vh;
 
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 23, 42, 0.88);
   border-right: 1px solid rgba(148, 163, 184, 0.18);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
 
   display: flex;
   flex-direction: column;
@@ -93,7 +119,7 @@ body {
   font-weight: 700;
   letter-spacing: 4px;
 
-  color: #cfefff;
+  color: #e0f2fe;
 
   margin-bottom: 50px;
 
@@ -137,19 +163,19 @@ body {
 }
 
 .nav-item:hover {
-  background: rgba(56, 189, 248, 0.08);
+  background: rgba(56, 189, 248, 0.10);
   color: #e0f2fe;
   transform: translateX(6px);
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.18);
 }
 
 .nav-item.active {
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(56, 189, 248, 0.14);
   border: 1px solid rgba(56, 189, 248, 0.35);
   color: #e0f2fe;
 
   box-shadow:
-    0 0 18px rgba(56, 189, 248, 0.18),
+    0 0 18px rgba(56, 189, 248, 0.20),
     inset 0 0 12px rgba(56, 189, 248, 0.08);
 }
 
@@ -171,7 +197,7 @@ body {
 }
 
 /* =========================
-   HERO GLASS TITLE (NEW)
+   HERO GLASS TITLE (FIXED)
 ========================= */
 
 .hero-glass {
@@ -180,22 +206,22 @@ body {
   padding: 3rem 3.5rem;
   border-radius: 22px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.045);
   border: 1px solid rgba(56, 189, 248, 0.18);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
 
   box-shadow:
     0 24px 70px rgba(0, 0, 0, 0.35),
     inset 0 0 25px rgba(56, 189, 248, 0.05);
 
   text-align: center;
-
-  z-index: 2;
 }
 
+/* 🔥 FIXED ORBITRON ENFORCEMENT */
 .hero-title {
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif !important;
+
   font-size: 3.8rem;
   font-weight: 700;
   letter-spacing: 6px;
@@ -203,14 +229,14 @@ body {
   color: #e0f2fe;
 
   text-shadow:
-    0 0 12px rgba(56, 189, 248, 0.35),
-    0 0 28px rgba(56, 189, 248, 0.15);
+    0 0 14px rgba(56, 189, 248, 0.40),
+    0 0 30px rgba(56, 189, 248, 0.18);
 
   margin-bottom: 0.8rem;
 }
 
 .hero-subtitle {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #94a3b8;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -218,7 +244,7 @@ body {
 }
 
 /* =========================
-   RING (optional background element)
+   RING
 ========================= */
 
 .ring {
@@ -227,34 +253,11 @@ body {
   height: 500px;
 
   border-radius: 50%;
-  border: 2px solid rgba(56, 189, 248, 0.10);
+  border: 2px solid rgba(56, 189, 248, 0.12);
 
   box-shadow:
     0 0 30px rgba(56, 189, 248, 0.12),
     inset 0 0 30px rgba(167, 139, 250, 0.06);
-}
-
-/* =========================
-   SHIMMER LAYER
-========================= */
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-
-  background:
-    radial-gradient(circle at 25% 30%, rgba(56, 189, 248, 0.06), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.05), transparent 45%);
-
-  animation: glowShift 10s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes glowShift {
-  0%, 100% { transform: translateY(0px); opacity: 0.35; }
-  50% { transform: translateY(-10px); opacity: 0.6; }
 }
 
 /* =========================
