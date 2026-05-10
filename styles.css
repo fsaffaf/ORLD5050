@@ -1,7 +1,11 @@
 /* =========================
-   BASE RESET
+   GOOGLE FONTS (REQUIRED IN HTML TOO)
 ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;600;700;800;900&display=swap');
 
+/* =========================
+   RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -9,15 +13,8 @@
 }
 
 /* =========================
-   FONTS
+   ROOT
 ========================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;600;700;800;900&display=swap');
-
-/* =========================
-   ROOT LAYOUT
-========================= */
-
 body {
   min-height: 100vh;
   overflow-x: hidden;
@@ -28,7 +25,6 @@ body {
   background:
     radial-gradient(circle at top, rgba(56, 189, 248, 0.14), transparent 35%),
     radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.10), transparent 40%),
-    radial-gradient(circle at center, rgba(56, 189, 248, 0.06), transparent 55%),
     linear-gradient(to bottom, #020617 0%, #0f172a 55%, #020617 100%);
 
   color: #e5e7eb;
@@ -36,41 +32,39 @@ body {
 }
 
 /* =========================
-   BACKGROUND GRID (HUD STYLE)
+   BRIGHT GRID (LECTURE STYLE)
 ========================= */
-
 .grid {
   position: fixed;
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(56, 189, 248, 0.26) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.26) 1px, transparent 1px);
+    linear-gradient(rgba(56, 189, 248, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.22) 1px, transparent 1px);
 
   background-size: 60px 60px;
 
-  opacity: 0.35;
+  opacity: 0.45;
   z-index: 0;
   pointer-events: none;
 
-  animation: gridPulse 5.5s ease-in-out infinite;
+  animation: gridPulse 6s ease-in-out infinite;
 }
 
 @keyframes gridPulse {
   0%, 100% {
-    opacity: 0.25;
+    opacity: 0.28;
     filter: drop-shadow(0 0 0px rgba(56,189,248,0));
   }
   50% {
     opacity: 0.65;
-    filter: drop-shadow(0 0 12px rgba(56,189,248,0.35));
+    filter: drop-shadow(0 0 10px rgba(56,189,248,0.35));
   }
 }
 
 /* =========================
-   FLOATING SHIMMER FIELD
+   SHIMMER BACKGROUND
 ========================= */
-
 body::after {
   content: "";
   position: fixed;
@@ -79,7 +73,7 @@ body::after {
 
   background:
     radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.08), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.07), transparent 45%);
+    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.06), transparent 45%);
 
   animation: glowShift 10s ease-in-out infinite;
   z-index: 0;
@@ -87,13 +81,12 @@ body::after {
 
 @keyframes glowShift {
   0%, 100% { transform: translateY(0px); opacity: 0.35; }
-  50% { transform: translateY(-14px); opacity: 0.65; }
+  50% { transform: translateY(-12px); opacity: 0.65; }
 }
 
 /* =========================
    SIDEBAR
 ========================= */
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -105,7 +98,7 @@ body::after {
   background: rgba(15, 23, 42, 0.88);
   border-right: 1px solid rgba(148, 163, 184, 0.18);
 
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(14px);
 
   display: flex;
   flex-direction: column;
@@ -116,93 +109,14 @@ body::after {
   z-index: 2;
 }
 
-.logo {
-  font-family: "Orbitron", sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-
-  color: #e0f2fe;
-
-  margin-bottom: 50px;
-
-  text-shadow:
-    0 0 18px rgba(56, 189, 248, 0.30),
-    0 0 40px rgba(56, 189, 248, 0.12);
-}
-
 /* =========================
-   NAV ITEMS
+   HERO CARD (GLASS TITLE)
 ========================= */
-
-.nav-buttons {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 0 20px;
-}
-
-.nav-item {
-  width: 100%;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  border-radius: 12px;
-
-  background: rgba(255,255,255,0.03);
-
-  color: #cbd5e1;
-
-  font-family: "Orbitron", sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-
-  text-decoration: none;
-
-  transition: all 0.25s ease;
-}
-
-.nav-item:hover {
-  background: rgba(56, 189, 248, 0.12);
-  color: #e0f2fe;
-  transform: translateX(6px);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.20);
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-  z-index: 1;
-
-  margin-left: 240px;
-}
-
-/* =========================
-   HERO GLASS (Holographic HUD)
-========================= */
-
 .hero-glass {
-  position: relative;
-
   padding: 3.5rem 4rem;
-  border-radius: 26px;
+  border-radius: 24px;
 
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(56, 189, 248, 0.20);
 
   backdrop-filter: blur(18px);
@@ -213,127 +127,115 @@ body::after {
 
   text-align: center;
 
+  position: relative;
   overflow: hidden;
 }
 
-/* subtle moving light inside card */
+/* shimmer sweep */
 .hero-glass::before {
   content: "";
   position: absolute;
-  inset: -40%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
 
-  background:
-    radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.10), transparent 40%),
-    radial-gradient(circle at 70% 70%, rgba(167, 139, 250, 0.08), transparent 45%);
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(56, 189, 248, 0.12),
+    transparent 60%
+  );
 
-  animation: floatGlow 8s ease-in-out infinite;
-  z-index: 0;
+  transform: rotate(25deg);
+  animation: shimmer 6s linear infinite;
 }
 
-@keyframes floatGlow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+@keyframes shimmer {
+  0% { transform: translateX(-30%) rotate(25deg); }
+  100% { transform: translateX(30%) rotate(25deg); }
 }
 
 /* =========================
-   HERO TITLE (HYPER MODE)
+   TITLE (BIG + GLOWING)
 ========================= */
-
 .hero-title {
-  position: relative;
-  z-index: 2;
-
   font-family: "Orbitron", sans-serif !important;
 
-  font-size: clamp(4rem, 6vw, 6.5rem);
-  font-weight: 700;
-  letter-spacing: 6px;
+  font-size: 5rem;        /* BIGGER */
+  font-weight: 800;
+  letter-spacing: 10px;
 
   color: #e0f2fe;
 
-  text-shadow:
-    0 0 16px rgba(56, 189, 248, 0.45),
-    0 0 40px rgba(56, 189, 248, 0.25),
-    0 0 80px rgba(56, 189, 248, 0.12);
+  position: relative;
+  z-index: 2;
 
-  animation: titlePulse 4s ease-in-out infinite;
+  text-shadow:
+    0 0 12px rgba(56, 189, 248, 0.5),
+    0 0 30px rgba(56, 189, 248, 0.25),
+    0 0 60px rgba(56, 189, 248, 0.15);
+
+  animation: titlePulse 3.5s ease-in-out infinite;
 }
 
-/* breathing glow */
+/* pulsing glow */
 @keyframes titlePulse {
   0%, 100% {
     transform: scale(1);
     text-shadow:
-      0 0 16px rgba(56, 189, 248, 0.35),
-      0 0 40px rgba(56, 189, 248, 0.20);
+      0 0 12px rgba(56, 189, 248, 0.45),
+      0 0 30px rgba(56, 189, 248, 0.20);
   }
   50% {
     transform: scale(1.03);
     text-shadow:
-      0 0 22px rgba(56, 189, 248, 0.55),
-      0 0 60px rgba(56, 189, 248, 0.30);
+      0 0 18px rgba(56, 189, 248, 0.65),
+      0 0 50px rgba(56, 189, 248, 0.30);
   }
 }
 
-/* shimmer sweep */
-.hero-title::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -60%;
-  width: 50%;
-  height: 100%;
+/* subtitle */
+.hero-subtitle {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.25),
-    transparent
-  );
+  color: #94a3b8;
 
-  transform: skewX(-20deg);
-  animation: shimmer 3.8s infinite;
-}
-
-@keyframes shimmer {
-  0% { left: -60%; }
-  100% { left: 140%; }
+  margin-top: 0.8rem;
+  position: relative;
+  z-index: 2;
 }
 
 /* =========================
-   SUBTITLE
+   MAIN LAYOUT
 ========================= */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.hero-subtitle {
+  margin-left: 240px;
   position: relative;
-  z-index: 2;
-
-  font-family: "Orbitron", sans-serif;
-  color: #94a3b8;
-
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-size: 0.95rem;
+  z-index: 1;
 }
 
 /* =========================
    LECTURE MODE
 ========================= */
-
 body.lecture-page {
   display: block;
   overflow-y: auto;
 }
 
 body.lecture-page .main {
-  display: block !important;
-  height: auto;
-  min-height: 100vh;
-
-  margin-left: 240px;
-  padding: 80px 40px 120px 40px;
+  display: block;
+  padding: 80px 40px;
 }
 
 body.lecture-page .hero-glass {
-  display: none !important;
+  display: none;
 }
