@@ -365,3 +365,18 @@ body {
 .content h1 {
   font-family: 'Orbitron', sans-serif;
 }
+
+
+/* ========================================
+   SIMPLE LECTURE PAGE MODE
+======================================== */
+
+body.lecture-page {
+  display: block;
+  overflow-y: auto;
+}
+
+/* softer background for reading */
+body.lecture-page .grid {
+  opacity: 0.10;
+}
