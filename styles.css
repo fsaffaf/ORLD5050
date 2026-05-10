@@ -1,5 +1,5 @@
 /* =========================================
-   GLOBAL RESET
+   BASE
 ========================================= */
 
 * {
@@ -19,7 +19,7 @@ body {
 }
 
 /* =========================================
-   BACKGROUND CORE
+   BACKGROUND
 ========================================= */
 
 .background {
@@ -34,7 +34,7 @@ body {
 }
 
 /* =========================================
-   SUBTLE MOVING GRID (COGNITIVE FIELD)
+   GRID
 ========================================= */
 
 .grid {
@@ -48,34 +48,27 @@ body {
   background-size: 80px 80px;
 
   opacity: 0.15;
-
-  animation: gridMove 25s linear infinite;
-}
-
-@keyframes gridMove {
-  from { transform: translate(0, 0); }
-  to { transform: translate(40px, 40px); }
 }
 
 /* =========================================
-   NODES (NEURONS)
+   NODES (NEURAL STYLE)
 ========================================= */
 
 .node {
   position: absolute;
 
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 
-  border-radius: 50%;
+  border-radius: 2px;
 
   background: #c9f7ff;
 
   box-shadow:
     0 0 10px rgba(120,220,255,0.85),
-    0 0 22px rgba(120,220,255,0.25);
+    0 0 20px rgba(120,220,255,0.25);
 
-  animation: nodePulse 3.5s ease-in-out infinite;
+  animation: nodePulse 4s ease-in-out infinite;
 }
 
 @keyframes nodePulse {
@@ -84,36 +77,27 @@ body {
     opacity: 0.6;
   }
   50% {
-    transform: scale(1.7);
+    transform: scale(1.5);
     opacity: 1;
   }
 }
 
-/* =========================================
-   NODE POSITIONS (DENSE NETWORK)
-========================================= */
+/* ORIGINAL NODE POSITIONS (MATCH YOUR HTML) */
 
-.n1  { top: 12%; left: 10%; }
-.n2  { top: 18%; left: 30%; }
-.n3  { top: 22%; left: 55%; }
-.n4  { top: 30%; left: 75%; }
-
-.n5  { top: 40%; left: 20%; }
-.n6  { top: 45%; left: 45%; }
-.n7  { top: 50%; left: 70%; }
-
-.n8  { top: 60%; left: 15%; }
-.n9  { top: 68%; left: 40%; }
-.n10 { top: 75%; left: 65%; }
+.n1 { top: 20%; left: 15%; }
+.n2 { top: 35%; left: 40%; }
+.n3 { top: 60%; left: 30%; }
+.n4 { top: 50%; left: 70%; }
+.n5 { top: 75%; left: 55%; }
 
 /* =========================================
-   CONNECTION LINES (ANGULAR NETWORK)
+   CONNECTION LINES
 ========================================= */
 
 .line {
   position: absolute;
 
-  height: 1px;
+  height: 2px;
 
   background: linear-gradient(
     90deg,
@@ -124,69 +108,41 @@ body {
 
   transform-origin: left center;
 
-  opacity: 0.45;
+  opacity: 0.5;
 
-  animation: lineFlicker 4s ease-in-out infinite;
+  animation: linePulse 4s ease-in-out infinite;
 }
 
-@keyframes lineFlicker {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.8; }
+@keyframes linePulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.75; }
 }
 
-/* =========================================
-   NETWORK STRUCTURE (ANGULAR LINKS)
-========================================= */
+/* MATCHING YOUR HTML LINES */
 
-.l1 { top: 12%; left: 10%; width: 260px; transform: rotate(18deg); }
-.l2 { top: 18%; left: 30%; width: 280px; transform: rotate(-22deg); }
-.l3 { top: 22%; left: 55%; width: 300px; transform: rotate(30deg); }
-.l4 { top: 30%; left: 75%; width: 240px; transform: rotate(-35deg); }
-
-.l5 { top: 40%; left: 20%; width: 320px; transform: rotate(12deg); }
-.l6 { top: 50%; left: 45%; width: 300px; transform: rotate(-28deg); }
-.l7 { top: 60%; left: 15%; width: 280px; transform: rotate(25deg); }
-.l8 { top: 68%; left: 40%; width: 260px; transform: rotate(-18deg); }
-
-/* =========================================
-   SIGNAL PROPAGATION (EVIDENCE FLOW)
-========================================= */
-
-.line::after {
-  content: "";
-  position: absolute;
-
-  width: 5px;
-  height: 5px;
-
-  border-radius: 1px;
-
-  background: rgba(180, 250, 255, 0.95);
-
-  box-shadow: 0 0 10px rgba(120,220,255,0.8);
-
-  top: -2px;
-  left: 0;
-
-  animation: signalMove 3.2s linear infinite;
+.l1 {
+  top: 20%;
+  left: 15%;
+  width: 280px;
+  transform: rotate(18deg);
 }
 
-@keyframes signalMove {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+.l2 {
+  top: 35%;
+  left: 40%;
+  width: 240px;
+  transform: rotate(42deg);
+}
+
+.l3 {
+  top: 60%;
+  left: 30%;
+  width: 320px;
+  transform: rotate(-12deg);
 }
 
 /* =========================================
-   NAVIGATION
+   NAV
 ========================================= */
 
 .top-nav {
@@ -263,7 +219,7 @@ body {
 
   letter-spacing: -0.04em;
 
-  text-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  text-shadow: 0 10px 35px rgba(0,0,0,0.4);
 }
 
 .hero p {
