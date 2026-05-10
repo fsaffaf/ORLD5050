@@ -266,9 +266,9 @@ body.lecture-page .content {
 /* Lecture h1 and h2 use Orbitron */
 .lecture h1,
 .lecture h2 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Exo 2', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   color: #cfefff;
 }
 
