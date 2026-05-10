@@ -45,3 +45,116 @@
     and accountable systems for complex decisions.
   </p>
 </main>
+
+/* =========================================
+   Top Navigation
+   ========================================= */
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  padding: 1.5rem 2rem;
+
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+}
+
+.top-nav nav {
+  display: flex;
+  gap: 1rem;
+
+  padding: 0.75rem 1rem;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  background: rgba(255,255,255,0.04);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.2);
+}
+
+.top-nav button {
+  border: none;
+  outline: none;
+
+  padding: 0.8rem 1.4rem;
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: rgba(255,255,255,0.82);
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.top-nav button:hover {
+  background: rgba(120,220,255,0.12);
+
+  color: white;
+
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+
+.hero {
+  position: relative;
+  z-index: 2;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 2rem;
+}
+
+.hero h1 {
+  margin: 0;
+
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+
+  color: white;
+
+  text-shadow:
+    0 6px 30px rgba(0,0,0,0.35);
+}
+
+.hero p {
+  margin-top: 1.5rem;
+
+  max-width: 760px;
+
+  font-size: 1.2rem;
+  line-height: 1.8;
+
+  color: rgba(255,255,255,0.72);
+}
