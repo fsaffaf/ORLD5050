@@ -1,32 +1,8 @@
-<!DOCTYPE>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    background: #0b0f1a; /* deep academic navy */
-  }
-
-  canvas {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-</style>
-</head>
-
-<body>
-<canvas id="network"></canvas>
-
-<script>
 const canvas = document.getElementById("network");
 const ctx = canvas.getContext("2d");
 
 let width, height;
+
 function resize() {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
@@ -35,22 +11,21 @@ window.addEventListener("resize", resize);
 resize();
 
 const nodes = [];
-const NODE_COUNT = 60;
+const NODE_COUNT = 50;
 const MAX_DISTANCE = 120;
 
 class Node {
   constructor() {
     this.x = Math.random() * width;
     this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
   }
 
   move() {
     this.x += this.vx;
     this.y += this.vy;
 
-    // bounce off edges
     if (this.x < 0 || this.x > width) this.vx *= -1;
     if (this.y < 0 || this.y > height) this.vy *= -1;
   }
@@ -58,12 +33,11 @@ class Node {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(120, 200, 255, 0.7)";
+    ctx.fillStyle = "rgba(100,180,255,0.7)";
     ctx.fill();
   }
 }
 
-// create nodes
 for (let i = 0; i < NODE_COUNT; i++) {
   nodes.push(new Node());
 }
@@ -79,8 +53,7 @@ function drawLines() {
         ctx.beginPath();
         ctx.moveTo(nodes[i].x, nodes[i].y);
         ctx.lineTo(nodes[j].x, nodes[j].y);
-        ctx.strokeStyle = `rgba(120,200,255, ${1 - dist / MAX_DISTANCE})`;
-        ctx.lineWidth = 0.8;
+        ctx.strokeStyle = `rgba(100,180,255,${1 - dist / MAX_DISTANCE})`;
         ctx.stroke();
       }
     }
@@ -90,17 +63,13 @@ function drawLines() {
 function animate() {
   ctx.clearRect(0, 0, width, height);
 
-  for (let node of nodes) {
+  nodes.forEach(node => {
     node.move();
     node.draw();
-  }
+  });
 
   drawLines();
   requestAnimationFrame(animate);
 }
 
 animate();
-</script>
-
-</body>
-</html>
