@@ -1,4 +1,47 @@
-body {
-    margin: 0;
-    background-color: #222; /* dark gray */
-}
+<div class="background">
+
+  <div class="grid-overlay"></div>
+
+  <div class="network">
+
+    <!-- Nodes -->
+    <div class="node" style="top:20%; left:15%;"></div>
+    <div class="node" style="top:35%; left:40%;"></div>
+    <div class="node" style="top:60%; left:30%;"></div>
+    <div class="node" style="top:50%; left:70%;"></div>
+    <div class="node" style="top:75%; left:55%;"></div>
+
+    <!-- Lines -->
+    <div class="line"
+         style="top:20%; left:15%; width:280px; transform:rotate(18deg);">
+    </div>
+
+    <div class="line"
+         style="top:35%; left:40%; width:220px; transform:rotate(42deg);">
+    </div>
+
+    <div class="line"
+         style="top:60%; left:30%; width:340px; transform:rotate(-12deg);">
+    </div>
+
+    <!-- Pulses -->
+    <div class="pulse"
+         style="top:34%; left:40%; animation-duration:8s;">
+    </div>
+
+    <div class="pulse"
+         style="top:60%; left:30%; animation-duration:10s;">
+    </div>
+
+  </div>
+
+</div>
+
+<main class="content">
+  <h1>Ethical Decisions Require Evidence</h1>
+
+  <p>
+    Transparent reasoning, measurable outcomes,
+    and accountable systems for complex decisions.
+  </p>
+</main>
