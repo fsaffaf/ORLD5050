@@ -19,7 +19,6 @@ body {
 
   font-family: 'Inter', sans-serif;
 
-  /* 🔥 UPDATED: match lecture theme (blue/purple sci-fi instead of green) */
   background:
     radial-gradient(circle at top, rgba(56, 189, 248, 0.10), transparent 35%),
     radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.08), transparent 40%),
@@ -30,31 +29,36 @@ body {
 }
 
 /* =========================
-   BACKGROUND GRID
+   BACKGROUND GRID (BRIGHTER BLUE)
 ========================= */
 
 .grid {
   position: fixed;
   inset: 0;
 
-  /* 🔥 UPDATED grid tone */
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    linear-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.14) 1px, transparent 1px);
 
   background-size: 60px 60px;
-  opacity: 0.35;
+
+  opacity: 0.45;
 
   z-index: 0;
   pointer-events: none;
 
-  /* subtle shimmer feel */
-  animation: gridPulse 8s ease-in-out infinite;
+  animation: gridPulse 7s ease-in-out infinite;
 }
 
 @keyframes gridPulse {
-  0%, 100% { opacity: 0.25; }
-  50% { opacity: 0.40; }
+  0%, 100% {
+    opacity: 0.30;
+    filter: drop-shadow(0 0 0px rgba(56,189,248,0));
+  }
+  50% {
+    opacity: 0.55;
+    filter: drop-shadow(0 0 6px rgba(56,189,248,0.25));
+  }
 }
 
 /* =========================
@@ -69,7 +73,6 @@ body {
   width: 240px;
   height: 100vh;
 
-  /* 🔥 UPDATED glass tone */
   background: rgba(15, 23, 42, 0.85);
   border-right: 1px solid rgba(148, 163, 184, 0.18);
 
@@ -87,10 +90,9 @@ body {
 .logo {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.4rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 4px;
 
-  /* 🔥 UPDATED accent */
   color: #cfefff;
 
   margin-bottom: 50px;
@@ -123,7 +125,6 @@ body {
 
   background: rgba(255,255,255,0.03);
 
-  /* 🔥 UPDATED text tone */
   color: #cbd5e1;
 
   font-family: 'Orbitron', sans-serif;
@@ -138,7 +139,6 @@ body {
 .nav-item:hover {
   background: rgba(56, 189, 248, 0.08);
   color: #e0f2fe;
-
   transform: translateX(6px);
   box-shadow: 0 0 18px rgba(56, 189, 248, 0.15);
 }
@@ -154,7 +154,7 @@ body {
 }
 
 /* =========================
-   MAIN LAYOUT
+   MAIN AREA
 ========================= */
 
 .main {
@@ -171,7 +171,54 @@ body {
 }
 
 /* =========================
-   HOME RING + CONTENT
+   HERO GLASS TITLE (NEW)
+========================= */
+
+.hero-glass {
+  position: relative;
+
+  padding: 3rem 3.5rem;
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.35),
+    inset 0 0 25px rgba(56, 189, 248, 0.05);
+
+  text-align: center;
+
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 3.8rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+
+  color: #e0f2fe;
+
+  text-shadow:
+    0 0 12px rgba(56, 189, 248, 0.35),
+    0 0 28px rgba(56, 189, 248, 0.15);
+
+  margin-bottom: 0.8rem;
+}
+
+.hero-subtitle {
+  font-family: "Inter", sans-serif;
+  color: #94a3b8;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   RING (optional background element)
 ========================= */
 
 .ring {
@@ -187,48 +234,31 @@ body {
     inset 0 0 30px rgba(167, 139, 250, 0.06);
 }
 
-.content {
-  position: relative;
-
-  padding: 45px;
-
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  border-radius: 18px;
-
-  text-align: center;
-
-  backdrop-filter: blur(8px);
-}
-
 /* =========================
-   HOME TYPOGRAPHY (NOW MATCHES LECTURE)
+   SHIMMER LAYER
 ========================= */
 
-.content h1 {
-  font-family: 'Inter', sans-serif; /* removed orbitron for lecture consistency */
-  font-size: 3.2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
 
-  margin-bottom: 16px;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(56, 189, 248, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.05), transparent 45%);
 
-  color: #e2e8f0;
+  animation: glowShift 10s ease-in-out infinite;
+  z-index: 0;
 }
 
-.content h2 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-
-  letter-spacing: 2px;
-  text-transform: uppercase;
-
-  color: #94a3b8;
+@keyframes glowShift {
+  0%, 100% { transform: translateY(0px); opacity: 0.35; }
+  50% { transform: translateY(-10px); opacity: 0.6; }
 }
 
 /* =========================
-   LECTURE MODE (UNCHANGED CORE)
+   LECTURE MODE
 ========================= */
 
 body.lecture-page {
@@ -249,55 +279,8 @@ body.lecture-page .main {
   margin-left: 240px;
 
   padding: 80px 40px 120px 40px;
-
-  overflow: visible !important;
 }
 
-body.lecture-page .ring,
-body.lecture-page .content {
+body.lecture-page .hero-glass {
   display: none !important;
-}
-
-/* =========================
-   CARDS (lecture consistency)
-========================= */
-
-.card,
-.callout {
-  background: rgba(255,255,255,0.045);
-  border: 1px solid rgba(148, 163, 184, 0.16);
-
-  border-radius: 18px;
-
-  padding: 1.5rem;
-  margin: 1.2rem 0; /* 🔥 reduced top spacing feel */
-
-  backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 18px 40px rgba(0,0,0,0.28),
-    inset 0 0 20px rgba(56, 189, 248, 0.03);
-}
-
-/* =========================
-   SHIMMER BACKGROUND LAYER (NEW)
-========================= */
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-
-  background:
-    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.06), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.05), transparent 45%);
-
-  animation: glowShift 10s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes glowShift {
-  0%, 100% { transform: translateY(0px); opacity: 0.4; }
-  50% { transform: translateY(-10px); opacity: 0.6; }
 }
