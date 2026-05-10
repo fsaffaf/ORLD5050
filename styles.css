@@ -1,9 +1,4 @@
 /* =========================
-   FONTS (LOAD IN HTML PREFERRED)
-========================= */
-/* NOTE: Remove @import from CSS and use <link> in HTML */
-
-/* =========================
    BASE RESET
 ========================= */
 
@@ -14,6 +9,12 @@
 }
 
 /* =========================
+   FONTS
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;600;700;800;900&display=swap');
+
+/* =========================
    ROOT LAYOUT
 ========================= */
 
@@ -22,11 +23,12 @@ body {
   overflow-x: hidden;
   display: flex;
 
-  font-family: "Orbitron", sans-serif;
+  font-family: "Inter", sans-serif;
 
   background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 35%),
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.14), transparent 35%),
     radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.10), transparent 40%),
+    radial-gradient(circle at center, rgba(56, 189, 248, 0.06), transparent 55%),
     linear-gradient(to bottom, #020617 0%, #0f172a 55%, #020617 100%);
 
   color: #e5e7eb;
@@ -34,7 +36,7 @@ body {
 }
 
 /* =========================
-   BACKGROUND GRID (BRIGHT + PULSE)
+   BACKGROUND GRID (HUD STYLE)
 ========================= */
 
 .grid {
@@ -42,17 +44,16 @@ body {
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(56, 189, 248, 0.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.22) 1px, transparent 1px);
+    linear-gradient(rgba(56, 189, 248, 0.26) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.26) 1px, transparent 1px);
 
   background-size: 60px 60px;
 
   opacity: 0.35;
-
   z-index: 0;
   pointer-events: none;
 
-  animation: gridPulse 6s ease-in-out infinite;
+  animation: gridPulse 5.5s ease-in-out infinite;
 }
 
 @keyframes gridPulse {
@@ -61,13 +62,13 @@ body {
     filter: drop-shadow(0 0 0px rgba(56,189,248,0));
   }
   50% {
-    opacity: 0.60;
-    filter: drop-shadow(0 0 10px rgba(56,189,248,0.30));
+    opacity: 0.65;
+    filter: drop-shadow(0 0 12px rgba(56,189,248,0.35));
   }
 }
 
 /* =========================
-   SHIMMER BACKGROUND
+   FLOATING SHIMMER FIELD
 ========================= */
 
 body::after {
@@ -77,8 +78,8 @@ body::after {
   pointer-events: none;
 
   background:
-    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.07), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.06), transparent 45%);
+    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.07), transparent 45%);
 
   animation: glowShift 10s ease-in-out infinite;
   z-index: 0;
@@ -86,7 +87,7 @@ body::after {
 
 @keyframes glowShift {
   0%, 100% { transform: translateY(0px); opacity: 0.35; }
-  50% { transform: translateY(-12px); opacity: 0.65; }
+  50% { transform: translateY(-14px); opacity: 0.65; }
 }
 
 /* =========================
@@ -104,7 +105,7 @@ body::after {
   background: rgba(15, 23, 42, 0.88);
   border-right: 1px solid rgba(148, 163, 184, 0.18);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
 
   display: flex;
   flex-direction: column;
@@ -125,7 +126,9 @@ body::after {
 
   margin-bottom: 50px;
 
-  text-shadow: 0 0 18px rgba(56, 189, 248, 0.30);
+  text-shadow:
+    0 0 18px rgba(56, 189, 248, 0.30),
+    0 0 40px rgba(56, 189, 248, 0.12);
 }
 
 /* =========================
@@ -165,29 +168,18 @@ body::after {
 }
 
 .nav-item:hover {
-  background: rgba(56, 189, 248, 0.10);
+  background: rgba(56, 189, 248, 0.12);
   color: #e0f2fe;
   transform: translateX(6px);
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.18);
-}
-
-.nav-item.active {
-  background: rgba(56, 189, 248, 0.14);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  color: #e0f2fe;
-
-  box-shadow:
-    0 0 18px rgba(56, 189, 248, 0.20),
-    inset 0 0 12px rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.20);
 }
 
 /* =========================
-   MAIN LAYOUT
+   MAIN
 ========================= */
 
 .main {
   flex: 1;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -199,45 +191,126 @@ body::after {
 }
 
 /* =========================
-   HERO GLASS TITLE (FIXED)
+   HERO GLASS (Holographic HUD)
 ========================= */
 
 .hero-glass {
-  padding: 3rem 3.5rem;
-  border-radius: 22px;
+  position: relative;
 
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(56, 189, 248, 0.18);
+  padding: 3.5rem 4rem;
+  border-radius: 26px;
 
-  backdrop-filter: blur(16px);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+
+  border: 1px solid rgba(56, 189, 248, 0.20);
+
+  backdrop-filter: blur(18px);
 
   box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.35),
-    inset 0 0 25px rgba(56, 189, 248, 0.05);
+    0 30px 90px rgba(0, 0, 0, 0.45),
+    inset 0 0 30px rgba(56, 189, 248, 0.06);
 
   text-align: center;
+
+  overflow: hidden;
 }
 
-/* IMPORTANT FIX: ORBITRON WILL NOW APPLY */
+/* subtle moving light inside card */
+.hero-glass::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+
+  background:
+    radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.10), transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(167, 139, 250, 0.08), transparent 45%);
+
+  animation: floatGlow 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes floatGlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* =========================
+   HERO TITLE (HYPER MODE)
+========================= */
+
 .hero-title {
+  position: relative;
+  z-index: 2;
+
   font-family: "Orbitron", sans-serif !important;
 
-  font-size: 3.8rem;
+  font-size: clamp(4rem, 6vw, 6.5rem);
   font-weight: 700;
   letter-spacing: 6px;
 
   color: #e0f2fe;
 
   text-shadow:
-    0 0 14px rgba(56, 189, 248, 0.40),
-    0 0 30px rgba(56, 189, 248, 0.18);
+    0 0 16px rgba(56, 189, 248, 0.45),
+    0 0 40px rgba(56, 189, 248, 0.25),
+    0 0 80px rgba(56, 189, 248, 0.12);
 
-  margin-bottom: 0.8rem;
+  animation: titlePulse 4s ease-in-out infinite;
 }
 
+/* breathing glow */
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow:
+      0 0 16px rgba(56, 189, 248, 0.35),
+      0 0 40px rgba(56, 189, 248, 0.20);
+  }
+  50% {
+    transform: scale(1.03);
+    text-shadow:
+      0 0 22px rgba(56, 189, 248, 0.55),
+      0 0 60px rgba(56, 189, 248, 0.30);
+  }
+}
+
+/* shimmer sweep */
+.hero-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  animation: shimmer 3.8s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -60%; }
+  100% { left: 140%; }
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+
 .hero-subtitle {
+  position: relative;
+  z-index: 2;
+
   font-family: "Orbitron", sans-serif;
   color: #94a3b8;
+
   letter-spacing: 3px;
   text-transform: uppercase;
   font-size: 0.95rem;
@@ -252,18 +325,12 @@ body.lecture-page {
   overflow-y: auto;
 }
 
-body.lecture-page .grid {
-  opacity: 0.12;
-}
-
 body.lecture-page .main {
   display: block !important;
-
   height: auto;
   min-height: 100vh;
 
   margin-left: 240px;
-
   padding: 80px 40px 120px 40px;
 }
 
