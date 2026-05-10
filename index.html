@@ -1,0 +1,51 @@
+
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { BarChart3, PieChart, LineChart, Grid3X3, Activity } from "lucide-react";
+
+export default function Home() {
+  const buttons = [
+    { label: "Graphs", icon: <BarChart3 className="w-5 h-5" /> },
+    { label: "Matrices", icon: <Grid3X3 className="w-5 h-5" /> },
+    { label: "Probability", icon: <Activity className="w-5 h-5" /> },
+    { label: "Dashboards", icon: <PieChart className="w-5 h-5" /> },
+    { label: "Curves", icon: <LineChart className="w-5 h-5" /> }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center p-6">
+      <Card className="w-full max-w-2xl rounded-2xl shadow-2xl">
+        <CardContent className="p-8">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl font-bold text-center mb-4"
+          >
+            ORLD 5050: Ethical Evidence-Based Decision-Making
+          </motion.h1>
+
+          <p className="text-center text-gray-600 mb-8 italic">
+            Soft graphs, matrices, probability curves, and dashboards
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {buttons.map((btn, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button className="w-full h-14 flex items-center justify-center gap-2 text-base">
+                  {btn.icon}
+                  {btn.label}
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
