@@ -1,0 +1,111 @@
+/* =========================
+   LECTURE SYSTEM CORE
+========================= */
+
+.lecture {
+  max-width: 900px;
+
+  padding: 40px;
+
+  color: #cfefff;
+
+  font-family: 'Orbitron', sans-serif;
+
+  line-height: 1.7;
+
+  z-index: 3;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.lecture-header {
+  margin-bottom: 30px;
+}
+
+.lecture-title {
+  font-size: 2rem;
+  color: #c8ffff;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 10px;
+
+  text-shadow: 0 0 12px rgba(0,255,200,0.2);
+}
+
+.lecture-subtitle {
+  color: #8abdcf;
+  font-size: 0.95rem;
+}
+
+.lecture-hint {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 8px;
+  color: #8abdcf;
+}
+
+/* =========================
+   SECTIONS (BLOCKS)
+========================= */
+
+.block {
+  margin-bottom: 28px;
+}
+
+.block h2 {
+  font-size: 1.2rem;
+
+  color: #a7f7ff;
+
+  margin-bottom: 10px;
+
+  letter-spacing: 1px;
+}
+
+/* =========================
+   CALLOUTS (DEFINITIONS)
+========================= */
+
+.callout {
+  margin: 12px 0;
+  padding: 14px 16px;
+
+  background: rgba(0,255,200,0.05);
+
+  border-left: 3px solid rgba(0,255,200,0.5);
+
+  border-radius: 8px;
+
+  color: #d9f7ff;
+}
+
+/* =========================
+   EXAMPLES
+========================= */
+
+.example {
+  margin: 10px 0;
+  padding: 10px 14px;
+
+  background: rgba(255,255,255,0.03);
+
+  border: 1px solid rgba(0,255,200,0.12);
+
+  border-radius: 10px;
+}
+
+/* =========================
+   TAKEAWAYS
+========================= */
+
+.takeaways {
+  padding-left: 18px;
+}
+
+.takeaways li {
+  margin-bottom: 6px;
+  color: #cfefff;
+}
