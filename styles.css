@@ -1,5 +1,6 @@
+
 /* =========================
-   RESET
+   BASE RESET
 ========================= */
 
 * {
@@ -9,13 +10,12 @@
 }
 
 /* =========================
-   GLOBAL LAYOUT
+   ROOT LAYOUT FIX (IMPORTANT)
 ========================= */
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
-
+  overflow-x: hidden;   /* allow vertical scrolling globally */
   display: flex;
 
   font-family: 'Inter', sans-serif;
@@ -24,7 +24,8 @@ body {
     radial-gradient(circle at top, rgba(0,255,200,0.08), transparent 35%),
     linear-gradient(to bottom, #05070d 0%, #0b1220 45%, #020305 100%);
 
-  color: #e6eef2;
+  color: white;
+  position: relative;
 }
 
 /* =========================
@@ -40,13 +41,13 @@ body {
     linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
 
   background-size: 60px 60px;
-
   opacity: 0.5;
+
   z-index: 0;
 }
 
 /* =========================
-   SIDEBAR (CONTROL PANEL)
+   SIDEBAR (GLOBAL FIXED)
 ========================= */
 
 .sidebar {
@@ -72,8 +73,6 @@ body {
 }
 
 .logo {
-  font-family: 'Orbitron', sans-serif;
-
   font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: 4px;
@@ -86,7 +85,7 @@ body {
 }
 
 /* =========================
-   NAVIGATION
+   NAV ITEMS
 ========================= */
 
 .nav-buttons {
@@ -98,8 +97,6 @@ body {
 }
 
 .nav-item {
-  font-family: 'Orbitron', sans-serif;
-
   width: 100%;
   height: 52px;
 
@@ -125,9 +122,7 @@ body {
 .nav-item:hover {
   background: rgba(0,255,200,0.08);
   color: #d8ffff;
-
   transform: translateX(6px);
-
   box-shadow: 0 0 15px rgba(0,255,200,0.12);
 }
 
@@ -142,7 +137,7 @@ body {
 }
 
 /* =========================
-   HOME MAIN AREA
+   MAIN LAYOUT (HOME MODE DEFAULT)
 ========================= */
 
 .main {
@@ -152,14 +147,14 @@ body {
   justify-content: center;
   align-items: center;
 
-  margin-left: 240px;
-
   position: relative;
   z-index: 1;
+
+  margin-left: 240px; /* reserves sidebar space */
 }
 
 /* =========================
-   HOME VISUAL CORE
+   HOME RING + CONTENT
 ========================= */
 
 .ring {
@@ -168,7 +163,6 @@ body {
   height: 500px;
 
   border-radius: 50%;
-
   border: 2px solid rgba(0,255,200,0.12);
 
   box-shadow:
@@ -190,12 +184,16 @@ body {
   backdrop-filter: blur(6px);
 }
 
-.content h1 {
-  font-family: 'Orbitron', sans-serif;
+/* =========================
+   TYPOGRAPHY (HOME)
+========================= */
 
+h1 {
   font-size: 4.2rem;
   font-weight: 800;
   letter-spacing: 10px;
+
+  margin-bottom: 20px;
 
   color: #c8ffff;
 
@@ -217,28 +215,43 @@ h2 {
 }
 
 /* =========================
-   LECTURE MODE SWITCH
+   LECTURE MODE (CRITICAL FIX)
 ========================= */
 
 body.lecture-page {
-  display: block;
   overflow-y: auto;
 }
 
-/* hide home UI */
-body.lecture-page .main,
+/* convert layout into document system */
+body.lecture-page .main {
+  display: block !important;
+
+  height: auto;
+  min-height: 100vh;
+
+  margin-left: 240px;
+
+  padding: 80px 40px 120px 40px;
+
+  overflow: visible !important;
+}
+
+/* hide home-only elements */
 body.lecture-page .ring,
 body.lecture-page .content {
   display: none !important;
 }
 
-/* soften background for readability */
-body.lecture-page .grid {
-  opacity: 0.10;
+/* lecture container */
+.lecture {
+  max-width: 900px;
+  margin: 0 auto;
+
+  padding-bottom: 120px;
 }
 
 /* =========================
-   MOBILE
+   MOBILE FIX
 ========================= */
 
 @media (max-width: 768px) {
@@ -255,6 +268,12 @@ body.lecture-page .grid {
 
   .main {
     margin-left: 0;
+    padding: 20px;
+  }
+
+  body.lecture-page .main {
+    margin-left: 0;
+    padding: 20px;
   }
 
   .nav-buttons {
@@ -266,22 +285,98 @@ body.lecture-page .grid {
   .nav-item {
     width: 45%;
   }
+
+  h1 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+
+  h2 {
+    font-size: 0.85rem;
+  }
 }
 
 /* =========================
-   FORCE LECTURE TYPOGRAPHY CLEAN
+   TYPOGRAPHY OVERRIDE
+   (Readable lecture system)
 ========================= */
 
-body.lecture-page {
+/* Default body font becomes readable */
+body {
   font-family: 'Inter', sans-serif;
 }
 
-body.lecture-page h1,
-body.lecture-page h2,
-body.lecture-page h3,
-body.lecture-page p,
-body.lecture-page li,
-body.lecture-page td,
-body.lecture-page th {
+/* =========================
+   FUTURISTIC UI ELEMENTS ONLY
+========================= */
+
+/* Homepage hero only */
+.content h1 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Sidebar system UI */
+.logo,
+.nav-item {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Sidebar UI stays “console-like” */
+.nav-item {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Lecture text system */
+.lecture {
   font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #e6eef2;
+}
+
+/* Lecture headings: readable but still structured */
+.lecture h1,
+.lecture h2,
+.lecture h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #cfefff;
+}
+
+/* Paragraph spacing improvement */
+.lecture p {
+  margin-bottom: 14px;
+}
+
+/* Callout readability boost */
+.callout {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* =========================
+   FUTURISTIC UI ELEMENTS
+========================= */
+
+.logo,
+.nav-item,
+.content h1 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+
+/* ========================================
+   SIMPLE LECTURE PAGE MODE
+======================================== */
+
+body.lecture-page {
+  display: block;
+  overflow-y: auto;
+}
+
+/* softer background for reading */
+body.lecture-page .grid {
+  opacity: 0.10;
 }
