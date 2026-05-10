@@ -262,6 +262,19 @@ hr {
 }
 
 /* =========================
+   CARD HEADER SPACING FIX
+========================= */
+
+.card h2 {
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+}
+
+/* removes top gap caused by global h2 spacing */
+.card h2:first-child {
+  margin-top: 0;
+}
+/* =========================
    LISTS
 ========================= */
 
