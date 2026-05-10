@@ -1,6 +1,6 @@
-/* =========================================
-   GLOBAL RESET
-========================================= */
+/* =========================
+   BASE RESET
+========================= */
 
 * {
   margin: 0;
@@ -10,24 +10,22 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  overflow: hidden;
-
   background: #070b12;
   color: white;
+  overflow: hidden;
 }
 
-/* =========================================
-   BACKGROUND WRAPPER
-========================================= */
+/* =========================
+   BACKGROUND
+========================= */
 
 .background {
   position: fixed;
   inset: 0;
-
   background: #070b12;
 }
 
-/* subtle ambient glow (adds depth like ML diagrams) */
+/* soft ambient glow */
 .background::before {
   content: "";
   position: absolute;
@@ -38,57 +36,61 @@ body {
     radial-gradient(circle at 70% 70%, rgba(0,255,180,0.08), transparent 60%);
 }
 
-/* =========================================
-   SVG NEURAL NETWORK
-========================================= */
+/* =========================
+   GRID
+========================= */
 
-.nn-svg {
+.grid {
   position: absolute;
   inset: 0;
 
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+
+  background-size: 80px 80px;
+
+  opacity: 0.12;
+}
+
+/* =========================
+   NEURAL NETWORK SVG
+========================= */
+
+.nn {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
 
-/* =========================================
-   CONNECTION LINES
-========================================= */
-
-.nn-svg line {
-  stroke: rgba(140, 230, 255, 0.35);
+/* lines (connections) */
+.nn line {
+  stroke: rgba(140, 230, 255, 0.4);
   stroke-width: 1;
-
-  /* subtle fade-in feel */
-  opacity: 0.9;
 }
 
-/* =========================================
-   NODES (NEURONS)
-========================================= */
-
-.nn-svg circle {
+/* nodes */
+.nn circle {
   fill: #c9f7ff;
 
-  /* glow effect */
-  filter: drop-shadow(0 0 6px rgba(120,220,255,0.9))
-          drop-shadow(0 0 12px rgba(120,220,255,0.25));
+  filter:
+    drop-shadow(0 0 6px rgba(120,220,255,0.9))
+    drop-shadow(0 0 14px rgba(120,220,255,0.25));
 }
 
-/* =========================================
-   NAVIGATION BAR
-========================================= */
+/* =========================
+   NAVIGATION
+========================= */
 
 .top-nav {
   position: fixed;
   top: 0;
   width: 100%;
-
   display: flex;
   justify-content: center;
-
   padding: 1.5rem;
-
-  z-index: 5;
+  z-index: 10;
 }
 
 .top-nav nav {
@@ -116,8 +118,6 @@ body {
   border-radius: 999px;
 
   cursor: pointer;
-
-  transition: 0.2s ease;
 }
 
 .top-nav button:hover {
@@ -125,9 +125,9 @@ body {
   color: white;
 }
 
-/* =========================================
-   HERO SECTION
-========================================= */
+/* =========================
+   HERO
+========================= */
 
 .hero {
   position: relative;
@@ -151,8 +151,6 @@ body {
   font-weight: 700;
 
   letter-spacing: -0.04em;
-
-  text-shadow: 0 10px 35px rgba(0,0,0,0.45);
 }
 
 .hero p {
