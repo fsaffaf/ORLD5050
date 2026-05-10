@@ -1,20 +1,17 @@
 /* =========================
-   LECTURE SYSTEM (CONTENT LAYER)
+   LECTURE LAYOUT
 ========================= */
 
 .lecture {
   max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 120px;
 
-  padding: 40px;
+  font-family: 'Inter', sans-serif;
+  color: #e6eef2;
 
-  color: #cfefff;
-
-  font-family: 'Orbitron', sans-serif;
-
-  line-height: 1.7;
-
-  position: relative;
-  z-index: 3;
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
 /* =========================
@@ -22,116 +19,107 @@
 ========================= */
 
 .lecture-header {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .lecture-title {
-  font-size: 2rem;
-  color: #c8ffff;
+  font-family: 'Inter', sans-serif !important;
 
-  letter-spacing: 2px;
+  font-size: 2.8rem !important;
+  font-weight: 700 !important;
 
-  margin-bottom: 8px;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
 
-  text-shadow: 0 0 12px rgba(0,255,200,0.2);
+  line-height: 1.2;
+
+  color: #dffcff !important;
+
+  margin-bottom: 18px;
+
+  text-shadow: none !important;
 }
 
 .lecture-subtitle {
-  font-size: 0.95rem;
-  color: #8abdcf;
-}
-
-.lecture-hint {
-  font-size: 0.8rem;
-  opacity: 0.7;
-  color: #8abdcf;
-  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #8eb7c2;
 }
 
 /* =========================
-   STRUCTURE BLOCKS
+   CONTENT BLOCKS
 ========================= */
 
 .block {
-  margin-bottom: 28px;
+  margin-bottom: 55px;
 }
 
 .block h2 {
-  font-size: 1.2rem;
+  font-family: 'Inter', sans-serif !important;
 
-  color: #a7f7ff;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
 
-  margin-bottom: 10px;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
 
-  letter-spacing: 1px;
+  color: #c8ffff !important;
+
+  margin-bottom: 20px;
+
+  text-shadow: none !important;
+}
+
+.block p {
+  margin-bottom: 18px;
 }
 
 /* =========================
-   PARAGRAPHS
-========================= */
-
-.lecture p {
-  margin-bottom: 12px;
-  color: #cfefff;
-}
-
-/* =========================
-   CALLOUT BOXES (DEFINITIONS)
+   CALLOUT BOXES
 ========================= */
 
 .callout {
-  margin: 14px 0;
-  padding: 14px 16px;
-
-  background: rgba(0,255,200,0.05);
+  background: rgba(0,255,200,0.06);
 
   border-left: 3px solid rgba(0,255,200,0.5);
 
-  border-radius: 8px;
+  padding: 18px 22px;
 
-  color: #d9f7ff;
-}
-
-/* =========================
-   EXAMPLES
-========================= */
-
-.example {
-  margin: 10px 0;
-  padding: 12px 14px;
-
-  background: rgba(255,255,255,0.03);
-
-  border: 1px solid rgba(0,255,200,0.12);
+  margin: 24px 0;
 
   border-radius: 10px;
 
-  color: #cfefff;
+  color: #d8f5f7;
+
+  line-height: 1.7;
 }
 
 /* =========================
-   LISTS (TAKEAWAYS)
+   LISTS
 ========================= */
 
 .takeaways {
-  padding-left: 18px;
+  padding-left: 24px;
 }
 
 .takeaways li {
-  margin-bottom: 6px;
-  color: #cfefff;
+  margin-bottom: 12px;
 }
 
 /* =========================
-   RESPONSIVE SAFETY
+   MOBILE
 ========================= */
 
 @media (max-width: 768px) {
+
   .lecture {
-    padding: 20px;
+    padding-bottom: 80px;
   }
 
   .lecture-title {
-    font-size: 1.5rem;
+    font-size: 2rem !important;
+  }
+
+  .block h2 {
+    font-size: 1.25rem !important;
   }
 }
