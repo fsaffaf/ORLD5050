@@ -289,3 +289,17 @@ body.lecture-page .ring {
 body.lecture-page .content {
   display: none;
 }
+
+body.lecture-page {
+  overflow-y: auto;
+}
+
+body.lecture-page .main {
+  display: block;
+  height: auto;
+  min-height: 100vh;
+  padding: 60px 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: visible;
+}
