@@ -19,7 +19,7 @@ body {
 }
 
 /* =========================================
-   BACKGROUND LAYER (FIXED STACKING)
+   BACKGROUND BASE
 ========================================= */
 
 .background {
@@ -30,12 +30,13 @@ body {
   z-index: 0;
 
   background:
-    radial-gradient(circle at top left, #16324a 0%, #081018 50%),
+    radial-gradient(circle at 20% 20%, #173a52 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #0b2a2a 0%, transparent 45%),
     linear-gradient(135deg, #081018, #0d1a25);
 }
 
 /* =========================================
-   AMBIENT GLOW ORBS
+   AMBIENT ENERGY FIELDS
 ========================================= */
 
 .background::before,
@@ -48,11 +49,11 @@ body {
 
   border-radius: 50%;
 
-  filter: blur(110px);
+  filter: blur(120px);
 
-  opacity: 0.25;
+  opacity: 0.22;
 
-  animation: drift 22s ease-in-out infinite alternate;
+  animation: drift 28s ease-in-out infinite alternate;
 }
 
 .background::before {
@@ -62,21 +63,21 @@ body {
 }
 
 .background::after {
-  background: rgba(0, 255, 180, 0.25);
-  bottom: -300px;
-  right: -250px;
+  background: rgba(0, 255, 170, 0.25);
+  bottom: -350px;
+  right: -300px;
 
-  animation-duration: 28s;
+  animation-duration: 34s;
 }
 
 @keyframes drift {
   to {
-    transform: translate(120px, 80px) scale(1.15);
+    transform: translate(140px, 90px) scale(1.2);
   }
 }
 
 /* =========================================
-   GRID OVERLAY (SUBTLE BUT VISIBLE)
+   SUBTLE MOVING GRID (THINKING SURFACE)
 ========================================= */
 
 .grid {
@@ -89,11 +90,22 @@ body {
 
   background-size: 70px 70px;
 
-  opacity: 0.25;
+  opacity: 0.18;
+
+  animation: gridShift 18s ease-in-out infinite alternate;
+}
+
+@keyframes gridShift {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(20px, 15px);
+  }
 }
 
 /* =========================================
-   NODE SYSTEM
+   NODES (NON-STATIC BEHAVIOR)
 ========================================= */
 
 .node {
@@ -104,29 +116,34 @@ body {
 
   border-radius: 50%;
 
-  background: #b6f3ff;
+  background: #b8f5ff;
 
   box-shadow:
-    0 0 12px rgba(120,220,255,0.9),
-    0 0 24px rgba(120,220,255,0.35);
+    0 0 14px rgba(120,220,255,0.9),
+    0 0 30px rgba(120,220,255,0.25);
 
-  animation: float 6s ease-in-out infinite;
+  animation: floatNode 6s ease-in-out infinite;
 }
 
-@keyframes float {
+@keyframes floatNode {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
   50% {
-    transform: translateY(-12px);
+    transform: translate(0, -14px);
   }
 }
 
-.n1 { top: 20%; left: 15%; }
-.n2 { top: 35%; left: 40%; }
-.n3 { top: 60%; left: 30%; }
-.n4 { top: 50%; left: 70%; }
-.n5 { top: 75%; left: 55%; }
+/* slight variation per node (breaks uniformity) */
+
+.n1 { top: 20%; left: 15%; animation-duration: 7s; }
+.n2 { top: 35%; left: 40%; animation-duration: 5.5s; }
+.n3 { top: 60%; left: 30%; animation-duration: 6.8s; }
+.n4 { top: 50%; left: 70%; animation-duration: 8s; }
+.n5 { top: 75%; left: 55%; animation-duration: 6s; }
 
 /* =========================================
-   CONNECTION LINES
+   CONNECTION LINES (BREATHING STRUCTURE)
 ========================================= */
 
 .line {
@@ -137,23 +154,23 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(120, 220, 255, 0.55),
+    rgba(120, 220, 255, 0.6),
     transparent
   );
 
   transform-origin: left center;
 
-  opacity: 0.65;
+  opacity: 0.55;
 
-  animation: pulseLine 5s ease-in-out infinite;
+  animation: linePulse 4.5s ease-in-out infinite;
 }
 
-@keyframes pulseLine {
+@keyframes linePulse {
   0%, 100% {
-    opacity: 0.35;
+    opacity: 0.25;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.85;
   }
 }
 
@@ -179,7 +196,48 @@ body {
 }
 
 /* =========================================
-   NAVIGATION BAR
+   EVIDENCE FLOW PARTICLES (KEY UPGRADE)
+========================================= */
+
+.line::after {
+  content: "";
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: rgba(160, 240, 255, 0.9);
+
+  box-shadow: 0 0 12px rgba(120,220,255,0.8);
+
+  top: -2px;
+  left: 0;
+
+  animation: flow 3.5s linear infinite;
+}
+
+/* particle travels along line */
+@keyframes flow {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(260px);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   NAVIGATION
 ========================================= */
 
 .top-nav {
@@ -230,7 +288,7 @@ body {
 }
 
 /* =========================================
-   HERO SECTION
+   HERO
 ========================================= */
 
 .hero {
@@ -257,7 +315,7 @@ body {
 
   letter-spacing: -0.04em;
 
-  text-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  text-shadow: 0 10px 40px rgba(0,0,0,0.35);
 }
 
 .hero p {
