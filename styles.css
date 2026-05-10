@@ -1,7 +1,3 @@
-/* =========================
-   BASE RESET
-========================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -25,7 +21,6 @@ body {
   background: #070b12;
 }
 
-/* soft ambient glow */
 .background::before {
   content: "";
   position: absolute;
@@ -49,38 +44,48 @@ body {
     linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
 
   background-size: 80px 80px;
-
   opacity: 0.12;
 }
 
 /* =========================
-   NEURAL NETWORK SVG
+   NETWORK LAYERS
 ========================= */
 
-.nn {
+.network {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-/* lines (connections) */
-.nn line {
-  stroke: rgba(140, 230, 255, 0.4);
-  stroke-width: 1;
-}
-
-/* nodes */
-.nn circle {
-  fill: #c9f7ff;
-
-  filter:
-    drop-shadow(0 0 6px rgba(120,220,255,0.9))
-    drop-shadow(0 0 14px rgba(120,220,255,0.25));
+/* each column */
+.layer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
 }
 
 /* =========================
-   NAVIGATION
+   NODES
+========================= */
+
+.node {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+
+  background: #c9f7ff;
+
+  box-shadow:
+    0 0 10px rgba(120,220,255,0.8),
+    0 0 18px rgba(120,220,255,0.25);
+}
+
+/* =========================
+   NAV
 ========================= */
 
 .top-nav {
@@ -98,7 +103,6 @@ body {
   gap: 1rem;
 
   padding: 0.75rem 1rem;
-
   border-radius: 999px;
 
   background: rgba(255,255,255,0.05);
@@ -110,11 +114,9 @@ body {
 .top-nav button {
   border: none;
   background: transparent;
-
   color: rgba(255,255,255,0.85);
 
   padding: 0.6rem 1.2rem;
-
   border-radius: 999px;
 
   cursor: pointer;
@@ -142,15 +144,11 @@ body {
   align-items: center;
 
   text-align: center;
-
-  padding: 2rem;
 }
 
 .hero h1 {
   font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 700;
-
-  letter-spacing: -0.04em;
 }
 
 .hero p {
