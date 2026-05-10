@@ -1,67 +1,198 @@
-<div class="background">
+/* =========================================
+   GLOBAL RESET
+========================================= */
 
-  <div class="grid-overlay"></div>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <div class="network">
+body {
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
 
-    <!-- Nodes -->
-    <div class="node" style="top:20%; left:15%;"></div>
-    <div class="node" style="top:35%; left:40%;"></div>
-    <div class="node" style="top:60%; left:30%;"></div>
-    <div class="node" style="top:50%; left:70%;"></div>
-    <div class="node" style="top:75%; left:55%;"></div>
+  background: #081018;
+  color: white;
 
-    <!-- Lines -->
-    <div class="line"
-         style="top:20%; left:15%; width:280px; transform:rotate(18deg);">
-    </div>
-
-    <div class="line"
-         style="top:35%; left:40%; width:220px; transform:rotate(42deg);">
-    </div>
-
-    <div class="line"
-         style="top:60%; left:30%; width:340px; transform:rotate(-12deg);">
-    </div>
-
-    <!-- Pulses -->
-    <div class="pulse"
-         style="top:34%; left:40%; animation-duration:8s;">
-    </div>
-
-    <div class="pulse"
-         style="top:60%; left:30%; animation-duration:10s;">
-    </div>
-
-  </div>
-
-</div>
-
-<main class="content">
-  <h1>Ethical Decisions Require Evidence</h1>
-
-  <p>
-    Transparent reasoning, measurable outcomes,
-    and accountable systems for complex decisions.
-  </p>
-</main>
+  position: relative;
+}
 
 /* =========================================
-   Top Navigation
-   ========================================= */
+   BACKGROUND LAYER (FIXED STACKING)
+========================================= */
+
+.background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(circle at top left, #16324a 0%, #081018 50%),
+    linear-gradient(135deg, #081018, #0d1a25);
+}
+
+/* =========================================
+   AMBIENT GLOW ORBS
+========================================= */
+
+.background::before,
+.background::after {
+  content: "";
+  position: absolute;
+
+  width: 900px;
+  height: 900px;
+
+  border-radius: 50%;
+
+  filter: blur(110px);
+
+  opacity: 0.25;
+
+  animation: drift 22s ease-in-out infinite alternate;
+}
+
+.background::before {
+  background: rgba(0, 200, 255, 0.35);
+  top: -300px;
+  left: -250px;
+}
+
+.background::after {
+  background: rgba(0, 255, 180, 0.25);
+  bottom: -300px;
+  right: -250px;
+
+  animation-duration: 28s;
+}
+
+@keyframes drift {
+  to {
+    transform: translate(120px, 80px) scale(1.15);
+  }
+}
+
+/* =========================================
+   GRID OVERLAY (SUBTLE BUT VISIBLE)
+========================================= */
+
+.grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+
+  background-size: 70px 70px;
+
+  opacity: 0.25;
+}
+
+/* =========================================
+   NODE SYSTEM
+========================================= */
+
+.node {
+  position: absolute;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #b6f3ff;
+
+  box-shadow:
+    0 0 12px rgba(120,220,255,0.9),
+    0 0 24px rgba(120,220,255,0.35);
+
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.n1 { top: 20%; left: 15%; }
+.n2 { top: 35%; left: 40%; }
+.n3 { top: 60%; left: 30%; }
+.n4 { top: 50%; left: 70%; }
+.n5 { top: 75%; left: 55%; }
+
+/* =========================================
+   CONNECTION LINES
+========================================= */
+
+.line {
+  position: absolute;
+
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(120, 220, 255, 0.55),
+    transparent
+  );
+
+  transform-origin: left center;
+
+  opacity: 0.65;
+
+  animation: pulseLine 5s ease-in-out infinite;
+}
+
+@keyframes pulseLine {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.l1 {
+  top: 20%;
+  left: 15%;
+  width: 280px;
+  transform: rotate(18deg);
+}
+
+.l2 {
+  top: 35%;
+  left: 40%;
+  width: 240px;
+  transform: rotate(42deg);
+}
+
+.l3 {
+  top: 60%;
+  left: 30%;
+  width: 320px;
+  transform: rotate(-12deg);
+}
+
+/* =========================================
+   NAVIGATION BAR
+========================================= */
 
 .top-nav {
   position: fixed;
   top: 0;
-  left: 0;
-
   width: 100%;
-  padding: 1.5rem 2rem;
-
-  z-index: 10;
 
   display: flex;
   justify-content: center;
+
+  padding: 1.5rem;
+
+  z-index: 5;
 }
 
 .top-nav nav {
@@ -70,52 +201,37 @@
 
   padding: 0.75rem 1rem;
 
-  border: 1px solid rgba(255,255,255,0.08);
-
-  background: rgba(255,255,255,0.04);
-
-  backdrop-filter: blur(12px);
-
   border-radius: 999px;
 
-  box-shadow:
-    0 4px 24px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .top-nav button {
   border: none;
-  outline: none;
+  background: transparent;
 
-  padding: 0.8rem 1.4rem;
+  color: rgba(255,255,255,0.85);
+
+  padding: 0.6rem 1.2rem;
 
   border-radius: 999px;
 
-  background: transparent;
-
-  color: rgba(255,255,255,0.82);
-
-  font-size: 0.95rem;
-  font-weight: 500;
-
   cursor: pointer;
 
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease;
+  transition: 0.25s ease;
 }
 
 .top-nav button:hover {
-  background: rgba(120,220,255,0.12);
-
+  background: rgba(120,220,255,0.15);
   color: white;
-
-  transform: translateY(-2px);
 }
 
 /* =========================================
-   Hero Section
-   ========================================= */
+   HERO SECTION
+========================================= */
 
 .hero {
   position: relative;
@@ -135,26 +251,22 @@
 }
 
 .hero h1 {
-  margin: 0;
-
-  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 700;
   line-height: 1.05;
+
   letter-spacing: -0.04em;
 
-  color: white;
-
-  text-shadow:
-    0 6px 30px rgba(0,0,0,0.35);
+  text-shadow: 0 8px 30px rgba(0,0,0,0.35);
 }
 
 .hero p {
   margin-top: 1.5rem;
 
-  max-width: 760px;
+  max-width: 750px;
 
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-size: 1.15rem;
+  line-height: 1.7;
 
   color: rgba(255,255,255,0.72);
 }
