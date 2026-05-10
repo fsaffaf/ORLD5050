@@ -1,154 +1,270 @@
-/* =========================
+/* ========================================
+   ORLD 5050 — Lecture Theme
+======================================== */
+
+:root {
+  --bg: #0f172a;
+  --bg-soft: #111827;
+
+  --card: rgba(255, 255, 255, 0.045);
+  --border: rgba(255, 255, 255, 0.10);
+
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.12);
+
+  --code-bg: #020617;
+}
+
+/* ========================================
    LECTURE CONTAINER
-========================= */
+======================================== */
 
 .lecture {
-  max-width: 820px;
+  max-width: 960px;
 
   margin: 0 auto;
   padding-bottom: 140px;
 
-  font-family: 'Inter', sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 
-  color: #d7dde2;
+  color: var(--text);
 
+  line-height: 1.8;
   font-size: 1.05rem;
-  line-height: 1.9;
 }
 
-/* =========================
+/* ========================================
    HEADER
-========================= */
+======================================== */
 
 .lecture-header {
-  margin-bottom: 70px;
+  margin-bottom: 4rem;
 }
 
 .lecture-title {
-  font-family: 'Inter', sans-serif !important;
+  font-size: 2.8rem !important;
+  font-weight: 800 !important;
 
-  font-size: 2.4rem !important;
-  font-weight: 700 !important;
+  line-height: 1.1;
 
-  letter-spacing: -0.5px !important;
+  letter-spacing: -0.03em !important;
   text-transform: none !important;
 
-  line-height: 1.2;
+  color: var(--text) !important;
 
-  color: #eef4f6 !important;
-
-  margin-bottom: 16px;
+  margin-bottom: 0.75rem;
 
   text-shadow: none !important;
+
+  font-family: inherit !important;
 }
 
 .lecture-subtitle {
-  color: #93a2ab;
+  color: var(--muted);
 
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
 
-  max-width: 680px;
+  max-width: 70ch;
 }
 
-/* =========================
+/* ========================================
    CONTENT BLOCKS
-========================= */
+======================================== */
 
 .block {
-  margin-bottom: 60px;
+  margin-bottom: 3.5rem;
 }
 
 .block h2 {
-  font-family: 'Inter', sans-serif !important;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
 
   font-size: 1.35rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 
-  letter-spacing: 0 !important;
+  border-left: 4px solid var(--accent);
+
+  padding-left: 0.85rem;
+
+  color: var(--text) !important;
+
   text-transform: none !important;
-
-  color: #f1f5f6 !important;
-
-  margin-bottom: 18px;
+  letter-spacing: 0 !important;
 
   text-shadow: none !important;
+
+  font-family: inherit !important;
 }
 
 .block p {
-  margin-bottom: 18px;
+  max-width: 75ch;
 
-  color: #c8d0d5;
+  color: var(--text);
+
+  margin-bottom: 1.2rem;
 }
 
-/* =========================
+/* ========================================
    CALLOUTS
-========================= */
+======================================== */
 
 .callout {
-  background: rgba(255,255,255,0.03);
+  background: var(--card);
 
-  border-left: 2px solid rgba(255,255,255,0.12);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
 
-  padding: 18px 22px;
+  border-radius: 14px;
 
-  margin: 24px 0;
+  padding: 1.25rem 1.4rem;
 
-  border-radius: 8px;
+  margin: 1.75rem 0;
 
-  color: #d8dfe3;
+  backdrop-filter: blur(10px);
 
-  line-height: 1.8;
+  color: var(--text);
 }
 
 .callout strong {
   color: #ffffff;
 }
 
-/* =========================
+/* ========================================
    LISTS
-========================= */
+======================================== */
 
 .takeaways {
-  padding-left: 22px;
+  list-style: none;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  padding: 1.4rem;
+
+  backdrop-filter: blur(10px);
 }
 
 .takeaways li {
-  margin-bottom: 12px;
+  margin: 0.7rem 0;
 
-  color: #cfd7db;
+  color: var(--text);
 }
 
-/* =========================
-   SUBTLE SECTION DIVIDERS
-========================= */
+/* ========================================
+   LINKS
+======================================== */
 
-.block:not(:last-child)::after {
-  content: "";
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
 
-  display: block;
+a:hover {
+  text-decoration: underline;
+}
 
+/* ========================================
+   INLINE CODE
+======================================== */
+
+code {
+  background: var(--code-bg);
+
+  padding: 0.2rem 0.45rem;
+
+  border-radius: 6px;
+
+  font-family:
+    "JetBrains Mono",
+    Menlo,
+    Consolas,
+    monospace;
+
+  font-size: 0.9em;
+}
+
+/* ========================================
+   DIVIDERS
+======================================== */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+
+  margin: 3rem 0;
+}
+
+/* ========================================
+   TABLES
+======================================== */
+
+table {
   width: 100%;
-  height: 1px;
 
-  margin-top: 40px;
+  border-collapse: collapse;
 
-  background: rgba(255,255,255,0.04);
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  backdrop-filter: blur(10px);
+
+  margin: 2rem 0;
 }
 
-/* =========================
+thead th {
+  text-align: left;
+
+  font-weight: 600;
+  font-size: 0.92rem;
+
+  color: var(--accent);
+
+  border-bottom: 1px solid var(--border);
+
+  padding: 1rem;
+}
+
+tbody td {
+  padding: 1rem;
+
+  vertical-align: top;
+}
+
+tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border);
+}
+
+/* ========================================
    MOBILE
-========================= */
+======================================== */
 
 @media (max-width: 768px) {
 
   .lecture {
     font-size: 1rem;
-    line-height: 1.8;
   }
 
   .lecture-title {
-    font-size: 1.9rem !important;
+    font-size: 2rem !important;
   }
 
   .block h2 {
