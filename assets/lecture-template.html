@@ -6,14 +6,10 @@
 
   <title>Lecture Title</title>
 
-  <!-- Performance boost for Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts FIRST (prevents fallback flash) -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&family=Orbitron:wght@400;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Orbitron:wght@400;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
+  <!-- CSS -->
   <link rel="stylesheet" href="../assets/lecture.css" />
 </head>
 
@@ -22,15 +18,16 @@
 
     <h1>Lecture Title</h1>
 
-    <!-- cleaner + more controllable than <em> -->
+    <!-- cleaner subtitle instead of <em> -->
     <p class="subtitle">ORLD 5050 — Course Notes</p>
 
     <hr />
 
     <h2>Section Heading</h2>
+
     <p>Your lecture content goes here.</p>
 
-    <!-- cleaner card structure -->
+    <!-- CLEAN CARD (no unnecessary wrapper) -->
     <div class="card">
       <h2>Key Idea</h2>
       <p>This is a reusable card component.</p>
