@@ -1,68 +1,106 @@
-const canvas = document.getElementById("starfield");
+<!DOCTYPE>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #0b0f1a; /* deep academic navy */
+  }
+
+  canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+</style>
+</head>
+
+<body>
+<canvas id="network"></canvas>
+
+<script>
+const canvas = document.getElementById("network");
 const ctx = canvas.getContext("2d");
 
+let width, height;
 function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
 }
+window.addEventListener("resize", resize);
 resize();
-window.onresize = resize;
 
-// More stars + faster speed
-const STAR_COUNT = 700;
-const SPEED = 0.05;
+const nodes = [];
+const NODE_COUNT = 60;
+const MAX_DISTANCE = 120;
 
-// Colors for stars (soft sci‑fi palette)
-const COLORS = [
-    "rgba(255,255,255,1)",   // white
-    "rgba(180,200,255,1)",   // pale blue
-    "rgba(255,220,180,1)",   // warm gold
-    "rgba(200,180,255,1)"    // lavender
-];
+class Node {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+  }
 
-let stars = [];
+  move() {
+    this.x += this.vx;
+    this.y += this.vy;
 
-function initStars() {
-    stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-        stars.push({
-            x: (Math.random() - 0.5) * canvas.width,
-            y: (Math.random() - 0.5) * canvas.height,
-            z: Math.random() * canvas.width,
-            color: COLORS[Math.floor(Math.random() * COLORS.length)]
-        });
-    }
+    // bounce off edges
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(120, 200, 255, 0.7)";
+    ctx.fill();
+  }
 }
 
-function update() {
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    for (let star of stars) {
-        star.z -= SPEED;
-
-        // Reset star when it reaches the viewer
-        if (star.z <= 0) {
-            star.x = (Math.random() - 0.5) * canvas.width;
-            star.y = (Math.random() - 0.5) * canvas.height;
-            star.z = canvas.width;
-            star.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        }
-
-        const k = 128 / star.z;
-        const sx = star.x * k + canvas.width / 2;
-        const sy = star.y * k + canvas.height / 2;
-
-        if (sx < 0 || sx >= canvas.width || sy < 0 || sy >= canvas.height) continue;
-
-        const size = (1 - star.z / canvas.width) * 2.2;
-
-        ctx.fillStyle = star.color;
-        ctx.fillRect(sx, sy, size, size);
-    }
-
-    requestAnimationFrame(update);
+// create nodes
+for (let i = 0; i < NODE_COUNT; i++) {
+  nodes.push(new Node());
 }
 
-initStars();
-update();
+function drawLines() {
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      let dx = nodes[i].x - nodes[j].x;
+      let dy = nodes[i].y - nodes[j].y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < MAX_DISTANCE) {
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.strokeStyle = `rgba(120,200,255, ${1 - dist / MAX_DISTANCE})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+
+  for (let node of nodes) {
+    node.move();
+    node.draw();
+  }
+
+  drawLines();
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
