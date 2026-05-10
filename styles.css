@@ -306,8 +306,18 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* Keep UI / system aesthetic for headers */
-h1, .logo {
+/* =========================
+   FUTURISTIC UI ELEMENTS ONLY
+========================= */
+
+/* Homepage hero only */
+.content h1 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Sidebar system UI */
+.logo,
+.nav-item {
   font-family: 'Orbitron', sans-serif;
 }
 
