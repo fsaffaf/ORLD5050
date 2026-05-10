@@ -9,33 +9,22 @@
 }
 
 body {
-  background: #020807;
-  color: #b7ffcc;
-  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  display: flex;
+
+  font-family: 'Orbitron', sans-serif;
+
+  background:
+    radial-gradient(circle at top, rgba(0,255,200,0.08), transparent 35%),
+    linear-gradient(to bottom, #05070d 0%, #0b1220 45%, #020305 100%);
+
+  color: white;
+
   overflow: hidden;
 }
 
 /* =========================
-   BACKGROUND
-========================= */
-
-.background {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, #02110e, #010605);
-}
-
-/* =========================
-   SCAN FIELD
-========================= */
-
-.scan-field {
-  position: absolute;
-  inset: 0;
-}
-
-/* =========================
-   GRID (TACTICAL HUD)
+   GRID BACKGROUND
 ========================= */
 
 .grid {
@@ -43,16 +32,16 @@ body {
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(0,255,140,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,140,0.08) 1px, transparent 1px);
+    linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
 
   background-size: 60px 60px;
 
-  opacity: 0.35;
+  opacity: 0.4;
 }
 
 /* =========================
-   SCAN LINE (MOVING SEARCH)
+   SCAN LINE (SEARCHING / DECISION SCAN)
 ========================= */
 
 .scan-line {
@@ -64,11 +53,11 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(0,255,140,0.9),
+    rgba(0,255,200,0.9),
     transparent
   );
 
-  box-shadow: 0 0 12px rgba(0,255,140,0.6);
+  box-shadow: 0 0 15px rgba(0,255,200,0.5);
 
   animation: scanMove 4s linear infinite;
 }
@@ -80,7 +69,7 @@ body {
 }
 
 /* =========================
-   TARGET POINTS
+   TARGETS (DECISION OPTIONS)
 ========================= */
 
 .target {
@@ -91,16 +80,15 @@ body {
 
   border-radius: 50%;
 
-  background: rgba(0,255,140,0.9);
+  background: rgba(0,255,200,0.9);
 
   box-shadow:
-    0 0 10px rgba(0,255,140,0.8),
-    0 0 25px rgba(0,255,140,0.3);
+    0 0 12px rgba(0,255,200,0.8),
+    0 0 25px rgba(0,255,200,0.25);
 
-  animation: pulse 2.8s ease-in-out infinite;
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
-/* positions */
 .t1 { top: 25%; left: 30%; }
 .t2 { top: 40%; left: 70%; }
 .t3 { top: 55%; left: 45%; }
@@ -113,7 +101,7 @@ body {
 }
 
 /* =========================
-   FOG / ATMOSPHERE
+   FOG FIELD
 ========================= */
 
 .fog {
@@ -121,10 +109,10 @@ body {
   inset: -20%;
 
   background:
-    radial-gradient(circle at 30% 40%, rgba(0,255,140,0.08), transparent 60%),
-    radial-gradient(circle at 70% 60%, rgba(0,255,140,0.05), transparent 60%);
+    radial-gradient(circle at 30% 40%, rgba(0,255,200,0.08), transparent 60%),
+    radial-gradient(circle at 70% 60%, rgba(0,255,200,0.05), transparent 60%);
 
-  animation: drift 10s ease-in-out infinite alternate;
+  animation: drift 12s ease-in-out infinite alternate;
 }
 
 @keyframes drift {
@@ -133,87 +121,134 @@ body {
 }
 
 /* =========================
-   NAV
+   SIDEBAR
 ========================= */
 
-.top-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-
-  padding: 1.5rem;
-
-  z-index: 10;
-}
-
-.top-nav nav {
-  display: flex;
-  gap: 1rem;
-
-  padding: 0.75rem 1rem;
-
-  border-radius: 999px;
-
-  background: rgba(0,20,10,0.6);
-  backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(0,255,140,0.15);
-}
-
-.top-nav button {
-  border: none;
-  background: transparent;
-
-  color: rgba(180,255,210,0.85);
-
-  padding: 0.6rem 1.2rem;
-
-  border-radius: 999px;
-
-  cursor: pointer;
-}
-
-.top-nav button:hover {
-  background: rgba(0,255,140,0.12);
-  color: #b7ffcc;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-  position: relative;
-  z-index: 2;
-
+.sidebar {
+  width: 240px;
   height: 100vh;
+
+  background: rgba(10, 18, 30, 0.85);
+  border-right: 1px solid rgba(0,255,200,0.15);
+
+  backdrop-filter: blur(10px);
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
+  padding-top: 40px;
+
+  z-index: 2;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+
+  color: #c8ffff;
+
+  margin-bottom: 50px;
+
+  text-shadow: 0 0 10px rgba(0,255,200,0.4);
+}
+
+.nav-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 25px;
+}
+
+.nav-buttons button {
+  background: rgba(255,255,255,0.03);
+
+  border: 1px solid rgba(0,255,200,0.18);
+  border-radius: 12px;
+
+  color: #9ed9e8;
+
+  padding: 15px;
+  font-size: 0.9rem;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.nav-buttons button:hover {
+  background: rgba(0,255,200,0.08);
+  transform: translateX(5px);
+  color: #d8ffff;
+}
+
+/* =========================
+   MAIN CORE
+========================= */
+
+.main {
+  flex: 1;
+
+  display: flex;
   justify-content: center;
   align-items: center;
 
+  position: relative;
+  z-index: 2;
+}
+
+/* central ring */
+.ring {
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(0,255,200,0.12);
+
+  box-shadow:
+    0 0 30px rgba(0,255,200,0.15),
+    inset 0 0 30px rgba(0,255,200,0.08);
+}
+
+/* content box */
+.content {
+  position: relative;
+
+  padding: 45px;
+
+  background: rgba(255,255,255,0.03);
+
+  border: 1px solid rgba(0,255,200,0.12);
+  border-radius: 18px;
+
   text-align: center;
+
+  backdrop-filter: blur(6px);
 }
 
-.hero h1 {
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 700;
+h1 {
+  font-size: 4rem;
+  letter-spacing: 8px;
 
-  color: #b7ffcc;
+  color: #c8ffff;
+
+  text-shadow: 0 0 18px rgba(0,255,200,0.3);
 }
 
-.hero p {
-  margin-top: 1.5rem;
+h2 {
+  font-size: 1rem;
+  font-weight: 400;
 
-  max-width: 760px;
+  letter-spacing: 3px;
 
-  font-size: 1.1rem;
-  line-height: 1.7;
+  color: #8abdcf;
 
-  color: rgba(183,255,204,0.75);
+  margin-top: 10px;
 }
