@@ -1,3 +1,7 @@
+/* =========================
+   BASE
+========================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -12,76 +16,132 @@ body {
 }
 
 /* =========================
-   BACKGROUND
+   BACKGROUND FIELD
 ========================= */
 
 .background {
   position: fixed;
   inset: 0;
   background: #070b12;
+  overflow: hidden;
 }
 
+/* subtle atmospheric gradient */
 .background::before {
   content: "";
   position: absolute;
   inset: 0;
 
   background:
-    radial-gradient(circle at 30% 30%, rgba(0,180,255,0.12), transparent 60%),
-    radial-gradient(circle at 70% 70%, rgba(0,255,180,0.08), transparent 60%);
+    radial-gradient(circle at 30% 30%, rgba(0,180,255,0.10), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(0,255,180,0.06), transparent 60%);
 }
 
 /* =========================
-   GRID
+   FIELD CONTAINER
 ========================= */
 
-.grid {
+.field {
   position: absolute;
   inset: 0;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-
-  background-size: 80px 80px;
-  opacity: 0.12;
 }
 
 /* =========================
-   NETWORK LAYERS
+   NOISE (LOW SIGNAL DATA)
 ========================= */
 
-.network {
+.noise {
   position: absolute;
-  inset: 0;
 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+  width: 4px;
+  height: 4px;
 
-/* each column */
-.layer {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: center;
-}
-
-/* =========================
-   NODES
-========================= */
-
-.node {
-  width: 12px;
-  height: 12px;
   border-radius: 50%;
 
-  background: #c9f7ff;
+  background: rgba(255,255,255,0.08);
+
+  animation: drift 18s linear infinite;
+}
+
+/* random placement */
+.n1 { top: 20%; left: 10%; }
+.n2 { top: 70%; left: 20%; }
+.n3 { top: 40%; left: 35%; }
+.n4 { top: 60%; left: 80%; }
+.n5 { top: 30%; left: 60%; }
+.n6 { top: 80%; left: 50%; }
+.n7 { top: 10%; left: 75%; }
+.n8 { top: 55%; left: 15%; }
+
+/* slow drift */
+@keyframes drift {
+  0% { transform: translate(0, 0); opacity: 0.2; }
+  50% { opacity: 0.05; }
+  100% { transform: translate(20px, -30px); opacity: 0.2; }
+}
+
+/* =========================
+   SIGNAL (HIGH VALUE DATA)
+========================= */
+
+.signal {
+  position: absolute;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: rgba(120,220,255,0.9);
 
   box-shadow:
     0 0 10px rgba(120,220,255,0.8),
-    0 0 18px rgba(120,220,255,0.25);
+    0 0 25px rgba(120,220,255,0.3);
+
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* signal positions */
+.s1 { top: 35%; left: 40%; }
+.s2 { top: 55%; left: 60%; }
+.s3 { top: 65%; left: 30%; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+/* =========================
+   CONNECTION LINES (WEAK CORRELATION)
+========================= */
+
+.link {
+  position: absolute;
+
+  height: 1px;
+
+  background: rgba(140,230,255,0.15);
+
+  animation: flicker 6s infinite;
+}
+
+.l1 {
+  top: 40%;
+  left: 35%;
+  width: 200px;
+  transform: rotate(25deg);
+}
+
+.l2 {
+  top: 55%;
+  left: 30%;
+  width: 260px;
+  transform: rotate(-18deg);
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
 }
 
 /* =========================
