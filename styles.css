@@ -1,4 +1,9 @@
 /* =========================
+   FONTS (LOAD IN HTML PREFERRED)
+========================= */
+/* NOTE: Remove @import from CSS and use <link> in HTML */
+
+/* =========================
    BASE RESET
 ========================= */
 
@@ -7,9 +12,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-/* Make Orbitron ALWAYS available everywhere */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;600;700;800;900&display=swap');
 
 /* =========================
    ROOT LAYOUT
@@ -20,7 +22,7 @@ body {
   overflow-x: hidden;
   display: flex;
 
-  font-family: 'Inter', sans-serif;
+  font-family: "Orbitron", sans-serif;
 
   background:
     radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 35%),
@@ -32,7 +34,7 @@ body {
 }
 
 /* =========================
-   BACKGROUND GRID (BRIGHT BLUE + PULSE)
+   BACKGROUND GRID (BRIGHT + PULSE)
 ========================= */
 
 .grid {
@@ -40,12 +42,12 @@ body {
   inset: 0;
 
   background-image:
-    linear-gradient(rgba(56, 189, 248, 0.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.18) 1px, transparent 1px);
+    linear-gradient(rgba(56, 189, 248, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.22) 1px, transparent 1px);
 
   background-size: 60px 60px;
 
-  opacity: 0.45;
+  opacity: 0.35;
 
   z-index: 0;
   pointer-events: none;
@@ -55,17 +57,17 @@ body {
 
 @keyframes gridPulse {
   0%, 100% {
-    opacity: 0.28;
+    opacity: 0.25;
     filter: drop-shadow(0 0 0px rgba(56,189,248,0));
   }
   50% {
     opacity: 0.60;
-    filter: drop-shadow(0 0 8px rgba(56,189,248,0.25));
+    filter: drop-shadow(0 0 10px rgba(56,189,248,0.30));
   }
 }
 
 /* =========================
-   SHIMMER BACKGROUND LAYER
+   SHIMMER BACKGROUND
 ========================= */
 
 body::after {
@@ -114,7 +116,7 @@ body::after {
 }
 
 .logo {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 4px;
@@ -123,7 +125,7 @@ body::after {
 
   margin-bottom: 50px;
 
-  text-shadow: 0 0 18px rgba(56, 189, 248, 0.25);
+  text-shadow: 0 0 18px rgba(56, 189, 248, 0.30);
 }
 
 /* =========================
@@ -153,7 +155,7 @@ body::after {
 
   color: #cbd5e1;
 
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 0.85rem;
   letter-spacing: 2px;
 
@@ -180,7 +182,7 @@ body::after {
 }
 
 /* =========================
-   MAIN AREA
+   MAIN LAYOUT
 ========================= */
 
 .main {
@@ -201,8 +203,6 @@ body::after {
 ========================= */
 
 .hero-glass {
-  position: relative;
-
   padding: 3rem 3.5rem;
   border-radius: 22px;
 
@@ -218,9 +218,9 @@ body::after {
   text-align: center;
 }
 
-/* 🔥 FIXED ORBITRON ENFORCEMENT */
+/* IMPORTANT FIX: ORBITRON WILL NOW APPLY */
 .hero-title {
-  font-family: 'Orbitron', sans-serif !important;
+  font-family: "Orbitron", sans-serif !important;
 
   font-size: 3.8rem;
   font-weight: 700;
@@ -236,28 +236,11 @@ body::after {
 }
 
 .hero-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: #94a3b8;
   letter-spacing: 3px;
   text-transform: uppercase;
   font-size: 0.95rem;
-}
-
-/* =========================
-   RING
-========================= */
-
-.ring {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-
-  border-radius: 50%;
-  border: 2px solid rgba(56, 189, 248, 0.12);
-
-  box-shadow:
-    0 0 30px rgba(56, 189, 248, 0.12),
-    inset 0 0 30px rgba(167, 139, 250, 0.06);
 }
 
 /* =========================
@@ -270,7 +253,7 @@ body.lecture-page {
 }
 
 body.lecture-page .grid {
-  opacity: 0.10;
+  opacity: 0.12;
 }
 
 body.lecture-page .main {
