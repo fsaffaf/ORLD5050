@@ -268,21 +268,6 @@ body::after {
   animation: titlePulse 3.8s ease-in-out infinite;
 }
 
-/* breathing glow */
-@keyframes titlePulse {
-  0%, 100% {
-    transform: scale(1);
-    text-shadow:
-      0 0 18px rgba(56, 189, 248, 0.50),
-      0 0 45px rgba(56, 189, 248, 0.22);
-  }
-  50% {
-    transform: scale(1.03);
-    text-shadow:
-      0 0 28px rgba(56, 189, 248, 0.70),
-      0 0 70px rgba(56, 189, 248, 0.30);
-  }
-}
 
 /* subtitle */
 .hero-subtitle {
