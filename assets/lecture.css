@@ -183,10 +183,6 @@ hr {
    CARDS
 ========================= */
 
-/* =========================
-   GLASSY CALLOUT / CARD
-========================= */
-
 .card {
   position: relative;
   overflow: hidden;
@@ -268,6 +264,7 @@ hr {
 .card h2 {
   margin: 0 0 0.75rem 0;
   line-height: 1.2;
+  font-size: clamp(1.3rem, 2vw, 1.8rem); /* ✅ ADD THIS LINE */
 }
 
 /* removes top gap caused by global h2 spacing */
