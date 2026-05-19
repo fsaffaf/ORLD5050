@@ -405,7 +405,9 @@ a:hover {
 table {
   width: 100%;
 
-  border-collapse: collapse;   /* ✅ restore original look */
+  /* FIX: allow border radius */
+  border-collapse: separate;
+  border-spacing: 0;
 
   background: rgba(255, 255, 255, 0.04);
 
@@ -531,11 +533,4 @@ li {
   th {
     letter-spacing: 0.08em;
   }
-}
-
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
 }
