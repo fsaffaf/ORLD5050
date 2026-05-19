@@ -534,3 +534,10 @@ li {
     letter-spacing: 0.08em;
   }
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
