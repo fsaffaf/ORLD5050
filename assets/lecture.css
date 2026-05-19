@@ -121,7 +121,10 @@ h2::before {
   text-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
 }
 
-
+.card h3 {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 600;
+}
 /* =========================
    TEXT
 ========================= */
