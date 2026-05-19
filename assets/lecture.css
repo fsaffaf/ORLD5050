@@ -306,6 +306,7 @@ table tr > :first-child {
   font-family: "Exo 2", sans-serif;
   font-weight: 600;
   color: var(--text);
+  font-size: 1rem;
 }
 
 /* Subtle column dividers */
