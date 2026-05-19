@@ -175,6 +175,33 @@ em {
 }
 
 /* =========================
+   DEFINITION CARD SHINE (SUBTLE)
+========================= */
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.06),
+      transparent 70%
+    );
+
+  transform: translateX(-60%);
+  transition: transform 0.6s ease;
+
+  pointer-events: none;
+}
+
+/* sweep on hover (controlled, not constant) */
+.card:hover::before {
+  transform: translateX(60%);
+}
+/* =========================
    LISTS
 ========================= */
 
