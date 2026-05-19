@@ -18,10 +18,7 @@
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
 }
 
-/* =========================
-   BASE
-========================= */
-
+/* BASE */
 * {
   box-sizing: border-box;
 }
@@ -33,10 +30,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, sans-serif;
-
+  font-family: Inter, system-ui, sans-serif;
   color: var(--text);
   line-height: 1.75;
 
@@ -46,7 +40,6 @@ body {
     linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
 }
 
-/* subtle grid */
 body::before {
   content: "";
   position: fixed;
@@ -62,228 +55,127 @@ body::before {
   z-index: -1;
 }
 
-/* =========================
-   CONTAINER
-========================= */
-
+/* CONTAINER */
 .main-container {
   width: min(100%, 980px);
   margin: 0 auto;
   padding: 4rem 1.5rem 5rem;
 }
 
-/* =========================
-   HERO TITLE (THIN)
-========================= */
-
+/* HERO */
 h1 {
-  font-family: "Exo 2", system-ui, sans-serif;
-
+  font-family: "Exo 2", sans-serif;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 450;
-
   margin-bottom: 0.6rem;
   letter-spacing: -0.04em;
   line-height: 1.05;
-
   color: #e2e8f0;
 }
 
-/* subtitle */
 .main-container > p:first-of-type {
   color: var(--muted);
   margin-bottom: 2rem;
 }
 
-/* =========================
-   SECTION HEADERS 
-========================= */
-
+/* HEADERS */
 h2 {
-  font-family: "Exo 2", system-ui, sans-serif;
-
+  font-family: "Exo 2", sans-serif;
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 500;
-
   margin-top: 3.8rem;
   margin-bottom: 1.1rem;
-
   letter-spacing: -0.02em;
   line-height: 1.25;
-
   color: #e5e7eb;
-
   position: relative;
 }
 
-/* subtle underline accent */
 h2::before {
   content: "";
   position: absolute;
   left: 0;
   bottom: -8px;
-
   width: 42px;
   height: 2px;
-
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   border-radius: 999px;
-
   opacity: 0.7;
 }
 
 h3 {
-  font-family: Inter, system-ui, sans-serif;
   font-weight: 600;
-
-  color: var(--text);
-
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
 
-/* =========================
-   BODY TEXT (SOFTER + READABLE)
-========================= */
-
+/* TEXT */
 p {
   max-width: 75ch;
-
   margin: 0.9rem 0;
-
   color: var(--soft);
   font-size: 1.05rem;
   line-height: 1.85;
 }
 
 strong {
-  color: #ffffff;
+  color: #7dd3fc;
   font-weight: 600;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
 }
 
 em {
   color: var(--muted);
 }
 
-hr {
-  height: 1px;
-  border: none;
-  margin: 3rem 0;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(56, 189, 248, 0.45),
-    rgba(167, 139, 250, 0.35),
-    transparent
-  );
-}
-
-/* =========================
-   CARDS
-========================= */
-
+/* CARD */
 .card {
   position: relative;
   overflow: hidden;
-
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.10),
-    rgba(255, 255, 255, 0.04)
-  );
-
+  background: linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
   border: 1px solid rgba(148, 163, 184, 0.25);
   border-radius: 24px;
-
   padding: 1.6rem;
   margin: 2.4rem 0;
-
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  transition: transform 0.25s ease;
 }
 
-/* soft glow edge layer */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.14), transparent 45%);
-
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-/* animated highlight sweep (subtle premium feel) */
 .card::after {
   content: "";
   position: absolute;
   inset: -2px;
-
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.08),
-    transparent 70%
-  );
-
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.08), transparent 70%);
   transform: translateX(-60%);
   transition: transform 0.6s ease;
-
-  pointer-events: none;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(56, 189, 248, 0.45);
 }
 
 .card:hover::after {
   transform: translateX(60%);
 }
 
-/* keep content above effects */
 .card > * {
   position: relative;
   z-index: 1;
 }
 
-/* =========================
-   CARD HEADER SPACING FIX
-========================= */
-
 .card h2 {
   margin: 0 0 0.75rem 0;
-  line-height: 1.2;
-  font-size: clamp(1.3rem, 2vw, 1.8rem); /* ✅ ADD THIS LINE */
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
 }
 
-/* removes top gap caused by global h2 spacing */
-.card h2:first-child {
-  margin-top: 0;
-}
-/* =========================
-   LISTS
-========================= */
-
+/* LISTS */
 ul {
   max-width: 75ch;
-
   margin: 1.25rem 0;
-  padding: 1.2rem 1.4rem;
-
+  padding: 1.2rem 1.6rem;
   list-style: none;
-
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
   border-radius: 18px;
 }
@@ -292,7 +184,6 @@ ul li {
   position: relative;
   padding-left: 1.5rem;
   margin: 0.6rem 0;
-
   color: var(--soft);
 }
 
@@ -301,238 +192,38 @@ ul li::before {
   position: absolute;
   left: 0;
   top: 0.75em;
-
   width: 6px;
   height: 6px;
   border-radius: 50%;
-
   background: var(--accent-3);
 }
 
-/* =========================
-   LINKS
-========================= */
-
-a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* =========================
-   BACK LINK
-========================= */
-
-.back-link {
-  display: inline-block;
-
-  margin-top: 2rem;
-  padding: 0.85rem 1.15rem;
-
-  border-radius: 999px;
-
-  background: rgba(56, 189, 248, 0.13);
-  border: 1px solid rgba(56, 189, 248, 0.32);
-
-  color: #e0f2fe;
-  font-weight: 700;
-}
-
-.back-link:hover {
-  background: rgba(56, 189, 248, 0.2);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 720px) {
-  .main-container {
-    padding: 2.5rem 1rem 4rem;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  h2 {
-    font-size: 1.35rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .card {
-    padding: 1.25rem;
-  }
-}
-
-/* =========================
-   FUTURISTIC GLASS TABLE
-========================= */
-
+/* TABLE */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
-
   margin-top: 40px;
-
   position: relative;
   z-index: 2;
-
-  /* Fix for rounded corners */
-  overflow: hidden;
   border-radius: 22px;
-}
-
-/* Glow border fix */
-.table-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  border-radius: 22px;
-  pointer-events: none;
-
-  box-shadow: 0 0 45px rgba(56, 189, 248, 0.08);
 }
 
 table {
   width: 100%;
-
-  border-collapse: collapse;   /* ✅ restore original look */
-
-  background: rgba(255, 255, 255, 0.04);
-
-  border: 1px solid rgba(56, 189, 248, 0.18);
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  box-shadow:
-    0 0 35px rgba(56, 189, 248, 0.08),
-    inset 0 0 20px rgba(56, 189, 248, 0.03);
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.04);
 }
 
-/* =========================
-   TABLE HEADER
-========================= */
-
-th {
-  background: rgba(56, 189, 248, 0.12);
-
-  color: #e0f2fe;
-
+th, td {
   padding: 22px;
-
   text-align: left;
-
-  font-family: "Orbitron", sans-serif;
-
-  font-size: 0.9rem;
-  font-weight: 700;
-
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  border-bottom: 1px solid rgba(56, 189, 248, 0.20);
-
-  text-shadow:
-    0 0 12px rgba(56, 189, 248, 0.35);
-}
-
-/* =========================
-   TABLE CELLS
-========================= */
-
-td {
-  padding: 22px;
-
-  vertical-align: top;
-
-  color: #dbeafe;
-
-  font-size: 0.88rem;
-  line-height: 1.8;
-
-  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
-
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease;
-}
-
-/* =========================
-   ROW HOVER EFFECT
-========================= */
-
-tr {
-  transition: background 0.25s ease;
 }
 
 tr:hover td {
   background: rgba(56, 189, 248, 0.06);
-  transform: scale(1.01);
 }
 
-/* =========================
-   COLUMN HIGHLIGHTS
-========================= */
-
-.definition {
-  background: rgba(255,255,255,0.02);
-}
-
-.helpful {
-  background: rgba(34, 197, 94, 0.05);
-}
-
-.harmful {
-  background: rgba(239, 68, 68, 0.05);
-}
-
-/* =========================
-   TEXT STYLING
-========================= */
-
-strong {
-  color: #7dd3fc;
-
-  text-shadow:
-    0 0 10px rgba(56, 189, 248, 0.25);
-}
-
-ul {
-  margin-top: 12px;
-  padding-left: 22px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-
-  th,
-  td {
-    padding: 16px;
-    font-size: 0.8rem;
-  }
-
-  th {
-    letter-spacing: 0.08em;
-  }
-}
-
+/* LAYOUT */
 .main {
   display: flex;
   justify-content: center;
