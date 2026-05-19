@@ -115,14 +115,13 @@ h3 {
   font-weight: 600;
 
   margin-top: 2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 
-  color: #e2e8f0;
+  color: #e5e7eb;
 
-  letter-spacing: -0.01em;
-
-  position: relative;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
 }
+
 
 /* =========================
    TEXT
