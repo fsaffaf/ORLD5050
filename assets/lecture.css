@@ -1,9 +1,15 @@
+/* =========================================================
+   DESIGN SYSTEM VARIABLES (COLORS, SURFACES, SHADOWS)
+========================================================= */
+
 :root {
   --bg: #020617;
   --bg-2: #0f172a;
+
   --surface: rgba(15, 23, 42, 0.78);
   --surface-strong: rgba(15, 23, 42, 0.95);
   --card: rgba(255, 255, 255, 0.07);
+
   --border: rgba(148, 163, 184, 0.22);
 
   --text: #e5e7eb;
@@ -14,13 +20,12 @@
   --accent-2: #a78bfa;
   --accent-3: #22c55e;
 
-  --code-bg: #020617;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
 }
 
-/* =========================
-   BASE
-========================= */
+/* =========================================================
+   GLOBAL RESET + BASE SETTINGS
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -30,6 +35,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Main body font → primary readability (Inter) */
 body {
   margin: 0;
   min-height: 100vh;
@@ -40,13 +46,14 @@ body {
   color: var(--text);
   line-height: 1.75;
 
+  /* layered glass + gradient background */
   background:
     radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 32rem),
     radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 34rem),
     linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
 }
 
-/* subtle grid */
+/* subtle grid overlay */
 body::before {
   content: "";
   position: fixed;
@@ -62,20 +69,29 @@ body::before {
   z-index: -1;
 }
 
-/* =========================
-   CONTAINER
-========================= */
+/* =========================================================
+   PAGE LAYOUT (CENTERED CONTENT)
+========================================================= */
 
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* readable content width */
 .main-container {
   width: min(100%, 980px);
   margin: 0 auto;
   padding: 4rem 1.5rem 5rem;
 }
 
-/* =========================
-   HERO TITLE (THIN)
-========================= */
+/* =========================================================
+   HEADINGS SYSTEM
+========================================================= */
 
+/* main title */
 h1 {
   font-family: "Exo 2", system-ui, sans-serif;
 
@@ -89,18 +105,9 @@ h1 {
   color: #e2e8f0;
 }
 
-/* subtitle */
-.main-container > p:first-of-type {
-  color: var(--muted);
-  margin-bottom: 2rem;
-}
-
-/* =========================
-   SECTION HEADERS (STRIPE STYLE)
-========================= */
-
+/* section headings */
 h2 {
-  font-family: "Exo 2", system-ui, sans-serif;
+  font-family: "Exo 2", sans-serif;
 
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 500;
@@ -111,44 +118,33 @@ h2 {
   letter-spacing: -0.02em;
   line-height: 1.25;
 
-  color: #e5e7eb;
-
   position: relative;
 }
 
-/* subtle underline accent */
+/* accent underline */
 h2::before {
   content: "";
   position: absolute;
-  left: 0;
   bottom: -8px;
 
   width: 42px;
   height: 2px;
 
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 999px;
-
-  opacity: 0.7;
 }
 
+/* small headers */
 h3 {
-  font-family: Inter, system-ui, sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 600;
-
-  color: var(--text);
-
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
 }
 
-/* =========================
-   BODY TEXT (SOFTER + READABLE)
-========================= */
+/* =========================================================
+   BODY TEXT
+========================================================= */
 
 p {
   max-width: 75ch;
-
   margin: 0.9rem 0;
 
   color: var(--soft);
@@ -156,19 +152,21 @@ p {
   line-height: 1.85;
 }
 
+/* emphasis */
 strong {
-  color: #ffffff;
-  font-weight: 600;
+  color: #7dd3fc;
 }
 
 em {
   color: var(--muted);
 }
 
+/* divider line */
 hr {
+  margin: 3rem 0;
+
   height: 1px;
   border: none;
-  margin: 3rem 0;
 
   background: linear-gradient(
     90deg,
@@ -179,13 +177,15 @@ hr {
   );
 }
 
-/* =========================
-   CARDS
-========================= */
+/* =========================================================
+   GLASS CARDS (UPDATED TYPOGRAPHY ✅)
+========================================================= */
 
 .card {
   position: relative;
   overflow: hidden;
+
+  font-family: Inter, sans-serif; /* ✅ CLEAN UI FONT */
 
   background: linear-gradient(
     145deg,
@@ -193,349 +193,108 @@ hr {
     rgba(255, 255, 255, 0.04)
   );
 
-  border: 1px solid rgba(148, 163, 184, 0.25);
   border-radius: 24px;
+  border: 1px solid var(--border);
 
   padding: 1.6rem;
   margin: 2.4rem 0;
 
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px);
 
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  box-shadow: var(--shadow);
 }
 
-/* soft glow edge layer */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.14), transparent 45%);
-
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-/* animated highlight sweep (subtle premium feel) */
-.card::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.08),
-    transparent 70%
-  );
-
-  transform: translateX(-60%);
-  transition: transform 0.6s ease;
-
-  pointer-events: none;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(56, 189, 248, 0.45);
-}
-
-.card:hover::after {
-  transform: translateX(60%);
-}
-
-/* keep content above effects */
-.card > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* =========================
-   CARD HEADER SPACING FIX
-========================= */
-
+/* card title */
 .card h2 {
-  margin: 0 0 0.75rem 0;
-  line-height: 1.2;
-  font-size: clamp(1.3rem, 2vw, 1.8rem); /* ✅ ADD THIS LINE */
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 600;            /* ✅ stronger than before */
+  letter-spacing: -0.01em;     /* ✅ tighter for modern feel */
+  margin-bottom: 0.5rem;
 }
 
-/* removes top gap caused by global h2 spacing */
-.card h2:first-child {
-  margin-top: 0;
-}
-/* =========================
-   LISTS
-========================= */
-
-ul {
-  max-width: 75ch;
-
-  margin: 1.25rem 0;
-  padding: 1.2rem 1.4rem;
-
-  list-style: none;
-
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-}
-
-ul li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin: 0.6rem 0;
-
+/* card text */
+.card p {
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--soft);
 }
 
-ul li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.75em;
-
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-
-  background: var(--accent-3);
-}
-
-/* =========================
-   LINKS
-========================= */
-
-a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* =========================
-   BACK LINK
-========================= */
-
-.back-link {
-  display: inline-block;
-
-  margin-top: 2rem;
-  padding: 0.85rem 1.15rem;
-
-  border-radius: 999px;
-
-  background: rgba(56, 189, 248, 0.13);
-  border: 1px solid rgba(56, 189, 248, 0.32);
-
-  color: #e0f2fe;
-  font-weight: 700;
-}
-
-.back-link:hover {
-  background: rgba(56, 189, 248, 0.2);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 720px) {
-  .main-container {
-    padding: 2.5rem 1rem 4rem;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  h2 {
-    font-size: 1.35rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .card {
-    padding: 1.25rem;
-  }
-}
-
-/* =========================
-   FUTURISTIC GLASS TABLE
-========================= */
+/* =========================================================
+   TABLE SYSTEM (UPDATED TYPOGRAPHY ✅)
+========================================================= */
 
 .table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-
-  margin-top: 40px;
-
-  position: relative;
-  z-index: 2;
-
-  /* Fix for rounded corners */
   overflow: hidden;
   border-radius: 22px;
+  margin-top: 40px;
 }
 
-/* Glow border fix */
-.table-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  border-radius: 22px;
-  pointer-events: none;
-
-  box-shadow: 0 0 45px rgba(56, 189, 248, 0.08);
-}
-
+/* base table */
 table {
   width: 100%;
-
-  border-collapse: collapse;   /* ✅ restore original look */
+  border-collapse: collapse;
 
   background: rgba(255, 255, 255, 0.04);
-
   border: 1px solid rgba(56, 189, 248, 0.18);
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  box-shadow:
-    0 0 35px rgba(56, 189, 248, 0.08),
-    inset 0 0 20px rgba(56, 189, 248, 0.03);
 }
 
-/* =========================
-   TABLE HEADER
-========================= */
-
+/* table headers */
 th {
   background: rgba(56, 189, 248, 0.12);
 
+  font-family: "Exo 2", sans-serif; /* ✅ REPLACED Orbitron */
+  font-weight: 600;
+
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+
+  padding: 20px;
+
   color: #e0f2fe;
+}
 
-  padding: 22px;
-
-  text-align: left;
-
-  font-family: "Orbitron", sans-serif;
+/* table cells */
+td {
+  padding: 20px;
 
   font-size: 0.9rem;
-  font-weight: 700;
-
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  border-bottom: 1px solid rgba(56, 189, 248, 0.20);
-
-  text-shadow:
-    0 0 12px rgba(56, 189, 248, 0.35);
-}
-
-/* =========================
-   TABLE CELLS
-========================= */
-
-td {
-  padding: 22px;
-
-  vertical-align: top;
+  line-height: 1.7;
 
   color: #dbeafe;
-
-  font-size: 0.88rem;
-  line-height: 1.8;
-
-  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
-
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease;
 }
 
-/* =========================
-   ROW HOVER EFFECT
-========================= */
-
-tr {
-  transition: background 0.25s ease;
-}
-
+/* row hover */
 tr:hover td {
-  background: rgba(56, 189, 248, 0.06);
-  transform: scale(1.01);
+  background: rgba(56, 189, 248, 0.05);
 }
 
-/* =========================
-   COLUMN HIGHLIGHTS
-========================= */
-
-.definition {
-  background: rgba(255,255,255,0.02);
-}
-
-.helpful {
-  background: rgba(34, 197, 94, 0.05);
-}
-
-.harmful {
-  background: rgba(239, 68, 68, 0.05);
-}
-
-/* =========================
-   TEXT STYLING
-========================= */
-
-strong {
-  color: #7dd3fc;
-
-  text-shadow:
-    0 0 10px rgba(56, 189, 248, 0.25);
-}
+/* =========================================================
+   LISTS
+========================================================= */
 
 ul {
-  margin-top: 12px;
-  padding-left: 22px;
+  padding: 1.2rem;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+
+  background: rgba(255,255,255,0.04);
 }
 
-li {
-  margin-bottom: 8px;
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+  color: var(--accent);
+  font-weight: 600;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
+/* =========================================================
+   RESPONSIVE ADJUSTMENTS
+========================================================= */
 
 @media (max-width: 900px) {
-
-  th,
-  td {
+  th, td {
     padding: 16px;
-    font-size: 0.8rem;
   }
-
-  th {
-    letter-spacing: 0.08em;
-  }
-}
-
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
 }
