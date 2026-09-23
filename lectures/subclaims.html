@@ -1,0 +1,622 @@
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Subclaims</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Subclaims</h1>
+
+    <div class="subtitle">ORLD Lecture 7</div>
+
+
+    <div class="card">
+
+        <h2>Understanding Subclaims</h2>
+
+        <p>
+            A useful way to think about arguments is that <strong>real-world decisions are rarely supported by just one reason.</strong>
+            Most strong arguments have <strong>one main claim</strong> that is supported by several <strong>subclaims</strong>.
+            Each subclaim can then be developed into its own Toulmin argument with evidence, warrants, backing, qualifiers,
+            counterarguments, and rebuttals.
+        </p>
+
+        <p>
+            For example, imagine that you are arguing:
+        </p>
+
+        <div class="highlight">
+            <strong>Main Claim:</strong> Single-use plastics should be banned.
+        </div>
+
+        <p>
+            This claim is broad. To fully justify it, you might divide it into three supporting subclaims:
+        </p>
+
+        <ol>
+            <li>Single-use plastics harm the environment.</li>
+            <li>Single-use plastics create economic costs for society.</li>
+            <li>Practical alternatives to single-use plastics are available.</li>
+        </ol>
+
+        <p>
+            Each of these subclaims can then be supported with its own Toulmin argument.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Complex Arguments with Multiple Subclaims</h2>
+
+        <p>
+            Many strong arguments follow a hierarchical structure:
+        </p>
+
+        <ul>
+            <li><strong>Main Claim</strong> → The overall position or decision.</li>
+            <li><strong>Subclaims</strong> → Major reasons supporting the main claim.</li>
+            <li><strong>Toulmin Arguments</strong> → Each subclaim is supported using evidence, warrants, backing, qualifiers, counterarguments, and rebuttals.</li>
+        </ul>
+
+        <p>
+            Visualized, the structure looks like this:
+        </p>
+
+        <div class="highlight">
+<pre>
+Main Claim
+│
+├── Subclaim 1
+│    └── Toulmin Argument
+│
+├── Subclaim 2
+│    └── Toulmin Argument
+│
+└── Subclaim 3
+     └── Toulmin Argument
+</pre>
+        </div>
+
+        <p>
+            This approach helps decision makers organize complex reasoning and demonstrate that their conclusion is supported
+            from multiple angles.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Example</h2>
+
+        <h3>Main Claim</h3>
+
+        <div class="highlight">
+            <strong>Single-use plastics should be banned.</strong>
+        </div>
+
+        <p>
+            This is the overall position you want your audience to accept.
+        </p>
+
+        <h3>Subclaim 1: Single-Use Plastics Harm the Environment</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><strong>Subclaim</strong></td>
+                    <td>Single-use plastics cause significant environmental harm.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Evidence</strong></td>
+                    <td>Plastic waste pollutes oceans, waterways, and ecosystems.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Warrant</strong></td>
+                    <td>Products that cause substantial environmental damage should be restricted when possible.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Backing</strong></td>
+                    <td>Scientific studies show that plastic pollution harms wildlife and ecosystems worldwide.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Qualifier</strong></td>
+                    <td>In most situations where alternatives exist.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Counterargument</strong></td>
+                    <td>Some plastic products are necessary for sanitation and safety.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Rebuttal</strong></td>
+                    <td>Targeted exemptions can address these situations without allowing widespread unnecessary plastic use.</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h3>Subclaim 2: Single-Use Plastics Create Economic Costs</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><strong>Subclaim</strong></td>
+                    <td>Single-use plastics impose significant economic costs on society.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Evidence</strong></td>
+                    <td>Governments spend millions of dollars each year on waste management and environmental cleanup.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Warrant</strong></td>
+                    <td>When a product creates substantial public costs, policymakers should consider reducing its use.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Backing</strong></td>
+                    <td>Economic studies show that pollution cleanup and waste disposal create financial burdens for taxpayers.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Qualifier</strong></td>
+                    <td>In many communities affected by plastic waste.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Counterargument</strong></td>
+                    <td>Plastic products are inexpensive and convenient for consumers.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Rebuttal</strong></td>
+                    <td>Short-term convenience may not outweigh long-term public expenses associated with pollution and waste management.</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h3>Subclaim 3: Viable Alternatives Exist</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><strong>Subclaim</strong></td>
+                    <td>Effective alternatives to single-use plastics are available.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Evidence</strong></td>
+                    <td>Reusable containers, paper products, and biodegradable materials are increasingly common.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Warrant</strong></td>
+                    <td>If safer alternatives can achieve the same purpose, continued reliance on a harmful product is less justified.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Backing</strong></td>
+                    <td>Many businesses and countries have successfully adopted alternative packaging materials.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Qualifier</strong></td>
+                    <td>In most consumer applications.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Counterargument</strong></td>
+                    <td>Alternatives may be more expensive or less practical in some situations.</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Rebuttal</strong></td>
+                    <td>Costs often decrease as adoption increases, and exceptions can be made for situations where alternatives are not yet feasible.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Putting It All Together</h2>
+
+        <p>
+            When combined, the three subclaims support the main claim:
+        </p>
+
+        <div class="highlight">
+
+            <p>
+                <strong>Main Claim:</strong><br>
+                Single-use plastics should be banned.
+            </p>
+
+            <p>
+                <strong>Supporting Subclaims:</strong>
+            </p>
+
+            <ol>
+                <li>They harm the environment.</li>
+                <li>They create economic costs.</li>
+                <li>Practical alternatives exist.</li>
+            </ol>
+
+        </div>
+
+        <p>
+            Because each subclaim is supported by its own Toulmin argument, the overall argument becomes much stronger
+            than relying on a single reason alone.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>A Quick Test for Strong Subclaims</h2>
+
+        <p>
+            A good set of subclaims should pass this test:
+        </p>
+
+
+        <h3>Weak Structure</h3>
+
+        <div class="highlight">
+
+            <p>
+                <strong>Main Claim:</strong> Students should wear school uniforms.
+            </p>
+
+            <ul>
+                <li>Uniforms create equality.</li>
+                <li>Uniforms create fairness.</li>
+                <li>Uniforms reduce differences.</li>
+            </ul>
+
+        </div>
+
+        <p>
+            These subclaims are largely saying the same thing.
+        </p>
+
+
+        <h3>Strong Structure</h3>
+
+        <div class="highlight">
+
+            <p>
+                <strong>Main Claim:</strong> Students should wear school uniforms.
+            </p>
+
+            <ul>
+                <li>Uniforms can reduce visible socioeconomic differences among students.</li>
+                <li>Uniforms can improve school safety by making unauthorized visitors easier to identify.</li>
+                <li>Uniforms can reduce distractions related to clothing and fashion competition.</li>
+            </ul>
+
+        </div>
+
+        <p>
+            These subclaims support the same claim but provide three distinct reasons for accepting it.
+        </p>
+
+        <p>
+            As you develop your own argument, try to make each subclaim answer a different version of the question:
+        </p>
+
+        <div class="highlight">
+            <strong>"Why should someone accept my main claim?"</strong>
+        </div>
+
+        <p>
+            If all three subclaims provide different answers to that question, you are usually on the right track.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Why This Matters in EEBDM</h2>
+
+        <p>
+            In Ethical, Evidence-Based Decision Making (EEBDM), complex decisions often require consideration of multiple factors.
+            Rather than relying on one piece of evidence or one reason, decision makers typically build a case using several
+            supporting subclaims.
+        </p>
+
+        <p>
+            Each subclaim should be supported with evidence and defended against objections through the Toulmin model.
+            This structure helps ensure that decisions are not only persuasive but also logically sound, ethically justified,
+            and supported by evidence.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Strong arguments often contain one main claim supported by several subclaims.</li>
+            <li>Each subclaim can be developed into its own Toulmin argument.</li>
+            <li>Subclaims should provide distinct reasons for accepting the main claim.</li>
+            <li>Evidence, warrants, backing, qualifiers, counterarguments, and rebuttals can strengthen each subclaim.</li>
+            <li>Multiple well-developed subclaims help decision makers build more complete and defensible arguments.</li>
+        </ul>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
