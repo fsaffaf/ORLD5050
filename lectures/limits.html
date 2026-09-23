@@ -1,0 +1,559 @@
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Situational Limits</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Situational Limits</h1>
+
+    <div class="subtitle">ORLD Lecture 6</div>
+
+
+    <div class="card">
+
+        <div class="highlight">
+            🎧 Use the Immersive Reader feature (button in the top-right corner) to have this page read aloud.
+        </div>
+
+        <h2>Overview</h2>
+
+        <p>
+            When making complex decisions, you are often pulled between different priorities.
+            Decision-making environments are not neutral. They actively influence what you notice,
+            what seems possible, and how you think about right and wrong.
+        </p>
+
+        <p>
+            Decision-making is influenced by more than just the information we have. Different situational
+            factors affect what options are available and how we approach making a choice. These factors
+            shape what we notice, how we interpret it, and which mental shortcuts or strategies we use.
+        </p>
+
+        <p>
+            Even when people have good intentions, their decisions can still go off track if these pressures
+            are not recognized. Below are some common situational influences.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Situational Limits</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Factor</th>
+                    <th>How It Limits Decision Making</th>
+                    <th>Potential Solutions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Time Pressure</strong></td>
+
+                    <td>
+                        When there is not enough time to fully understand the situation or compare options,
+                        this can lead to rushed choices and missed important details.
+                    </td>
+
+                    <td>
+                        Separate real urgency from perceived urgency. Slow down when possible, use simple
+                        rules or checklists to avoid missing steps, and prepare decisions in advance so you
+                        are not rushing under pressure.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Resource Availability</strong></td>
+
+                    <td>
+                        When resources like money, time, staff, or technology are limited, it becomes harder
+                        to gather information, consult others, or explore all possible options. This can
+                        force people to settle for “good enough” choices instead of the best possible ones.
+                        On the other hand, having too many resources can also slow decisions down because
+                        people overanalyze or overcomplicate the process.
+                    </td>
+
+                    <td>
+                        Match effort to the importance of the decision, decide ahead of time what counts as
+                        an acceptable option, and use structured decision tools to keep analysis focused
+                        instead of expanding endlessly.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Predictive Uncertainty</strong></td>
+
+                    <td>
+                        The future cannot be predicted with reliable accuracy in complex or changing situations.
+                        When people assume they can predict outcomes precisely, they become overconfident and
+                        make decisions based on false certainty. This often leads to poor planning when
+                        conditions change.
+                    </td>
+
+                    <td>
+                        Recognize when predictions are unreliable, avoid treating uncertain situations like
+                        predictable ones, and build flexible plans that can change as new information becomes
+                        available.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Potential for Loss</strong></td>
+
+                    <td>
+                        Thinking about possible losses can make people overly cautious. They may focus too much
+                        on what could go wrong and avoid taking action even when the benefits are greater than
+                        the risks. This can block useful opportunities and slow progress.
+                    </td>
+
+                    <td>
+                        Balance attention between risks and benefits, explicitly compare what could be gained
+                        versus what could be lost, and set clear limits for acceptable risk so fear does not
+                        dominate the decision.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Cost-Benefit Constraints</strong></td>
+
+                    <td>
+                        Decision making is limited by how much time and effort it takes to get information.
+                        Sometimes people either gather too little information and make weak decisions, or
+                        they spend too much time collecting unnecessary details and delay action. Both extremes
+                        reduce decision quality.
+                    </td>
+
+                    <td>
+                        Adjust effort based on how important the decision is, set clear stopping points for
+                        analysis, and use satisficing by choosing an option that meets key requirements
+                        instead of searching endlessly for the perfect one.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Ethical and Legal Constraints</strong></td>
+
+                    <td>
+                        These limits restrict what information can be used or what actions are allowed.
+                        This can make it harder to fully evaluate a situation or may prevent the “most
+                        efficient” option from being used. It can also create tension between what seems
+                        effective and what is fair or allowed.
+                    </td>
+
+                    <td>
+                        Use approved or anonymized data when needed, build ethical rules into decision making
+                        from the beginning, and evaluate choices using both outcomes and values rather than
+                        efficiency alone.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Expectation Pressures</strong></td>
+
+                    <td>
+                        The desire to meet the expectations of others can shift focus away from careful thinking.
+                        People may prioritize meeting expectations over making the best or most ethical choice.
+                        This can lead to shortcuts, biased judgment, or ignoring important evidence.
+                    </td>
+
+                    <td>
+                        Make decision criteria explicit, slow down when pressure is artificial rather than real,
+                        invite independent review or second opinions, and separate performance goals from ethical
+                        considerations.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Situations with Strong Emotions</strong></td>
+
+                    <td>
+                        Strong emotions like fear, anger, or excitement can narrow attention and change how
+                        information is interpreted. People may focus only on emotionally relevant details and
+                        ignore other important evidence. This can lead to impulsive decisions that feel right
+                        in the moment but are later regretted.
+                    </td>
+
+                    <td>
+                        Pause before acting, recognize and label the emotion, seek outside input, and delay
+                        decisions when possible so emotions do not fully control the outcome.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Authority Power</strong></td>
+
+                    <td>
+                        People in authority or with influence can discourage disagreement, limit independent
+                        thinking, and make people accept conclusions without fully questioning them. It can
+                        also bias decisions toward the interests of those in power.
+                    </td>
+
+                    <td>
+                        Encourage open disagreement, collect input from multiple sources, reduce hierarchy
+                        effects when possible (for example, through anonymous feedback), and make reasoning
+                        transparent so decisions can be questioned safely.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Common Conflicts in Decision-Making</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Situation</th>
+                    <th>How It Limits Decision Making</th>
+                    <th>How to Respond / Improve Decisions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Evidence vs. Situational Limits</strong></td>
+
+                    <td>
+                        In emergencies or fast-moving situations, there is not enough time to gather or fully
+                        understand all the information. This means decisions are made with missing or incomplete
+                        evidence, which can increase mistakes or oversimplified thinking.
+                    </td>
+
+                    <td>
+                        Accept that you cannot always have perfect information. Use training, experience, and
+                        simple rules that are designed for fast decisions. Also, prepare ahead of time so you
+                        are not figuring things out under pressure.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Conflicting Evidence</strong></td>
+
+                    <td>
+                        Different sources of information can point in opposite directions. One report may
+                        suggest something will work well, while another suggests it will fail. This makes it
+                        hard to know which information to trust.
+                    </td>
+
+                    <td>
+                        Do not immediately pick the one you like most. Instead, compare where each piece of
+                        evidence comes from, what assumptions it is based on, and how reliable it is. When
+                        possible, talk to others to understand why the evidence differs.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Ethics vs. Evidence</strong></td>
+
+                    <td>
+                        Sometimes the data suggests one choice is the most efficient or profitable, but that
+                        choice may feel unfair or harmful. This creates tension between what “works best on
+                        paper” and what feels morally right. People may feel forced to choose one or the other.
+                    </td>
+
+                    <td>
+                        Try not to treat this as a strict either-or choice. Instead, look for ways to adjust
+                        the decision so it respects both. For example, you might change how something is done,
+                        set ethical rules for how partners are chosen, or find alternatives that are both
+                        effective and fair.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Stakeholder Disagreement</strong></td>
+
+                    <td>
+                        Different groups affected by a decision often want different things. One group may care
+                        about cost, another about fairness, and another about the environment. This creates
+                        conflict about what the “best” outcome is.
+                    </td>
+
+                    <td>
+                        Make sure all perspectives are heard instead of focusing only on the loudest or most
+                        powerful group. Use open discussion to understand what each group values. Focus on fair
+                        processes, even if everyone does not fully agree on the outcome.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Evidence vs. Emotions</strong></td>
+
+                    <td>
+                        Strong emotions like fear, anger, or excitement can change how people interpret
+                        information. People may ignore useful evidence because it does not match how they feel
+                        in the moment.
+                    </td>
+
+                    <td>
+                        Do not ignore emotions, but do not let them fully control the decision either. Take time
+                        to recognize what you are feeling, slow down if needed, and check your reasoning with
+                        trusted information or outside input.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Evidence vs. Powerful Interests</strong></td>
+
+                    <td>
+                        People with influence or authority may resist evidence if it threatens their goals,
+                        image, or position. This can lead to pressure to ignore or downplay certain findings.
+                    </td>
+
+                    <td>
+                        Be prepared for resistance and focus on clear, respectful communication. Explain not
+                        just the data but also the reasoning behind it. When needed, adjust how you present
+                        the recommendation without changing the facts or ignoring evidence.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><strong>Ethical vs. Ethical (Dilemmas)</strong></td>
+
+                    <td>
+                        Sometimes you have to choose between two important values, and you cannot fully satisfy
+                        both. For example, being completely honest might conflict with being kind or protecting
+                        someone's feelings. There is no perfect answer.
+                    </td>
+
+                    <td>
+                        Instead of looking for a perfect solution, focus on making a choice you can justify.
+                        Be clear about which values are being prioritized and why. Use structured thinking to
+                        weigh trade-offs and stay consistent with core principles like fairness and respect.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Decision-making environments can shape what people notice, consider, and ultimately choose.</li>
+            <li>Situational limits can affect decisions even when people have good intentions.</li>
+            <li>Time pressure, limited resources, uncertainty, emotions, expectations, and authority can all influence decision making.</li>
+            <li>Good decision makers recognize these pressures rather than assuming that evidence alone determines a decision.</li>
+            <li>When conflicts arise, structured reasoning can help balance evidence, ethics, competing interests, and practical constraints.</li>
+        </ul>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
