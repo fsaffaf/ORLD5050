@@ -1,0 +1,510 @@
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Types of Evidence</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Types of Evidence</h1>
+
+
+    <div class="card">
+
+        <h2>Overview</h2>
+
+        <p>
+            Making a decision requires evidence. However, evidence is not about
+            quantity—it is about quality. You need to know what kind of evidence
+            to use, when to use it, and why it matters. The sources, types, and
+            quality of evidence strongly shape the decisions we make.
+        </p>
+
+        <p>
+            Evidence is not just information. It is a strategic and ethical resource
+            that supports valid and defensible decisions. In EEBDM, the main challenge
+            is usually not finding information but using it effectively. Tools such as
+            AI can help organize and analyze evidence, but they cannot replace human judgment.
+        </p>
+
+        <div class="highlight">
+            <strong>Evidence:</strong>
+            Any information that can influence decision making, including preferences,
+            attitudes, experience, data, and anticipated consequences.
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>The Four Sources of Evidence</h2>
+
+        <p>
+            Strong arguments draw from multiple types of evidence. Ideally, you should
+            use all four sources when supporting a decision.
+        </p>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>Definition</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Expert Opinion</strong></td>
+                    <td>
+                        An informed judgment from someone with relevant expertise
+                        and experience.
+                    </td>
+                    <td>
+                        Consulting a market expert before entering Southeast Asia.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Stakeholder Opinion</strong></td>
+                    <td>
+                        The perspective of individuals affected by the decision.
+                    </td>
+                    <td>
+                        Asking investors or employees for input on expansion.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Internal Data</strong></td>
+                    <td>
+                        Data from within the organization (financials, performance,
+                        customer data).
+                    </td>
+                    <td>
+                        Reviewing company financial reports before expansion.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>External Data</strong></td>
+                    <td>
+                        Data from outside sources (research, competitors, market reports).
+                    </td>
+                    <td>
+                        Analyzing competitor success in Southeast Asia.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Evaluating Evidence (CRAAP Test)</h2>
+
+        <div class="highlight">
+            <strong>Why Credibility Matters:</strong>
+            Because there is so much information available, evaluating credibility
+            is essential for making strong, evidence-based decisions.
+        </div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Criteria</th>
+                    <th>Key Question</th>
+                    <th>Explanation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Currency</strong></td>
+                    <td>Is it up to date?</td>
+                    <td>
+                        Recent information is more useful, especially in fast-changing areas.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Relevance</strong></td>
+                    <td>Does it apply to my decision?</td>
+                    <td>
+                        Evidence must directly address your specific question.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Authority</strong></td>
+                    <td>Who created it?</td>
+                    <td>
+                        Sources should have proper expertise or credentials.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Accuracy</strong></td>
+                    <td>Is it reliable?</td>
+                    <td>
+                        Information should be supported by evidence and consistent across sources.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Purpose</strong></td>
+                    <td>Why was it created?</td>
+                    <td>
+                        Be aware of bias, intent, and possible agendas.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Evidence Limitations</h2>
+
+        <p>
+            Even strong evidence has limitations. Understanding these helps you
+            avoid common reasoning mistakes.
+        </p>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Concept</th>
+                    <th>Explanation</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Correlation ≠ Causation</strong></td>
+                    <td>
+                        Just because two things are related does not mean one causes the other.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Sample Bias</strong></td>
+                    <td>
+                        Results may be misleading if the sample does not represent the full population.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Ecological Fallacy</strong></td>
+                    <td>
+                        Applying general trends to specific cases can lead to incorrect conclusions.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Overgeneralization</strong></td>
+                    <td>
+                        Drawing broad conclusions from limited or narrow evidence.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>P-Value vs Effect Size</strong></td>
+                    <td>
+                        Statistical significance does not mean the effect is meaningful in practice.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Lying with Data</strong></td>
+                    <td>
+                        Graphs and visuals can be misleading if poorly designed or manipulated.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Why This Matters</h2>
+
+        <ul>
+            <li>Improves the quality of decisions.</li>
+            <li>Helps you use evidence effectively, not just collect it.</li>
+            <li>Reduces bias and errors in reasoning.</li>
+            <li>Strengthens arguments and credibility.</li>
+        </ul>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Evidence is central to decision making.</li>
+            <li>Quality matters more than quantity.</li>
+            <li>Strong decisions use multiple sources of evidence.</li>
+            <li>All evidence should be evaluated for credibility.</li>
+            <li>Even good evidence has limitations that must be considered.</li>
+        </ul>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
