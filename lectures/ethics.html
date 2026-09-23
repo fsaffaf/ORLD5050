@@ -1,0 +1,458 @@
+```html
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ethics</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+h2,
+h3{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+}
+
+h2::after,
+h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#0e68b3;
+    transition:.3s;
+}
+
+.card:hover h2::after,
+.card:hover h3::after{
+    width:100%;
+}
+
+p{
+    line-height:1.8;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+      0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 10px 25px rgba(14,104,179,.15);
+}
+
+.highlight{
+    background:#eef6fc;
+    border-left:5px solid #0e68b3;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Ethics</h1>
+
+    <p>Lecture 4</p>
+
+
+    <div class="card">
+
+        <h2>Overview</h2>
+
+        <p>
+            A key part of Ethical Evidence-Based Decision Making (EEBDM) is ethics.
+            Sometimes there is no clearly “right” choice, and we must balance competing
+            values to decide on a course of action that can be ethically defended.
+        </p>
+
+        <p>
+            Combining ethical thinking with evidence-based reasoning helps us solve
+            real-world problems more effectively. It increases the chances that our
+            decisions are both morally responsible and well-informed.
+        </p>
+
+        <p>
+            A common challenge is that people often place their morals and personal
+            values above evidence. When beliefs clash with facts, individuals may
+            ignore or reinterpret evidence to fit their views. Understanding this
+            tension is essential for strong decision making.
+        </p>
+
+        <p>
+            People’s ideas of what is morally desirable can differ based on culture,
+            society, and personal values. As a result, individuals may reach different
+            ethical conclusions even when looking at the same evidence.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Key Concepts</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Definition</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>Ethics</strong></td>
+                    <td>
+                        The study of moral principles used to evaluate right and wrong.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Ethical Perspective</strong></td>
+                    <td>
+                        A formal set of principles used to evaluate ethical decisions.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Morals</strong></td>
+                    <td>
+                        Personal or cultural beliefs about what is right and wrong.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Personal Values</strong></td>
+                    <td>
+                        What matters to us individually, including goals and preferences.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Hedonic Motivation</strong></td>
+                    <td>
+                        The tendency to seek pleasure and avoid discomfort.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><strong>Ethical Satisficing</strong></td>
+                    <td>
+                        Making decisions that balance ethics and evidence within
+                        real-world limits, while remaining aware of bias and impact
+                        on others.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>The Six Ethical Perspectives</h2>
+
+        <p>
+            Ethical perspectives provide different ways to evaluate decisions.
+            Considering multiple perspectives leads to more balanced and defensible choices.
+        </p>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Perspective</th>
+                    <th>Key Question</th>
+                    <th>Main Focus</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><strong>People’s Rights</strong></td>
+                    <td>Does this respect basic rights?</td>
+                    <td>Freedom, safety, privacy, consent</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Fairness</strong></td>
+                    <td>Is this fair to everyone?</td>
+                    <td>Justice, equality, what people deserve</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Consequences</strong></td>
+                    <td>Does this create the best outcome?</td>
+                    <td>Benefits vs. harms</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Community Well-Being</strong></td>
+                    <td>How does this affect the group?</td>
+                    <td>Common good, shared resources, trust</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Character</strong></td>
+                    <td>Does this reflect who I want to be?</td>
+                    <td>Integrity, honesty, moral consistency</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Relationships</strong></td>
+                    <td>Does this consider others’ needs?</td>
+                    <td>Empathy, care, maintaining relationships</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Steps for Making an Ethical Decision</h2>
+
+        <div class="highlight">
+
+            <strong>Ethical Decision Process</strong>
+
+            <ol>
+                <li>Identify the ethical issue.</li>
+                <li>Gather relevant and reliable evidence.</li>
+                <li>Evaluate the decision using all six ethical perspectives.</li>
+                <li>Select the most ethically defensible and evidence-supported choice.</li>
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Why This Matters</h2>
+
+        <ul>
+            <li>Helps you navigate complex decisions with no clear “right” answer.</li>
+            <li>Improves the ethical quality of your decisions.</li>
+            <li>Encourages balanced thinking across multiple perspectives.</li>
+            <li>Reduces bias and strengthens accountability.</li>
+        </ul>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Ethics and evidence must work together in decision making.</li>
+            <li>People may interpret the same facts differently based on values.</li>
+            <li>Using multiple ethical perspectives leads to stronger decisions.</li>
+            <li>Good decisions are both ethically defensible and evidence-based.</li>
+        </ul>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
