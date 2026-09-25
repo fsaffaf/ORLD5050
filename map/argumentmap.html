@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,13 +41,11 @@ h1 {
    CONNECTION LINES
 --------------------------------- */
 
-/* Main connector lines */
 .mermaid .edgePath path {
     stroke: #6b8fb3 !important;
     stroke-width: 1.8px !important;
 }
 
-/* Arrowheads */
 .mermaid marker path {
     fill: #6b8fb3 !important;
     stroke: #6b8fb3 !important;
@@ -110,6 +109,14 @@ SC3 --> P31["Premise 1"]
 SC3 --> P32["Premise 2"]
 SC3 --> P33["Premise 3"]
 
+%% ---------------------------------
+%% COUNTERARGUMENTS
+%% ---------------------------------
+
+SC1 --> CA1["⚠️ Counterargument 1"]
+SC2 --> CA2["⚠️ Counterargument 2"]
+SC3 --> CA3["⚠️ Counterargument 3"]
+
 P11 --> W111["Warrant"]
 P12 --> W121["Warrant"]
 P13 --> W131["Warrant"]
@@ -134,43 +141,21 @@ W311 --> E311["Evidence"]
 W321 --> E321["Evidence"]
 W331 --> E331["Evidence"]
 
+%% ---------------------------------
+%% NODE COLORS
+%% ---------------------------------
 
-/* ---------------------------------
-   NODE COLORS
---------------------------------- */
+classDef main fill:#0e68b3,color:#ffffff,stroke:#0b568f,stroke-width:2px;
 
-classDef main
-    fill:#0e68b3,
-    color:#ffffff,
-    stroke:#0b568f,
-    stroke-width:2px;
+classDef subclaim fill:#3f83d8,color:#ffffff,stroke:#2f6fbd,stroke-width:2px;
 
-classDef subclaim
-    fill:#3f83d8,
-    color:#ffffff,
-    stroke:#2f6fbd,
-    stroke-width:2px;
+classDef premise fill:#dceeff,color:#174a78,stroke:#8dbce3,stroke-width:1.5px;
 
-classDef premise
-    fill:#dceeff,
-    color:#174a78,
-    stroke:#8dbce3,
-    stroke-width:1.5px;
+classDef warrant fill:#eee9ff,color:#4b3f72,stroke:#a99be0,stroke-width:1.5px;
 
-classDef warrant
-    fill:#eee9ff,
-    color:#4b3f72,
-    stroke:#a99be0,
-    stroke-width:1.5px;
+classDef evidence fill:#e2f6ee,color:#205b45,stroke:#83c9aa,stroke-width:1.5px;
 
-classDef evidence
-    fill:#e2f6ee,
-    color:#205b45,
-    stroke:#83c9aa,
-    stroke-width:1.5px;
-
-
-/* Apply colors */
+classDef counterargument fill:#fff1df,color:#8a4b08,stroke:#e5a24a,stroke-width:2px;
 
 class A main;
 
@@ -181,6 +166,8 @@ class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise;
 class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
 
 class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
+
+class CA1,CA2,CA3 counterargument;
 
 </div>
 
@@ -246,21 +233,6 @@ const info = {
         text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall argument."
     },
 
-    "Premise 1": {
-        title: "Premise",
-        text: "A reason or supporting statement that helps establish a subclaim."
-    },
-
-    "Premise 2": {
-        title: "Premise",
-        text: "A reason or supporting statement that helps establish a subclaim."
-    },
-
-    "Premise 3": {
-        title: "Premise",
-        text: "A reason or supporting statement that helps establish a subclaim."
-    },
-
     "Warrant": {
         title: "Warrant",
         text: "The explanation of why the evidence supports the premise. The warrant connects the evidence to the reasoning behind your claim."
@@ -269,6 +241,21 @@ const info = {
     "Evidence": {
         title: "Evidence",
         text: "Information that supports the premise. Evidence can include research findings, statistics, credible sources, examples, observations, or documented facts."
+    },
+
+    "⚠️ Counterargument 1": {
+        title: "Counterargument",
+        text: "A reasonable opposing position, objection, or alternative explanation that challenges Subclaim 1."
+    },
+
+    "⚠️ Counterargument 2": {
+        title: "Counterargument",
+        text: "A reasonable opposing position, objection, or alternative explanation that challenges Subclaim 2."
+    },
+
+    "⚠️ Counterargument 3": {
+        title: "Counterargument",
+        text: "A reasonable opposing position, objection, or alternative explanation that challenges Subclaim 3."
     }
 
 };
@@ -294,10 +281,7 @@ setTimeout(function() {
 
             let data = info[text];
 
-            /*
-               Premise 1, 2, and 3 all use
-               the same explanation.
-            */
+            /* Premises */
 
             if (text.startsWith("Premise")) {
                 data = {
@@ -356,3 +340,4 @@ setTimeout(function() {
 
 </body>
 </html>
+```
