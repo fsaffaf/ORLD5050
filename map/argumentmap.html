@@ -1,5 +1,7 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +10,16 @@
 
 <style>
 
+/* ---------------------------------
+   PAGE
+--------------------------------- */
+
 body {
     margin: 0;
     padding: 40px;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     background: #f5f9fd;
+    color: #243b53;
 }
 
 .container {
@@ -25,30 +32,160 @@ h1 {
     color: #0e68b3;
     font-weight: 400;
     letter-spacing: .04em;
-    margin-bottom: 30px;
+    margin: 0 0 30px 0;
 }
 
-.mermaid {
+
+/* ---------------------------------
+   MAP CONTAINER
+--------------------------------- */
+
+.map-container {
+    position: relative;
+    width: 100%;
+    min-height: 1250px;
     background: #ffffff;
     border-radius: 18px;
-    padding: 35px;
     border: 1px solid #d8e7f5;
     box-shadow: 0 5px 18px rgba(14,104,179,.07);
+    overflow: hidden;
 }
+
 
 /* ---------------------------------
    CONNECTION LINES
 --------------------------------- */
 
-.mermaid .edgePath path {
-    stroke: #6b8fb3 !important;
-    stroke-width: 1.8px !important;
+.connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
-.mermaid marker path {
-    fill: #6b8fb3 !important;
-    stroke: #6b8fb3 !important;
+.connection {
+    fill: none;
+    stroke: #6b8fb3;
+    stroke-width: 2;
 }
+
+.connection-arrow {
+    fill: #6b8fb3;
+}
+
+
+/* ---------------------------------
+   NODES
+--------------------------------- */
+
+.node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    min-width: 105px;
+    cursor: pointer;
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.node:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 6px 18px rgba(14,104,179,.20);
+    z-index: 10;
+}
+
+
+/* ---------------------------------
+   MAIN CLAIM
+--------------------------------- */
+
+.main {
+    background: #0e68b3;
+    color: #ffffff;
+    border: 2px solid #0b568f;
+    min-width: 190px;
+    font-size: 17px;
+}
+
+
+/* ---------------------------------
+   SUBCLAIMS
+--------------------------------- */
+
+.subclaim {
+    background: #3f83d8;
+    color: #ffffff;
+    border: 2px solid #2f6fbd;
+    min-width: 150px;
+}
+
+
+/* ---------------------------------
+   PREMISES
+--------------------------------- */
+
+.premise {
+    background: #dceeff;
+    color: #174a78;
+    border: 1.5px solid #8dbce3;
+}
+
+
+/* ---------------------------------
+   EVIDENCE
+--------------------------------- */
+
+.evidence {
+    background: #e2f6ee;
+    color: #205b45;
+    border: 1.5px solid #83c9aa;
+}
+
+
+/* ---------------------------------
+   WARRANTS
+--------------------------------- */
+
+.warrant {
+    background: #eee9ff;
+    color: #4b3f72;
+    border: 1.5px solid #a99be0;
+}
+
+
+/* ---------------------------------
+   COUNTERARGUMENT
+--------------------------------- */
+
+.counter {
+    background: #fff0f0;
+    color: #8a3030;
+    border: 1.5px solid #df9b9b;
+    min-width: 145px;
+}
+
+
+/* ---------------------------------
+   REBUTTAL
+--------------------------------- */
+
+.rebuttal {
+    background: #fff5df;
+    color: #79551c;
+    border: 1.5px solid #dfbd73;
+    min-width: 135px;
+}
+
 
 /* ---------------------------------
    POP-UP
@@ -77,8 +214,31 @@ h1 {
     margin-bottom: 6px;
 }
 
+#popup-text {
+    font-size: 14px;
+}
+
+
+/* ---------------------------------
+   SMALL SCREEN
+--------------------------------- */
+
+@media (max-width: 1100px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .map-container {
+        overflow-x: auto;
+        min-width: 1050px;
+    }
+
+}
+
 </style>
 </head>
+
 
 <body>
 
@@ -86,283 +246,660 @@ h1 {
 
 <h1>Argument Map Template</h1>
 
-<div class="mermaid">
 
-flowchart TD
-
-A["👑 Main Claim"]
-
-A --> SC1["🧝 Subclaim 1"]
-A --> SC2["🧝 Subclaim 2"]
-A --> SC3["🧝 Subclaim 3"]
-
-SC1 --> P11["⚔️ Premise 1"]
-SC1 --> P12["⚔️ Premise 2"]
-SC1 --> P13["⚔️ Premise 3"]
-
-SC2 --> P21["⚔️ Premise 1"]
-SC2 --> P22["⚔️ Premise 2"]
-SC2 --> P23["⚔️ Premise 3"]
-
-SC3 --> P31["⚔️ Premise 1"]
-SC3 --> P32["⚔️ Premise 2"]
-SC3 --> P33["⚔️ Premise 3"]
+<div class="map-container">
 
 
-/* ---------------------------------
-   EVIDENCE COMES BEFORE WARRANT
---------------------------------- */
+<!-- =================================
+     CONNECTION LINES
+================================= -->
 
-P11 --> E111["❤️ Evidence"]
-P12 --> E121["❤️ Evidence"]
-P13 --> E131["❤️ Evidence"]
+<svg class="connections"
+     viewBox="0 0 1800 1250"
+     preserveAspectRatio="none">
 
-P21 --> E211["❤️ Evidence"]
-P22 --> E221["❤️ Evidence"]
-P23 --> E231["❤️ Evidence"]
+    <defs>
 
-P31 --> E311["❤️ Evidence"]
-P32 --> E321["❤️ Evidence"]
-P33 --> E331["❤️ Evidence"]
+        <marker
+            id="arrow"
+            markerWidth="8"
+            markerHeight="8"
+            refX="7"
+            refY="4"
+            orient="auto">
 
+            <path
+                class="connection-arrow"
+                d="M0,0 L8,4 L0,8 Z">
+            </path>
 
-E111 --> W111["🔒 Warrant"]
-E121 --> W121["🔒 Warrant"]
-E131 --> W131["🔒 Warrant"]
+        </marker>
 
-E211 --> W211["🔒 Warrant"]
-E221 --> W221["🔒 Warrant"]
-E231 --> W231["🔒 Warrant"]
-
-E311 --> W311["🔒 Warrant"]
-E321 --> W321["🔒 Warrant"]
-E331 --> W331["🔒 Warrant"]
+    </defs>
 
 
-/* ---------------------------------
-   NODE COLORS
---------------------------------- */
+    <!-- MAIN CLAIM → SUBCLAIMS -->
 
-classDef main
-    fill:#0e68b3,
-    color:#ffffff,
-    stroke:#0b568f,
-    stroke-width:2px;
+    <path class="connection"
+          d="M900 90
+             C900 150 450 150 450 215"
+          marker-end="url(#arrow)">
+    </path>
 
-classDef subclaim
-    fill:#3f83d8,
-    color:#ffffff,
-    stroke:#2f6fbd,
-    stroke-width:2px;
+    <path class="connection"
+          d="M900 90
+             C900 150 900 150 900 215"
+          marker-end="url(#arrow)">
+    </path>
 
-classDef premise
-    fill:#dceeff,
-    color:#174a78,
-    stroke:#8dbce3,
-    stroke-width:1.5px;
-
-classDef evidence
-    fill:#e2f6ee,
-    color:#205b45,
-    stroke:#83c9aa,
-    stroke-width:1.5px;
-
-classDef warrant
-    fill:#eee9ff,
-    color:#4b3f72,
-    stroke:#a99be0,
-    stroke-width:1.5px;
+    <path class="connection"
+          d="M900 90
+             C900 150 1350 150 1350 215"
+          marker-end="url(#arrow)">
+    </path>
 
 
-/* Apply colors */
+    <!-- SUBCLAIM 1 → PREMISES -->
 
-class A main;
+    <path class="connection"
+          d="M450 245 C450 290 200 290 200 350"
+          marker-end="url(#arrow)">
+    </path>
 
-class SC1,SC2,SC3 subclaim;
+    <path class="connection"
+          d="M450 245 C450 290 450 290 450 350"
+          marker-end="url(#arrow)">
+    </path>
 
-class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise;
+    <path class="connection"
+          d="M450 245 C450 290 700 290 700 350"
+          marker-end="url(#arrow)">
+    </path>
 
-class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
 
-class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
+    <!-- SUBCLAIM 2 → PREMISES -->
+
+    <path class="connection"
+          d="M900 245 C900 290 650 290 650 350"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M900 245 C900 290 900 290 900 350"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M900 245 C900 290 1150 290 1150 350"
+          marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- SUBCLAIM 3 → PREMISES -->
+
+    <path class="connection"
+          d="M1350 245 C1350 290 1300 290 1300 350"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1350 245 C1350 290 1450 290 1450 350"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1350 245 C1350 290 1600 290 1600 350"
+          marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- PREMISES → EVIDENCE -->
+
+    <path class="connection"
+          d="M200 380 L200 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M450 380 L450 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M700 380 L700 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M650 380 L650 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M900 380 L900 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1150 380 L1150 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1300 380 L1300 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1450 380 L1450 465"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1600 380 L1600 465"
+          marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- EVIDENCE → WARRANT -->
+
+    <path class="connection"
+          d="M200 495 L200 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M450 495 L450 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M700 495 L700 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M650 495 L650 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M900 495 L900 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1150 495 L1150 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1300 495 L1300 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1450 495 L1450 580"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1600 495 L1600 580"
+          marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- SUBCLAIM → COUNTERARGUMENT -->
+
+    <path class="connection"
+          d="M450 245
+             C300 650 250 700 250 735"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M900 245
+             C900 650 900 700 900 735"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1350 245
+             C1500 650 1550 700 1550 735"
+          marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- COUNTERARGUMENT → REBUTTAL -->
+
+    <path class="connection"
+          d="M250 765 L250 850"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M900 765 L900 850"
+          marker-end="url(#arrow)">
+    </path>
+
+    <path class="connection"
+          d="M1550 765 L1550 850"
+          marker-end="url(#arrow)">
+    </path>
+
+</svg>
+
+
+<!-- =================================
+     MAIN CLAIM
+================================= -->
+
+<div class="node main"
+     style="left:50%; top:7%;"
+     data-type="main">
+
+    👑 Main Claim
 
 </div>
 
+
+<!-- =================================
+     SUBCLAIMS
+================================= -->
+
+<div class="node subclaim"
+     style="left:25%; top:18%;"
+     data-type="subclaim">
+
+    🧝 Subclaim 1
+
+</div>
+
+<div class="node subclaim"
+     style="left:50%; top:18%;"
+     data-type="subclaim">
+
+    🧝 Subclaim 2
+
+</div>
+
+<div class="node subclaim"
+     style="left:75%; top:18%;"
+     data-type="subclaim">
+
+    🧝 Subclaim 3
+
 </div>
 
 
-<!-- POP-UP -->
+<!-- =================================
+     PREMISES
+================================= -->
+
+<!-- SUBCLAIM 1 -->
+
+<div class="node premise"
+     style="left:11.1%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 1
+
+</div>
+
+<div class="node premise"
+     style="left:25%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 2
+
+</div>
+
+<div class="node premise"
+     style="left:38.9%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 3
+
+</div>
+
+
+<!-- SUBCLAIM 2 -->
+
+<div class="node premise"
+     style="left:36.1%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 1
+
+</div>
+
+<div class="node premise"
+     style="left:50%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 2
+
+</div>
+
+<div class="node premise"
+     style="left:63.9%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 3
+
+</div>
+
+
+<!-- SUBCLAIM 3 -->
+
+<div class="node premise"
+     style="left:72.2%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 1
+
+</div>
+
+<div class="node premise"
+     style="left:80.6%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 2
+
+</div>
+
+<div class="node premise"
+     style="left:88.9%; top:29%;"
+     data-type="premise">
+
+    ⚔️ Premise 3
+
+</div>
+
+
+<!-- =================================
+     EVIDENCE
+================================= -->
+
+<div class="node evidence" style="left:11.1%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:25%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:38.9%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:36.1%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:50%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:63.9%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:72.2%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:80.6%; top:38%;">
+    ❤️ Evidence
+</div>
+
+<div class="node evidence" style="left:88.9%; top:38%;">
+    ❤️ Evidence
+</div>
+
+
+<!-- =================================
+     WARRANTS
+================================= -->
+
+<div class="node warrant" style="left:11.1%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:25%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:38.9%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:36.1%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:50%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:63.9%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:72.2%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:80.6%; top:47%;">
+    🔒 Warrant
+</div>
+
+<div class="node warrant" style="left:88.9%; top:47%;">
+    🔒 Warrant
+</div>
+
+
+<!-- =================================
+     COUNTERARGUMENTS
+================================= -->
+
+<div class="node counter"
+     style="left:14%; top:59%;"
+     data-type="counter">
+
+    👹 Counterargument
+
+</div>
+
+<div class="node counter"
+     style="left:50%; top:59%;"
+     data-type="counter">
+
+    👹 Counterargument
+
+</div>
+
+<div class="node counter"
+     style="left:86%; top:59%;"
+     data-type="counter">
+
+    👹 Counterargument
+
+</div>
+
+
+<!-- =================================
+     REBUTTALS
+================================= -->
+
+<div class="node rebuttal"
+     style="left:14%; top:69%;"
+     data-type="rebuttal">
+
+    🛡️ Rebuttal
+
+</div>
+
+<div class="node rebuttal"
+     style="left:50%; top:69%;"
+     data-type="rebuttal">
+
+    🛡️ Rebuttal
+
+</div>
+
+<div class="node rebuttal"
+     style="left:86%; top:69%;"
+     data-type="rebuttal">
+
+    🛡️ Rebuttal
+
+</div>
+
+
+</div>
+</div>
+
+
+<!-- =================================
+     POP-UP
+================================= -->
 
 <div id="popup">
+
     <div id="popup-title"></div>
+
     <div id="popup-text"></div>
+
 </div>
 
 
-<script type="module">
-
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-
-mermaid.initialize({
-    startOnLoad: true,
-    securityLevel: "loose",
-    theme: "base",
-
-    themeVariables: {
-        fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-        fontSize: "15px",
-
-        lineColor: "#6b8fb3",
-
-        primaryColor: "#0e68b3",
-        primaryTextColor: "#ffffff",
-        primaryBorderColor: "#0b568f",
-
-        secondaryColor: "#3f83d8",
-        tertiaryColor: "#dceeff"
-    }
-});
-
+<script>
 
 /* ---------------------------------
-   POP-UP INFORMATION
+   INFORMATION FOR HOVER POP-UPS
 --------------------------------- */
 
 const info = {
 
-    "👑 Main Claim": {
+    main: {
         title: "👑 Main Claim = Princess",
         text: "The overall position you are trying to establish. Think of the main claim as the Princess: she is the central goal of the argument that everything else is working to protect."
     },
 
-    "🧝 Subclaim 1": {
+    subclaim: {
         title: "🧝 Subclaims = Heroes",
         text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
     },
 
-    "🧝 Subclaim 2": {
-        title: "🧝 Subclaims = Heroes",
-        text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
-    },
-
-    "🧝 Subclaim 3": {
-        title: "🧝 Subclaims = Heroes",
-        text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
-    },
-
-    "⚔️ Premise 1": {
+    premise: {
         title: "⚔️ Premises = Attacks & Defense",
         text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
     },
 
-    "⚔️ Premise 2": {
-        title: "⚔️ Premises = Attacks & Defense",
-        text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
-    },
-
-    "⚔️ Premise 3": {
-        title: "⚔️ Premises = Attacks & Defense",
-        text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
-    },
-
-    "❤️ Evidence": {
+    evidence: {
         title: "❤️ Evidence = Power Up",
         text: "Evidence is information that supports a premise. It can include research findings, statistics, credible sources, examples, observations, or documented facts. Think of evidence as a Power Up: it makes your premise stronger."
     },
 
-    "🔒 Warrant": {
+    warrant: {
         title: "🔒 Warrant = Unlock",
         text: "The warrant explains why the evidence supports the premise. It makes the connection between the evidence and your reasoning clear. Think of the warrant as the Unlock: it explains how the evidence connects to your premise."
+    },
+
+    counter: {
+        title: "👹 Counterarguments = Attack",
+        text: "A counterargument presents a reasonable objection, alternative explanation, or opposing position that challenges your argument. Think of it as an Attack: it identifies where your argument could be challenged."
+    },
+
+    rebuttal: {
+        title: "🛡️ Rebuttal = Defense",
+        text: "A rebuttal responds to the counterargument and explains why your original argument still stands. Think of it as Defense: it protects your argument by addressing the opposing point."
     }
 
 };
 
 
 /* ---------------------------------
-   HOVER POP-UPS
+   HOVER BEHAVIOR
 --------------------------------- */
 
-setTimeout(function() {
+const nodes = document.querySelectorAll(".node");
 
-    const nodes = document.querySelectorAll(".mermaid .node");
-
-    nodes.forEach(function(node) {
-
-        node.addEventListener("mouseenter", function(event) {
-
-            const label = node.querySelector(".nodeLabel");
-
-            if (!label) return;
-
-            const text = label.textContent.trim();
-
-            let data = info[text];
-
-            /* Premises 1, 2, and 3 use the same explanation */
-
-            if (text.includes("Premise")) {
-                data = {
-                    title: "⚔️ Premises = Attacks & Defense",
-                    text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
-                };
-            }
-
-            /* Subclaims 1, 2, and 3 use the same explanation */
-
-            if (text.includes("Subclaim")) {
-                data = {
-                    title: "🧝 Subclaims = Heroes",
-                    text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
-                };
-            }
-
-            if (!data) return;
-
-            document.getElementById("popup-title").textContent = data.title;
-            document.getElementById("popup-text").textContent = data.text;
-
-            const popup = document.getElementById("popup");
-
-            popup.style.display = "block";
-
-            popup.style.left = (event.clientX + 15) + "px";
-            popup.style.top = (event.clientY + 15) + "px";
-
-        });
+const popup = document.getElementById("popup");
+const popupTitle = document.getElementById("popup-title");
+const popupText = document.getElementById("popup-text");
 
 
-        node.addEventListener("mousemove", function(event) {
+nodes.forEach(function(node) {
 
-            const popup = document.getElementById("popup");
+    node.addEventListener("mouseenter", function(event) {
 
-            let x = event.clientX + 15;
-            let y = event.clientY + 15;
+        const type = node.dataset.type;
 
-            if (x + popup.offsetWidth > window.innerWidth) {
-                x = event.clientX - popup.offsetWidth - 15;
-            }
+        if (!type || !info[type]) {
+            return;
+        }
 
-            if (y + popup.offsetHeight > window.innerHeight) {
-                y = event.clientY - popup.offsetHeight - 15;
-            }
+        popupTitle.textContent = info[type].title;
+        popupText.textContent = info[type].text;
 
-            popup.style.left = x + "px";
-            popup.style.top = y + "px";
+        popup.style.display = "block";
 
-        });
-
-
-        node.addEventListener("mouseleave", function() {
-
-            document.getElementById("popup").style.display = "none";
-
-        });
+        positionPopup(event);
 
     });
 
-}, 1500);
+
+    node.addEventListener("mousemove", function(event) {
+
+        if (popup.style.display === "block") {
+            positionPopup(event);
+        }
+
+    });
+
+
+    node.addEventListener("mouseleave", function() {
+
+        popup.style.display = "none";
+
+    });
+
+});
+
+
+/* ---------------------------------
+   KEEP POP-UP INSIDE SCREEN
+--------------------------------- */
+
+function positionPopup(event) {
+
+    let x = event.clientX + 18;
+    let y = event.clientY + 18;
+
+    const width = popup.offsetWidth;
+    const height = popup.offsetHeight;
+
+    if (x + width > window.innerWidth - 15) {
+
+        x = event.clientX - width - 18;
+
+    }
+
+    if (y + height > window.innerHeight - 15) {
+
+        y = event.clientY - height - 18;
+
+    }
+
+    popup.style.left = x + "px";
+    popup.style.top = y + "px";
+
+}
 
 </script>
 
 </body>
 </html>
+```
