@@ -35,7 +35,10 @@ h1 {
     overflow-x: auto;
 }
 
-/* Mermaid nodes */
+
+/* =========================
+   MERMAID NODES
+   ========================= */
 
 .mermaid .node rect {
     rx: 16px !important;
@@ -57,7 +60,10 @@ h1 {
     fill: #5d86aa !important;
 }
 
-/* Clickable nodes */
+
+/* =========================
+   CLICKABLE NODES
+   ========================= */
 
 .mermaid .node {
     cursor: pointer;
@@ -68,7 +74,10 @@ h1 {
     filter: brightness(0.96);
 }
 
-/* Hover popup */
+
+/* =========================
+   HOVER POPUP
+   ========================= */
 
 #popup {
     position: fixed;
@@ -103,6 +112,7 @@ h1 {
 </style>
 </head>
 
+
 <body>
 
 <div class="container">
@@ -115,7 +125,9 @@ h1 {
 
 flowchart TD
 
+
 A["👑<br/>Main Claim"]
+
 
 SC1["🦸<br/>Subclaim 1"]
 SC2["🦸<br/>Subclaim 2"]
@@ -171,10 +183,18 @@ CA3["👹<br/>Counterargument 3"]
 R3["🛡️<br/>Rebuttal 3"]
 
 
+/* =========================
+   MAIN ARGUMENT
+   ========================= */
+
 A --> SC1
 A --> SC2
 A --> SC3
 
+
+/* =========================
+   SUBCLAIMS → PREMISES
+   ========================= */
 
 SC1 --> P11
 SC1 --> P12
@@ -189,35 +209,43 @@ SC3 --> P32
 SC3 --> P33
 
 
+/* =========================
+   PREMISE → WARRANT → EVIDENCE
+   ========================= */
+
 P11 --> W11
-P11 --> E11
+W11 --> E11
 
 P12 --> W12
-P12 --> E12
+W12 --> E12
 
 P13 --> W13
-P13 --> E13
+W13 --> E13
 
 
 P21 --> W21
-P21 --> E21
+W21 --> E21
 
 P22 --> W22
-P22 --> E22
+W22 --> E22
 
 P23 --> W23
-P23 --> E23
+W23 --> E23
 
 
 P31 --> W31
-P31 --> E31
+W31 --> E31
 
 P32 --> W32
-P32 --> E32
+W32 --> E32
 
 P33 --> W33
-P33 --> E33
+W33 --> E33
 
+
+/* =========================
+   COUNTERARGUMENTS → REBUTTALS
+   ========================= */
 
 A --> CA1
 CA1 --> R1
@@ -228,6 +256,10 @@ CA2 --> R2
 P33 --> CA3
 CA3 --> R3
 
+
+/* =========================
+   COLORS
+   ========================= */
 
 classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px
 
@@ -264,7 +296,9 @@ class R1,R2,R3 rebuttal
 </div>
 
 
-<!-- Hover popup -->
+<!-- =========================
+     HOVER POPUP
+     ========================= -->
 
 <div id="popup">
 
@@ -282,7 +316,9 @@ class R1,R2,R3 rebuttal
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 
 
-/* Mermaid settings */
+/* =========================
+   MERMAID SETTINGS
+   ========================= */
 
 mermaid.initialize({
 
@@ -305,9 +341,12 @@ mermaid.initialize({
 });
 
 
-/* Hover information */
+/* =========================
+   HOVER INFORMATION
+   ========================= */
 
 const info = {
+
 
     "Main Claim": {
         role: "👑 Princess",
@@ -394,7 +433,9 @@ const info = {
 };
 
 
-/* Clean Mermaid labels */
+/* =========================
+   CLEAN MERMAID LABELS
+   ========================= */
 
 function cleanLabel(text) {
 
@@ -412,7 +453,9 @@ function cleanLabel(text) {
 }
 
 
-/* Add hover behavior */
+/* =========================
+   HOVER BEHAVIOR
+   ========================= */
 
 function setupHover() {
 
@@ -501,7 +544,9 @@ function setupHover() {
 }
 
 
-/* Render Mermaid first, then activate hover */
+/* =========================
+   RENDER MERMAID FIRST
+   ========================= */
 
 async function startMap() {
 
