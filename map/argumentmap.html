@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,15 +36,46 @@ h1 {
     box-shadow: 0 5px 18px rgba(14,104,179,.08);
 }
 
+/* ---------------------------------
+   NODE APPEARANCE
+--------------------------------- */
+
+.mermaid .node rect {
+    rx: 14px !important;
+    ry: 14px !important;
+}
+
+.mermaid .nodeLabel {
+    text-align: center !important;
+}
+
+/* Center the content inside every node */
+
+.mermaid .label {
+    text-align: center !important;
+}
+
+.mermaid .nodeLabel div {
+    text-align: center !important;
+}
+
+/* ---------------------------------
+   CONNECTION LINES
+--------------------------------- */
+
 .mermaid .edgePath path {
-    stroke: #4f7fa8 !important;
+    stroke: #5d86aa !important;
     stroke-width: 1.8px !important;
 }
 
 .mermaid marker path {
-    fill: #4f7fa8 !important;
-    stroke: #4f7fa8 !important;
+    fill: #5d86aa !important;
+    stroke: #5d86aa !important;
 }
+
+/* ---------------------------------
+   POP-UP
+--------------------------------- */
 
 #popup {
     position: fixed;
@@ -83,81 +113,109 @@ h1 {
 
 flowchart TD
 
-A["👑 Main Claim"]
+A["<div style='text-align:center'><div style='font-size:32px'>👑</div><div>Main Claim</div></div>"]
 
-A --> SC1["🦸 Subclaim 1"]
-A --> SC2["🦸 Subclaim 2"]
-A --> SC3["🦸 Subclaim 3"]
+A --> SC1["<div style='text-align:center'><div style='font-size:28px'>🦸</div><div>Subclaim 1</div></div>"]
+A --> SC2["<div style='text-align:center'><div style='font-size:28px'>🦸</div><div>Subclaim 2</div></div>"]
+A --> SC3["<div style='text-align:center'><div style='font-size:28px'>🦸</div><div>Subclaim 3</div></div>"]
 
-A --> CA1["👹 Counterargument 1"]
-CA1 --> R1["🛡️ Rebuttal 1"]
+%% Counterargument from Main Claim
 
-SC1 --> P11["⚔️ Premise 1"]
-SC1 --> P12["⚔️ Premise 2"]
-SC1 --> P13["⚔️ Premise 3"]
+A --> CA1["<div style='text-align:center'><div style='font-size:28px'>👹</div><div>Counterargument 1</div></div>"]
+CA1 --> R1["<div style='text-align:center'><div style='font-size:28px'>🛡️</div><div>Rebuttal 1</div></div>"]
 
-SC2 --> P21["⚔️ Premise 1"]
-SC2 --> P22["⚔️ Premise 2"]
-SC2 --> P23["⚔️ Premise 3"]
+SC1 --> P11["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 1</div></div>"]
+SC1 --> P12["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 2</div></div>"]
+SC1 --> P13["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 3</div></div>"]
 
-SC3 --> P31["⚔️ Premise 1"]
-SC3 --> P32["⚔️ Premise 2"]
-SC3 --> P33["⚔️ Premise 3"]
+SC2 --> P21["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 1</div></div>"]
+SC2 --> P22["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 2</div></div>"]
+SC2 --> P23["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 3</div></div>"]
 
-SC2 --> CA2["👹 Counterargument 2"]
-CA2 --> R2["🛡️ Rebuttal 2"]
+SC3 --> P31["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 1</div></div>"]
+SC3 --> P32["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 2</div></div>"]
+SC3 --> P33["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 3</div></div>"]
 
-P33 --> CA3["👹 Counterargument 3"]
-CA3 --> R3["🛡️ Rebuttal 3"]
+%% Counterargument from Subclaim
 
-P11 --> W111["🔒 Warrant"]
-P12 --> W121["🔒 Warrant"]
-P13 --> W131["🔒 Warrant"]
+SC2 --> CA2["<div style='text-align:center'><div style='font-size:28px'>👹</div><div>Counterargument 2</div></div>"]
+CA2 --> R2["<div style='text-align:center'><div style='font-size:28px'>🛡️</div><div>Rebuttal 2</div></div>"]
 
-P21 --> W211["🔒 Warrant"]
-P22 --> W221["🔒 Warrant"]
-P23 --> W231["🔒 Warrant"]
+%% Counterargument from Premise
 
-P31 --> W311["🔒 Warrant"]
-P32 --> W321["🔒 Warrant"]
-P33 --> W331["🔒 Warrant"]
+P33 --> CA3["<div style='text-align:center'><div style='font-size:28px'>👹</div><div>Counterargument 3</div></div>"]
+CA3 --> R3["<div style='text-align:center'><div style='font-size:28px'>🛡️</div><div>Rebuttal 3</div></div>"]
 
-W111 --> E111["❤️ Evidence"]
-W121 --> E121["❤️ Evidence"]
-W131 --> E131["❤️ Evidence"]
+%% Warrants
 
-W211 --> E211["❤️ Evidence"]
-W221 --> E221["❤️ Evidence"]
-W231 --> E231["❤️ Evidence"]
+P11 --> W111["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+P12 --> W121["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+P13 --> W131["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
 
-W311 --> E311["❤️ Evidence"]
-W321 --> E321["❤️ Evidence"]
-W331 --> E331["❤️ Evidence"]
+P21 --> W211["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+P22 --> W221["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+P23 --> W231["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
 
-classDef main fill:#0e68b3,color:#ffffff,stroke:#0b568f,stroke-width:2px
-classDef subclaim fill:#3f83d8,color:#ffffff,stroke:#2f6fbd,stroke-width:2px
-classDef premise fill:#dceeff,color:#174a78,stroke:#8dbce3,stroke-width:1.5px
-classDef warrant fill:#e7f0fa,color:#234f73,stroke:#8dbce3,stroke-width:1.5px
-classDef evidence fill:#cfe4f7,color:#174a78,stroke:#76a9d3,stroke-width:1.5px
-classDef counterargument fill:#b8d5ed,color:#123f63,stroke:#4f8bbd,stroke-width:2px
-classDef rebuttal fill:#d9ebf8,color:#123f63,stroke:#2f6fbd,stroke-width:2px
+P31 --> W311["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+P32 --> W321["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+P33 --> W331["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
 
-class A main
-class SC1,SC2,SC3 subclaim
-class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
-class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant
-class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence
-class CA1,CA2,CA3 counterargument
-class R1,R2,R3 rebuttal
+%% Evidence
+
+W111 --> E111["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+W121 --> E121["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+W131 --> E131["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+
+W211 --> E211["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+W221 --> E221["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+W231 --> E231["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+
+W311 --> E311["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+W321 --> E321["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+W331 --> E331["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+
+%% ---------------------------------
+%% COLORS
+%% ---------------------------------
+
+classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px;
+
+classDef subclaim fill:#ffffff,color:#0e68b3,stroke:#3f83d8,stroke-width:2px;
+
+classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px;
+
+classDef warrant fill:#ffffff,color:#234f73,stroke:#7fa8c9,stroke-width:2px;
+
+classDef evidence fill:#ffffff,color:#174a78,stroke:#4d91c9,stroke-width:2px;
+
+classDef counterargument fill:#ffffff,color:#8b3030,stroke:#c94f4f,stroke-width:3px;
+
+classDef rebuttal fill:#ffffff,color:#174a78,stroke:#2f6fbd,stroke-width:2px;
+
+class A main;
+
+class SC1,SC2,SC3 subclaim;
+
+class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise;
+
+class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
+
+class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
+
+class CA1,CA2,CA3 counterargument;
+
+class R1,R2,R3 rebuttal;
 
 </div>
 
 </div>
+
 
 <div id="popup">
     <div id="popup-title"></div>
     <div id="popup-text"></div>
 </div>
+
 
 <script type="module">
 
@@ -166,81 +224,81 @@ import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.mi
 mermaid.initialize({
     startOnLoad: true,
     securityLevel: "loose",
+    htmlLabels: true,
     theme: "base",
+
     themeVariables: {
         fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
         fontSize: "15px",
-        lineColor: "#4f7fa8",
-        primaryColor: "#0e68b3",
-        primaryTextColor: "#ffffff",
-        primaryBorderColor: "#0b568f",
-        secondaryColor: "#3f83d8",
-        tertiaryColor: "#dceeff"
+        lineColor: "#5d86aa"
     }
 });
 
+
 const info = {
 
-    "👑 Main Claim": {
+    "Main Claim": {
         title: "👑 Main Claim — Princess",
         text: "The overall position you are trying to establish. Your subclaims should work together to support this claim."
     },
 
-    "🦸 Subclaim 1": {
+    "Subclaim 1": {
         title: "🦸 Subclaim — Hero",
         text: "A smaller claim that supports the main claim."
     },
 
-    "🦸 Subclaim 2": {
+    "Subclaim 2": {
         title: "🦸 Subclaim — Hero",
         text: "A smaller claim that supports the main claim."
     },
 
-    "🦸 Subclaim 3": {
+    "Subclaim 3": {
         title: "🦸 Subclaim — Hero",
         text: "A smaller claim that supports the main claim."
     },
 
-    "🔒 Warrant": {
+    "Warrant": {
         title: "🔒 Warrant — Unlock",
         text: "The explanation of why the evidence supports the premise. The warrant connects the evidence to the reasoning behind your claim."
     },
 
-    "❤️ Evidence": {
+    "Evidence": {
         title: "❤️ Evidence — Power Up",
         text: "Information that supports the premise. Evidence can include research findings, statistics, credible sources, examples, observations, or documented facts."
     },
 
-    "👹 Counterargument 1": {
+    "Counterargument 1": {
         title: "👹 Counterargument — Attack",
         text: "A reasonable opposing position, objection, or alternative explanation that challenges the main claim."
     },
 
-    "👹 Counterargument 2": {
+    "Counterargument 2": {
         title: "👹 Counterargument — Attack",
         text: "A reasonable opposing position, objection, or alternative explanation that challenges a subclaim."
     },
 
-    "👹 Counterargument 3": {
+    "Counterargument 3": {
         title: "👹 Counterargument — Attack",
         text: "A reasonable opposing position, objection, or alternative explanation that challenges a premise."
     },
 
-    "🛡️ Rebuttal 1": {
+    "Rebuttal 1": {
         title: "🛡️ Rebuttal — Defense",
         text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
     },
 
-    "🛡️ Rebuttal 2": {
+    "Rebuttal 2": {
         title: "🛡️ Rebuttal — Defense",
         text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
     },
 
-    "🛡️ Rebuttal 3": {
+    "Rebuttal 3": {
         title: "🛡️ Rebuttal — Defense",
         text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
     }
+
 };
+
 
 setTimeout(function() {
 
@@ -254,11 +312,11 @@ setTimeout(function() {
 
             if (!label) return;
 
-            const text = label.textContent.trim();
+            let text = label.textContent.trim();
 
             let data = info[text];
 
-            if (text.startsWith("⚔️ Premise")) {
+            if (text.startsWith("Premise")) {
                 data = {
                     title: "⚔️ Premise — Attack & Defense",
                     text: "A reason or supporting statement that helps establish a subclaim."
@@ -276,7 +334,9 @@ setTimeout(function() {
 
             popup.style.left = (event.clientX + 15) + "px";
             popup.style.top = (event.clientY + 15) + "px";
+
         });
+
 
         node.addEventListener("mousemove", function(event) {
 
@@ -295,10 +355,14 @@ setTimeout(function() {
 
             popup.style.left = x + "px";
             popup.style.top = y + "px";
+
         });
 
+
         node.addEventListener("mouseleave", function() {
+
             document.getElementById("popup").style.display = "none";
+
         });
 
     });
@@ -309,4 +373,3 @@ setTimeout(function() {
 
 </body>
 </html>
-```
