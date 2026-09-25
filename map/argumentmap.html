@@ -10,16 +10,20 @@
 
 <style>
 
-/* ---------------------------------
+/* =================================
    PAGE
---------------------------------- */
+================================= */
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     padding: 40px;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background: #f5f9fd;
-    color: #243b53;
+    background: #eef6fc;
+    color: #173f63;
 }
 
 .container {
@@ -30,208 +34,327 @@ body {
 h1 {
     text-align: center;
     color: #0e68b3;
-    font-weight: 400;
-    letter-spacing: .04em;
-    margin: 0 0 30px 0;
+    font-weight: 500;
+    letter-spacing: .03em;
+    margin: 0 0 28px 0;
 }
 
 
-/* ---------------------------------
-   MAP CONTAINER
---------------------------------- */
+/* =================================
+   MAP
+================================= */
 
 .map-container {
     position: relative;
+
     width: 100%;
-    min-height: 1250px;
+    min-width: 1500px;
+    height: 1250px;
+
     background: #ffffff;
-    border-radius: 18px;
-    border: 1px solid #d8e7f5;
-    box-shadow: 0 5px 18px rgba(14,104,179,.07);
+
+    border: 1px solid #c7dff2;
+    border-radius: 20px;
+
+    box-shadow:
+        0 6px 24px rgba(14,104,179,.10);
+
     overflow: hidden;
 }
 
 
-/* ---------------------------------
-   CONNECTION LINES
---------------------------------- */
+/* =================================
+   SVG CONNECTION LAYER
+
+   Lines are behind the boxes.
+   They stop before reaching the
+   boxes so arrowheads remain visible.
+================================= */
 
 .connections {
     position: absolute;
+
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+
+    width: 1500px;
+    height: 1250px;
+
+    z-index: 1;
+
     pointer-events: none;
 }
 
 .connection {
     fill: none;
-    stroke: #6b8fb3;
-    stroke-width: 2;
+
+    stroke: #6b9bc4;
+    stroke-width: 2.5;
+
+    stroke-linecap: round;
 }
 
-.connection-arrow {
-    fill: #6b8fb3;
+.connection-main {
+    stroke: #3f83c2;
+    stroke-width: 3;
+}
+
+.connection-counter {
+    stroke: #7da7c8;
+    stroke-width: 2.5;
+}
+
+.arrow {
+    fill: #6b9bc4;
+}
+
+.arrow-main {
+    fill: #3f83c2;
 }
 
 
-/* ---------------------------------
+/* =================================
    NODES
---------------------------------- */
+================================= */
 
 .node {
     position: absolute;
+
     transform: translate(-50%, -50%);
-    padding: 12px 18px;
+
+    z-index: 5;
+
+    padding: 11px 16px;
+
+    min-width: 125px;
+
     border-radius: 12px;
+
     text-align: center;
-    font-size: 15px;
+
+    font-size: 14px;
     font-weight: 600;
-    line-height: 1.3;
-    min-width: 105px;
+
+    line-height: 1.25;
+
     cursor: pointer;
+
     transition:
-        transform .18s ease,
-        box-shadow .18s ease;
-    z-index: 2;
-    box-sizing: border-box;
+        transform .16s ease,
+        box-shadow .16s ease;
+
+    box-shadow:
+        0 2px 7px rgba(14,104,179,.08);
 }
 
 .node:hover {
     transform: translate(-50%, -50%) scale(1.05);
-    box-shadow: 0 6px 18px rgba(14,104,179,.20);
-    z-index: 10;
+
+    box-shadow:
+        0 7px 18px rgba(14,104,179,.20);
+
+    z-index: 20;
 }
 
 
-/* ---------------------------------
+/* =================================
    MAIN CLAIM
---------------------------------- */
+================================= */
 
 .main {
+    min-width: 205px;
+
+    padding: 14px 24px;
+
     background: #0e68b3;
+
     color: #ffffff;
-    border: 2px solid #0b568f;
-    min-width: 190px;
+
+    border: 2px solid #094f88;
+
     font-size: 17px;
 }
 
 
-/* ---------------------------------
+/* =================================
    SUBCLAIMS
---------------------------------- */
+================================= */
 
 .subclaim {
-    background: #3f83d8;
+    min-width: 175px;
+
+    padding: 13px 20px;
+
+    background: #2f78bb;
+
     color: #ffffff;
-    border: 2px solid #2f6fbd;
-    min-width: 150px;
+
+    border: 2px solid #205f9a;
+
+    font-size: 15px;
 }
 
 
-/* ---------------------------------
+/* =================================
    PREMISES
---------------------------------- */
+================================= */
 
 .premise {
-    background: #dceeff;
+    background: #dceefb;
+
     color: #174a78;
-    border: 1.5px solid #8dbce3;
+
+    border: 1.5px solid #8bb9dd;
 }
 
 
-/* ---------------------------------
-   EVIDENCE
---------------------------------- */
-
-.evidence {
-    background: #e2f6ee;
-    color: #205b45;
-    border: 1.5px solid #83c9aa;
-}
-
-
-/* ---------------------------------
+/* =================================
    WARRANTS
---------------------------------- */
+================================= */
 
 .warrant {
-    background: #eee9ff;
-    color: #4b3f72;
-    border: 1.5px solid #a99be0;
+    background: #cfe5f7;
+
+    color: #174a78;
+
+    border: 1.5px solid #75a8d0;
 }
 
 
-/* ---------------------------------
-   COUNTERARGUMENT
---------------------------------- */
+/* =================================
+   EVIDENCE
+================================= */
+
+.evidence {
+    background: #e8f3fb;
+
+    color: #245579;
+
+    border: 1.5px solid #9bc5e3;
+}
+
+
+/* =================================
+   COUNTERARGUMENTS
+================================= */
 
 .counter {
-    background: #fff0f0;
-    color: #8a3030;
-    border: 1.5px solid #df9b9b;
-    min-width: 145px;
+    min-width: 170px;
+
+    background: #dceaf5;
+
+    color: #285577;
+
+    border: 1.5px solid #82aaca;
 }
 
 
-/* ---------------------------------
-   REBUTTAL
---------------------------------- */
+/* =================================
+   REBUTTALS
+================================= */
 
 .rebuttal {
-    background: #fff5df;
-    color: #79551c;
-    border: 1.5px solid #dfbd73;
-    min-width: 135px;
+    min-width: 155px;
+
+    background: #c5dff2;
+
+    color: #174a78;
+
+    border: 1.5px solid #6f9fc7;
 }
 
 
-/* ---------------------------------
+/* =================================
    POP-UP
---------------------------------- */
+================================= */
 
 #popup {
     position: fixed;
+
     display: none;
-    width: 320px;
+
+    width: 330px;
+
     padding: 16px 18px;
+
     background: #ffffff;
-    border: 1px solid #9fc5e8;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(14,104,179,.18);
-    color: #243b53;
+
+    border: 1px solid #8fb9d9;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 9px 28px rgba(14,104,179,.20);
+
+    color: #294d6b;
+
     font-size: 14px;
+
     line-height: 1.5;
+
     z-index: 9999;
+
     pointer-events: none;
 }
 
 #popup-title {
     color: #0e68b3;
+
     font-size: 17px;
+
     font-weight: 700;
-    margin-bottom: 6px;
+
+    margin-bottom: 7px;
 }
 
 #popup-text {
-    font-size: 14px;
+    color: #294d6b;
 }
 
 
-/* ---------------------------------
-   SMALL SCREEN
---------------------------------- */
+/* =================================
+   LEGEND
+================================= */
 
-@media (max-width: 1100px) {
+.legend {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-top: 22px;
+
+    color: #315b7d;
+
+    font-size: 13px;
+
+    flex-wrap: wrap;
+}
+
+.legend span {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+/* =================================
+   SMALL SCREEN
+================================= */
+
+@media (max-width: 1550px) {
 
     body {
         padding: 20px;
     }
 
-    .map-container {
+    .map-wrapper {
         overflow-x: auto;
-        min-width: 1050px;
+
+        padding-bottom: 15px;
     }
 
 }
@@ -247,16 +370,19 @@ h1 {
 <h1>Argument Map Template</h1>
 
 
+<div class="map-wrapper">
+
 <div class="map-container">
 
 
 <!-- =================================
-     CONNECTION LINES
+     CONNECTIONS
 ================================= -->
 
-<svg class="connections"
-     viewBox="0 0 1800 1250"
-     preserveAspectRatio="none">
+<svg
+    class="connections"
+    viewBox="0 0 1500 1250"
+    xmlns="http://www.w3.org/2000/svg">
 
     <defs>
 
@@ -269,8 +395,23 @@ h1 {
             orient="auto">
 
             <path
-                class="connection-arrow"
+                class="arrow"
                 d="M0,0 L8,4 L0,8 Z">
+            </path>
+
+        </marker>
+
+        <marker
+            id="arrowMain"
+            markerWidth="9"
+            markerHeight="9"
+            refX="8"
+            refY="4.5"
+            orient="auto">
+
+            <path
+                class="arrow-main"
+                d="M0,0 L9,4.5 L0,9 Z">
             </path>
 
         </marker>
@@ -278,213 +419,245 @@ h1 {
     </defs>
 
 
-    <!-- MAIN CLAIM → SUBCLAIMS -->
+    <!-- =================================
+         MAIN CLAIM → SUBCLAIMS
+    ================================= -->
+
+    <path
+        class="connection-main"
+        d="M750 102 C750 145 250 145 250 188"
+        marker-end="url(#arrowMain)">
+    </path>
+
+    <path
+        class="connection-main"
+        d="M750 102 L750 188"
+        marker-end="url(#arrowMain)">
+    </path>
+
+    <path
+        class="connection-main"
+        d="M750 102 C750 145 1250 145 1250 188"
+        marker-end="url(#arrowMain)">
+    </path>
+
+
+    <!-- =================================
+         SUBCLAIM 1 → PREMISES
+    ================================= -->
+
+    <path
+        class="connection"
+        d="M250 232 C250 260 150 260 150 292"
+        marker-end="url(#arrow)">
+    </path>
+
+    <path
+        class="connection"
+        d="M250 232 L250 292"
+        marker-end="url(#arrow)">
+    </path>
+
+    <path
+        class="connection"
+        d="M250 232 C250 260 350 260 350 292"
+        marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- =================================
+         SUBCLAIM 2 → PREMISES
+    ================================= -->
+
+    <path
+        class="connection"
+        d="M750 232 C750 260 650 260 650 292"
+        marker-end="url(#arrow)">
+    </path>
+
+    <path
+        class="connection"
+        d="M750 232 L750 292"
+        marker-end="url(#arrow)">
+    </path>
+
+    <path
+        class="connection"
+        d="M750 232 C750 260 850 260 850 292"
+        marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- =================================
+         SUBCLAIM 3 → PREMISES
+    ================================= -->
+
+    <path
+        class="connection"
+        d="M1250 232 C1250 260 1150 260 1150 292"
+        marker-end="url(#arrow)">
+    </path>
+
+    <path
+        class="connection"
+        d="M1250 232 L1250 292"
+        marker-end="url(#arrow)">
+    </path>
+
+    <path
+        class="connection"
+        d="M1250 232 C1250 260 1350 260 1350 292"
+        marker-end="url(#arrow)">
+    </path>
+
+
+    <!-- =================================
+         PREMISE → WARRANT
+    ================================= -->
 
     <path class="connection"
-          d="M900 90
-             C900 150 450 150 450 215"
+          d="M150 335 L150 392"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M900 90
-             C900 150 900 150 900 215"
+          d="M250 335 L250 392"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M900 90
-             C900 150 1350 150 1350 215"
+          d="M350 335 L350 392"
           marker-end="url(#arrow)">
     </path>
 
 
-    <!-- SUBCLAIM 1 → PREMISES -->
-
     <path class="connection"
-          d="M450 245 C450 290 200 290 200 350"
+          d="M650 335 L650 392"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M450 245 C450 290 450 290 450 350"
+          d="M750 335 L750 392"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M450 245 C450 290 700 290 700 350"
+          d="M850 335 L850 392"
           marker-end="url(#arrow)">
     </path>
 
 
-    <!-- SUBCLAIM 2 → PREMISES -->
-
     <path class="connection"
-          d="M900 245 C900 290 650 290 650 350"
+          d="M1150 335 L1150 392"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M900 245 C900 290 900 290 900 350"
+          d="M1250 335 L1250 392"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M900 245 C900 290 1150 290 1150 350"
+          d="M1350 335 L1350 392"
           marker-end="url(#arrow)">
     </path>
 
 
-    <!-- SUBCLAIM 3 → PREMISES -->
+    <!-- =================================
+         WARRANT → EVIDENCE
+    ================================= -->
 
     <path class="connection"
-          d="M1350 245 C1350 290 1300 290 1300 350"
+          d="M150 435 L150 492"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M1350 245 C1350 290 1450 290 1450 350"
+          d="M250 435 L250 492"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M1350 245 C1350 290 1600 290 1600 350"
+          d="M350 435 L350 492"
           marker-end="url(#arrow)">
     </path>
 
 
-    <!-- PREMISES → EVIDENCE -->
-
     <path class="connection"
-          d="M200 380 L200 465"
+          d="M650 435 L650 492"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M450 380 L450 465"
+          d="M750 435 L750 492"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M700 380 L700 465"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M650 380 L650 465"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M900 380 L900 465"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1150 380 L1150 465"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1300 380 L1300 465"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1450 380 L1450 465"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1600 380 L1600 465"
+          d="M850 435 L850 492"
           marker-end="url(#arrow)">
     </path>
 
 
-    <!-- EVIDENCE → WARRANT -->
-
     <path class="connection"
-          d="M200 495 L200 580"
+          d="M1150 435 L1150 492"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M450 495 L450 580"
+          d="M1250 435 L1250 492"
           marker-end="url(#arrow)">
     </path>
 
     <path class="connection"
-          d="M700 495 L700 580"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M650 495 L650 580"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M900 495 L900 580"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1150 495 L1150 580"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1300 495 L1300 580"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1450 495 L1450 580"
-          marker-end="url(#arrow)">
-    </path>
-
-    <path class="connection"
-          d="M1600 495 L1600 580"
+          d="M1350 435 L1350 492"
           marker-end="url(#arrow)">
     </path>
 
 
-    <!-- SUBCLAIM → COUNTERARGUMENT -->
+    <!-- =================================
+         SUBCLAIMS → COUNTERARGUMENTS
+    ================================= -->
 
-    <path class="connection"
-          d="M450 245
-             C300 650 250 700 250 735"
-          marker-end="url(#arrow)">
+    <path
+        class="connection-counter"
+        d="M250 232 C250 590 250 625 250 660"
+        marker-end="url(#arrow)">
     </path>
 
-    <path class="connection"
-          d="M900 245
-             C900 650 900 700 900 735"
-          marker-end="url(#arrow)">
+    <path
+        class="connection-counter"
+        d="M750 232 L750 660"
+        marker-end="url(#arrow)">
     </path>
 
-    <path class="connection"
-          d="M1350 245
-             C1500 650 1550 700 1550 735"
-          marker-end="url(#arrow)">
+    <path
+        class="connection-counter"
+        d="M1250 232 C1250 590 1250 625 1250 660"
+        marker-end="url(#arrow)">
     </path>
 
 
-    <!-- COUNTERARGUMENT → REBUTTAL -->
+    <!-- =================================
+         COUNTERARGUMENT → REBUTTAL
+    ================================= -->
 
-    <path class="connection"
-          d="M250 765 L250 850"
-          marker-end="url(#arrow)">
+    <path
+        class="connection-counter"
+        d="M250 710 L250 785"
+        marker-end="url(#arrow)">
     </path>
 
-    <path class="connection"
-          d="M900 765 L900 850"
-          marker-end="url(#arrow)">
+    <path
+        class="connection-counter"
+        d="M750 710 L750 785"
+        marker-end="url(#arrow)">
     </path>
 
-    <path class="connection"
-          d="M1550 765 L1550 850"
-          marker-end="url(#arrow)">
+    <path
+        class="connection-counter"
+        d="M1250 710 L1250 785"
+        marker-end="url(#arrow)">
     </path>
 
 </svg>
@@ -494,9 +667,10 @@ h1 {
      MAIN CLAIM
 ================================= -->
 
-<div class="node main"
-     style="left:50%; top:7%;"
-     data-type="main">
+<div
+    class="node main"
+    style="left:750px; top:75px;"
+    data-type="main">
 
     👑 Main Claim
 
@@ -507,25 +681,28 @@ h1 {
      SUBCLAIMS
 ================================= -->
 
-<div class="node subclaim"
-     style="left:25%; top:18%;"
-     data-type="subclaim">
+<div
+    class="node subclaim"
+    style="left:250px; top:210px;"
+    data-type="subclaim">
 
     🧝 Subclaim 1
 
 </div>
 
-<div class="node subclaim"
-     style="left:50%; top:18%;"
-     data-type="subclaim">
+<div
+    class="node subclaim"
+    style="left:750px; top:210px;"
+    data-type="subclaim">
 
     🧝 Subclaim 2
 
 </div>
 
-<div class="node subclaim"
-     style="left:75%; top:18%;"
-     data-type="subclaim">
+<div
+    class="node subclaim"
+    style="left:1250px; top:210px;"
+    data-type="subclaim">
 
     🧝 Subclaim 3
 
@@ -533,169 +710,266 @@ h1 {
 
 
 <!-- =================================
-     PREMISES
+     SUBCLAIM 1
 ================================= -->
 
-<!-- SUBCLAIM 1 -->
-
-<div class="node premise"
-     style="left:11.1%; top:29%;"
-     data-type="premise">
+<div
+    class="node premise"
+    style="left:150px; top:315px;"
+    data-type="premise">
 
     ⚔️ Premise 1
 
 </div>
 
-<div class="node premise"
-     style="left:25%; top:29%;"
-     data-type="premise">
+<div
+    class="node premise"
+    style="left:250px; top:315px;"
+    data-type="premise">
 
     ⚔️ Premise 2
 
 </div>
 
-<div class="node premise"
-     style="left:38.9%; top:29%;"
-     data-type="premise">
+<div
+    class="node premise"
+    style="left:350px; top:315px;"
+    data-type="premise">
 
     ⚔️ Premise 3
 
 </div>
 
 
-<!-- SUBCLAIM 2 -->
+<div
+    class="node warrant"
+    style="left:150px; top:415px;"
+    data-type="warrant">
 
-<div class="node premise"
-     style="left:36.1%; top:29%;"
-     data-type="premise">
-
-    ⚔️ Premise 1
-
-</div>
-
-<div class="node premise"
-     style="left:50%; top:29%;"
-     data-type="premise">
-
-    ⚔️ Premise 2
+    🔒 Warrant
 
 </div>
 
-<div class="node premise"
-     style="left:63.9%; top:29%;"
-     data-type="premise">
+<div
+    class="node warrant"
+    style="left:250px; top:415px;"
+    data-type="warrant">
 
-    ⚔️ Premise 3
+    🔒 Warrant
+
+</div>
+
+<div
+    class="node warrant"
+    style="left:350px; top:415px;"
+    data-type="warrant">
+
+    🔒 Warrant
 
 </div>
 
 
-<!-- SUBCLAIM 3 -->
+<div
+    class="node evidence"
+    style="left:150px; top:515px;"
+    data-type="evidence">
 
-<div class="node premise"
-     style="left:72.2%; top:29%;"
-     data-type="premise">
-
-    ⚔️ Premise 1
-
-</div>
-
-<div class="node premise"
-     style="left:80.6%; top:29%;"
-     data-type="premise">
-
-    ⚔️ Premise 2
+    ❤️ Evidence
 
 </div>
 
-<div class="node premise"
-     style="left:88.9%; top:29%;"
-     data-type="premise">
+<div
+    class="node evidence"
+    style="left:250px; top:515px;"
+    data-type="evidence">
 
-    ⚔️ Premise 3
+    ❤️ Evidence
+
+</div>
+
+<div
+    class="node evidence"
+    style="left:350px; top:515px;"
+    data-type="evidence">
+
+    ❤️ Evidence
 
 </div>
 
 
 <!-- =================================
-     EVIDENCE
+     SUBCLAIM 2
 ================================= -->
 
-<div class="node evidence" style="left:11.1%; top:38%;">
-    ❤️ Evidence
+<div
+    class="node premise"
+    style="left:650px; top:315px;"
+    data-type="premise">
+
+    ⚔️ Premise 1
+
 </div>
 
-<div class="node evidence" style="left:25%; top:38%;">
-    ❤️ Evidence
+<div
+    class="node premise"
+    style="left:750px; top:315px;"
+    data-type="premise">
+
+    ⚔️ Premise 2
+
 </div>
 
-<div class="node evidence" style="left:38.9%; top:38%;">
-    ❤️ Evidence
+<div
+    class="node premise"
+    style="left:850px; top:315px;"
+    data-type="premise">
+
+    ⚔️ Premise 3
+
 </div>
 
-<div class="node evidence" style="left:36.1%; top:38%;">
-    ❤️ Evidence
+
+<div
+    class="node warrant"
+    style="left:650px; top:415px;"
+    data-type="warrant">
+
+    🔒 Warrant
+
 </div>
 
-<div class="node evidence" style="left:50%; top:38%;">
-    ❤️ Evidence
+<div
+    class="node warrant"
+    style="left:750px; top:415px;"
+    data-type="warrant">
+
+    🔒 Warrant
+
 </div>
 
-<div class="node evidence" style="left:63.9%; top:38%;">
-    ❤️ Evidence
+<div
+    class="node warrant"
+    style="left:850px; top:415px;"
+    data-type="warrant">
+
+    🔒 Warrant
+
 </div>
 
-<div class="node evidence" style="left:72.2%; top:38%;">
+
+<div
+    class="node evidence"
+    style="left:650px; top:515px;"
+    data-type="evidence">
+
     ❤️ Evidence
+
 </div>
 
-<div class="node evidence" style="left:80.6%; top:38%;">
+<div
+    class="node evidence"
+    style="left:750px; top:515px;"
+    data-type="evidence">
+
     ❤️ Evidence
+
 </div>
 
-<div class="node evidence" style="left:88.9%; top:38%;">
+<div
+    class="node evidence"
+    style="left:850px; top:515px;"
+    data-type="evidence">
+
     ❤️ Evidence
+
 </div>
 
 
 <!-- =================================
-     WARRANTS
+     SUBCLAIM 3
 ================================= -->
 
-<div class="node warrant" style="left:11.1%; top:47%;">
-    🔒 Warrant
+<div
+    class="node premise"
+    style="left:1150px; top:315px;"
+    data-type="premise">
+
+    ⚔️ Premise 1
+
 </div>
 
-<div class="node warrant" style="left:25%; top:47%;">
-    🔒 Warrant
+<div
+    class="node premise"
+    style="left:1250px; top:315px;"
+    data-type="premise">
+
+    ⚔️ Premise 2
+
 </div>
 
-<div class="node warrant" style="left:38.9%; top:47%;">
-    🔒 Warrant
+<div
+    class="node premise"
+    style="left:1350px; top:315px;"
+    data-type="premise">
+
+    ⚔️ Premise 3
+
 </div>
 
-<div class="node warrant" style="left:36.1%; top:47%;">
+
+<div
+    class="node warrant"
+    style="left:1150px; top:415px;"
+    data-type="warrant">
+
     🔒 Warrant
+
 </div>
 
-<div class="node warrant" style="left:50%; top:47%;">
+<div
+    class="node warrant"
+    style="left:1250px; top:415px;"
+    data-type="warrant">
+
     🔒 Warrant
+
 </div>
 
-<div class="node warrant" style="left:63.9%; top:47%;">
+<div
+    class="node warrant"
+    style="left:1350px; top:415px;"
+    data-type="warrant">
+
     🔒 Warrant
+
 </div>
 
-<div class="node warrant" style="left:72.2%; top:47%;">
-    🔒 Warrant
+
+<div
+    class="node evidence"
+    style="left:1150px; top:515px;"
+    data-type="evidence">
+
+    ❤️ Evidence
+
 </div>
 
-<div class="node warrant" style="left:80.6%; top:47%;">
-    🔒 Warrant
+<div
+    class="node evidence"
+    style="left:1250px; top:515px;"
+    data-type="evidence">
+
+    ❤️ Evidence
+
 </div>
 
-<div class="node warrant" style="left:88.9%; top:47%;">
-    🔒 Warrant
+<div
+    class="node evidence"
+    style="left:1350px; top:515px;"
+    data-type="evidence">
+
+    ❤️ Evidence
+
 </div>
 
 
@@ -703,25 +977,28 @@ h1 {
      COUNTERARGUMENTS
 ================================= -->
 
-<div class="node counter"
-     style="left:14%; top:59%;"
-     data-type="counter">
+<div
+    class="node counter"
+    style="left:250px; top:685px;"
+    data-type="counter">
 
     👹 Counterargument
 
 </div>
 
-<div class="node counter"
-     style="left:50%; top:59%;"
-     data-type="counter">
+<div
+    class="node counter"
+    style="left:750px; top:685px;"
+    data-type="counter">
 
     👹 Counterargument
 
 </div>
 
-<div class="node counter"
-     style="left:86%; top:59%;"
-     data-type="counter">
+<div
+    class="node counter"
+    style="left:1250px; top:685px;"
+    data-type="counter">
 
     👹 Counterargument
 
@@ -732,25 +1009,28 @@ h1 {
      REBUTTALS
 ================================= -->
 
-<div class="node rebuttal"
-     style="left:14%; top:69%;"
-     data-type="rebuttal">
+<div
+    class="node rebuttal"
+    style="left:250px; top:810px;"
+    data-type="rebuttal">
 
     🛡️ Rebuttal
 
 </div>
 
-<div class="node rebuttal"
-     style="left:50%; top:69%;"
-     data-type="rebuttal">
+<div
+    class="node rebuttal"
+    style="left:750px; top:810px;"
+    data-type="rebuttal">
 
     🛡️ Rebuttal
 
 </div>
 
-<div class="node rebuttal"
-     style="left:86%; top:69%;"
-     data-type="rebuttal">
+<div
+    class="node rebuttal"
+    style="left:1250px; top:810px;"
+    data-type="rebuttal">
 
     🛡️ Rebuttal
 
@@ -762,7 +1042,7 @@ h1 {
 
 
 <!-- =================================
-     POP-UP
+     HOVER POP-UP
 ================================= -->
 
 <div id="popup">
@@ -776,9 +1056,9 @@ h1 {
 
 <script>
 
-/* ---------------------------------
-   INFORMATION FOR HOVER POP-UPS
---------------------------------- */
+/* =================================
+   HOVER INFORMATION
+================================= */
 
 const info = {
 
@@ -789,46 +1069,50 @@ const info = {
 
     subclaim: {
         title: "🧝 Subclaims = Heroes",
-        text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
+        text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping establish and defend the overall argument."
     },
 
     premise: {
         title: "⚔️ Premises = Attacks & Defense",
-        text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
+        text: "A premise is a reason or supporting statement that helps establish a subclaim. Think of premises as Attacks & Defense: they give your argument the reasons it needs to make its case."
+    },
+
+    warrant: {
+        title: "🔒 Warrants = Unlock",
+        text: "The warrant explains why the evidence supports the premise. It makes the connection between your evidence and your reasoning clear. Think of the warrant as the Unlock: it explains how the evidence connects to the premise."
     },
 
     evidence: {
         title: "❤️ Evidence = Power Up",
-        text: "Evidence is information that supports a premise. It can include research findings, statistics, credible sources, examples, observations, or documented facts. Think of evidence as a Power Up: it makes your premise stronger."
-    },
-
-    warrant: {
-        title: "🔒 Warrant = Unlock",
-        text: "The warrant explains why the evidence supports the premise. It makes the connection between the evidence and your reasoning clear. Think of the warrant as the Unlock: it explains how the evidence connects to your premise."
+        text: "Evidence is information that supports a premise. It can include research findings, statistics, credible sources, examples, observations, or documented facts. Think of evidence as a Power Up: it gives your premise additional support."
     },
 
     counter: {
         title: "👹 Counterarguments = Attack",
-        text: "A counterargument presents a reasonable objection, alternative explanation, or opposing position that challenges your argument. Think of it as an Attack: it identifies where your argument could be challenged."
+        text: "A counterargument presents a reasonable objection, alternative explanation, or opposing position that challenges your argument. Think of it as an Attack: it identifies a point where your argument could be challenged."
     },
 
     rebuttal: {
         title: "🛡️ Rebuttal = Defense",
-        text: "A rebuttal responds to the counterargument and explains why your original argument still stands. Think of it as Defense: it protects your argument by addressing the opposing point."
+        text: "A rebuttal responds to the counterargument and explains why your argument can still be supported. Think of it as Defense: it addresses the opposing point and protects your argument."
     }
 
 };
 
 
-/* ---------------------------------
+/* =================================
    HOVER BEHAVIOR
---------------------------------- */
+================================= */
 
 const nodes = document.querySelectorAll(".node");
 
 const popup = document.getElementById("popup");
-const popupTitle = document.getElementById("popup-title");
-const popupText = document.getElementById("popup-text");
+
+const popupTitle =
+    document.getElementById("popup-title");
+
+const popupText =
+    document.getElementById("popup-text");
 
 
 nodes.forEach(function(node) {
@@ -841,8 +1125,11 @@ nodes.forEach(function(node) {
             return;
         }
 
-        popupTitle.textContent = info[type].title;
-        popupText.textContent = info[type].text;
+        popupTitle.textContent =
+            info[type].title;
+
+        popupText.textContent =
+            info[type].text;
 
         popup.style.display = "block";
 
@@ -869,32 +1156,48 @@ nodes.forEach(function(node) {
 });
 
 
-/* ---------------------------------
-   KEEP POP-UP INSIDE SCREEN
---------------------------------- */
+/* =================================
+   POP-UP POSITIONING
+================================= */
 
 function positionPopup(event) {
 
     let x = event.clientX + 18;
+
     let y = event.clientY + 18;
 
     const width = popup.offsetWidth;
+
     const height = popup.offsetHeight;
 
-    if (x + width > window.innerWidth - 15) {
 
-        x = event.clientX - width - 18;
+    if (x + width >
+        window.innerWidth - 15) {
+
+        x =
+            event.clientX -
+            width -
+            18;
 
     }
 
-    if (y + height > window.innerHeight - 15) {
 
-        y = event.clientY - height - 18;
+    if (y + height >
+        window.innerHeight - 15) {
+
+        y =
+            event.clientY -
+            height -
+            18;
 
     }
 
-    popup.style.left = x + "px";
-    popup.style.top = y + "px";
+
+    popup.style.left =
+        x + "px";
+
+    popup.style.top =
+        y + "px";
 
 }
 
