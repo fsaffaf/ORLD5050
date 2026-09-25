@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,36 +9,60 @@
 
 <style>
 
-body{
-    margin:0;
-    padding:40px;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:linear-gradient(180deg,#eef6ff 0%,#f8fbff 100%);
+body {
+    margin: 0;
+    padding: 40px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg, #eef6ff 0%, #f8fbff 100%);
 }
 
-.container{
-    max-width:1800px;
-    margin:auto;
+.container {
+    max-width: 1800px;
+    margin: auto;
 }
 
-h1{
-    text-align:center;
-    color:#0e68b3;
-    font-weight:300;
-    letter-spacing:.08em;
+h1 {
+    text-align: center;
+    color: #0e68b3;
+    font-weight: 300;
+    letter-spacing: .08em;
 }
 
-.mermaid{
-    background:#ffffff;
-    border-radius:16px;
-    padding:30px;
-    border:1px solid #cfe3f8;
-    box-shadow:
-      0 4px 14px rgba(14,104,179,.08);
+.mermaid {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid #cfe3f8;
+    box-shadow: 0 4px 14px rgba(14, 104, 179, .08);
+}
+
+/* Pop-up information box */
+.argument-popup {
+    position: fixed;
+    display: none;
+    max-width: 320px;
+    padding: 16px 18px;
+    background: #ffffff;
+    color: #1e293b;
+    border: 2px solid #0e68b3;
+    border-radius: 10px;
+    box-shadow: 0 6px 24px rgba(14, 104, 179, .20);
+    font-size: 15px;
+    line-height: 1.5;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.argument-popup strong {
+    display: block;
+    color: #0e68b3;
+    font-size: 17px;
+    margin-bottom: 6px;
 }
 
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -114,12 +139,155 @@ class W111,W121,W131,W211,W221,W231,W311,W321,W331 Evidence;
 
 </div>
 
+<!-- Pop-up box -->
+<div id="argumentPopup" class="argument-popup" role="tooltip">
+    <strong id="popupTitle"></strong>
+    <span id="popupText"></span>
+</div>
+
 <script type="module">
+
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
 mermaid.initialize({
-    startOnLoad:true
+    startOnLoad: true,
+    securityLevel: 'loose'
 });
+
+/* Information for each type of rectangle */
+const argumentInformation = {
+
+    A: {
+        title: "Main Argument",
+        text: "The overall position or conclusion you are trying to establish. Your subclaims should work together to support this main argument."
+    },
+
+    SC1: {
+        title: "Subclaim",
+        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall position."
+    },
+
+    SC2: {
+        title: "Subclaim",
+        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall position."
+    },
+
+    SC3: {
+        title: "Subclaim",
+        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall position."
+    },
+
+    P11: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P12: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P13: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P21: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P22: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P23: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P31: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P32: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." },
+    P33: { title: "Premise", text: "A reason or supporting statement that helps establish a subclaim. A premise should be relevant to the subclaim it supports." }
+
+};
+
+/* Add information for evidence and warrants */
+const evidenceIds = [
+    "E111","E121","E131","E211","E221","E231","E311","E321","E331"
+];
+
+const warrantIds = [
+    "W111","W121","W131","W211","W221","W231","W311","W321","W331"
+];
+
+evidenceIds.forEach(id => {
+    argumentInformation[id] = {
+        title: "Evidence",
+        text: "Information that supports a premise. Evidence may include research findings, statistics, credible sources, examples, observations, or documented facts."
+    };
+});
+
+warrantIds.forEach(id => {
+    argumentInformation[id] = {
+        title: "Warrant",
+        text: "The explanation of why the evidence supports the premise. A warrant connects the evidence to the reasoning behind your claim."
+    };
+});
+
+/* Display the pop-up */
+function showPopup(node, event) {
+
+    const id = node.id;
+    const info = argumentInformation[id];
+
+    if (!info) return;
+
+    const popup = document.getElementById("argumentPopup");
+    const title = document.getElementById("popupTitle");
+    const text = document.getElementById("popupText");
+
+    title.textContent = info.title;
+    text.textContent = info.text;
+
+    popup.style.display = "block";
+
+    positionPopup(event);
+}
+
+/* Position the pop-up near the cursor */
+function positionPopup(event) {
+
+    const popup = document.getElementById("argumentPopup");
+
+    let x = event.clientX + 15;
+    let y = event.clientY + 15;
+
+    const popupWidth = popup.offsetWidth;
+    const popupHeight = popup.offsetHeight;
+
+    if (x + popupWidth > window.innerWidth - 15) {
+        x = event.clientX - popupWidth - 15;
+    }
+
+    if (y + popupHeight > window.innerHeight - 15) {
+        y = event.clientY - popupHeight - 15;
+    }
+
+    popup.style.left = Math.max(10, x) + "px";
+    popup.style.top = Math.max(10, y) + "px";
+}
+
+/* Hide the pop-up */
+function hidePopup() {
+    document.getElementById("argumentPopup").style.display = "none";
+}
+
+/* Attach hover and click events after Mermaid renders */
+function addArgumentInteractions() {
+
+    const nodes = document.querySelectorAll(".mermaid .node");
+
+    nodes.forEach(node => {
+
+        node.addEventListener("mouseenter", event => {
+            showPopup(node, event);
+        });
+
+        node.addEventListener("mousemove", event => {
+            positionPopup(event);
+        });
+
+        node.addEventListener("mouseleave", hidePopup);
+
+        /* Click support for touchscreens */
+        node.addEventListener("click", event => {
+            showPopup(node, event);
+        });
+
+    });
+}
+
+/* Wait until Mermaid has created the SVG */
+setTimeout(addArgumentInteractions, 1000);
+
 </script>
 
 </body>
