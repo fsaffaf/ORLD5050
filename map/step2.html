@@ -35,7 +35,7 @@ h1 {
     overflow-x: auto;
 }
 
-/* Mermaid nodes */
+/* Nodes */
 
 .mermaid .node rect {
     rx: 16px !important;
@@ -57,18 +57,17 @@ h1 {
     fill: #5d86aa !important;
 }
 
-/* Make nodes feel clickable */
+/* Hover effect */
 
 .mermaid .node {
     cursor: pointer;
-    transition: filter 0.2s ease;
 }
 
 .mermaid .node:hover {
     filter: brightness(0.96);
 }
 
-/* Hover popup */
+/* Popup */
 
 #popup {
     position: fixed;
@@ -115,37 +114,35 @@ h1 {
 
 flowchart TD
 
-A["<span style='font-size:32px'>👑</span><br/>Main Claim"]
+A["👑<br/>Main Claim"]
 
-SC1["<span style='font-size:28px'>🦸</span><br/>Subclaim 1"]
-SC2["<span style='font-size:28px'>🦸</span><br/>Subclaim 2"]
-SC3["<span style='font-size:28px'>🦸</span><br/>Subclaim 3"]
+SC1["🦸<br/>Subclaim 1"]
+SC2["🦸<br/>Subclaim 2"]
+SC3["🦸<br/>Subclaim 3"]
 
-P11["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
-P12["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
-P13["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+P11["⚔️<br/>Premise 1"]
+P12["⚔️<br/>Premise 2"]
+P13["⚔️<br/>Premise 3"]
 
-P21["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
-P22["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
-P23["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+P21["⚔️<br/>Premise 1"]
+P22["⚔️<br/>Premise 2"]
+P23["⚔️<br/>Premise 3"]
 
-P31["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
-P32["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
-P33["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+P31["⚔️<br/>Premise 1"]
+P32["⚔️<br/>Premise 2"]
+P33["⚔️<br/>Premise 3"]
 
+E11["❤️<br/>Evidence"]
+E12["❤️<br/>Evidence"]
+E13["❤️<br/>Evidence"]
 
-E11["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E12["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E13["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+E21["❤️<br/>Evidence"]
+E22["❤️<br/>Evidence"]
+E23["❤️<br/>Evidence"]
 
-E21["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E22["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E23["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-
-E31["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E32["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E33["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-
+E31["❤️<br/>Evidence"]
+E32["❤️<br/>Evidence"]
+E33["❤️<br/>Evidence"]
 
 A --> SC1
 A --> SC2
@@ -163,7 +160,6 @@ SC3 --> P31
 SC3 --> P32
 SC3 --> P33
 
-
 P11 --> E11
 P12 --> E12
 P13 --> E13
@@ -176,7 +172,6 @@ P31 --> E31
 P32 --> E32
 P33 --> E33
 
-
 classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px
 classDef subclaim fill:#ffffff,color:#174a78,stroke:#3f83d8,stroke-width:2px
 classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px
@@ -184,9 +179,7 @@ classDef evidence fill:#ffffff,color:#174a78,stroke:#4d91c9,stroke-width:2px
 
 class A main
 class SC1,SC2,SC3 subclaim
-
 class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
-
 class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
 
 </div>
@@ -198,11 +191,9 @@ class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
 <!-- Hover popup -->
 
 <div id="popup">
-
     <div id="popup-title"></div>
     <div id="popup-role"></div>
     <div id="popup-text"></div>
-
 </div>
 
 
@@ -211,11 +202,10 @@ class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 
 mermaid.initialize({
-    startOnLoad: true,
+    startOnLoad: false,
     securityLevel: "loose",
     htmlLabels: true,
     theme: "base",
-
     themeVariables: {
         primaryColor: "#ffffff",
         primaryTextColor: "#174a78",
@@ -265,7 +255,7 @@ const info = {
 
     "Evidence": {
         role: "❤️ Power Up",
-        text: "Research, data, examples, expert sources, or other credible information that supports the premise. Evidence should give your reader a reason to believe that the premise is true."
+        text: "Research, data, examples, expert sources, or other credible information that supports the premise. Evidence gives your reader a reason to believe that the premise is true."
     }
 
 };
@@ -306,7 +296,7 @@ function setupHover() {
         if (!data) return;
 
 
-        node.addEventListener("mouseenter", () => {
+        node.addEventListener("mouseenter", function() {
 
             title.textContent = text;
             role.textContent = data.role;
@@ -317,7 +307,7 @@ function setupHover() {
         });
 
 
-        node.addEventListener("mousemove", event => {
+        node.addEventListener("mousemove", function(event) {
 
             const offset = 15;
 
@@ -341,7 +331,7 @@ function setupHover() {
         });
 
 
-        node.addEventListener("mouseleave", () => {
+        node.addEventListener("mouseleave", function() {
 
             popup.style.display = "none";
 
@@ -352,9 +342,21 @@ function setupHover() {
 }
 
 
-/* Wait for Mermaid to finish rendering */
+/* Render Mermaid first, then activate hover */
 
-setTimeout(setupHover, 1500);
+async function startMap() {
+
+    const diagrams = document.querySelectorAll(".mermaid");
+
+    await mermaid.run({
+        nodes: diagrams
+    });
+
+    setupHover();
+
+}
+
+startMap();
 
 </script>
 
