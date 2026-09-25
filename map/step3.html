@@ -57,7 +57,7 @@ h1 {
     fill: #5d86aa !important;
 }
 
-/* Make nodes feel clickable */
+/* Clickable nodes */
 
 .mermaid .node {
     cursor: pointer;
@@ -115,54 +115,55 @@ h1 {
 
 flowchart TD
 
-A["<span style='font-size:32px'>👑</span><br/>Main Claim"]
+A["👑<br/>Main Claim"]
 
-SC1["<span style='font-size:28px'>🦸</span><br/>Subclaim 1"]
-SC2["<span style='font-size:28px'>🦸</span><br/>Subclaim 2"]
-SC3["<span style='font-size:28px'>🦸</span><br/>Subclaim 3"]
+SC1["🦸<br/>Subclaim 1"]
+SC2["🦸<br/>Subclaim 2"]
+SC3["🦸<br/>Subclaim 3"]
 
-P11["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
-P12["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
-P13["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+P11["⚔️<br/>Premise 1"]
+P12["⚔️<br/>Premise 2"]
+P13["⚔️<br/>Premise 3"]
 
-P21["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
-P22["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
-P23["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+P21["⚔️<br/>Premise 1"]
+P22["⚔️<br/>Premise 2"]
+P23["⚔️<br/>Premise 3"]
 
-P31["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
-P32["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
-P33["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
-
-
-W11["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-W12["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-W13["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-
-W21["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-W22["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-W23["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-
-W31["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-W32["<span style='font-size:23px'>🔒</span><br/>Warrant"]
-W33["<span style='font-size:23px'>🔒</span><br/>Warrant"]
+P31["⚔️<br/>Premise 1"]
+P32["⚔️<br/>Premise 2"]
+P33["⚔️<br/>Premise 3"]
 
 
-E11["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E12["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E13["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+W11["🔒<br/>Warrant"]
+W12["🔒<br/>Warrant"]
+W13["🔒<br/>Warrant"]
 
-E21["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E22["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E23["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+W21["🔒<br/>Warrant"]
+W22["🔒<br/>Warrant"]
+W23["🔒<br/>Warrant"]
 
-E31["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E32["<span style='font-size:22px'>❤️</span><br/>Evidence"]
-E33["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+W31["🔒<br/>Warrant"]
+W32["🔒<br/>Warrant"]
+W33["🔒<br/>Warrant"]
+
+
+E11["❤️<br/>Evidence"]
+E12["❤️<br/>Evidence"]
+E13["❤️<br/>Evidence"]
+
+E21["❤️<br/>Evidence"]
+E22["❤️<br/>Evidence"]
+E23["❤️<br/>Evidence"]
+
+E31["❤️<br/>Evidence"]
+E32["❤️<br/>Evidence"]
+E33["❤️<br/>Evidence"]
 
 
 A --> SC1
 A --> SC2
 A --> SC3
+
 
 SC1 --> P11
 SC1 --> P12
@@ -208,12 +209,18 @@ P33 --> E33
 
 
 classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px
+
 classDef subclaim fill:#ffffff,color:#174a78,stroke:#3f83d8,stroke-width:2px
+
 classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px
+
 classDef warrant fill:#ffffff,color:#174a78,stroke:#7fa8c9,stroke-width:2px
+
 classDef evidence fill:#ffffff,color:#174a78,stroke:#4d91c9,stroke-width:2px
 
+
 class A main
+
 class SC1,SC2,SC3 subclaim
 
 class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
@@ -233,7 +240,9 @@ class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
 <div id="popup">
 
     <div id="popup-title"></div>
+
     <div id="popup-role"></div>
+
     <div id="popup-text"></div>
 
 </div>
@@ -243,10 +252,17 @@ class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
 
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 
+
+/* Mermaid settings */
+
 mermaid.initialize({
-    startOnLoad: true,
+
+    startOnLoad: false,
+
     securityLevel: "loose",
+
     htmlLabels: true,
+
     theme: "base",
 
     themeVariables: {
@@ -256,8 +272,11 @@ mermaid.initialize({
         lineColor: "#5d86aa",
         fontFamily: "Arial"
     }
+
 });
 
+
+/* Information shown in the hover popup */
 
 const info = {
 
@@ -309,6 +328,8 @@ const info = {
 };
 
 
+/* Remove emojis from Mermaid labels */
+
 function cleanLabel(text) {
 
     return text
@@ -323,20 +344,28 @@ function cleanLabel(text) {
 }
 
 
+/* Add hover behavior after Mermaid has rendered */
+
 function setupHover() {
 
     const popup = document.getElementById("popup");
+
     const title = document.getElementById("popup-title");
+
     const role = document.getElementById("popup-role");
+
     const popupText = document.getElementById("popup-text");
 
+
     const nodes = document.querySelectorAll(".mermaid .node");
+
 
     nodes.forEach(node => {
 
         const label = node.querySelector(".nodeLabel");
 
         if (!label) return;
+
 
         const text = cleanLabel(label.textContent);
 
@@ -345,10 +374,12 @@ function setupHover() {
         if (!data) return;
 
 
-        node.addEventListener("mouseenter", () => {
+        node.addEventListener("mouseenter", function() {
 
             title.textContent = text;
+
             role.textContent = data.role;
+
             popupText.textContent = data.text;
 
             popup.style.display = "block";
@@ -356,31 +387,42 @@ function setupHover() {
         });
 
 
-        node.addEventListener("mousemove", event => {
+        node.addEventListener("mousemove", function(event) {
 
             const offset = 15;
 
             let x = event.clientX + offset;
+
             let y = event.clientY + offset;
 
+
             const popupWidth = popup.offsetWidth;
+
             const popupHeight = popup.offsetHeight;
 
+
             if (x + popupWidth > window.innerWidth) {
+
                 x = event.clientX - popupWidth - offset;
+
             }
+
 
             if (y + popupHeight > window.innerHeight) {
+
                 y = event.clientY - popupHeight - offset;
+
             }
 
+
             popup.style.left = x + "px";
+
             popup.style.top = y + "px";
 
         });
 
 
-        node.addEventListener("mouseleave", () => {
+        node.addEventListener("mouseleave", function() {
 
             popup.style.display = "none";
 
@@ -391,9 +433,22 @@ function setupHover() {
 }
 
 
-/* Wait for Mermaid to finish rendering */
+/* Render Mermaid first, then activate hover */
 
-setTimeout(setupHover, 1500);
+async function startMap() {
+
+    const diagrams = document.querySelectorAll(".mermaid");
+
+    await mermaid.run({
+        nodes: diagrams
+    });
+
+    setupHover();
+
+}
+
+
+startMap();
 
 </script>
 
