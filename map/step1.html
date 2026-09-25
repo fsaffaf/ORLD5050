@@ -1,1 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Argument Map</title>
+
+<style>
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background: #f5f9fd;
+    color: #174a78;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #0e68b3;
+    margin-bottom: 25px;
+}
+
+.map-container {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(14,104,179,0.10);
+    overflow-x: auto;
+}
+
+/* Mermaid nodes */
+
+.mermaid .node rect {
+    rx: 16px !important;
+    ry: 16px !important;
+}
+
+.mermaid .nodeLabel {
+    text-align: center !important;
+    font-weight: 600 !important;
+    color: #174a78 !important;
+}
+
+.mermaid .edgePath path {
+    stroke: #5d86aa !important;
+    stroke-width: 2px !important;
+}
+
+.mermaid marker path {
+    fill: #5d86aa !important;
+}
+
+/* Make nodes feel clickable */
+
+.mermaid .node {
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.mermaid .node:hover {
+    filter: brightness(0.96);
+}
+
+/* Hover popup */
+
+#popup {
+    position: fixed;
+    display: none;
+    max-width: 320px;
+    padding: 16px 18px;
+    background: white;
+    border: 2px solid #0e68b3;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(14,104,179,0.20);
+    color: #174a78;
+    font-size: 14px;
+    line-height: 1.5;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+#popup-title {
+    color: #0e68b3;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+#popup-role {
+    font-size: 12px;
+    font-weight: bold;
+    color: #e67e22;
+    margin-bottom: 7px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Argument Map</h1>
+
+<div class="map-container">
+
+<div class="mermaid">
+
+flowchart TD
+
+A["<span style='font-size:32px'>👑</span><br/>Main Claim"]
+
+SC1["<span style='font-size:28px'>🦸</span><br/>Subclaim 1"]
+SC2["<span style='font-size:28px'>🦸</span><br/>Subclaim 2"]
+SC3["<span style='font-size:28px'>🦸</span><br/>Subclaim 3"]
+
+P11["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
+P12["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
+P13["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+
+P21["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
+P22["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
+P23["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+
+P31["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
+P32["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
+P33["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
+
+
+A --> SC1
+A --> SC2
+A --> SC3
+
+SC1 --> P11
+SC1 --> P12
+SC1 --> P13
+
+SC2 --> P21
+SC2 --> P22
+SC2 --> P23
+
+SC3 --> P31
+SC3 --> P32
+SC3 --> P33
+
+
+classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px
+classDef subclaim fill:#ffffff,color:#174a78,stroke:#3f83d8,stroke-width:2px
+classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px
+
+class A main
+class SC1,SC2,SC3 subclaim
+class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
+
+</div>
+
+</div>
+</div>
+
+
+<!-- Hover popup -->
+
+<div id="popup">
+
+    <div id="popup-title"></div>
+    <div id="popup-role"></div>
+    <div id="popup-text"></div>
+
+</div>
+
+
+<script type="module">
+
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+
+mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: "loose",
+    htmlLabels: true,
+    theme: "base",
+
+    themeVariables: {
+        primaryColor: "#ffffff",
+        primaryTextColor: "#174a78",
+        primaryBorderColor: "#0e68b3",
+        lineColor: "#5d86aa",
+        fontFamily: "Arial"
+    }
+});
+
+
+const info = {
+
+    "Main Claim": {
+        role: "👑 Princess",
+        text: "Your main position or overall conclusion. This is the claim your entire argument is trying to establish."
+    },
+
+    "Subclaim 1": {
+        role: "🦸 Hero",
+        text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
+    },
+
+    "Subclaim 2": {
+        role: "🦸 Hero",
+        text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
+    },
+
+    "Subclaim 3": {
+        role: "🦸 Hero",
+        text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
+    },
+
+    "Premise 1": {
+        role: "⚔️ Attack & Defense",
+        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+    },
+
+    "Premise 2": {
+        role: "⚔️ Attack & Defense",
+        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+    },
+
+    "Premise 3": {
+        role: "⚔️ Attack & Defense",
+        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+    }
+
+};
+
+
+function cleanLabel(text) {
+
+    return text
+        .trim()
+        .replace(/^👑\s*/, "")
+        .replace(/^🦸\s*/, "")
+        .replace(/^⚔️\s*/, "")
+        .trim();
+
+}
+
+
+function setupHover() {
+
+    const popup = document.getElementById("popup");
+    const title = document.getElementById("popup-title");
+    const role = document.getElementById("popup-role");
+    const popupText = document.getElementById("popup-text");
+
+    const nodes = document.querySelectorAll(".mermaid .node");
+
+    nodes.forEach(node => {
+
+        const label = node.querySelector(".nodeLabel");
+
+        if (!label) return;
+
+        const text = cleanLabel(label.textContent);
+
+        const data = info[text];
+
+        if (!data) return;
+
+
+        node.addEventListener("mouseenter", () => {
+
+            title.textContent = text;
+            role.textContent = data.role;
+            popupText.textContent = data.text;
+
+            popup.style.display = "block";
+
+        });
+
+
+        node.addEventListener("mousemove", event => {
+
+            const offset = 15;
+
+            let x = event.clientX + offset;
+            let y = event.clientY + offset;
+
+            const popupWidth = popup.offsetWidth;
+            const popupHeight = popup.offsetHeight;
+
+            if (x + popupWidth > window.innerWidth) {
+                x = event.clientX - popupWidth - offset;
+            }
+
+            if (y + popupHeight > window.innerHeight) {
+                y = event.clientY - popupHeight - offset;
+            }
+
+            popup.style.left = x + "px";
+            popup.style.top = y + "px";
+
+        });
+
+
+        node.addEventListener("mouseleave", () => {
+
+            popup.style.display = "none";
+
+        });
+
+    });
+
+}
+
+
+/* Wait for Mermaid to finish rendering */
+
+setTimeout(setupHover, 1500);
+
+</script>
+
+</body>
+</html>
