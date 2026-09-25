@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,56 +90,59 @@ h1 {
 
 flowchart TD
 
-A["Main Argument"]
+A["👑 Main Claim"]
 
-A --> SC1["Subclaim 1"]
-A --> SC2["Subclaim 2"]
-A --> SC3["Subclaim 3"]
+A --> SC1["🦸 Subclaim 1"]
+A --> SC2["🦸 Subclaim 2"]
+A --> SC3["🦸 Subclaim 3"]
 
-%% Counterargument from Main Argument
-A --> CA1["↳ Counterargument 1"]
+%% Counterargument from Main Claim
+A --> CA1["👹 Counterargument 1"]
+CA1 --> R1["🛡️ Rebuttal 1"]
 
-%% Counterargument from Subclaim 2
-SC2 --> CA2["↳ Counterargument 2"]
+SC1 --> P11["⚔️ Premise 1"]
+SC1 --> P12["⚔️ Premise 2"]
+SC1 --> P13["⚔️ Premise 3"]
 
-SC1 --> P11["Premise 1"]
-SC1 --> P12["Premise 2"]
-SC1 --> P13["Premise 3"]
+SC2 --> P21["⚔️ Premise 1"]
+SC2 --> P22["⚔️ Premise 2"]
+SC2 --> P23["⚔️ Premise 3"]
 
-SC2 --> P21["Premise 1"]
-SC2 --> P22["Premise 2"]
-SC2 --> P23["Premise 3"]
+SC3 --> P31["⚔️ Premise 1"]
+SC3 --> P32["⚔️ Premise 2"]
+SC3 --> P33["⚔️ Premise 3"]
 
-SC3 --> P31["Premise 1"]
-SC3 --> P32["Premise 2"]
-SC3 --> P33["Premise 3"]
+%% Counterargument from Subclaim
+SC2 --> CA2["👹 Counterargument 2"]
+CA2 --> R2["🛡️ Rebuttal 2"]
 
-%% Counterargument from Premise 3
-P33 --> CA3["↳ Counterargument 3"]
+%% Counterargument from Premise
+P33 --> CA3["👹 Counterargument 3"]
+CA3 --> R3["🛡️ Rebuttal 3"]
 
-P11 --> W111["Warrant"]
-P12 --> W121["Warrant"]
-P13 --> W131["Warrant"]
+P11 --> W111["🔒 Warrant"]
+P12 --> W121["🔒 Warrant"]
+P13 --> W131["🔒 Warrant"]
 
-P21 --> W211["Warrant"]
-P22 --> W221["Warrant"]
-P23 --> W231["Warrant"]
+P21 --> W211["🔒 Warrant"]
+P22 --> W221["🔒 Warrant"]
+P23 --> W231["🔒 Warrant"]
 
-P31 --> W311["Warrant"]
-P32 --> W321["Warrant"]
-P33 --> W331["Warrant"]
+P31 --> W311["🔒 Warrant"]
+P32 --> W321["🔒 Warrant"]
+P33 --> W331["🔒 Warrant"]
 
-W111 --> E111["Evidence"]
-W121 --> E121["Evidence"]
-W131 --> E131["Evidence"]
+W111 --> E111["❤️ Evidence"]
+W121 --> E121["❤️ Evidence"]
+W131 --> E131["❤️ Evidence"]
 
-W211 --> E211["Evidence"]
-W221 --> E221["Evidence"]
-W231 --> E231["Evidence"]
+W211 --> E211["❤️ Evidence"]
+W221 --> E221["❤️ Evidence"]
+W231 --> E231["❤️ Evidence"]
 
-W311 --> E311["Evidence"]
-W321 --> E321["Evidence"]
-W331 --> E331["Evidence"]
+W311 --> E311["❤️ Evidence"]
+W321 --> E321["❤️ Evidence"]
+W331 --> E331["❤️ Evidence"]
 
 %% ---------------------------------
 %% NODE COLORS
@@ -182,6 +184,12 @@ classDef counterargument
     stroke:#4f8bbd,
     stroke-width:2px;
 
+classDef rebuttal
+    fill:#d9ebf8,
+    color:#123f63,
+    stroke:#2f6fbd,
+    stroke-width:2px;
+
 class A main;
 
 class SC1,SC2,SC3 subclaim;
@@ -193,6 +201,8 @@ class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
 class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
 
 class CA1,CA2,CA3 counterargument;
+
+class R1,R2,R3 rebuttal;
 
 </div>
 
@@ -219,7 +229,6 @@ mermaid.initialize({
     themeVariables: {
         fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
         fontSize: "15px",
-
         lineColor: "#4f7fa8",
 
         primaryColor: "#0e68b3",
@@ -238,49 +247,64 @@ mermaid.initialize({
 
 const info = {
 
-    "Main Argument": {
-        title: "Main Argument",
-        text: "The overall position you are trying to establish. Your subclaims should work together to support this argument."
+    "👑 Main Claim": {
+        title: "👑 Main Claim — Princess",
+        text: "The overall position you are trying to establish. Your subclaims should work together to support this claim."
     },
 
-    "Subclaim 1": {
-        title: "Subclaim",
-        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall argument."
+    "🦸 Subclaim 1": {
+        title: "🦸 Subclaim — Hero",
+        text: "A smaller claim that supports the main claim. Each subclaim addresses one important part of your overall argument."
     },
 
-    "Subclaim 2": {
-        title: "Subclaim",
-        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall argument."
+    "🦸 Subclaim 2": {
+        title: "🦸 Subclaim — Hero",
+        text: "A smaller claim that supports the main claim. Each subclaim addresses one important part of your overall argument."
     },
 
-    "Subclaim 3": {
-        title: "Subclaim",
-        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall argument."
+    "🦸 Subclaim 3": {
+        title: "🦸 Subclaim — Hero",
+        text: "A smaller claim that supports the main claim. Each subclaim addresses one important part of your overall argument."
     },
 
-    "Warrant": {
-        title: "Warrant",
+    "🔒 Warrant": {
+        title: "🔒 Warrant — Unlock",
         text: "The explanation of why the evidence supports the premise. The warrant connects the evidence to the reasoning behind your claim."
     },
 
-    "Evidence": {
-        title: "Evidence",
+    "❤️ Evidence": {
+        title: "❤️ Evidence — Power Up",
         text: "Information that supports the premise. Evidence can include research findings, statistics, credible sources, examples, observations, or documented facts."
     },
 
-    "↳ Counterargument 1": {
-        title: "Counterargument",
-        text: "A reasonable opposing position, objection, or alternative explanation that challenges the main argument."
+    "👹 Counterargument 1": {
+        title: "👹 Counterargument — Attack",
+        text: "A reasonable opposing position, objection, or alternative explanation that challenges the main claim."
     },
 
-    "↳ Counterargument 2": {
-        title: "Counterargument",
-        text: "A reasonable opposing position, objection, or alternative explanation that challenges Subclaim 2."
+    "👹 Counterargument 2": {
+        title: "👹 Counterargument — Attack",
+        text: "A reasonable opposing position, objection, or alternative explanation that challenges a subclaim."
     },
 
-    "↳ Counterargument 3": {
-        title: "Counterargument",
-        text: "A reasonable opposing position, objection, or alternative explanation that challenges Premise 3."
+    "👹 Counterargument 3": {
+        title: "👹 Counterargument — Attack",
+        text: "A reasonable opposing position, objection, or alternative explanation that challenges a premise."
+    },
+
+    "🛡️ Rebuttal 1": {
+        title: "🛡️ Rebuttal — Defense",
+        text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
+    },
+
+    "🛡️ Rebuttal 2": {
+        title: "🛡️ Rebuttal — Defense",
+        text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
+    },
+
+    "🛡️ Rebuttal 3": {
+        title: "🛡️ Rebuttal — Defense",
+        text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
     }
 
 };
@@ -308,9 +332,9 @@ setTimeout(function() {
 
             /* Premises */
 
-            if (text.startsWith("Premise")) {
+            if (text.startsWith("⚔️ Premise")) {
                 data = {
-                    title: "Premise",
+                    title: "⚔️ Premise — Attack & Defense",
                     text: "A reason or supporting statement that helps establish a subclaim."
                 };
             }
@@ -365,4 +389,3 @@ setTimeout(function() {
 
 </body>
 </html>
-```
