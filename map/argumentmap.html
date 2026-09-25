@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,13 +40,11 @@ h1 {
    CONNECTION LINES
 --------------------------------- */
 
-/* Main connector lines */
 .mermaid .edgePath path {
     stroke: #6b8fb3 !important;
     stroke-width: 1.8px !important;
 }
 
-/* Arrowheads */
 .mermaid marker path {
     fill: #6b8fb3 !important;
     stroke: #6b8fb3 !important;
@@ -60,7 +57,7 @@ h1 {
 #popup {
     position: fixed;
     display: none;
-    width: 300px;
+    width: 320px;
     padding: 16px 18px;
     background: #ffffff;
     border: 1px solid #9fc5e8;
@@ -93,47 +90,53 @@ h1 {
 
 flowchart TD
 
-A["Main Argument"]
+A["👑 Main Claim"]
 
-A --> SC1["Subclaim 1"]
-A --> SC2["Subclaim 2"]
-A --> SC3["Subclaim 3"]
+A --> SC1["🧝 Subclaim 1"]
+A --> SC2["🧝 Subclaim 2"]
+A --> SC3["🧝 Subclaim 3"]
 
-SC1 --> P11["Premise 1"]
-SC1 --> P12["Premise 2"]
-SC1 --> P13["Premise 3"]
+SC1 --> P11["⚔️ Premise 1"]
+SC1 --> P12["⚔️ Premise 2"]
+SC1 --> P13["⚔️ Premise 3"]
 
-SC2 --> P21["Premise 1"]
-SC2 --> P22["Premise 2"]
-SC2 --> P23["Premise 3"]
+SC2 --> P21["⚔️ Premise 1"]
+SC2 --> P22["⚔️ Premise 2"]
+SC2 --> P23["⚔️ Premise 3"]
 
-SC3 --> P31["Premise 1"]
-SC3 --> P32["Premise 2"]
-SC3 --> P33["Premise 3"]
+SC3 --> P31["⚔️ Premise 1"]
+SC3 --> P32["⚔️ Premise 2"]
+SC3 --> P33["⚔️ Premise 3"]
 
-P11 --> W111["Warrant"]
-P12 --> W121["Warrant"]
-P13 --> W131["Warrant"]
 
-P21 --> W211["Warrant"]
-P22 --> W221["Warrant"]
-P23 --> W231["Warrant"]
+/* ---------------------------------
+   EVIDENCE COMES BEFORE WARRANT
+--------------------------------- */
 
-P31 --> W311["Warrant"]
-P32 --> W321["Warrant"]
-P33 --> W331["Warrant"]
+P11 --> E111["❤️ Evidence"]
+P12 --> E121["❤️ Evidence"]
+P13 --> E131["❤️ Evidence"]
 
-W111 --> E111["Evidence"]
-W121 --> E121["Evidence"]
-W131 --> E131["Evidence"]
+P21 --> E211["❤️ Evidence"]
+P22 --> E221["❤️ Evidence"]
+P23 --> E231["❤️ Evidence"]
 
-W211 --> E211["Evidence"]
-W221 --> E221["Evidence"]
-W231 --> E231["Evidence"]
+P31 --> E311["❤️ Evidence"]
+P32 --> E321["❤️ Evidence"]
+P33 --> E331["❤️ Evidence"]
 
-W311 --> E311["Evidence"]
-W321 --> E321["Evidence"]
-W331 --> E331["Evidence"]
+
+E111 --> W111["🔒 Warrant"]
+E121 --> W121["🔒 Warrant"]
+E131 --> W131["🔒 Warrant"]
+
+E211 --> W211["🔒 Warrant"]
+E221 --> W221["🔒 Warrant"]
+E231 --> W231["🔒 Warrant"]
+
+E311 --> W311["🔒 Warrant"]
+E321 --> W321["🔒 Warrant"]
+E331 --> W331["🔒 Warrant"]
 
 
 /* ---------------------------------
@@ -158,16 +161,16 @@ classDef premise
     stroke:#8dbce3,
     stroke-width:1.5px;
 
-classDef warrant
-    fill:#eee9ff,
-    color:#4b3f72,
-    stroke:#a99be0,
-    stroke-width:1.5px;
-
 classDef evidence
     fill:#e2f6ee,
     color:#205b45,
     stroke:#83c9aa,
+    stroke-width:1.5px;
+
+classDef warrant
+    fill:#eee9ff,
+    color:#4b3f72,
+    stroke:#a99be0,
     stroke-width:1.5px;
 
 
@@ -179,9 +182,9 @@ class SC1,SC2,SC3 subclaim;
 
 class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise;
 
-class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
-
 class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
+
+class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
 
 </div>
 
@@ -227,49 +230,49 @@ mermaid.initialize({
 
 const info = {
 
-    "Main Argument": {
-        title: "Main Argument",
-        text: "The overall position you are trying to establish. Your subclaims should work together to support this argument."
+    "👑 Main Claim": {
+        title: "👑 Main Claim = Princess",
+        text: "The overall position you are trying to establish. Think of the main claim as the Princess: she is the central goal of the argument that everything else is working to protect."
     },
 
-    "Subclaim 1": {
-        title: "Subclaim",
-        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall argument."
+    "🧝 Subclaim 1": {
+        title: "🧝 Subclaims = Heroes",
+        text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
     },
 
-    "Subclaim 2": {
-        title: "Subclaim",
-        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall argument."
+    "🧝 Subclaim 2": {
+        title: "🧝 Subclaims = Heroes",
+        text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
     },
 
-    "Subclaim 3": {
-        title: "Subclaim",
-        text: "A smaller claim that supports the main argument. Each subclaim should address one important part of your overall argument."
+    "🧝 Subclaim 3": {
+        title: "🧝 Subclaims = Heroes",
+        text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
     },
 
-    "Premise 1": {
-        title: "Premise",
-        text: "A reason or supporting statement that helps establish a subclaim."
+    "⚔️ Premise 1": {
+        title: "⚔️ Premises = Attacks & Defense",
+        text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
     },
 
-    "Premise 2": {
-        title: "Premise",
-        text: "A reason or supporting statement that helps establish a subclaim."
+    "⚔️ Premise 2": {
+        title: "⚔️ Premises = Attacks & Defense",
+        text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
     },
 
-    "Premise 3": {
-        title: "Premise",
-        text: "A reason or supporting statement that helps establish a subclaim."
+    "⚔️ Premise 3": {
+        title: "⚔️ Premises = Attacks & Defense",
+        text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
     },
 
-    "Warrant": {
-        title: "Warrant",
-        text: "The explanation of why the evidence supports the premise. The warrant connects the evidence to the reasoning behind your claim."
+    "❤️ Evidence": {
+        title: "❤️ Evidence = Power Up",
+        text: "Evidence is information that supports a premise. It can include research findings, statistics, credible sources, examples, observations, or documented facts. Think of evidence as a Power Up: it makes your premise stronger."
     },
 
-    "Evidence": {
-        title: "Evidence",
-        text: "Information that supports the premise. Evidence can include research findings, statistics, credible sources, examples, observations, or documented facts."
+    "🔒 Warrant": {
+        title: "🔒 Warrant = Unlock",
+        text: "The warrant explains why the evidence supports the premise. It makes the connection between the evidence and your reasoning clear. Think of the warrant as the Unlock: it explains how the evidence connects to your premise."
     }
 
 };
@@ -295,15 +298,21 @@ setTimeout(function() {
 
             let data = info[text];
 
-            /*
-               Premise 1, 2, and 3 all use
-               the same explanation.
-            */
+            /* Premises 1, 2, and 3 use the same explanation */
 
-            if (text.startsWith("Premise")) {
+            if (text.includes("Premise")) {
                 data = {
-                    title: "Premise",
-                    text: "A reason or supporting statement that helps establish a subclaim."
+                    title: "⚔️ Premises = Attacks & Defense",
+                    text: "A premise is a reason or supporting statement used to establish a subclaim. Think of premises as Attacks & Defense: they give your argument something to use when building its case."
+                };
+            }
+
+            /* Subclaims 1, 2, and 3 use the same explanation */
+
+            if (text.includes("Subclaim")) {
+                data = {
+                    title: "🧝 Subclaims = Heroes",
+                    text: "Subclaims are smaller claims that support the main claim. Think of them as the Heroes: each one plays an important role in helping defend and establish the overall argument."
                 };
             }
 
@@ -357,4 +366,3 @@ setTimeout(function() {
 
 </body>
 </html>
-```
