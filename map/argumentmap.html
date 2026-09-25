@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +37,6 @@ h1 {
     box-shadow: 0 5px 18px rgba(14,104,179,.08);
 }
 
-/* ---------------------------------
-   CONNECTION LINES
---------------------------------- */
-
 .mermaid .edgePath path {
     stroke: #4f7fa8 !important;
     stroke-width: 1.8px !important;
@@ -49,10 +46,6 @@ h1 {
     fill: #4f7fa8 !important;
     stroke: #4f7fa8 !important;
 }
-
-/* ---------------------------------
-   POP-UP
---------------------------------- */
 
 #popup {
     position: fixed;
@@ -96,7 +89,6 @@ A --> SC1["🦸 Subclaim 1"]
 A --> SC2["🦸 Subclaim 2"]
 A --> SC3["🦸 Subclaim 3"]
 
-%% Counterargument from Main Claim
 A --> CA1["👹 Counterargument 1"]
 CA1 --> R1["🛡️ Rebuttal 1"]
 
@@ -112,11 +104,9 @@ SC3 --> P31["⚔️ Premise 1"]
 SC3 --> P32["⚔️ Premise 2"]
 SC3 --> P33["⚔️ Premise 3"]
 
-%% Counterargument from Subclaim
 SC2 --> CA2["👹 Counterargument 2"]
 CA2 --> R2["🛡️ Rebuttal 2"]
 
-%% Counterargument from Premise
 P33 --> CA3["👹 Counterargument 3"]
 CA3 --> R3["🛡️ Rebuttal 3"]
 
@@ -144,106 +134,50 @@ W311 --> E311["❤️ Evidence"]
 W321 --> E321["❤️ Evidence"]
 W331 --> E331["❤️ Evidence"]
 
-%% ---------------------------------
-%% NODE COLORS
-%% ---------------------------------
+classDef main fill:#0e68b3,color:#ffffff,stroke:#0b568f,stroke-width:2px
+classDef subclaim fill:#3f83d8,color:#ffffff,stroke:#2f6fbd,stroke-width:2px
+classDef premise fill:#dceeff,color:#174a78,stroke:#8dbce3,stroke-width:1.5px
+classDef warrant fill:#e7f0fa,color:#234f73,stroke:#8dbce3,stroke-width:1.5px
+classDef evidence fill:#cfe4f7,color:#174a78,stroke:#76a9d3,stroke-width:1.5px
+classDef counterargument fill:#b8d5ed,color:#123f63,stroke:#4f8bbd,stroke-width:2px
+classDef rebuttal fill:#d9ebf8,color:#123f63,stroke:#2f6fbd,stroke-width:2px
 
-classDef main
-    fill:#0e68b3,
-    color:#ffffff,
-    stroke:#0b568f,
-    stroke-width:2px;
-
-classDef subclaim
-    fill:#3f83d8,
-    color:#ffffff,
-    stroke:#2f6fbd,
-    stroke-width:2px;
-
-classDef premise
-    fill:#dceeff,
-    color:#174a78,
-    stroke:#8dbce3,
-    stroke-width:1.5px;
-
-classDef warrant
-    fill:#e7f0fa,
-    color:#234f73,
-    stroke:#8dbce3,
-    stroke-width:1.5px;
-
-classDef evidence
-    fill:#cfe4f7,
-    color:#174a78,
-    stroke:#76a9d3,
-    stroke-width:1.5px;
-
-classDef counterargument
-    fill:#b8d5ed,
-    color:#123f63,
-    stroke:#4f8bbd,
-    stroke-width:2px;
-
-classDef rebuttal
-    fill:#d9ebf8,
-    color:#123f63,
-    stroke:#2f6fbd,
-    stroke-width:2px;
-
-class A main;
-
-class SC1,SC2,SC3 subclaim;
-
-class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise;
-
-class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
-
-class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
-
-class CA1,CA2,CA3 counterargument;
-
-class R1,R2,R3 rebuttal;
+class A main
+class SC1,SC2,SC3 subclaim
+class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
+class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant
+class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence
+class CA1,CA2,CA3 counterargument
+class R1,R2,R3 rebuttal
 
 </div>
 
 </div>
-
-
-<!-- POP-UP -->
 
 <div id="popup">
     <div id="popup-title"></div>
     <div id="popup-text"></div>
 </div>
 
-
 <script type="module">
 
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 
 mermaid.initialize({
     startOnLoad: true,
     securityLevel: "loose",
     theme: "base",
-
     themeVariables: {
         fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
         fontSize: "15px",
         lineColor: "#4f7fa8",
-
         primaryColor: "#0e68b3",
         primaryTextColor: "#ffffff",
         primaryBorderColor: "#0b568f",
-
         secondaryColor: "#3f83d8",
         tertiaryColor: "#dceeff"
     }
 });
-
-
-/* ---------------------------------
-   POP-UP INFORMATION
---------------------------------- */
 
 const info = {
 
@@ -254,17 +188,17 @@ const info = {
 
     "🦸 Subclaim 1": {
         title: "🦸 Subclaim — Hero",
-        text: "A smaller claim that supports the main claim. Each subclaim addresses one important part of your overall argument."
+        text: "A smaller claim that supports the main claim."
     },
 
     "🦸 Subclaim 2": {
         title: "🦸 Subclaim — Hero",
-        text: "A smaller claim that supports the main claim. Each subclaim addresses one important part of your overall argument."
+        text: "A smaller claim that supports the main claim."
     },
 
     "🦸 Subclaim 3": {
         title: "🦸 Subclaim — Hero",
-        text: "A smaller claim that supports the main claim. Each subclaim addresses one important part of your overall argument."
+        text: "A smaller claim that supports the main claim."
     },
 
     "🔒 Warrant": {
@@ -306,13 +240,7 @@ const info = {
         title: "🛡️ Rebuttal — Defense",
         text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
     }
-
 };
-
-
-/* ---------------------------------
-   HOVER POP-UPS
---------------------------------- */
 
 setTimeout(function() {
 
@@ -330,8 +258,6 @@ setTimeout(function() {
 
             let data = info[text];
 
-            /* Premises */
-
             if (text.startsWith("⚔️ Premise")) {
                 data = {
                     title: "⚔️ Premise — Attack & Defense",
@@ -341,18 +267,16 @@ setTimeout(function() {
 
             if (!data) return;
 
+            const popup = document.getElementById("popup");
+
             document.getElementById("popup-title").textContent = data.title;
             document.getElementById("popup-text").textContent = data.text;
-
-            const popup = document.getElementById("popup");
 
             popup.style.display = "block";
 
             popup.style.left = (event.clientX + 15) + "px";
             popup.style.top = (event.clientY + 15) + "px";
-
         });
-
 
         node.addEventListener("mousemove", function(event) {
 
@@ -371,21 +295,18 @@ setTimeout(function() {
 
             popup.style.left = x + "px";
             popup.style.top = y + "px";
-
         });
 
-
         node.addEventListener("mouseleave", function() {
-
             document.getElementById("popup").style.display = "none";
-
         });
 
     });
 
-}, 1500);
+}, 2000);
 
 </script>
 
 </body>
 </html>
+```
