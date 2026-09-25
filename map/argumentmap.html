@@ -12,7 +12,7 @@ body{
     margin:0;
     padding:40px;
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
+    background:linear-gradient(180deg,#eef6ff 0%,#f8fbff 100%);
 }
 
 .container{
@@ -22,19 +22,18 @@ body{
 
 h1{
     text-align:center;
-    color:#666;
+    color:#0e68b3;
     font-weight:300;
     letter-spacing:.08em;
 }
 
 .mermaid{
-    background:white;
+    background:#ffffff;
     border-radius:16px;
     padding:30px;
-    border:1px solid #d9e2ec;
-
+    border:1px solid #cfe3f8;
     box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
+      0 4px 14px rgba(14,104,179,.08);
 }
 
 </style>
@@ -91,15 +90,15 @@ E311 --> W311["Warrant"]
 E321 --> W321["Warrant"]
 E331 --> W331["Warrant"]
 
-classDef main fill:#0e68b3,color:#ffffff,stroke:#0e68b3,stroke-width:2px;
+classDef main fill:#0e68b3,color:#ffffff,stroke:#0b4f8a,stroke-width:3px;
 
-classDef subclaim fill:#ffffff,color:#222222,stroke:#0e68b3,stroke-width:3px;
+classDef subclaim fill:#3b82f6,color:#ffffff,stroke:#2563eb,stroke-width:3px;
 
-classDef premise fill:#ffffff,color:#222222,stroke:#22a06b,stroke-width:3px;
+classDef premise fill:#60a5fa,color:#ffffff,stroke:#3b82f6,stroke-width:3px;
 
-classDef evidence fill:#fff9ec,color:#222222,stroke:#f59e0b,stroke-width:3px;
+classDef evidence fill:#93c5fd,color:#1e293b,stroke:#60a5fa,stroke-width:3px;
 
-classDef warrant fill:#f8f5ff,color:#222222,stroke:#7c3aed,stroke-width:3px;
+classDef warrant fill:#dbeafe,color:#1e293b,stroke:#93c5fd,stroke-width:3px;
 
 class A main;
 
@@ -117,6 +116,7 @@ class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
 
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
 mermaid.initialize({
     startOnLoad:true
 });
