@@ -10,83 +10,76 @@
 
 body {
     margin: 0;
-    padding: 40px;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    padding: 30px;
+    font-family: Arial, sans-serif;
     background: #f5f9fd;
+    color: #174a78;
 }
 
 .container {
-    max-width: 1800px;
+    max-width: 1400px;
     margin: auto;
 }
 
 h1 {
     text-align: center;
     color: #0e68b3;
-    font-weight: 400;
-    letter-spacing: .04em;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-.mermaid {
-    background: #ffffff;
+.map-container {
+    background: white;
     border-radius: 18px;
-    padding: 35px;
-    border: 1px solid #c7dff2;
-    box-shadow: 0 5px 18px rgba(14,104,179,.08);
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(14,104,179,0.10);
+    overflow-x: auto;
 }
 
-/* ---------------------------------
-   NODE APPEARANCE
---------------------------------- */
+/* Mermaid nodes */
 
 .mermaid .node rect {
-    rx: 14px !important;
-    ry: 14px !important;
+    rx: 16px !important;
+    ry: 16px !important;
 }
 
 .mermaid .nodeLabel {
     text-align: center !important;
+    font-weight: 600 !important;
+    color: #174a78 !important;
 }
-
-/* Center the content inside every node */
-
-.mermaid .label {
-    text-align: center !important;
-}
-
-.mermaid .nodeLabel div {
-    text-align: center !important;
-}
-
-/* ---------------------------------
-   CONNECTION LINES
---------------------------------- */
 
 .mermaid .edgePath path {
     stroke: #5d86aa !important;
-    stroke-width: 1.8px !important;
+    stroke-width: 2px !important;
 }
 
 .mermaid marker path {
     fill: #5d86aa !important;
-    stroke: #5d86aa !important;
 }
 
-/* ---------------------------------
-   POP-UP
---------------------------------- */
+/* Make nodes feel clickable */
+
+.mermaid .node {
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.mermaid .node:hover {
+    filter: brightness(0.96);
+}
+
+/* Hover popup */
 
 #popup {
     position: fixed;
     display: none;
-    width: 300px;
+    max-width: 320px;
     padding: 16px 18px;
-    background: #ffffff;
-    border: 1px solid #8dbce3;
+    background: white;
+    border: 2px solid #0e68b3;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(14,104,179,.18);
-    color: #243b53;
+    box-shadow: 0 8px 25px rgba(14,104,179,0.20);
+    color: #174a78;
     font-size: 14px;
     line-height: 1.5;
     z-index: 9999;
@@ -95,9 +88,16 @@ h1 {
 
 #popup-title {
     color: #0e68b3;
-    font-size: 17px;
-    font-weight: 700;
+    font-weight: bold;
+    font-size: 16px;
     margin-bottom: 6px;
+}
+
+#popup-role {
+    font-size: 12px;
+    font-weight: bold;
+    color: #e67e22;
+    margin-bottom: 7px;
 }
 
 </style>
@@ -107,119 +107,144 @@ h1 {
 
 <div class="container">
 
-<h1>Argument Map Template</h1>
+<h1>Argument Map</h1>
+
+<div class="map-container">
 
 <div class="mermaid">
 
 flowchart TD
 
-A["<div style='text-align:center'><div style='font-size:32px'>👑</div><div>Main Claim</div></div>"]
+A["<span style='font-size:32px'>👑</span><br/>Main Claim"]
 
-A --> SC1["<div style='text-align:center'><div style='font-size:28px'>🦸</div><div>Subclaim 1</div></div>"]
-A --> SC2["<div style='text-align:center'><div style='font-size:28px'>🦸</div><div>Subclaim 2</div></div>"]
-A --> SC3["<div style='text-align:center'><div style='font-size:28px'>🦸</div><div>Subclaim 3</div></div>"]
+SC1["<span style='font-size:28px'>🦸</span><br/>Subclaim 1"]
+SC2["<span style='font-size:28px'>🦸</span><br/>Subclaim 2"]
+SC3["<span style='font-size:28px'>🦸</span><br/>Subclaim 3"]
 
-%% Counterargument from Main Claim
+P11["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
+P12["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
+P13["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
 
-A --> CA1["<div style='text-align:center'><div style='font-size:28px'>👹</div><div>Counterargument 1</div></div>"]
-CA1 --> R1["<div style='text-align:center'><div style='font-size:28px'>🛡️</div><div>Rebuttal 1</div></div>"]
+P21["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
+P22["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
+P23["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
 
-SC1 --> P11["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 1</div></div>"]
-SC1 --> P12["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 2</div></div>"]
-SC1 --> P13["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 3</div></div>"]
+P31["<span style='font-size:25px'>⚔️</span><br/>Premise 1"]
+P32["<span style='font-size:25px'>⚔️</span><br/>Premise 2"]
+P33["<span style='font-size:25px'>⚔️</span><br/>Premise 3"]
 
-SC2 --> P21["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 1</div></div>"]
-SC2 --> P22["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 2</div></div>"]
-SC2 --> P23["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 3</div></div>"]
+W11["<span style='font-size:23px'>🔒</span><br/>Warrant"]
+W12["<span style='font-size:23px'>🔒</span><br/>Warrant"]
+W13["<span style='font-size:23px'>🔒</span><br/>Warrant"]
 
-SC3 --> P31["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 1</div></div>"]
-SC3 --> P32["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 2</div></div>"]
-SC3 --> P33["<div style='text-align:center'><div style='font-size:28px'>⚔️</div><div>Premise 3</div></div>"]
+W21["<span style='font-size:23px'>🔒</span><br/>Warrant"]
+W22["<span style='font-size:23px'>🔒</span><br/>Warrant"]
+W23["<span style='font-size:23px'>🔒</span><br/>Warrant"]
 
-%% Counterargument from Subclaim
+W31["<span style='font-size:23px'>🔒</span><br/>Warrant"]
+W32["<span style='font-size:23px'>🔒</span><br/>Warrant"]
+W33["<span style='font-size:23px'>🔒</span><br/>Warrant"]
 
-SC2 --> CA2["<div style='text-align:center'><div style='font-size:28px'>👹</div><div>Counterargument 2</div></div>"]
-CA2 --> R2["<div style='text-align:center'><div style='font-size:28px'>🛡️</div><div>Rebuttal 2</div></div>"]
+E11["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+E12["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+E13["<span style='font-size:22px'>❤️</span><br/>Evidence"]
 
-%% Counterargument from Premise
+E21["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+E22["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+E23["<span style='font-size:22px'>❤️</span><br/>Evidence"]
 
-P33 --> CA3["<div style='text-align:center'><div style='font-size:28px'>👹</div><div>Counterargument 3</div></div>"]
-CA3 --> R3["<div style='text-align:center'><div style='font-size:28px'>🛡️</div><div>Rebuttal 3</div></div>"]
+E31["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+E32["<span style='font-size:22px'>❤️</span><br/>Evidence"]
+E33["<span style='font-size:22px'>❤️</span><br/>Evidence"]
 
-%% Warrants
+CA1["<span style='font-size:27px'>👹</span><br/>Counterargument 1"]
+R1["<span style='font-size:27px'>🛡️</span><br/>Rebuttal 1"]
 
-P11 --> W111["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
-P12 --> W121["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
-P13 --> W131["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+CA2["<span style='font-size:27px'>👹</span><br/>Counterargument 2"]
+R2["<span style='font-size:27px'>🛡️</span><br/>Rebuttal 2"]
 
-P21 --> W211["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
-P22 --> W221["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
-P23 --> W231["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
+CA3["<span style='font-size:27px'>👹</span><br/>Counterargument 3"]
+R3["<span style='font-size:27px'>🛡️</span><br/>Rebuttal 3"]
 
-P31 --> W311["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
-P32 --> W321["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
-P33 --> W331["<div style='text-align:center'><div style='font-size:28px'>🔒</div><div>Warrant</div></div>"]
 
-%% Evidence
+A --> SC1
+A --> SC2
+A --> SC3
 
-W111 --> E111["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
-W121 --> E121["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
-W131 --> E131["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+SC1 --> P11
+SC1 --> P12
+SC1 --> P13
 
-W211 --> E211["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
-W221 --> E221["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
-W231 --> E231["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+SC2 --> P21
+SC2 --> P22
+SC2 --> P23
 
-W311 --> E311["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
-W321 --> E321["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
-W331 --> E331["<div style='text-align:center'><div style='font-size:28px'>❤️</div><div>Evidence</div></div>"]
+SC3 --> P31
+SC3 --> P32
+SC3 --> P33
 
-%% ---------------------------------
-%% COLORS
-%% ---------------------------------
+P11 --> W11 --> E11
+P12 --> W12 --> E12
+P13 --> W13 --> E13
 
-classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px;
+P21 --> W21 --> E21
+P22 --> W22 --> E22
+P23 --> W23 --> E23
 
-classDef subclaim fill:#ffffff,color:#0e68b3,stroke:#3f83d8,stroke-width:2px;
+P31 --> W31 --> E31
+P32 --> W32 --> E32
+P33 --> W33 --> E33
 
-classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px;
+A --> CA1
+CA1 --> R1
 
-classDef warrant fill:#ffffff,color:#234f73,stroke:#7fa8c9,stroke-width:2px;
+SC2 --> CA2
+CA2 --> R2
 
-classDef evidence fill:#ffffff,color:#174a78,stroke:#4d91c9,stroke-width:2px;
+P33 --> CA3
+CA3 --> R3
 
-classDef counterargument fill:#ffffff,color:#8b3030,stroke:#c94f4f,stroke-width:3px;
 
-classDef rebuttal fill:#ffffff,color:#174a78,stroke:#2f6fbd,stroke-width:2px;
+classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px
+classDef subclaim fill:#ffffff,color:#174a78,stroke:#3f83d8,stroke-width:2px
+classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px
+classDef warrant fill:#ffffff,color:#174a78,stroke:#7fa8c9,stroke-width:2px
+classDef evidence fill:#ffffff,color:#174a78,stroke:#4d91c9,stroke-width:2px
+classDef counterargument fill:#ffffff,color:#174a78,stroke:#c94f4f,stroke-width:3px
+classDef rebuttal fill:#ffffff,color:#174a78,stroke:#2f6fbd,stroke-width:2px
 
-class A main;
+class A main
+class SC1,SC2,SC3 subclaim
 
-class SC1,SC2,SC3 subclaim;
+class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
 
-class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise;
+class W11,W12,W13,W21,W22,W23,W31,W32,W33 warrant
 
-class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
+class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
 
-class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
-
-class CA1,CA2,CA3 counterargument;
-
-class R1,R2,R3 rebuttal;
+class CA1,CA2,CA3 counterargument
+class R1,R2,R3 rebuttal
 
 </div>
 
 </div>
+</div>
 
+
+<!-- Hover popup -->
 
 <div id="popup">
+
     <div id="popup-title"></div>
+    <div id="popup-role"></div>
     <div id="popup-text"></div>
+
 </div>
 
 
 <script type="module">
 
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 
 mermaid.initialize({
     startOnLoad: true,
@@ -228,9 +253,11 @@ mermaid.initialize({
     theme: "base",
 
     themeVariables: {
-        fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-        fontSize: "15px",
-        lineColor: "#5d86aa"
+        primaryColor: "#ffffff",
+        primaryTextColor: "#174a78",
+        primaryBorderColor: "#0e68b3",
+        lineColor: "#5d86aa",
+        fontFamily: "Arial"
     }
 });
 
@@ -238,119 +265,148 @@ mermaid.initialize({
 const info = {
 
     "Main Claim": {
-        title: "👑 Main Claim — Princess",
-        text: "The overall position you are trying to establish. Your subclaims should work together to support this claim."
+        role: "👑 Princess",
+        text: "Your main position or overall conclusion. This is the claim your entire argument is trying to establish."
     },
 
     "Subclaim 1": {
-        title: "🦸 Subclaim — Hero",
-        text: "A smaller claim that supports the main claim."
+        role: "🦸 Hero",
+        text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
     },
 
     "Subclaim 2": {
-        title: "🦸 Subclaim — Hero",
-        text: "A smaller claim that supports the main claim."
+        role: "🦸 Hero",
+        text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
     },
 
     "Subclaim 3": {
-        title: "🦸 Subclaim — Hero",
-        text: "A smaller claim that supports the main claim."
+        role: "🦸 Hero",
+        text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
+    },
+
+    "Premise 1": {
+        role: "⚔️ Attack & Defense",
+        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+    },
+
+    "Premise 2": {
+        role: "⚔️ Attack & Defense",
+        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+    },
+
+    "Premise 3": {
+        role: "⚔️ Attack & Defense",
+        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
     },
 
     "Warrant": {
-        title: "🔒 Warrant — Unlock",
-        text: "The explanation of why the evidence supports the premise. The warrant connects the evidence to the reasoning behind your claim."
+        role: "🔒 Unlock",
+        text: "The explanation of why the premise supports the subclaim. The warrant makes the connection between your reasoning and your claim clear."
     },
 
     "Evidence": {
-        title: "❤️ Evidence — Power Up",
-        text: "Information that supports the premise. Evidence can include research findings, statistics, credible sources, examples, observations, or documented facts."
+        role: "❤️ Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports the premise."
     },
 
     "Counterargument 1": {
-        title: "👹 Counterargument — Attack",
-        text: "A reasonable opposing position, objection, or alternative explanation that challenges the main claim."
+        role: "👹 Attack",
+        text: "A reasonable opposing view or challenge to your Main Claim. Present the opposing position fairly before responding to it."
     },
 
     "Counterargument 2": {
-        title: "👹 Counterargument — Attack",
-        text: "A reasonable opposing position, objection, or alternative explanation that challenges a subclaim."
+        role: "👹 Attack",
+        text: "A reasonable opposing view or challenge to Subclaim 2. Consider why someone might disagree with this part of your argument."
     },
 
     "Counterargument 3": {
-        title: "👹 Counterargument — Attack",
-        text: "A reasonable opposing position, objection, or alternative explanation that challenges a premise."
+        role: "👹 Attack",
+        text: "A reasonable opposing view or challenge to Premise 3. Consider whether someone could question the reason supporting your subclaim."
     },
 
     "Rebuttal 1": {
-        title: "🛡️ Rebuttal — Defense",
-        text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
+        role: "🛡️ Defense",
+        text: "Your response to Counterargument 1. Explain why your original Main Claim remains supported despite the opposing view."
     },
 
     "Rebuttal 2": {
-        title: "🛡️ Rebuttal — Defense",
-        text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
+        role: "🛡️ Defense",
+        text: "Your response to Counterargument 2. Use reasoning and evidence to address the challenge to Subclaim 2."
     },
 
     "Rebuttal 3": {
-        title: "🛡️ Rebuttal — Defense",
-        text: "A response to the counterargument that explains why your original claim or reasoning remains supported."
+        role: "🛡️ Defense",
+        text: "Your response to Counterargument 3. Explain why the premise remains reasonable after considering the opposing view."
     }
 
 };
 
 
-setTimeout(function() {
+function cleanLabel(text) {
+
+    return text
+        .trim()
+        .replace(/^👑\s*/, "")
+        .replace(/^🦸\s*/, "")
+        .replace(/^⚔️\s*/, "")
+        .replace(/^🔒\s*/, "")
+        .replace(/^❤️\s*/, "")
+        .replace(/^👹\s*/, "")
+        .replace(/^🛡️\s*/, "")
+        .trim();
+
+}
+
+
+function setupHover() {
+
+    const popup = document.getElementById("popup");
+    const title = document.getElementById("popup-title");
+    const role = document.getElementById("popup-role");
+    const popupText = document.getElementById("popup-text");
 
     const nodes = document.querySelectorAll(".mermaid .node");
 
-    nodes.forEach(function(node) {
+    nodes.forEach(node => {
 
-        node.addEventListener("mouseenter", function(event) {
+        const label = node.querySelector(".nodeLabel");
 
-            const label = node.querySelector(".nodeLabel");
+        if (!label) return;
 
-            if (!label) return;
+        const text = cleanLabel(label.textContent);
 
-            let text = label.textContent.trim();
+        const data = info[text];
 
-            let data = info[text];
+        if (!data) return;
 
-            if (text.startsWith("Premise")) {
-                data = {
-                    title: "⚔️ Premise — Attack & Defense",
-                    text: "A reason or supporting statement that helps establish a subclaim."
-                };
-            }
 
-            if (!data) return;
+        node.addEventListener("mouseenter", () => {
 
-            const popup = document.getElementById("popup");
-
-            document.getElementById("popup-title").textContent = data.title;
-            document.getElementById("popup-text").textContent = data.text;
+            title.textContent = text;
+            role.textContent = data.role;
+            popupText.textContent = data.text;
 
             popup.style.display = "block";
-
-            popup.style.left = (event.clientX + 15) + "px";
-            popup.style.top = (event.clientY + 15) + "px";
 
         });
 
 
-        node.addEventListener("mousemove", function(event) {
+        node.addEventListener("mousemove", event => {
 
-            const popup = document.getElementById("popup");
+            const offset = 15;
 
-            let x = event.clientX + 15;
-            let y = event.clientY + 15;
+            let x = event.clientX + offset;
+            let y = event.clientY + offset;
 
-            if (x + popup.offsetWidth > window.innerWidth) {
-                x = event.clientX - popup.offsetWidth - 15;
+            const popupWidth = popup.offsetWidth;
+            const popupHeight = popup.offsetHeight;
+
+            if (x + popupWidth > window.innerWidth) {
+                x = event.clientX - popupWidth - offset;
             }
 
-            if (y + popup.offsetHeight > window.innerHeight) {
-                y = event.clientY - popup.offsetHeight - 15;
+            if (y + popupHeight > window.innerHeight) {
+                y = event.clientY - popupHeight - offset;
             }
 
             popup.style.left = x + "px";
@@ -359,15 +415,20 @@ setTimeout(function() {
         });
 
 
-        node.addEventListener("mouseleave", function() {
+        node.addEventListener("mouseleave", () => {
 
-            document.getElementById("popup").style.display = "none";
+            popup.style.display = "none";
 
         });
 
     });
 
-}, 2000);
+}
+
+
+/* Wait for Mermaid to finish rendering */
+
+setTimeout(setupHover, 1500);
 
 </script>
 
