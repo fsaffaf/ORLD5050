@@ -91,29 +91,29 @@ SC3 --> P31["Premise 1"]
 SC3 --> P32["Premise 2"]
 SC3 --> P33["Premise 3"]
 
-P11 --> E111["Evidence"]
-P12 --> E121["Evidence"]
-P13 --> E131["Evidence"]
+P11 --> E111["Warrant"]
+P12 --> E121["Warrant"]
+P13 --> E131["Warrant"]
 
-P21 --> E211["Evidence"]
-P22 --> E221["Evidence"]
-P23 --> E231["Evidence"]
+P21 --> E211["Warrant"]
+P22 --> E221["Warrant"]
+P23 --> E231["Warrant"]
 
-P31 --> E311["Evidence"]
-P32 --> E321["Evidence"]
-P33 --> E331["Evidence"]
+P31 --> E311["Warrant"]
+P32 --> E321["Warrant"]
+P33 --> E331["Warrant"]
 
-E111 --> W111["Warrant"]
-E121 --> W121["Warrant"]
-E131 --> W131["Warrant"]
+E111 --> W111["Evidence"]
+E121 --> W121["Evidence"]
+E131 --> W131["Evidence"]
 
-E211 --> W211["Warrant"]
-E221 --> W221["Warrant"]
-E231 --> W231["Warrant"]
+E211 --> W211["Evidence"]
+E221 --> W221["Evidence"]
+E231 --> W231["Evidence"]
 
-E311 --> W311["Warrant"]
-E321 --> W321["Warrant"]
-E331 --> W331["Warrant"]
+E311 --> W311["Evidence"]
+E321 --> W321["Evidence"]
+E331 --> W331["Evidence"]
 
 classDef main fill:#0e68b3,color:#ffffff,stroke:#0b4f8a,stroke-width:3px;
 
@@ -189,12 +189,12 @@ const argumentInformation = {
 
 };
 
-/* Add information for evidence and warrants */
+/* Add information for evidence and Evidences */
 const evidenceIds = [
     "E111","E121","E131","E211","E221","E231","E311","E321","E331"
 ];
 
-const warrantIds = [
+const EvidenceIds = [
     "W111","W121","W131","W211","W221","W231","W311","W321","W331"
 ];
 
@@ -205,10 +205,10 @@ evidenceIds.forEach(id => {
     };
 });
 
-warrantIds.forEach(id => {
+EvidenceIds.forEach(id => {
     argumentInformation[id] = {
-        title: "Warrant",
-        text: "The explanation of why the evidence supports the premise. A warrant connects the evidence to the reasoning behind your claim."
+        title: "Evidence",
+        text: "The explanation of why the evidence supports the premise. A Evidence connects the evidence to the reasoning behind your claim."
     };
 });
 
