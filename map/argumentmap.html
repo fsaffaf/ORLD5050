@@ -1,329 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Argument Map</title>
-
 <style>
-
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+.mermaid {
     background:#f4f6f9;
-    color:#222;
-    padding:40px 20px;
-}
-
-.container{
-    max-width:1800px;
-    margin:auto;
-}
-
-h1{
-    text-align:center;
-    color:#666666;
-    font-size:2.5rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:40px;
-}
-
-.argument-map{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:40px;
-}
-
-.row{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    flex-wrap:wrap;
-    gap:25px;
-}
-
-.column{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
-}
-
-.node{
-    background:white;
+    padding:20px;
     border-radius:16px;
-    padding:18px;
     border:1px solid #d9e2ec;
-    box-shadow:0 3px 10px rgba(0,0,0,.05);
-    transition:all .25s ease;
-    text-align:center;
-    width:220px;
 }
-
-.node:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(14,104,179,.15);
-}
-
-.main-argument{
-    background:#0e68b3;
-    color:white;
-    font-weight:600;
-    font-size:1.1rem;
-    width:400px;
-}
-
-.subclaim{
-    border-left:6px solid #0e68b3;
-}
-
-.premise{
-    border-left:6px solid #22a06b;
-}
-
-.evidence{
-    border-left:6px solid #f59e0b;
-    background:#fff9ec;
-}
-
-.warrant{
-    border-left:6px solid #7c3aed;
-    background:#f8f5ff;
-}
-
-.label{
-    font-size:.8rem;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:#6b7280;
-    margin-bottom:8px;
-}
-
-.main-argument .label{
-    color:#dbeafe;
-}
-
-.connection{
-    width:2px;
-    height:20px;
-    background:#b8c6d6;
-}
-
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:20px 0;
-}
-
-@media(max-width:1200px){
-
-    .row{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .main-argument{
-        width:90%;
-    }
-
-}
-
 </style>
-</head>
 
-<body>
+<div class="mermaid">
 
-<div class="container">
+flowchart TD
 
-<h1>Argument Map</h1>
+%% MAIN ARGUMENT
 
-<div class="argument-map">
+A["Main Argument"]
 
-    <!-- Main Argument -->
+%% SUBCLAIMS
 
-    <div class="node main-argument">
-        <div class="label">Main Argument</div>
-        Insert Main Argument Here
-    </div>
+A --> SC1["Subclaim 1"]
+A --> SC2["Subclaim 2"]
+A --> SC3["Subclaim 3"]
 
-    <!-- Three Subclaims -->
+%% SUBCLAIM 1
 
-    <div class="row">
+SC1 --> P11["Premise 1"]
+SC1 --> P12["Premise 2"]
+SC1 --> P13["Premise 3"]
 
-        <!-- Subclaim 1 -->
-        <div class="column">
+P11 --> E111["Evidence"]
+E111 --> W111["Warrant"]
 
-            <div class="node subclaim">
-                <div class="label">Subclaim 1</div>
-                Insert Subclaim 1
-            </div>
+P12 --> E121["Evidence"]
+E121 --> W121["Warrant"]
 
-            <div class="node premise">
-                <div class="label">Premise 1</div>
-                Insert Premise 1
-            </div>
+P13 --> E131["Evidence"]
+E131 --> W131["Warrant"]
 
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
+%% SUBCLAIM 2
 
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
+SC2 --> P21["Premise 1"]
+SC2 --> P22["Premise 2"]
+SC2 --> P23["Premise 3"]
 
-            <div class="node premise">
-                <div class="label">Premise 2</div>
-                Insert Premise 2
-            </div>
+P21 --> E211["Evidence"]
+E211 --> W211["Warrant"]
 
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
+P22 --> E221["Evidence"]
+E221 --> W221["Warrant"]
 
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
+P23 --> E231["Evidence"]
+E231 --> W231["Warrant"]
 
-            <div class="node premise">
-                <div class="label">Premise 3</div>
-                Insert Premise 3
-            </div>
+%% SUBCLAIM 3
 
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
+SC3 --> P31["Premise 1"]
+SC3 --> P32["Premise 2"]
+SC3 --> P33["Premise 3"]
 
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
+P31 --> E311["Evidence"]
+E311 --> W311["Warrant"]
 
-        </div>
+P32 --> E321["Evidence"]
+E321 --> W321["Warrant"]
 
-        <!-- Subclaim 2 -->
-        <div class="column">
+P33 --> E331["Evidence"]
+E331 --> W331["Warrant"]
 
-            <div class="node subclaim">
-                <div class="label">Subclaim 2</div>
-                Insert Subclaim 2
-            </div>
+%% COLORS
 
-            <div class="node premise">
-                <div class="label">Premise 1</div>
-                Insert Premise 1
-            </div>
+classDef main fill:#0e68b3,color:#ffffff,stroke:#0e68b3,stroke-width:2px;
 
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
+classDef subclaim fill:#ffffff,color:#222222,stroke:#0e68b3,stroke-width:3px;
 
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
+classDef premise fill:#ffffff,color:#222222,stroke:#22a06b,stroke-width:3px;
 
-            <div class="node premise">
-                <div class="label">Premise 2</div>
-                Insert Premise 2
-            </div>
+classDef evidence fill:#fff9ec,color:#222222,stroke:#f59e0b,stroke-width:3px;
 
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
+classDef warrant fill:#f8f5ff,color:#222222,stroke:#7c3aed,stroke-width:3px;
 
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
+class A main;
 
-            <div class="node premise">
-                <div class="label">Premise 3</div>
-                Insert Premise 3
-            </div>
+class SC1,SC2,SC3 subclaim;
 
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
+class
+P11,P12,P13,
+P21,P22,P23,
+P31,P32,P33 premise;
 
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
+class
+E111,E121,E131,
+E211,E221,E231,
+E311,E321,E331 evidence;
 
-        </div>
-
-        <!-- Subclaim 3 -->
-        <div class="column">
-
-            <div class="node subclaim">
-                <div class="label">Subclaim 3</div>
-                Insert Subclaim 3
-            </div>
-
-            <div class="node premise">
-                <div class="label">Premise 1</div>
-                Insert Premise 1
-            </div>
-
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
-
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
-
-            <div class="node premise">
-                <div class="label">Premise 2</div>
-                Insert Premise 2
-            </div>
-
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
-
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
-
-            <div class="node premise">
-                <div class="label">Premise 3</div>
-                Insert Premise 3
-            </div>
-
-            <div class="node evidence">
-                <div class="label">Evidence</div>
-                Insert Supporting Evidence
-            </div>
-
-            <div class="node warrant">
-                <div class="label">Warrant</div>
-                Explain why the evidence supports the premise.
-            </div>
-
-        </div>
-
-    </div>
+class
+W111,W121,W131,
+W211,W221,W231,
+W311,W321,W331 warrant;
 
 </div>
-
-</div>
-
-</body>
-</html>
