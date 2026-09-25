@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@ body {
     margin: 0;
     padding: 40px;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background: linear-gradient(180deg, #eef6ff 0%, #f8fbff 100%);
+    background: #f5f9fd;
 }
 
 .container {
@@ -23,30 +24,49 @@ body {
 h1 {
     text-align: center;
     color: #0e68b3;
-    font-weight: 300;
-    letter-spacing: .08em;
+    font-weight: 400;
+    letter-spacing: .04em;
+    margin-bottom: 30px;
 }
 
 .mermaid {
     background: #ffffff;
-    border-radius: 16px;
-    padding: 30px;
-    border: 1px solid #cfe3f8;
-    box-shadow: 0 4px 14px rgba(14,104,179,.08);
+    border-radius: 18px;
+    padding: 35px;
+    border: 1px solid #d8e7f5;
+    box-shadow: 0 5px 18px rgba(14,104,179,.07);
 }
 
-/* Pop-up */
+/* ---------------------------------
+   CONNECTION LINES
+--------------------------------- */
+
+/* Main connector lines */
+.mermaid .edgePath path {
+    stroke: #6b8fb3 !important;
+    stroke-width: 1.8px !important;
+}
+
+/* Arrowheads */
+.mermaid marker path {
+    fill: #6b8fb3 !important;
+    stroke: #6b8fb3 !important;
+}
+
+/* ---------------------------------
+   POP-UP
+--------------------------------- */
 
 #popup {
     position: fixed;
     display: none;
     width: 300px;
     padding: 16px 18px;
-    background: white;
-    border: 2px solid #0e68b3;
-    border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.18);
-    color: #1e293b;
+    background: #ffffff;
+    border: 1px solid #9fc5e8;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(14,104,179,.18);
+    color: #243b53;
     font-size: 14px;
     line-height: 1.5;
     z-index: 9999;
@@ -91,45 +111,82 @@ SC3 --> P31["Premise 1"]
 SC3 --> P32["Premise 2"]
 SC3 --> P33["Premise 3"]
 
-P11 --> E111["Evidence"]
-P12 --> E121["Evidence"]
-P13 --> E131["Evidence"]
+P11 --> W111["Warrant"]
+P12 --> W121["Warrant"]
+P13 --> W131["Warrant"]
 
-P21 --> E211["Evidence"]
-P22 --> E221["Evidence"]
-P23 --> E231["Evidence"]
+P21 --> W211["Warrant"]
+P22 --> W221["Warrant"]
+P23 --> W231["Warrant"]
 
-P31 --> E311["Evidence"]
-P32 --> E321["Evidence"]
-P33 --> E331["Evidence"]
+P31 --> W311["Warrant"]
+P32 --> W321["Warrant"]
+P33 --> W331["Warrant"]
 
-E111 --> W111["Warrant"]
-E121 --> W121["Warrant"]
-E131 --> W131["Warrant"]
+W111 --> E111["Evidence"]
+W121 --> E121["Evidence"]
+W131 --> E131["Evidence"]
 
-E211 --> W211["Warrant"]
-E221 --> W221["Warrant"]
-E231 --> W231["Warrant"]
+W211 --> E211["Evidence"]
+W221 --> E221["Evidence"]
+W231 --> E231["Evidence"]
 
-E311 --> W311["Warrant"]
-E321 --> W321["Warrant"]
-E331 --> W331["Warrant"]
+W311 --> E311["Evidence"]
+W321 --> E321["Evidence"]
+W331 --> E331["Evidence"]
 
-classDef main fill:#0e68b3,color:#ffffff,stroke:#0b4f8a,stroke-width:3px;
-classDef subclaim fill:#3b82f6,color:#ffffff,stroke:#2563eb,stroke-width:3px;
-classDef premise fill:#60a5fa,color:#ffffff,stroke:#3b82f6,stroke-width:3px;
-classDef evidence fill:#93c5fd,color:#1e293b,stroke:#60a5fa,stroke-width:3px;
-classDef warrant fill:#dbeafe,color:#1e293b,stroke:#93c5fd,stroke-width:3px;
+
+/* ---------------------------------
+   NODE COLORS
+--------------------------------- */
+
+classDef main
+    fill:#0e68b3,
+    color:#ffffff,
+    stroke:#0b568f,
+    stroke-width:2px;
+
+classDef subclaim
+    fill:#3f83d8,
+    color:#ffffff,
+    stroke:#2f6fbd,
+    stroke-width:2px;
+
+classDef premise
+    fill:#dceeff,
+    color:#174a78,
+    stroke:#8dbce3,
+    stroke-width:1.5px;
+
+classDef warrant
+    fill:#eee9ff,
+    color:#4b3f72,
+    stroke:#a99be0,
+    stroke-width:1.5px;
+
+classDef evidence
+    fill:#e2f6ee,
+    color:#205b45,
+    stroke:#83c9aa,
+    stroke-width:1.5px;
+
+
+/* Apply colors */
 
 class A main;
+
 class SC1,SC2,SC3 subclaim;
+
 class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise;
-class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
+
 class W111,W121,W131,W211,W221,W231,W311,W321,W331 warrant;
 
+class E111,E121,E131,E211,E221,E231,E311,E321,E331 evidence;
+
 </div>
 
 </div>
+
 
 <!-- POP-UP -->
 
@@ -145,11 +202,28 @@ import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.mi
 
 mermaid.initialize({
     startOnLoad: true,
-    securityLevel: "loose"
+    securityLevel: "loose",
+    theme: "base",
+
+    themeVariables: {
+        fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+        fontSize: "15px",
+
+        lineColor: "#6b8fb3",
+
+        primaryColor: "#0e68b3",
+        primaryTextColor: "#ffffff",
+        primaryBorderColor: "#0b568f",
+
+        secondaryColor: "#3f83d8",
+        tertiaryColor: "#dceeff"
+    }
 });
 
 
-/* Information for each type of box */
+/* ---------------------------------
+   POP-UP INFORMATION
+--------------------------------- */
 
 const info = {
 
@@ -188,20 +262,22 @@ const info = {
         text: "A reason or supporting statement that helps establish a subclaim."
     },
 
-    "Evidence": {
-        title: "Evidence",
-        text: "Information that supports a premise. Evidence can include research findings, statistics, credible sources, examples, observations, or documented facts."
-    },
-
     "Warrant": {
         title: "Warrant",
         text: "The explanation of why the evidence supports the premise. The warrant connects the evidence to the reasoning behind your claim."
+    },
+
+    "Evidence": {
+        title: "Evidence",
+        text: "Information that supports the premise. Evidence can include research findings, statistics, credible sources, examples, observations, or documented facts."
     }
 
 };
 
 
-/* Add hover behavior after Mermaid finishes rendering */
+/* ---------------------------------
+   HOVER POP-UPS
+--------------------------------- */
 
 setTimeout(function() {
 
@@ -217,13 +293,21 @@ setTimeout(function() {
 
             const text = label.textContent.trim();
 
-            let type = text;
+            let data = info[text];
+
+            /*
+               Premise 1, 2, and 3 all use
+               the same explanation.
+            */
 
             if (text.startsWith("Premise")) {
-                type = text;
+                data = {
+                    title: "Premise",
+                    text: "A reason or supporting statement that helps establish a subclaim."
+                };
             }
 
-            const data = info[type] || info["Evidence"];
+            if (!data) return;
 
             document.getElementById("popup-title").textContent = data.title;
             document.getElementById("popup-text").textContent = data.text;
@@ -244,8 +328,6 @@ setTimeout(function() {
 
             let x = event.clientX + 15;
             let y = event.clientY + 15;
-
-            /* Keep popup inside screen */
 
             if (x + popup.offsetWidth > window.innerWidth) {
                 x = event.clientX - popup.offsetWidth - 15;
@@ -275,3 +357,4 @@ setTimeout(function() {
 
 </body>
 </html>
+```
