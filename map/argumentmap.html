@@ -246,7 +246,7 @@ class R1,R2,R3 rebuttal
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 
 mermaid.initialize({
-    startOnLoad: true,
+    startOnLoad: false,
     securityLevel: "loose",
     htmlLabels: true,
     theme: "base",
@@ -260,9 +260,6 @@ mermaid.initialize({
     }
 });
 
-
-/* Information is connected directly to the Mermaid node IDs.
-   This avoids relying on the visible emoji/text labels. */
 
 const info = {
 
@@ -497,7 +494,38 @@ const info = {
 };
 
 
-/* Set up the hover behavior after Mermaid has rendered the SVG. */
+/* 
+   Get the original Mermaid node ID.
+
+   Mermaid 10 generates SVG IDs such as:
+   flowchart-A-0
+   flowchart-SC1-1
+   flowchart-P11-4
+
+   Therefore we cannot simply use node.id === "A".
+*/
+
+function getOriginalNodeId(node) {
+
+    const id = node.id || "";
+
+    for (const key of Object.keys(info)) {
+
+        if (
+            id === key ||
+            id.includes("-" + key + "-") ||
+            id.endsWith("-" + key)
+        ) {
+            return key;
+        }
+
+    }
+
+    return null;
+}
+
+
+/* Set up the hover popup */
 
 function setupHover() {
 
@@ -510,10 +538,11 @@ function setupHover() {
 
     nodes.forEach(node => {
 
-        /* Mermaid preserves the original node ID. */
-        const nodeId = node.id;
+        const originalId = getOriginalNodeId(node);
 
-        const data = info[nodeId];
+        if (!originalId) return;
+
+        const data = info[originalId];
 
         if (!data) return;
 
@@ -565,14 +594,17 @@ function setupHover() {
 
 
 /*
-   Mermaid renders asynchronously.
-   The small delay gives Mermaid time to create
-   the SVG nodes before we attach the hover events.
+   IMPORTANT:
+   Do not use startOnLoad:true.
+
+   Instead, explicitly render Mermaid first,
+   then attach the hover events.
 */
 
-setTimeout(setupHover, 1000);
+await mermaid.run({
+    querySelector: ".mermaid"
+});
+
+setupHover();
 
 </script>
-
-</body>
-</html>
