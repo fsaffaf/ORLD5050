@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -234,11 +235,9 @@ class R1,R2,R3 rebuttal
 <!-- Hover popup -->
 
 <div id="popup">
-
     <div id="popup-title"></div>
     <div id="popup-role"></div>
     <div id="popup-text"></div>
-
 </div>
 
 
@@ -262,79 +261,235 @@ mermaid.initialize({
 });
 
 
+/* Information is connected directly to the Mermaid node IDs.
+   This avoids relying on the visible emoji/text labels. */
+
 const info = {
 
-    "Main Claim": {
+    A: {
+        title: "Main Claim",
         role: "Princess",
         text: "Your main position or overall conclusion. This is the claim your entire argument is trying to establish."
     },
 
-    "Subclaim 1": {
+    SC1: {
+        title: "Subclaim 1",
         role: "Hero",
         text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
     },
 
-    "Subclaim 2": {
+    SC2: {
+        title: "Subclaim 2",
         role: "Hero",
         text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
     },
 
-    "Subclaim 3": {
+    SC3: {
+        title: "Subclaim 3",
         role: "Hero",
         text: "A supporting claim that helps prove the Main Claim. Each subclaim should address one important part of your overall argument."
     },
 
-    "Premise 1": {
+
+    P11: {
+        title: "Premise 1",
         role: "Attack",
-        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+        text: "A reason that supports Subclaim 1. Your premises provide the foundation for your argument."
     },
 
-    "Premise 2": {
+    P12: {
+        title: "Premise 2",
         role: "Attack",
-        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+        text: "A reason that supports Subclaim 1. Your premises provide the foundation for your argument."
     },
 
-    "Premise 3": {
+    P13: {
+        title: "Premise 3",
         role: "Attack",
-        text: "A reason that supports the subclaim. Your premises provide the foundation for your argument."
+        text: "A reason that supports Subclaim 1. Your premises provide the foundation for your argument."
     },
 
-    "Warrant": {
-        role: "Unlock",
-        text: "The explanation of why the premise supports the subclaim. The warrant makes the connection between your reasoning and your claim clear."
+
+    P21: {
+        title: "Premise 1",
+        role: "Attack",
+        text: "A reason that supports Subclaim 2. Your premises provide the foundation for your argument."
     },
 
-    "Evidence": {
+    P22: {
+        title: "Premise 2",
+        role: "Attack",
+        text: "A reason that supports Subclaim 2. Your premises provide the foundation for your argument."
+    },
+
+    P23: {
+        title: "Premise 3",
+        role: "Attack",
+        text: "A reason that supports Subclaim 2. Your premises provide the foundation for your argument."
+    },
+
+
+    P31: {
+        title: "Premise 1",
+        role: "Attack",
+        text: "A reason that supports Subclaim 3. Your premises provide the foundation for your argument."
+    },
+
+    P32: {
+        title: "Premise 2",
+        role: "Attack",
+        text: "A reason that supports Subclaim 3. Your premises provide the foundation for your argument."
+    },
+
+    P33: {
+        title: "Premise 3",
+        role: "Attack",
+        text: "A reason that supports Subclaim 3. Your premises provide the foundation for your argument."
+    },
+
+
+    E11: {
+        title: "Evidence",
         role: "Power Up",
-        text: "Research, data, examples, expert sources, or other information that supports the premise."
+        text: "Research, data, examples, expert sources, or other information that supports Premise 1."
     },
 
-    "Counterargument 1": {
+    E12: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 2."
+    },
+
+    E13: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 3."
+    },
+
+    E21: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 1."
+    },
+
+    E22: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 2."
+    },
+
+    E23: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 3."
+    },
+
+    E31: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 1."
+    },
+
+    E32: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 2."
+    },
+
+    E33: {
+        title: "Evidence",
+        role: "Power Up",
+        text: "Research, data, examples, expert sources, or other information that supports Premise 3."
+    },
+
+
+    W11: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 1 supports Subclaim 1. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W12: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 2 supports Subclaim 1. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W13: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 3 supports Subclaim 1. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W21: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 1 supports Subclaim 2. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W22: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 2 supports Subclaim 2. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W23: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 3 supports Subclaim 2. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W31: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 1 supports Subclaim 3. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W32: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 2 supports Subclaim 3. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+    W33: {
+        title: "Warrant",
+        role: "Unlock",
+        text: "The explanation of why Premise 3 supports Subclaim 3. The warrant makes the connection between your reasoning and your claim clear."
+    },
+
+
+    CA1: {
+        title: "Counterargument 1",
         role: "Enemy Attack",
         text: "A reasonable opposing view or challenge to your Main Claim. Present the opposing position fairly before responding to it."
     },
 
-    "Counterargument 2": {
-        role: "Enemy Attack",
-        text: "A reasonable opposing view or challenge to Subclaim 2. Consider why someone might disagree with this part of your argument."
-    },
-
-    "Counterargument 3": {
-        role: "Enemy Attack",
-        text: "A reasonable opposing view or challenge to Premise 3. Consider whether someone could question the reason supporting your subclaim."
-    },
-
-    "Rebuttal 1": {
+    R1: {
+        title: "Rebuttal 1",
         role: "Defense",
         text: "Your response to Counterargument 1. Explain why your original Main Claim remains supported despite the opposing view."
     },
 
-    "Rebuttal 2": {
+    CA2: {
+        title: "Counterargument 2",
+        role: "Enemy Attack",
+        text: "A reasonable opposing view or challenge to Subclaim 2. Consider why someone might disagree with this part of your argument."
+    },
+
+    R2: {
+        title: "Rebuttal 2",
         role: "Defense",
         text: "Your response to Counterargument 2. Use reasoning and evidence to address the challenge to Subclaim 2."
     },
 
-    "Rebuttal 3": {
+    CA3: {
+        title: "Counterargument 3",
+        role: "Enemy Attack",
+        text: "A reasonable opposing view or challenge to Premise 3. Consider whether someone could question the reason supporting your subclaim."
+    },
+
+    R3: {
+        title: "Rebuttal 3",
         role: "Defense",
         text: "Your response to Counterargument 3. Explain why the premise remains reasonable after considering the opposing view."
     }
@@ -342,21 +497,7 @@ const info = {
 };
 
 
-function cleanLabel(text) {
-
-    return text
-        .trim()
-        .replace(/^👑\s*/, "")
-        .replace(/^🦸\s*/, "")
-        .replace(/^⚔️\s*/, "")
-        .replace(/^🔒\s*/, "")
-        .replace(/^❤️\s*/, "")
-        .replace(/^👹\s*/, "")
-        .replace(/^🛡️\s*/, "")
-        .trim();
-
-}
-
+/* Set up the hover behavior after Mermaid has rendered the SVG. */
 
 function setupHover() {
 
@@ -369,20 +510,17 @@ function setupHover() {
 
     nodes.forEach(node => {
 
-        const label = node.querySelector(".nodeLabel");
+        /* Mermaid preserves the original node ID. */
+        const nodeId = node.id;
 
-        if (!label) return;
-
-        const text = cleanLabel(label.textContent);
-
-        const data = info[text];
+        const data = info[nodeId];
 
         if (!data) return;
 
 
         node.addEventListener("mouseenter", () => {
 
-            title.textContent = text;
+            title.textContent = data.title;
             role.textContent = data.role;
             popupText.textContent = data.text;
 
@@ -426,9 +564,13 @@ function setupHover() {
 }
 
 
-/* Wait for Mermaid to finish rendering */
+/*
+   Mermaid renders asynchronously.
+   The small delay gives Mermaid time to create
+   the SVG nodes before we attach the hover events.
+*/
 
-setTimeout(setupHover, 1500);
+setTimeout(setupHover, 1000);
 
 </script>
 
