@@ -1,0 +1,630 @@
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.learning-objectives strong{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
+}
+
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.highlight{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+<div class="container">
+
+    <h1>How to Use PhilMaps</h1>
+    <p class="subtitle">Step-by-Step Guide</p>
+
+    <div class="learning-objectives">
+        <strong>Getting Started</strong>
+        <p>
+            Create an argument map by organizing your main claim,
+            supporting reasons, objections, and responses.
+        </p>
+
+        <p>
+            <a
+                class="button"
+                href="https://app.philmaps.com/app/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open PhilMaps &rarr;
+            </a>
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <h2>What is an argument map?</h2>
+
+        <p>
+            An argument map is a visual diagram that shows your main claim,
+            the reasons supporting it, and possible objections. It helps you
+            organize your reasoning and evaluate whether your argument is
+            logical and well supported.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Step 1: Open the website</h2>
+
+        <ol>
+            <li>
+                Go to
+                <a
+                    href="https://app.philmaps.com/app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    PhilMaps
+                </a>.
+            </li>
+
+            <li>Wait for the editor to load in your browser.</li>
+
+            <li>
+                If the editor does not load, refresh the page and try again.
+            </li>
+        </ol>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Step 2: Add your main claim</h2>
+
+        <p>
+            Your <strong>main claim</strong> is the overall position you want
+            to argue for or defend.
+        </p>
+
+        <ol>
+            <li>Locate the option for adding a claim or statement.</li>
+
+            <li>Enter your main claim as a complete sentence.</li>
+
+            <li>
+                Make sure your claim expresses a position someone could
+                reasonably agree or disagree with.
+            </li>
+        </ol>
+
+        <div class="highlight">
+            <strong class="blue-heading">Example</strong>
+
+            <p>
+                A technology company should require employees to complete
+                cybersecurity training every year.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Step 3: Add supporting reasons</h2>
+
+        <p>
+            Supporting reasons explain
+            <strong>why someone should accept your main claim.</strong>
+        </p>
+
+        <ol>
+            <li>Select your main claim.</li>
+
+            <li>
+                Use the available options to add a supporting reason.
+            </li>
+
+            <li>Enter one clear reason at a time.</li>
+
+            <li>
+                Repeat to add other reasons that support your claim.
+            </li>
+        </ol>
+
+        <div class="highlight">
+            <strong class="blue-heading">Examples</strong>
+
+            <ul>
+                <li>
+                    Annual training can help employees recognize phishing
+                    attempts.
+                </li>
+
+                <li>
+                    Regular practice can reinforce secure workplace habits.
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Step 4: Add objections and responses</h2>
+
+        <p>
+            An <strong>objection</strong> is a reason someone might disagree
+            with your claim or challenge one of your supporting reasons.
+        </p>
+
+        <ol>
+            <li>
+                Select the claim or reason you want to challenge.
+            </li>
+
+            <li>
+                Use the available option to add an objection or opposing
+                claim.
+            </li>
+
+            <li>
+                Write the objection as a complete sentence.
+            </li>
+
+            <li>
+                If appropriate, add a response explaining how you would
+                address the objection.
+            </li>
+        </ol>
+
+        <div class="highlight">
+
+            <strong class="blue-heading">Example objection</strong>
+
+            <p>
+                Annual cybersecurity training takes employees away from their
+                regular work.
+            </p>
+
+            <strong class="blue-heading">Example response</strong>
+
+            <p>
+                Short training sessions can reduce disruption while helping
+                employees recognize security risks.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Step 5: Review your argument map</h2>
+
+        <p>
+            Before saving your work, check each of the following:
+        </p>
+
+        <ul style="list-style:none; padding-left:0;">
+            <li>&#9744; My main claim clearly states my position.</li>
+
+            <li>
+                &#9744; Each supporting reason explains why my claim is
+                reasonable.
+            </li>
+
+            <li>
+                &#9744; I have considered relevant objections.
+            </li>
+
+            <li>
+                &#9744; My responses address the objections I included.
+            </li>
+
+            <li>
+                &#9744; My statements are clear, specific, and logically
+                connected.
+            </li>
+        </ul>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Step 6: Save and submit your work</h2>
+
+        <ol>
+            <li>
+                Look for the File menu or the available save options.
+            </li>
+
+            <li>
+                Save an editable copy of your argument map to your computer or
+                a supported cloud location.
+            </li>
+
+            <li>
+                If your assignment requires a PDF, use the available export or
+                print option and select PDF as the destination if offered.
+            </li>
+
+            <li>
+                Open your saved file to make sure it displays correctly.
+            </li>
+
+            <li>
+                Submit the file in the format required by your instructor.
+            </li>
+        </ol>
+
+        <div class="learning-objectives">
+
+            <strong>Important</strong>
+
+            <p>
+                Keep an editable copy of your map so you can make changes
+                later. Available saving and export options may vary depending
+                on the editor.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Need More Help?</h2>
+
+        <p>
+            Visit the
+            <a
+                href="https://philmaps.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                PhilMaps website
+            </a>
+            for additional information about argument mapping.
+        </p>
+
+        <p>
+            <a
+                class="button"
+                href="https://app.philmaps.com/app/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Return to PhilMaps &rarr;
+            </a>
+        </p>
+
+    </div>
+
+</div>
