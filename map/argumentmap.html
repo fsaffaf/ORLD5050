@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,9 @@
 <title>Argument Map</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -25,6 +29,12 @@ body {
 h1 {
     text-align: center;
     color: #0e68b3;
+    margin-bottom: 12px;
+}
+
+.instructions {
+    text-align: center;
+    line-height: 1.6;
     margin-bottom: 25px;
 }
 
@@ -33,20 +43,22 @@ h1 {
     border-radius: 18px;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(14,104,179,0.10);
-    overflow-x: auto;
+    overflow: auto;
 }
 
-/* Mermaid nodes */
+.mermaid {
+    min-width: 1000px;
+    text-align: center;
+}
 
 .mermaid .node rect {
-    rx: 16px !important;
-    ry: 16px !important;
+    rx: 12px;
+    ry: 12px;
 }
 
 .mermaid .nodeLabel {
-    text-align: center !important;
-    font-weight: 600 !important;
-    color: #174a78 !important;
+    text-align: center;
+    font-weight: 600;
 }
 
 .mermaid .edgePath path {
@@ -58,23 +70,24 @@ h1 {
     fill: #5d86aa !important;
 }
 
-/* Make nodes feel clickable */
-
 .mermaid .node {
     cursor: pointer;
     transition: filter 0.2s ease;
 }
 
-.mermaid .node:hover {
-    filter: brightness(0.96);
+.mermaid .node:hover,
+.mermaid .node:focus {
+    filter: brightness(0.94);
 }
 
-/* Hover popup */
+.mermaid .node:focus {
+    outline: none;
+}
 
 #popup {
     position: fixed;
     display: none;
-    max-width: 320px;
+    width: min(320px, calc(100vw - 30px));
     padding: 16px 18px;
     background: white;
     border: 2px solid #0e68b3;
@@ -82,9 +95,9 @@ h1 {
     box-shadow: 0 8px 25px rgba(14,104,179,0.20);
     color: #174a78;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
     z-index: 9999;
-    pointer-events: none;
+    overflow-wrap: anywhere;
 }
 
 #popup-title {
@@ -95,12 +108,42 @@ h1 {
 }
 
 #popup-role {
+    display: none;
     font-size: 12px;
     font-weight: bold;
     color: #e67e22;
     margin-bottom: 7px;
 }
 
+#popup-close {
+    float: right;
+    margin: -7px -7px 5px 8px;
+    padding: 4px 9px;
+    background: #eef6fc;
+    border: none;
+    border-radius: 6px;
+    color: #174a78;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#popup-close:hover {
+    background: #dcecf9;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    .map-container {
+        padding: 12px;
+    }
+
+    .instructions {
+        font-size: 14px;
+    }
+}
 </style>
 </head>
 
@@ -108,65 +151,70 @@ h1 {
 
 <div class="container">
 
-<h1>Argument Map</h1>
+    <h1>Argument Map</h1>
 
-<div class="map-container">
+    <p class="instructions">
+        Follow the connections to see how the argument is organized.
+        Hover over or select a box to learn more about its role.
+        Scroll horizontally to explore the full map.
+    </p>
 
-<div class="mermaid">
+    <div class="map-container">
+
+        <div class="mermaid">
 
 flowchart TD
 
-A["<span style='font-size:40px'>Main Claim"]
+A["<span style='font-size:28px'>Main Claim</span>"]
 
-SC1["<span style='font-size:40px'>Subclaim 1"]
-SC2["<span style='font-size:28px'>Subclaim 2"]
-SC3["<span style='font-size:28px'>Subclaim 3"]
+SC1["<span style='font-size:23px'>Subclaim 1</span>"]
+SC2["<span style='font-size:23px'>Subclaim 2</span>"]
+SC3["<span style='font-size:23px'>Subclaim 3</span>"]
 
-P11["<span style='font-size:25px'>Premise 1"]
-P12["<span style='font-size:25px'>Premise 2"]
-P13["<span style='font-size:25px'>Premise 3"]
+P11["Premise 1"]
+P12["Premise 2"]
+P13["Premise 3"]
 
-P21["<span style='font-size:25px'>Premise 1"]
-P22["<span style='font-size:25px'>Premise 2"]
-P23["<span style='font-size:25px'>Premise 3"]
+P21["Premise 1"]
+P22["Premise 2"]
+P23["Premise 3"]
 
-P31["<span style='font-size:25px'>Premise 1"]
-P32["<span style='font-size:25px'>Premise 2"]
-P33["<span style='font-size:25px'>Premise 3"]
+P31["Premise 1"]
+P32["Premise 2"]
+P33["Premise 3"]
 
-E11["<span style='font-size:22px'>Evidence1"]
-E12["<span style='font-size:22px'>Evidence2"]
-E13["<span style='font-size:22px'>Evidence3"]
+E11["Evidence 1"]
+E12["Evidence 2"]
+E13["Evidence 3"]
 
-E21["<span style='font-size:22px'>Evidence1"]
-E22["<span style='font-size:22px'>Evidence2"]
-E23["<span style='font-size:22px'>Evidence3"]
+E21["Evidence 1"]
+E22["Evidence 2"]
+E23["Evidence 3"]
 
-E31["<span style='font-size:22px'>Evidence1"]
-E32["<span style='font-size:22px'>Evidence2"]
-E33["<span style='font-size:22px'>Evidence3"]
+E31["Evidence 1"]
+E32["Evidence 2"]
+E33["Evidence 3"]
 
-W11["<span style='font-size:23px'>Warrant"]
-W12["<span style='font-size:23px'>Warrant"]
-W13["<span style='font-size:23px'>Warrant"]
+W11["Warrant"]
+W12["Warrant"]
+W13["Warrant"]
 
-W21["<span style='font-size:23px'>Warrant"]
-W22["<span style='font-size:23px'>Warrant"]
-W23["<span style='font-size:23px'>Warrant"]
+W21["Warrant"]
+W22["Warrant"]
+W23["Warrant"]
 
-W31["<span style='font-size:23px'>Warrant"]
-W32["<span style='font-size:23px'>Warrant"]
-W33["<span style='font-size:23px'>Warrant"]
+W31["Warrant"]
+W32["Warrant"]
+W33["Warrant"]
 
-CA1["<span style='font-size:27px'>Counterargument 1"]
-R1["<span style='font-size:27px'>Rebuttal"]
+CA1["Counterargument 1"]
+R1["Rebuttal 1"]
 
-CA2["<span style='font-size:27px'>Counterargument 2"]
-R2["<span style='font-size:27px'>Rebuttal"]
+CA2["Counterargument 2"]
+R2["Rebuttal 2"]
 
-CA3["<span style='font-size:27px'>Counterargument 3"]
-R3["<span style='font-size:27px'>Rebuttal"]
-
+CA3["Counterargument 3"]
+R3["Rebuttal 3"]
 
 A --> SC1
 A --> SC2
@@ -205,7 +253,6 @@ CA2 --> R2
 P33 --> CA3
 CA3 --> R3
 
-
 classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px
 classDef subclaim fill:#ffffff,color:#174a78,stroke:#3f83d8,stroke-width:2px
 classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px
@@ -216,30 +263,26 @@ classDef rebuttal fill:#ffffff,color:#174a78,stroke:#2f6fbd,stroke-width:2px
 
 class A main
 class SC1,SC2,SC3 subclaim
-
 class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
-
 class W11,W12,W13,W21,W22,W23,W31,W32,W33 warrant
-
 class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
-
 class CA1,CA2,CA3 counterargument
 class R1,R2,R3 rebuttal
 
-</div>
+        </div>
+
+    </div>
 
 </div>
-</div>
 
+<!-- Interactive explanation popup -->
 
-<!-- Hover popup -->
-
-<div id="popup">
+<div id="popup" role="status" aria-live="polite">
+    <button id="popup-close" type="button" aria-label="Close explanation">×</button>
     <div id="popup-title"></div>
     <div id="popup-role"></div>
     <div id="popup-text"></div>
 </div>
-
 
 <script type="module">
 
@@ -250,7 +293,13 @@ mermaid.initialize({
     securityLevel: "loose",
     htmlLabels: true,
     theme: "base",
-
+    flowchart: {
+        htmlLabels: true,
+        curve: "basis",
+        nodeSpacing: 35,
+        rankSpacing: 55,
+        useMaxWidth: false
+    },
     themeVariables: {
         primaryColor: "#ffffff",
         primaryTextColor: "#174a78",
@@ -260,315 +309,265 @@ mermaid.initialize({
     }
 });
 
-
 const info = {
-
     A: {
         title: "Main Claim",
-        text: "The decision you believe should be made. This is the claim your entire argument is trying to support."
+        text: "The decision you believe should be made. Your entire argument is organized to support this main point."
     },
 
     SC1: {
         title: "Subclaim 1",
-        text: "A major reason to support the Main Claim. This should show why your main claim has a meaningful purpose."
+        text: "A major reason supporting the Main Claim. A subclaim breaks the main argument into smaller points that can be supported with reasons and evidence."
     },
-
     SC2: {
         title: "Subclaim 2",
-        text: "A major reason to support the Main Claim. This should show why your main claim has a meaningful purpose."
+        text: "A major reason supporting the Main Claim. A subclaim breaks the main argument into smaller points that can be supported with reasons and evidence."
     },
-
     SC3: {
         title: "Subclaim 3",
-        text: "A major reason to support the Main Claim. This should show why your main claim has a meaningful purpose."
+        text: "A major reason supporting the Main Claim. A subclaim breaks the main argument into smaller points that can be supported with reasons and evidence."
     },
 
+    P11: { title: "Premise 1", text: "A reason or supporting statement that helps establish Subclaim 1. State the specific point you want the reader to accept." },
+    P12: { title: "Premise 2", text: "Another reason or supporting statement that helps establish Subclaim 1." },
+    P13: { title: "Premise 3", text: "Another reason or supporting statement that helps establish Subclaim 1." },
 
-    P11: {
-        title: "Premise 1",
-        text: "A fact that shows the subclaim is true."
-    },
+    P21: { title: "Premise 1", text: "A reason or supporting statement that helps establish Subclaim 2." },
+    P22: { title: "Premise 2", text: "Another reason or supporting statement that helps establish Subclaim 2." },
+    P23: { title: "Premise 3", text: "Another reason or supporting statement that helps establish Subclaim 2." },
 
-    P12: {
-        title: "Premise 2",
-        text: "A fact that shows the subclaim is true."
-    },
+    P31: { title: "Premise 1", text: "A reason or supporting statement that helps establish Subclaim 3." },
+    P32: { title: "Premise 2", text: "Another reason or supporting statement that helps establish Subclaim 3." },
+    P33: { title: "Premise 3", text: "Another reason or supporting statement that helps establish Subclaim 3." },
 
-    P13: {
-        title: "Premise 3",
-        text: "A fact that shows the subclaim is true."
-    },
+    E11: { title: "Evidence 1", text: "Reliable information that supports Premise 1. Evidence may include research findings, data, official reports, or credible expert sources." },
+    E12: { title: "Evidence 2", text: "Reliable information that supports Premise 2. Identify the source so readers can evaluate its credibility." },
+    E13: { title: "Evidence 3", text: "Reliable information that supports Premise 3. Evidence should be relevant to the point being made." },
 
+    E21: { title: "Evidence 1", text: "Reliable information that supports Premise 1 under Subclaim 2." },
+    E22: { title: "Evidence 2", role: "Power Up", text: "Reliable information that supports Premise 2. Strong evidence makes the reasoning easier to evaluate." },
+    E23: { title: "Evidence 3", text: "Reliable information that supports Premise 3 under Subclaim 2." },
 
-    P21: {
-        title: "Premise 1",
-        text: "A fact that shows the subclaim is true."
-    },
+    E31: { title: "Evidence 1", text: "Reliable information that supports Premise 1 under Subclaim 3." },
+    E32: { title: "Evidence 2", text: "Reliable information that supports Premise 2 under Subclaim 3." },
+    E33: { title: "Evidence 3", text: "Reliable information that supports Premise 3 under Subclaim 3." },
 
-    P22: {
-        title: "Premise 2",
-        text: "A fact that shows the subclaim is true."
-    },
+    W11: { title: "Warrant", text: "The underlying logic explaining why the premise and its evidence support the subclaim. Ask: Why does this information matter to the point I am making?" },
+    W12: { title: "Warrant", text: "Explain the logical connection between the premise, its evidence, and the subclaim." },
+    W13: { title: "Warrant", text: "Explain why the premise and its evidence provide a reason to accept the subclaim." },
 
-    P23: {
-        title: "Premise 3",
-        text: "A fact that shows the subclaim is true."
-    },
+    W21: { title: "Warrant", text: "Explain the logical connection between the premise, its evidence, and Subclaim 2." },
+    W22: { title: "Warrant", text: "Explain why the premise and its evidence provide a reason to accept Subclaim 2." },
+    W23: { title: "Warrant", text: "Explain the reasoning connecting this supporting point to Subclaim 2." },
 
-
-    P31: {
-        title: "Premise 1",
-        text: "A fact that shows the subclaim is true."
-    },
-
-    P32: {
-        title: "Premise 2",
-        text: "A fact that shows the subclaim is true."
-    },
-
-    P33: {
-        title: "Premise 3",
-        text: "A fact that shows the subclaim is true."
-    },
-
-
-    E11: {
-        title: "Evidence",
-        text: "A reference that shows the fact is true."
-    },
-
-    E12: {
-        title: "Evidence",
-        text: "A reference that shows the fact is true."
-    },
-
-    E13: {
-        title: "Evidence",
-        text: "A reference that supports the fact."
-    },
-
-    E21: {
-        title: "Evidence",
-        text: "A reference that supports the fact."
-    },
-
-    E22: {
-        title: "Evidence",
-        role: "Power Up",
-        text: "A reference that supports the fact."
-    },
-
-    E23: {
-        title: "Evidence",
-        text: "A reference that supports the fact."
-    },
-
-    E31: {
-        title: "Evidence",
-        text: "A reference that supports the fact."
-    },
-
-    E32: {
-        title: "Evidence",
-        text: "A reference that supports the fact."
-    },
-
-    E33: {
-        title: "Evidence",
-        text: "A reference that supports the fact."
-    },
-
-
-    W11: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W12: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W13: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W21: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W22: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W23: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W31: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W32: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
-    W33: {
-        title: "Warrant",
-        text: "The explanation of why the evidence shows the fact is true."
-    },
-
+    W31: { title: "Warrant", text: "Explain the logical connection between the premise, its evidence, and Subclaim 3." },
+    W32: { title: "Warrant", text: "Explain why the premise and its evidence provide a reason to accept Subclaim 3." },
+    W33: { title: "Warrant", text: "Explain the reasoning connecting this supporting point to Subclaim 3." },
 
     CA1: {
         title: "Counterargument 1",
-        text: "A reasonable opposing view or challenge to your Main Claim. Present the opposing position fairly before responding to it."
+        text: "A reasonable opposing view or challenge to your Main Claim. Present the opposing position fairly before responding."
     },
-
     R1: {
         title: "Rebuttal 1",
-        text: "Your response to Counterargument 1. Explain why your original Main Claim remains supported despite the opposing view."
+        text: "Your response to Counterargument 1. Use reasoning and evidence to explain why your main claim remains defensible."
     },
 
     CA2: {
         title: "Counterargument 2",
         text: "A reasonable opposing view or challenge to Subclaim 2. Consider why someone might disagree with this part of your argument."
     },
-
     R2: {
         title: "Rebuttal 2",
-        text: "Your response to Counterargument 2. Use reasoning and evidence to address the challenge to Subclaim 2."
+        text: "Your response to Counterargument 2. Explain why the opposing view does not defeat your subclaim, or acknowledge where it identifies a valid limitation."
     },
 
     CA3: {
         title: "Counterargument 3",
-        text: "A reasonable opposing view or challenge to Premise 3. Consider whether someone could question the reason supporting your subclaim."
+        text: "A reasonable challenge to Premise 3. Someone might question whether this reason is accurate, relevant, or strong enough to support the subclaim."
     },
-
     R3: {
         title: "Rebuttal 3",
-        text: "Your response to Counterargument 3. Explain why the premise remains reasonable after considering the opposing view."
+        text: "Your response to Counterargument 3. Address the concern with reasoning or evidence. If the objection is valid, revise or qualify the original point."
     }
-
 };
 
+const popup = document.getElementById("popup");
+const popupTitle = document.getElementById("popup-title");
+const popupRole = document.getElementById("popup-role");
+const popupText = document.getElementById("popup-text");
+const closeButton = document.getElementById("popup-close");
 
-/* 
-   Get the original Mermaid node ID.
+let pinnedNode = null;
 
-   Mermaid 10 generates SVG IDs such as:
-   flowchart-A-0
-   flowchart-SC1-1
-   flowchart-P11-4
+function positionPopup(x, y) {
+    popup.style.left = "0px";
+    popup.style.top = "0px";
 
-   Therefore we cannot simply use node.id === "A".
-*/
+    const margin = 10;
+    const width = popup.offsetWidth;
+    const height = popup.offsetHeight;
+
+    const left = Math.max(
+        margin,
+        Math.min(x + 15, window.innerWidth - width - margin)
+    );
+
+    const top = Math.max(
+        margin,
+        Math.min(y + 15, window.innerHeight - height - margin)
+    );
+
+    popup.style.left = left + "px";
+    popup.style.top = top + "px";
+}
+
+function showPopup(node, data, x, y, pin = false) {
+    popupTitle.textContent = data.title;
+    popupText.textContent = data.text;
+
+    if (data.role) {
+        popupRole.textContent = data.role;
+        popupRole.style.display = "block";
+    } else {
+        popupRole.textContent = "";
+        popupRole.style.display = "none";
+    }
+
+    popup.style.display = "block";
+
+    if (pin) {
+        pinnedNode = node;
+    }
+
+    positionPopup(x, y);
+}
+
+function hidePopup() {
+    popup.style.display = "none";
+    pinnedNode = null;
+}
 
 function getOriginalNodeId(node) {
-
     const id = node.id || "";
 
-    for (const key of Object.keys(info)) {
+    // Mermaid generates IDs such as flowchart-SC1-1.
+    // Match the complete node key, not a partial substring.
+    const match = id.match(/^flowchart-(.+)-\d+$/);
 
-        if (
-            id === key ||
-            id.includes("-" + key + "-") ||
-            id.endsWith("-" + key)
-        ) {
-            return key;
-        }
+    if (match && info[match[1]]) {
+        return match[1];
+    }
 
+    if (info[id]) {
+        return id;
     }
 
     return null;
 }
 
+function setupInteractions() {
+    document.querySelectorAll(".mermaid .node").forEach(node => {
+        const key = getOriginalNodeId(node);
 
-/* Set up the hover popup */
+        if (!key || !info[key]) {
+            return;
+        }
 
-function setupHover() {
+        const data = info[key];
 
-    const popup = document.getElementById("popup");
-    const title = document.getElementById("popup-title");
-    const role = document.getElementById("popup-role");
-    const popupText = document.getElementById("popup-text");
+        node.setAttribute("tabindex", "0");
+        node.setAttribute("role", "button");
+        node.setAttribute("aria-label", data.title + ". Select to read explanation.");
 
-    const nodes = document.querySelectorAll(".mermaid .node");
+        node.addEventListener("mouseenter", event => {
+            if (pinnedNode) return;
 
-    nodes.forEach(node => {
-
-        const originalId = getOriginalNodeId(node);
-
-        if (!originalId) return;
-
-        const data = info[originalId];
-
-        if (!data) return;
-
-
-        node.addEventListener("mouseenter", () => {
-
-            title.textContent = data.title;
-            role.textContent = data.role;
-            popupText.textContent = data.text;
-
-            popup.style.display = "block";
-
+            showPopup(node, data, event.clientX, event.clientY);
         });
-
 
         node.addEventListener("mousemove", event => {
+            if (pinnedNode || popup.style.display !== "block") return;
 
-            const offset = 15;
-
-            let x = event.clientX + offset;
-            let y = event.clientY + offset;
-
-            const popupWidth = popup.offsetWidth;
-            const popupHeight = popup.offsetHeight;
-
-            if (x + popupWidth > window.innerWidth) {
-                x = event.clientX - popupWidth - offset;
-            }
-
-            if (y + popupHeight > window.innerHeight) {
-                y = event.clientY - popupHeight - offset;
-            }
-
-            popup.style.left = x + "px";
-            popup.style.top = y + "px";
-
+            positionPopup(event.clientX, event.clientY);
         });
-
 
         node.addEventListener("mouseleave", () => {
-
-            popup.style.display = "none";
-
+            if (!pinnedNode) {
+                popup.style.display = "none";
+            }
         });
 
-    });
+        node.addEventListener("click", event => {
+            event.stopPropagation();
 
+            if (pinnedNode === node) {
+                hidePopup();
+                return;
+            }
+
+            showPopup(node, data, event.clientX, event.clientY, true);
+        });
+
+        node.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+
+                const rect = node.getBoundingClientRect();
+
+                showPopup(
+                    node,
+                    data,
+                    rect.left + rect.width / 2,
+                    rect.top + rect.height / 2,
+                    true
+                );
+            }
+
+            if (event.key === "Escape") {
+                hidePopup();
+            }
+        });
+    });
 }
 
+closeButton.addEventListener("click", hidePopup);
 
-/*
-   IMPORTANT:
-   Do not use startOnLoad:true.
-
-   Instead, explicitly render Mermaid first,
-   then attach the hover events.
-*/
-
-await mermaid.run({
-    querySelector: ".mermaid"
+document.addEventListener("click", event => {
+    if (
+        pinnedNode &&
+        !popup.contains(event.target) &&
+        !event.target.closest(".mermaid .node")
+    ) {
+        hidePopup();
+    }
 });
 
-setupHover();
+window.addEventListener("resize", () => {
+    if (popup.style.display === "block") {
+        const rect = popup.getBoundingClientRect();
+        positionPopup(
+            Math.min(rect.left, window.innerWidth - 20),
+            Math.min(rect.top, window.innerHeight - 20)
+        );
+    }
+});
+
+try {
+    await mermaid.run({
+        querySelector: ".mermaid"
+    });
+
+    setupInteractions();
+
+} catch (error) {
+    console.error("The argument map could not be rendered:", error);
+
+    document.querySelector(".map-container").innerHTML =
+        "<p>The argument map could not load. Please refresh the page or check your internet connection.</p>";
+}
 
 </script>
+
+</body>
+</html>
