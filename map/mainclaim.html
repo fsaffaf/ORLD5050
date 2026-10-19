@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Understanding the Main Claim of an Argument | ORLD 5050</title>
+
+    <meta
+        name="description"
+        content="Learn how to identify the main claim of an argument and understand how supporting reasons and evidence connect to it.">
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.learning-objectives strong{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
+}
+
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.highlight{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+
+<div class="container">
+
+    <h1>Understanding the Main Claim of an Argument</h1>
+
+    <p class="subtitle">ORLD 5050 | Argument Skills</p>
+
+
+    <div class="learning-objectives">
+
+        <strong>Learning Focus</strong>
+
+        <p>
+            Learn how to identify the central point of an argument and
+            understand how reasons and evidence support it.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 1
+    ========================== -->
+
+    <div class="card">
+
+        <h2>1. What Is a Main Claim?</h2>
+
+        <p>
+            A <strong>main claim</strong> is the central point that a person
+            wants others to believe or accept. It tells the reader what the
+            writer thinks is true, what should happen, or what decision should
+            be made.
+        </p>
+
+        <p>
+            Think of the main claim as the answer to this question:
+        </p>
+
+        <div class="highlight">
+            <strong class="blue-heading">
+                What is the writer trying to convince me of?
+            </strong>
+        </div>
+
+        <p>
+            Every argument needs a main claim. Without one, the reader may not
+            understand what the writer is trying to prove.
+        </p>
+
+        <h3>Example</h3>
+
+        <p>
+            Imagine that a manager at a technology company wants employees to
+            work from home two days each week.
+        </p>
+
+        <div class="learning-objectives">
+
+            <strong>Main Claim</strong>
+
+            <p>
+                Employees should be allowed to work from home two days each week.
+            </p>
+
+        </div>
+
+        <p>
+            This sentence tells us exactly what the manager wants the company
+            to do. It is the main claim because the rest of the argument should
+            explain why the company should accept this idea.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 2
+    ========================== -->
+
+    <div class="card">
+
+        <h2>2. What Makes a Strong Main Claim?</h2>
+
+        <p>
+            A strong main claim has three important features.
+        </p>
+
+        <h3>1. Clear</h3>
+
+        <p>
+            The reader should understand what the writer is saying. Avoid
+            statements that are too general or confusing.
+        </p>
+
+        <h3>2. Takes a Position</h3>
+
+        <p>
+            The writer makes a point that someone could agree or disagree with.
+        </p>
+
+        <h3>3. Can Be Supported</h3>
+
+        <p>
+            The writer can explain why the claim makes sense and provide
+            information to support it.
+        </p>
+
+        <hr>
+
+        <p>
+            Consider these examples:
+        </p>
+
+        <div style="overflow-x:auto;">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Statement</th>
+                        <th scope="col">Assessment</th>
+                        <th scope="col">Why?</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Technology is important.</td>
+                        <td>Too general</td>
+                        <td>
+                            It does not take a clear position.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Many companies use technology.</td>
+                        <td>Not a strong claim</td>
+                        <td>
+                            It is a statement of fact, not a clear position
+                            to defend.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Companies should provide cybersecurity training
+                            to all employees.
+                        </td>
+                        <td><strong>Strong claim</strong></td>
+                        <td>
+                            It takes a clear position that can be supported
+                            with reasons and evidence.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Cybersecurity training is good.</td>
+                        <td>Needs improvement</td>
+                        <td>
+                            It is too vague. The writer should explain what is
+                            good about it or what should be done.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p>
+            A main claim does not need to be complicated. A simple, clear
+            statement is often stronger than a long sentence filled with
+            difficult words.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 3
+    ========================== -->
+
+    <div class="card">
+
+        <h2>3. How Is a Main Claim Different from a Topic?</h2>
+
+        <p>
+            A <strong>topic</strong> tells the reader what the argument is
+            about. A <strong>main claim</strong> tells the reader what the
+            writer believes about that topic.
+        </p>
+
+        <div class="highlight">
+
+            <p>
+                <strong class="blue-heading">Topic:</strong>
+                Cybersecurity training
+            </p>
+
+            <p>
+                <strong class="blue-heading">Main claim:</strong>
+                Companies should require all employees to complete
+                cybersecurity training every year.
+            </p>
+
+        </div>
+
+        <p>
+            The topic identifies the subject. The main claim gives the
+            writer's position on that subject.
+        </p>
+
+        <p>
+            Knowing the topic is not enough. When you create an argument, you
+            must decide what you want your audience to believe or do about
+            that topic.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 4
+    ========================== -->
+
+    <div class="card">
+
+        <h2>4. How Is a Main Claim Different from a Supporting Reason?</h2>
+
+        <p>
+            A main claim is the central point of the argument. A
+            <strong>supporting reason</strong> explains why the audience
+            should accept that point.
+        </p>
+
+        <div class="learning-objectives">
+
+            <strong>Main Claim</strong>
+
+            <p>
+                Companies should require all employees to complete
+                cybersecurity training every year.
+            </p>
+
+        </div>
+
+        <div class="highlight">
+
+            <strong class="blue-heading">Supporting Reasons</strong>
+
+            <ul>
+                <li>
+                    Regular training can help employees recognize phishing
+                    emails.
+                </li>
+
+                <li>
+                    Training can help employees learn how to protect private
+                    company information.
+                </li>
+
+                <li>
+                    Employees who understand security risks may be less likely
+                    to make costly mistakes.
+                </li>
+            </ul>
+
+        </div>
+
+        <p>
+            Notice that the supporting reasons connect back to the main claim.
+            Each one explains why the company should require training.
+        </p>
+
+        <p>
+            A supporting reason is not the same as <strong>evidence</strong>.
+            A reason explains <em>why</em> the claim makes sense. Evidence
+            provides information that helps show whether that reason is true.
+        </p>
+
+        <div class="highlight">
+
+            <p>
+                <strong class="blue-heading">Reason:</strong>
+                Training can help employees recognize phishing emails.
+            </p>
+
+            <p>
+                <strong class="blue-heading">Evidence:</strong>
+                Company records show that employees who completed the training
+                correctly identified more test phishing emails than employees
+                who had not completed it.
+            </p>
+
+        </div>
+
+        <p>
+            The evidence makes the reason more believable.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 5
+    ========================== -->
+
+    <div class="card">
+
+        <h2>5. How Do You Find the Main Claim in an Argument?</h2>
+
+        <p>
+            When reading an argument, use these four steps.
+        </p>
+
+        <ol>
+
+            <li>
+                <strong>Identify the topic.</strong><br>
+                Ask yourself, "What is this argument about?"
+            </li>
+
+            <li>
+                <strong>Look for the writer's position.</strong><br>
+                Ask yourself, "What does the writer think should happen, or
+                what does the writer want me to believe?"
+            </li>
+
+            <li>
+                <strong>Look at the reasons.</strong><br>
+                Ask yourself, "What points does the writer use to explain or
+                defend this position?"
+            </li>
+
+            <li>
+                <strong>Find the statement that connects the argument.</strong>
+                <br>
+                The main claim is the central point that the supporting
+                reasons help defend. It may appear at the beginning, in the
+                middle, or at the end of an argument.
+            </li>
+
+        </ol>
+
+        <div class="learning-objectives">
+
+            <strong>Important</strong>
+
+            <p>
+                Do not assume that the first sentence is always the main claim.
+                Read the entire argument before deciding.
+            </p>
+
+        </div>
+
+
+        <h3>Practice Example</h3>
+
+        <div class="highlight">
+
+            <p>
+                A technology company should allow employees to work from home
+                two days each week. Employees may have more time to focus on
+                their work when they have fewer office distractions. Working
+                from home can also reduce the time employees spend commuting.
+                These changes may help employees manage their time and complete
+                their work.
+            </p>
+
+        </div>
+
+        <p>
+            Now identify the parts of the argument.
+        </p>
+
+        <ul>
+
+            <li>
+                <strong>Topic:</strong>
+                Working from home
+            </li>
+
+            <li>
+                <strong>Main claim:</strong>
+                The company should allow employees to work from home two days
+                each week.
+            </li>
+
+            <li>
+                <strong>Supporting reason 1:</strong>
+                Employees may have fewer distractions.
+            </li>
+
+            <li>
+                <strong>Supporting reason 2:</strong>
+                Employees may spend less time commuting.
+            </li>
+
+            <li>
+                <strong>Overall purpose:</strong>
+                To convince the company to allow employees to work from home
+                two days each week.
+            </li>
+
+        </ul>
+
+        <p>
+            The main claim gives the argument its direction. The supporting
+            reasons explain why the company should consider the proposal.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 6
+    ========================== -->
+
+    <div class="card">
+
+        <h2>6. What Is the Difference Between a Main Claim and a Fact?</h2>
+
+        <p>
+            A <strong>fact</strong> is a statement that can be checked to
+            determine whether it is true or false. A main claim takes a
+            position that the writer wants the audience to accept.
+        </p>
+
+        <div style="overflow-x:auto;">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Example</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>Fact</strong></td>
+                        <td>The company has 500 employees.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Main claim</strong></td>
+                        <td>
+                            The company should provide cybersecurity training
+                            to all 500 employees.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p>
+            The fact provides information about the company. The main claim
+            recommends an action.
+        </p>
+
+        <p>
+            Arguments often use facts as evidence to support a claim. However,
+            facts alone do not tell the reader what decision should be made.
+            The writer must explain how the facts support the main claim.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 7
+    ========================== -->
+
+    <div class="card">
+
+        <h2>7. Why Does the Main Claim Matter?</h2>
+
+        <p>
+            The main claim helps the writer stay focused. It also helps the
+            reader understand the purpose of the argument.
+        </p>
+
+        <p>
+            Without a clear main claim, an argument may include many ideas
+            without explaining how they fit together. The reasons may be
+            interesting, but the reader may not understand what they are
+            supposed to prove.
+        </p>
+
+        <p>
+            A clear main claim helps answer three questions:
+        </p>
+
+        <ol>
+
+            <li>
+                What does the writer want the audience to believe or do?
+            </li>
+
+            <li>
+                What reasons support that position?
+            </li>
+
+            <li>
+                What evidence helps show that the reasons are strong?
+            </li>
+
+        </ol>
+
+        <p>
+            These questions are especially important when making decisions at
+            work. For example, a manager may argue that a company should
+            change its training program, hire more employees, or adopt a new
+            technology. The main claim identifies the decision the manager
+            wants others to consider.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SECTION 8
+    ========================== -->
+
+    <div class="card">
+
+        <h2>8. Key Takeaways</h2>
+
+        <p>
+            Remember these points when reading or writing an argument:
+        </p>
+
+        <ul>
+
+            <li>
+                The <strong>main claim</strong> is the central point the writer
+                wants the audience to accept.
+            </li>
+
+            <li>
+                The <strong>topic</strong> tells the reader what the argument
+                is about.
+            </li>
+
+            <li>
+                A <strong>supporting reason</strong> explains why the audience
+                should accept the main claim.
+            </li>
+
+            <li>
+                <strong>Evidence</strong> provides information that supports a
+                reason or claim.
+            </li>
+
+            <li>
+                A strong main claim is clear, takes a position, and can be
+                supported with reasons and evidence.
+            </li>
+
+            <li>
+                Every supporting part of the argument should connect to the
+                main claim.
+            </li>
+
+        </ul>
+
+
+        <div class="learning-objectives">
+
+            <strong>Before You Begin Writing</strong>
+
+            <p>
+                <strong>
+                    If my reader remembers only one point from my argument,
+                    what do I want that point to be?
+                </strong>
+            </p>
+
+            <p>
+                Your answer is a good starting place for your main claim.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
