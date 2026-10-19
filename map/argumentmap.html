@@ -163,13 +163,15 @@ h1 {
 
         <div class="mermaid">
 
+
+
 flowchart TD
 
-A["<span style='font-size:28px'>Main Claim</span>"]
+A["Main Claim"]
 
-SC1["<span style='font-size:23px'>Subclaim 1</span>"]
-SC2["<span style='font-size:23px'>Subclaim 2</span>"]
-SC3["<span style='font-size:23px'>Subclaim 3</span>"]
+SC1["Subclaim 1"]
+SC2["Subclaim 2"]
+SC3["Subclaim 3"]
 
 P11["Premise 1"]
 P12["Premise 2"]
@@ -244,30 +246,26 @@ P31 --> E31 --> W31
 P32 --> E32 --> W32
 P33 --> E33 --> W33
 
-A --> CA1
-CA1 --> R1
+A --> CA1 --> R1
+SC2 --> CA2 --> R2
+P33 --> CA3 --> R3
 
-SC2 --> CA2
-CA2 --> R2
-
-P33 --> CA3
-CA3 --> R3
-
-classDef main fill:#ffffff,color:#0e68b3,stroke:#0e68b3,stroke-width:3px
-classDef subclaim fill:#ffffff,color:#174a78,stroke:#3f83d8,stroke-width:2px
-classDef premise fill:#ffffff,color:#174a78,stroke:#6fa6d5,stroke-width:2px
-classDef warrant fill:#ffffff,color:#174a78,stroke:#7fa8c9,stroke-width:2px
-classDef evidence fill:#ffffff,color:#174a78,stroke:#4d91c9,stroke-width:2px
-classDef counterargument fill:#ffffff,color:#174a78,stroke:#c94f4f,stroke-width:3px
-classDef rebuttal fill:#ffffff,color:#174a78,stroke:#2f6fbd,stroke-width:2px
+classDef main fill:#0e68b3,color:#ffffff,stroke:#084b82,stroke-width:3px,font-size:28px
+classDef subclaim fill:#dceeff,color:#123b5d,stroke:#0e68b3,stroke-width:2px,font-size:23px
+classDef premise fill:#ffffff,color:#222222,stroke:#777777,stroke-width:1.5px,font-size:18px
+classDef evidence fill:#fff0dc,color:#663c00,stroke:#e67e22,stroke-width:2px,font-size:18px
+classDef warrant fill:#e5f4e5,color:#205520,stroke:#4b8b4b,stroke-width:2px,font-size:18px
+classDef counterargument fill:#fde5e5,color:#7d2020,stroke:#c62828,stroke-width:2px,font-size:18px
+classDef rebuttal fill:#f0e5ff,color:#45216d,stroke:#8052a0,stroke-width:2px,font-size:18px
 
 class A main
 class SC1,SC2,SC3 subclaim
 class P11,P12,P13,P21,P22,P23,P31,P32,P33 premise
-class W11,W12,W13,W21,W22,W23,W31,W32,W33 warrant
 class E11,E12,E13,E21,E22,E23,E31,E32,E33 evidence
+class W11,W12,W13,W21,W22,W23,W31,W32,W33 warrant
 class CA1,CA2,CA3 counterargument
 class R1,R2,R3 rebuttal
+
 
         </div>
 
