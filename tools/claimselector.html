@@ -26,7 +26,7 @@ body {
 .measurement-wrapper {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 2rem;
 }
@@ -91,22 +91,7 @@ body {
   line-height: 1.7;
 }
 
-.research-note {
-  margin: 0.75rem 0 0;
-  padding: 1rem;
-  background: #f4f9fe;
-  border-left: 4px solid #0e68b3;
-  border-radius: 6px;
-  color: #333333;
-  font-size: 0.94rem;
-  line-height: 1.7;
-}
-
-.research-note strong {
-  color: #0e68b3;
-}
-
-/* CLAIM TEMPLATE */
+/* SENTENCE TEMPLATES */
 
 .claim-template {
   margin: 1rem 0 1.5rem;
@@ -119,30 +104,6 @@ body {
 }
 
 .claim-template strong { color: #0e68b3; }
-
-/* DEFINITIONS */
-
-.definition-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin: 1rem 0 1.5rem;
-}
-
-.definition {
-  padding: 0.85rem 1rem;
-  background: #f8fafc;
-  border: 1px solid #e1e8ef;
-  border-radius: 8px;
-  line-height: 1.6;
-  font-size: 0.94rem;
-}
-
-.definition strong {
-  display: block;
-  margin-bottom: 0.2rem;
-  color: #0e68b3;
-}
 
 /* DROPDOWNS */
 
@@ -201,7 +162,7 @@ body {
   color: #174a73;
 }
 
-/* RESULT */
+/* RESULT PANELS */
 
 .result-panel {
   display: none;
@@ -239,6 +200,12 @@ body {
   color: #333333;
   line-height: 1.8;
 }
+
+.result-description p { margin: 0.75rem 0 0; }
+
+.result-description strong { color: #174a73; }
+
+/* BUTTONS */
 
 .button-row {
   display: flex;
@@ -300,10 +267,6 @@ body {
   .step-card, .result-panel { padding: 1.25rem; }
 }
 
-@media (max-width: 520px) {
-  .definition-list { grid-template-columns: 1fr; }
-}
-
 @media (max-width: 420px) {
   .measurement-wrapper { padding: 0.75rem; }
   .glass { padding: 1.25rem; }
@@ -327,12 +290,12 @@ body {
   <h2>Main Claim Builder</h2>
 
   <p>
-    Choose your graduate program and complete the sentence to develop
-    a focused claim about a workplace problem, a proposed action, where
-    it applies, who it affects, and why the action matters.
+    Choose your graduate program, define the workplace setting and
+    population, and then develop a recommendation. The builder will
+    combine your sentences into a focused main claim.
   </p>
 
-  <!-- STEP 1 -->
+  <!-- STEP 1: SELECT PROGRAM -->
 
   <div class="step-card" id="step1">
     <div class="question-title">
@@ -354,27 +317,86 @@ body {
     </div>
   </div>
 
-  <!-- STEP 2 -->
+  <!-- STEP 2: SETTING AND POPULATION -->
 
   <div class="step-card hidden" id="step2">
 
     <div class="question-title">
       <span class="question-number">Step 2.</span>
-      Build Your Main Claim
+      Define the Setting and Population
     </div>
 
     <p class="question-help">
-      Complete each part of the sentence by selecting an option from
-      each dropdown. Your choices should work together to express one
-      clear recommendation. You can revise your choices if the completed
-      sentence does not make sense.
+      Identify the specific workplace process or decision you want
+      to address. Then identify the group that would be affected.
+      These choices establish the context for your main claim.
+    </p>
+
+    <div class="claim-template">
+      This claim focuses on <strong>[SETTING]</strong> and is intended
+      to benefit <strong>[POPULATION]</strong>.
+    </div>
+
+    <!-- SETTING -->
+
+    <div class="claim-field">
+      <label class="field-label" for="setting">
+        SETTING — What workplace process or decision are you addressing?
+      </label>
+      <div class="select-wrapper">
+        <select id="setting" disabled>
+          <option value="">-- Choose a workplace process --</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- POPULATION -->
+
+    <div class="claim-field">
+      <label class="field-label" for="population">
+        POPULATION — Who would be affected by this issue?
+      </label>
+      <div class="select-wrapper">
+        <select id="population" disabled>
+          <option value="">-- Choose a population --</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- GENERATED CONTEXT SENTENCE -->
+
+    <div class="result-panel" id="contextPanel" aria-live="polite">
+      <div class="result-label">Your Context Sentence</div>
+      <h3 class="result-title" id="contextSentence"></h3>
+
+      <div class="result-description">
+        This sentence establishes the scope of your claim. Make sure
+        your setting describes a specific workplace process or decision,
+        and that your population identifies a group that could be
+        affected by that process.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STEP 3: WHO, DO WHAT, AND WHY -->
+
+  <div class="step-card hidden" id="step3">
+
+    <div class="question-title">
+      <span class="question-number">Step 3.</span>
+      Develop Your Recommendation
+    </div>
+
+    <p class="question-help">
+      Decide who should take action, what they should do, and why
+      the action may be helpful. Your recommendation should address
+      the workplace setting and population you selected in Step 2.
     </p>
 
     <div class="claim-template">
       I think that <strong>[WHO]</strong> should
-      <strong>[DO WHAT]</strong> in the context of
-      <strong>[SETTING]</strong> to benefit
-      <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
+      <strong>[DO WHAT]</strong>, because <strong>[WHY]</strong>.
     </div>
 
     <!-- WHO -->
@@ -403,32 +425,6 @@ body {
       </div>
     </div>
 
-    <!-- SETTING -->
-
-    <div class="claim-field">
-      <label class="field-label" for="setting">
-        SETTING — Which workplace process or decision are you addressing?
-      </label>
-      <div class="select-wrapper">
-        <select id="setting" disabled>
-          <option value="">-- Choose a workplace process --</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- POPULATION -->
-
-    <div class="claim-field">
-      <label class="field-label" for="population">
-        POPULATION — Who will be affected?
-      </label>
-      <div class="select-wrapper">
-        <select id="population" disabled>
-          <option value="">-- Choose a population --</option>
-        </select>
-      </div>
-    </div>
-
     <!-- WHY -->
 
     <div class="claim-field">
@@ -442,37 +438,66 @@ body {
       </div>
     </div>
 
-    <!-- FINAL SENTENCE GENERATOR -->
+    <!-- GENERATED RECOMMENDATION SENTENCE -->
 
-    <div class="result-panel" id="resultPanel" aria-live="polite">
-      <div class="result-label">Your Main Claim</div>
-
-      <h3 class="result-title" id="result"></h3>
+    <div class="result-panel" id="recommendationPanel" aria-live="polite">
+      <div class="result-label">Your Recommendation Sentence</div>
+      <h3 class="result-title" id="recommendationSentence"></h3>
 
       <div class="result-description">
-        This claim is a starting point.
-          You should be able to investigate the issue
-          using public research, professional standards, government
-          publications, industry reports, or public case studies. Avoid
-          topics that require confidential company records or private
-          employee information.
-        </p>
+        This sentence states your proposed action and the reason
+        for considering it. The reason is an expected benefit, not
+        a proven result. You will need credible evidence to support
+        the recommendation.
       </div>
-
-      <div class="button-row">
-        <button type="button" class="action-button" id="copyButton">
-          Copy My Claim
-        </button>
-
-        <button type="button" class="action-button secondary" id="resetButton">
-          Start Over
-        </button>
-      </div>
-
-      <div class="status-message" id="statusMessage" role="status"></div>
     </div>
 
   </div>
+
+  <!-- FINAL COMBINED CLAIM -->
+
+  <div class="result-panel" id="finalPanel" aria-live="polite">
+    <div class="result-label">Your Complete Main Claim</div>
+    <h3 class="result-title" id="finalClaim"></h3>
+
+    <div class="result-description">
+      <p>
+        <strong>Check your claim.</strong>
+        Do the two sentences work together? Does the recommendation
+        address the workplace process you identified? Is the intended
+        population clear? Can you support the expected benefit with
+        credible evidence?
+      </p>
+
+      <p>
+        <strong>Keep the topic researchable.</strong>
+        Choose an issue that can be investigated using public research,
+        professional standards, government publications, industry
+        reports, or public case studies. Avoid topics that require
+        confidential company records or private employee data.
+      </p>
+
+      <p>
+        <strong>Remember:</strong>
+        The completed claim is a starting point, not a proven conclusion.
+        Review the wording and revise your selections if the two
+        sentences do not form one coherent recommendation.
+      </p>
+    </div>
+
+    <div class="button-row">
+      <button type="button" class="action-button" id="copyButton">
+        Copy My Claim
+      </button>
+
+      <button type="button" class="action-button secondary" id="resetButton">
+        Start Over
+      </button>
+    </div>
+
+    <div class="status-message" id="statusMessage" role="status"></div>
+  </div>
+
 </div>
 </div>
 
@@ -718,7 +743,6 @@ const data = {
 
 /* =========================================
    SHARED SETTINGS
-   Specific workplace processes and decisions
    ========================================= */
 
 const settings = {
@@ -886,8 +910,18 @@ const population = document.getElementById("population");
 const why = document.getElementById("why");
 
 const step2 = document.getElementById("step2");
-const resultPanel = document.getElementById("resultPanel");
-const result = document.getElementById("result");
+const step3 = document.getElementById("step3");
+
+const contextPanel = document.getElementById("contextPanel");
+const contextSentence = document.getElementById("contextSentence");
+
+const recommendationPanel =
+  document.getElementById("recommendationPanel");
+const recommendationSentence =
+  document.getElementById("recommendationSentence");
+
+const finalPanel = document.getElementById("finalPanel");
+const finalClaim = document.getElementById("finalClaim");
 const statusMessage = document.getElementById("statusMessage");
 
 const copyButton = document.getElementById("copyButton");
@@ -895,7 +929,6 @@ const resetButton = document.getElementById("resetButton");
 
 /* =========================================
    DROPDOWN HELPERS
-   Supports ordinary arrays and grouped options
    ========================================= */
 
 function populateSelect(select, options, placeholder) {
@@ -944,30 +977,94 @@ function clearSelect(select, placeholder) {
 }
 
 /* =========================================
-   SENTENCE GENERATOR
+   SENTENCE GENERATORS
    ========================================= */
 
-function updateClaim() {
-  if (
-    !who.value ||
-    !what.value ||
-    !setting.value ||
-    !population.value ||
-    !why.value
-  ) {
-    resultPanel.classList.remove("visible");
+function updateContextSentence() {
+  if (!setting.value || !population.value) {
+    contextPanel.classList.remove("visible");
+    contextSentence.textContent = "";
     return;
   }
 
-  result.textContent =
+  contextSentence.textContent =
+    "This claim focuses on " + setting.value +
+    " and is intended to benefit " + population.value + ".";
+
+  contextPanel.classList.add("visible");
+}
+
+function updateRecommendationSentence() {
+  if (!who.value || !what.value || !why.value) {
+    recommendationPanel.classList.remove("visible");
+    recommendationSentence.textContent = "";
+    return;
+  }
+
+  recommendationSentence.textContent =
     "I think that " + who.value +
     " should " + what.value +
-    " in the context of " + setting.value +
-    " to benefit " + population.value +
     ", because " + why.value + ".";
 
-  resultPanel.classList.add("visible");
+  recommendationPanel.classList.add("visible");
+}
+
+function updateFinalClaim() {
+  if (
+    !setting.value ||
+    !population.value ||
+    !who.value ||
+    !what.value ||
+    !why.value
+  ) {
+    finalPanel.classList.remove("visible");
+    finalClaim.textContent = "";
+    return;
+  }
+
+  updateContextSentence();
+  updateRecommendationSentence();
+
+  finalClaim.textContent =
+    contextSentence.textContent + " " +
+    recommendationSentence.textContent;
+
+  finalPanel.classList.add("visible");
   statusMessage.textContent = "";
+}
+
+/* =========================================
+   HIDE RESULTS WHEN CHOICES CHANGE
+   ========================================= */
+
+function hideRecommendationResults() {
+  recommendationPanel.classList.remove("visible");
+  recommendationSentence.textContent = "";
+  finalPanel.classList.remove("visible");
+  finalClaim.textContent = "";
+  statusMessage.textContent = "";
+}
+
+function hideAllResults() {
+  contextPanel.classList.remove("visible");
+  contextSentence.textContent = "";
+
+  hideRecommendationResults();
+}
+
+/* =========================================
+   SCROLL HELPER
+   ========================================= */
+
+function scrollToElement(element) {
+  setTimeout(function () {
+    element.scrollIntoView({
+      behavior: window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches ? "auto" : "smooth",
+      block: "nearest"
+    });
+  }, 100);
 }
 
 /* =========================================
@@ -977,144 +1074,180 @@ function updateClaim() {
 major.addEventListener("change", function () {
   const selected = data[major.value];
 
-  clearSelect(who, "-- Choose who should act --");
-  clearSelect(what, "-- Choose an action --");
   clearSelect(setting, "-- Choose a workplace process --");
   clearSelect(population, "-- Choose a population --");
+  clearSelect(who, "-- Choose who should act --");
+  clearSelect(what, "-- Choose an action --");
   clearSelect(why, "-- Choose a reason --");
 
-  resultPanel.classList.remove("visible");
+  hideAllResults();
   statusMessage.textContent = "";
+
+  step3.classList.add("hidden");
 
   if (!selected) {
     step2.classList.add("hidden");
     return;
   }
 
-  populateSelect(who, selected.who, "-- Choose who should act --");
+  populateSelect(setting, settings, "-- Choose a workplace process --");
+  populateSelect(population, populations, "-- Choose a population --");
+
   step2.classList.remove("hidden");
 
   scrollToElement(step2);
 });
 
 /* =========================================
-   WHO
+   STEP 2: SETTING
+   ========================================= */
+
+setting.addEventListener("change", function () {
+  hideAllResults();
+
+  // Changing the context resets the recommendation selections.
+  clearSelect(who, "-- Choose who should act --");
+  clearSelect(what, "-- Choose an action --");
+  clearSelect(why, "-- Choose a reason --");
+
+  step3.classList.add("hidden");
+
+  if (!setting.value) return;
+
+  // Open Step 3 only after both context selections are complete.
+  if (population.value) {
+    updateContextSentence();
+
+    populateSelect(
+      who,
+      data[major.value].who,
+      "-- Choose who should act --"
+    );
+
+    step3.classList.remove("hidden");
+    scrollToElement(step3);
+  }
+});
+
+/* =========================================
+   STEP 2: POPULATION
+   ========================================= */
+
+population.addEventListener("change", function () {
+  hideAllResults();
+
+  // Changing the context resets the recommendation selections.
+  clearSelect(who, "-- Choose who should act --");
+  clearSelect(what, "-- Choose an action --");
+  clearSelect(why, "-- Choose a reason --");
+
+  step3.classList.add("hidden");
+
+  if (!population.value) return;
+
+  // Open Step 3 only after both context selections are complete.
+  if (setting.value) {
+    updateContextSentence();
+
+    populateSelect(
+      who,
+      data[major.value].who,
+      "-- Choose who should act --"
+    );
+
+    step3.classList.remove("hidden");
+    scrollToElement(step3);
+  }
+});
+
+/* =========================================
+   STEP 3: WHO
    ========================================= */
 
 who.addEventListener("change", function () {
   clearSelect(what, "-- Choose an action --");
-  clearSelect(setting, "-- Choose a workplace process --");
-  clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
-  resultPanel.classList.remove("visible");
-  statusMessage.textContent = "";
+  hideRecommendationResults();
 
   if (!who.value) return;
 
-  populateSelect(what, data[major.value].what, "-- Choose an action --");
+  populateSelect(
+    what,
+    data[major.value].what,
+    "-- Choose an action --"
+  );
 });
 
 /* =========================================
-   DO WHAT
+   STEP 3: DO WHAT
    ========================================= */
 
 what.addEventListener("change", function () {
-  clearSelect(setting, "-- Choose a workplace process --");
-  clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
-  resultPanel.classList.remove("visible");
-  statusMessage.textContent = "";
+  hideRecommendationResults();
 
   if (!what.value) return;
 
-  populateSelect(setting, settings, "-- Choose a workplace process --");
+  populateSelect(
+    why,
+    data[major.value].why,
+    "-- Choose a reason --"
+  );
 });
 
 /* =========================================
-   SETTING
-   ========================================= */
-
-setting.addEventListener("change", function () {
-  clearSelect(population, "-- Choose a population --");
-  clearSelect(why, "-- Choose a reason --");
-
-  resultPanel.classList.remove("visible");
-  statusMessage.textContent = "";
-
-  if (!setting.value) return;
-
-  populateSelect(population, populations, "-- Choose a population --");
-});
-
-/* =========================================
-   POPULATION
-   ========================================= */
-
-population.addEventListener("change", function () {
-  clearSelect(why, "-- Choose a reason --");
-
-  resultPanel.classList.remove("visible");
-  statusMessage.textContent = "";
-
-  if (!population.value) return;
-
-  populateSelect(why, data[major.value].why, "-- Choose a reason --");
-});
-
-/* =========================================
-   WHY
+   STEP 3: WHY
    ========================================= */
 
 why.addEventListener("change", function () {
-  if (!why.value) {
-    resultPanel.classList.remove("visible");
-    return;
-  }
+  hideRecommendationResults();
 
-  updateClaim();
-  scrollToElement(resultPanel);
+  if (!why.value) return;
+
+  updateRecommendationSentence();
+  updateFinalClaim();
+
+  if (finalPanel.classList.contains("visible")) {
+    scrollToElement(finalPanel);
+  } else {
+    scrollToElement(recommendationPanel);
+  }
 });
 
 /* =========================================
-   SCROLL HELPER
-   ========================================= */
-
-function scrollToElement(element) {
-  setTimeout(function () {
-    element.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth",
-      block: "nearest"
-    });
-  }, 100);
-}
-
-/* =========================================
-   COPY CLAIM
+   COPY COMPLETE CLAIM
    ========================================= */
 
 copyButton.addEventListener("click", async function () {
-  if (
-    !who.value ||
-    !what.value ||
-    !setting.value ||
-    !population.value ||
-    !why.value
-  ) {
+  if (!finalClaim.textContent.trim()) {
     statusMessage.textContent =
-      "Please complete all five dropdowns before copying.";
+      "Please complete Steps 2 and 3 before copying your claim.";
     return;
   }
 
   try {
-    await navigator.clipboard.writeText(result.textContent);
-    statusMessage.textContent = "Your claim has been copied.";
-  } catch (error) {
+    await navigator.clipboard.writeText(finalClaim.textContent);
     statusMessage.textContent =
-      "Copying was blocked by your browser. Select the claim text and copy it manually.";
+      "Your complete claim has been copied.";
+  } catch (error) {
+    // Fallback for browsers that block clipboard access.
+    const textArea = document.createElement("textarea");
+    textArea.value = finalClaim.textContent;
+    textArea.setAttribute("readonly", "");
+    textArea.style.position = "fixed";
+    textArea.style.left = "-9999px";
+
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    const copied = document.execCommand("copy");
+    textArea.remove();
+
+    statusMessage.textContent = copied
+      ? "Your complete claim has been copied."
+      : "Copying was blocked. Select the claim text and copy it manually.";
   }
 });
 
@@ -1125,21 +1258,23 @@ copyButton.addEventListener("click", async function () {
 resetButton.addEventListener("click", function () {
   major.value = "";
 
-  clearSelect(who, "-- Choose who should act --");
-  clearSelect(what, "-- Choose an action --");
   clearSelect(setting, "-- Choose a workplace process --");
   clearSelect(population, "-- Choose a population --");
+  clearSelect(who, "-- Choose who should act --");
+  clearSelect(what, "-- Choose an action --");
   clearSelect(why, "-- Choose a reason --");
 
   step2.classList.add("hidden");
-  resultPanel.classList.remove("visible");
+  step3.classList.add("hidden");
+
+  hideAllResults();
   statusMessage.textContent = "";
 
   window.scrollTo({
     top: 0,
-    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ? "auto"
-      : "smooth"
+    behavior: window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches ? "auto" : "smooth"
   });
 });
 
