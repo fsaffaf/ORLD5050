@@ -1,293 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Main Claim Builder</title>
-
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  background: #f4f6f9;
-  color: #222;
+:root {
+  --blue: #0e68b3;
+  --blue-dark: #174a73;
+  --blue-pale: #f4f9fe;
+  --orange: #e67e22;
+  --ink: #263746;
+  --muted: #52616d;
+  --line: #cbddea;
+  --page: #f4f8fc;
 }
 * { box-sizing: border-box; }
-body { min-height: 100vh; overflow-x: hidden; }
-
-.measurement-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
+html, body { margin: 0; padding: 0; min-height: 100%; }
+body {
+  font-family: Lato, "Lato Extended", Aptos, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  background: var(--page);
+  color: var(--ink);
+  line-height: 1.6;
 }
-.glass {
-  width: 100%;
-  max-width: 1000px;
-  padding: 2.5rem;
-  background: #fff;
-  border: 1px solid #d9e2ec;
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.05);
-}
-.glass h2 {
-  margin: 0 0 .75rem;
-  text-align: center;
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 500;
-  letter-spacing: -.03em;
-  color: #0e68b3;
-}
-.glass > p {
-  margin: 0 0 2rem;
-  text-align: center;
-  color: #444;
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
+.page-wrap { width: min(100% - 2rem, 940px); margin: 0 auto; padding: 1.5rem 0 2.5rem; }
+h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1rem); font-weight: 700; line-height: 1.25; }
+.intro { margin: 0 0 1.35rem; color: var(--muted); max-width: 75ch; }
 .step-card {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #d9e2ec;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.04);
-  animation: fadeIn .3s ease;
+  position: relative; margin: 1rem 0; padding: 1.35rem 1.45rem 1.5rem;
+  background: #fff; border: 1px solid var(--line); border-left: 6px solid var(--blue);
+  border-radius: 12px; box-shadow: 0 3px 10px rgba(23, 74, 115, .06);
+  animation: appear .22s ease-out;
 }
-.hidden { display: none !important; }
-
-.question-title {
-  margin-bottom: .75rem;
-  font-size: 1.05rem;
-  font-weight: 650;
-  color: #0e68b3;
-  line-height: 1.5;
+.step-card.hidden { display: none; }
+.step-heading { display: flex; align-items: flex-start; gap: .8rem; margin: 0 0 .55rem; color: var(--blue-dark); font-size: 1.15rem; font-weight: 750; line-height: 1.4; }
+.step-number { flex: 0 0 2rem; display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--blue); color: #fff; font-size: .95rem; }
+.step-help { margin: 0 0 1rem; color: var(--muted); }
+.field { margin-top: 1rem; }
+.field:first-of-type { margin-top: .65rem; }
+.field-label { display: block; margin-bottom: .4rem; color: var(--blue-dark); font-weight: 700; }
+.select-wrap select, .custom-answer {
+  display: block; width: 100%; min-height: 46px; padding: .7rem .85rem; border: 1px solid #b8cbd9;
+  border-radius: 8px; background: #fff; color: var(--ink); font: inherit; line-height: 1.45;
 }
-.question-number {
-  color: #0e68b3;
-  margin-right: .4rem;
-}
-.question-help {
-  margin: 0 0 1rem;
-  color: #555;
-  line-height: 1.7;
-}
-.claim-template {
-  margin: 1rem 0 1.5rem;
-  padding: 1.25rem;
-  background: #f4f9fe;
-  border-left: 4px solid #0e68b3;
-  border-radius: 8px;
-  line-height: 1.9;
-  color: #333;
-}
-.claim-template strong { color: #0e68b3; }
-
-.claim-field { margin-top: 1.5rem; }
-.field-label {
-  display: block;
-  margin-bottom: .6rem;
-  color: #0e68b3;
-  font-size: 1rem;
-  font-weight: 650;
-  line-height: 1.5;
-}
-.select-wrapper { width: 100%; }
-
-.select-wrapper select,
-.custom-answer {
-  display: block;
-  width: 100%;
-  min-height: 48px;
-  padding: .85rem 1rem;
-  border: 1px solid #d9e2ec;
-  border-radius: 10px;
-  background: #fff;
-  color: #222;
-  font-family: inherit;
-  font-size: 1rem;
-  line-height: 1.5;
-  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
-}
-.select-wrapper select {
-  cursor: pointer;
-}
-.select-wrapper select:hover:not(:disabled),
-.custom-answer:hover {
-  border-color: #0e68b3;
-  background: #f8fbfe;
-}
-.select-wrapper select:focus,
-.custom-answer:focus {
-  outline: none;
-  border-color: #0e68b3;
-  box-shadow: 0 0 0 3px rgba(14,104,179,.15);
-}
-.select-wrapper select:disabled {
-  background: #f4f6f9;
-  color: #777;
-  cursor: not-allowed;
-}
-
-.or-divider {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  margin: 1rem 0;
-  color: #777;
-  font-size: .85rem;
-}
-.or-divider::before,
-.or-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #d9e2ec;
-}
-.custom-label {
-  display: block;
-  margin-bottom: .5rem;
-  color: #444;
-  font-size: .95rem;
-  font-weight: 600;
-}
-.custom-hint {
-  margin: .4rem 0 0;
-  color: #666;
-  font-size: .85rem;
-  line-height: 1.6;
-}
-
-.result-panel {
-  display: none;
-  margin-top: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid #b9d8ef;
-  background: #f0f7fc;
-  box-shadow: 0 3px 10px rgba(0,0,0,.05);
-  animation: fadeIn .3s ease;
-}
-.result-panel.visible { display: block; }
-.result-label {
-  font-size: .78rem;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  color: #555;
-  margin-bottom: .6rem;
-  line-height: 1.5;
-}
-.result-title {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 650;
-  color: #0e68b3;
-  line-height: 1.8;
-  overflow-wrap: anywhere;
-}
-.result-description {
-  margin-top: .75rem;
-  color: #333;
-  line-height: 1.8;
-}
-.result-description p { margin: .75rem 0 0; }
-.result-description strong { color: #174a73; }
-
-.button-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;
-  margin-top: 1rem;
-}
-.action-button {
-  flex: 1 1 180px;
-  border: 1px solid #0e68b3;
-  border-radius: 999px;
-  padding: .9rem 1.25rem;
-  background: #0e68b3;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s ease, border-color .2s ease, transform .2s ease;
-}
-.action-button:hover {
-  background: #2b6cb0;
-  border-color: #2b6cb0;
-  transform: translateY(-1px);
-}
-.action-button.secondary {
-  background: #fff;
-  color: #0e68b3;
-}
-.action-button.secondary:hover { background: #f0f7fc; }
-.action-button:focus-visible {
-  outline: 3px solid rgba(14,104,179,.3);
-  outline-offset: 3px;
-}
-.status-message {
-  min-height: 1.5rem;
-  margin-top: .75rem;
-  color: #276749;
-  font-size: .9rem;
-  line-height: 1.6;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@media (max-width: 700px) {
-  .measurement-wrapper { padding: 1rem; }
-  .glass { padding: 1.5rem; }
-  .step-card, .result-panel { padding: 1.25rem; }
-}
-@media (max-width: 420px) {
-  .measurement-wrapper { padding: .75rem; }
-  .glass { padding: 1.25rem; }
-  .action-button { flex-basis: 100%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+.select-wrap select { cursor: pointer; }
+.select-wrap select:focus, .custom-answer:focus { outline: 3px solid rgba(14,104,179,.18); border-color: var(--blue); }
+.custom-wrap { display: none; margin-top: .55rem; }
+.custom-wrap.visible { display: block; }
+.custom-answer::placeholder { color: #667987; }
+.field-help { margin: .35rem 0 0; font-size: .9rem; color: var(--muted); }
+.why-list { display: grid; gap: .9rem; }
+.why-item { padding: .9rem; background: #f7fbff; border: 1px solid #d9e8f4; border-radius: 9px; }
+.why-item .field { margin-top: 0; }
+.reason-status { min-height: 1.4rem; margin: .75rem 0 0; font-size: .92rem; color: #8a4b08; }
+.claim-template { margin-top: 1rem; padding: .95rem 1rem; background: var(--blue-pale); border-left: 4px solid var(--orange); border-radius: 7px; }
+.claim-template strong { color: var(--blue); }
+.result-panel { display: none; margin-top: 1rem; padding: 1.4rem; background: #edf7ff; border: 1px solid #b9d8ef; border-radius: 12px; }
+.result-panel.visible { display: block; animation: appear .22s ease-out; }
+.result-label { margin-bottom: .45rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; font-weight: 750; }
+.result-title { margin: 0; color: var(--blue-dark); font-size: 1.08rem; line-height: 1.8; font-weight: 700; overflow-wrap: anywhere; }
+.result-description { margin-top: .7rem; color: var(--muted); }
+.button-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
+.action-button { border: 1px solid var(--blue); border-radius: 999px; padding: .75rem 1.15rem; background: var(--blue); color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.action-button:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+.action-button.secondary { background: white; color: var(--blue); }
+.action-button.secondary:hover { background: var(--blue-pale); }
+.action-button:focus-visible { outline: 3px solid rgba(14,104,179,.28); outline-offset: 3px; }
+.status-message { min-height: 1.4rem; margin-top: .65rem; color: #276749; font-size: .92rem; }
+@keyframes appear { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 560px) { .page-wrap { width: min(100% - 1rem, 940px); padding-top: 1rem; } .step-card { padding: 1rem; } .button-row .action-button { flex: 1 1 100%; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 </style>
 </head>
-
 <body>
-<div class="measurement-wrapper">
-<div class="glass">
+<main class="page-wrap">
+  <h1>Main Claim Builder</h1>
+  <p class="intro">Choose your graduate program, then build a focused main claim by selecting or writing an action, three distinct reasons, and the person or group responsible for taking action. Each step offers options tailored to your program.</p>
 
-  <h2>Main Claim Builder</h2>
-  <p>
-    Choose your graduate program, identify an action you want to recommend,
-    select three reasons supporting that action, and identify who should act.
-    Use the dropdown suggestions or type your own answers at every step.
-  </p>
-
-  <!-- STEP 1: PROGRAM -->
-
-  <div class="step-card" id="step1">
-    <div class="question-title">
-      <span class="question-number">Step 1.</span>
-      Which graduate program are you in?
-    </div>
-
-    <p class="question-help">
-      Your program determines which suggestions appear in the following steps.
-    </p>
-
-    <div class="select-wrapper">
+  <section class="step-card" id="step1" aria-labelledby="step1heading">
+    <h2 class="step-heading" id="step1heading"><span class="step-number">1</span><span>Pick your program</span></h2>
+    <p class="step-help">Choose the graduate program you are enrolled in. The remaining options will be based on your selection.</p>
+    <div class="select-wrap">
+      <label class="field-label" for="major">Graduate program</label>
       <select id="major">
-        <option value="">-- Select your graduate program --</option>
+        <option value="">-- Select your program --</option>
         <option value="ai">Applied AI and Decision Analytics, M.S.</option>
         <option value="cyber">Cybersecurity, M.S.</option>
         <option value="is">Information Systems and Emerging Technologies, M.S.</option>
@@ -297,267 +93,87 @@ body { min-height: 100vh; overflow-x: hidden; }
         <option value="technology">Technology Leadership, M.S.</option>
       </select>
     </div>
-  </div>
+  </section>
 
-  <!-- STEP 2: WHAT -->
-
-  <div class="step-card hidden" id="step2">
-    <div class="question-title">
-      <span class="question-number">Step 2.</span>
-      What should be done?
-    </div>
-
-    <p class="question-help">
-      Choose a specific action, policy, or practice that an organization
-      should adopt, change, or discontinue. You can use a suggestion or
-      enter an action of your own.
-    </p>
-
-    <div class="claim-template">
-      I think that <strong>[WHO]</strong> should
-      <strong>[DO WHAT]</strong>, because <strong>[WHY 1]</strong>,
-      <strong>[WHY 2]</strong>, and <strong>[WHY 3]</strong>.
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="what">
-        DO WHAT — Which action do you recommend?
-      </label>
-
-      <div class="select-wrapper">
-        <select id="what" disabled>
-          <option value="">-- Choose an action --</option>
-        </select>
+  <section class="step-card hidden" id="step2" aria-labelledby="step2heading">
+    <h2 class="step-heading" id="step2heading"><span class="step-number">2</span><span>Pick your what</span></h2>
+    <p class="step-help">What specific action do you think should happen? Choose an option related to your program, or select “Type my own answer…” to enter your own action.</p>
+    <div class="claim-template">I think that <strong>[WHO]</strong> should <strong>[WHAT]</strong>, because <strong>[WHY 1]</strong>, <strong>[WHY 2]</strong>, and <strong>[WHY 3]</strong>.</div>
+    <div class="field">
+      <label class="field-label" for="what">WHAT — What should they do?</label>
+      <div class="select-wrap"><select id="what" disabled><option value="">-- Choose an action --</option></select></div>
+      <div class="custom-wrap" id="whatCustomWrap">
+        <label class="field-label" for="whatCustom">Type your own action</label>
+        <input class="custom-answer" id="whatCustom" type="text" maxlength="300" placeholder="Enter a specific action someone could take">
       </div>
-
-      <div class="or-divider">OR</div>
-
-      <label class="custom-label" for="whatCustom">
-        Type your own action
-      </label>
-      <input
-        class="custom-answer"
-        type="text"
-        id="whatCustom"
-        placeholder="Example: establish a required review process"
-        autocomplete="off"
-      />
-      <p class="custom-hint">
-        Start with an action verb, such as require, establish, evaluate,
-        implement, or revise. If you type an answer, it will be used instead
-        of the dropdown selection.
-      </p>
     </div>
-  </div>
+  </section>
 
-  <!-- STEP 3: WHY -->
-
-  <div class="step-card hidden" id="step3">
-    <div class="question-title">
-      <span class="question-number">Step 3.</span>
-      Why should this action be taken?
-    </div>
-
-    <p class="question-help">
-      Choose three different reasons that explain why your recommendation
-      may be beneficial. You may use the suggestions, write your own reasons,
-      or combine both approaches.
-    </p>
-
-    <div class="claim-template">
-      The reasons for this recommendation are
-      <strong>[WHY 1]</strong>, <strong>[WHY 2]</strong>, and
-      <strong>[WHY 3]</strong>.
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="why1">
-        WHY 1 — What is your first reason?
-      </label>
-      <div class="select-wrapper">
-        <select id="why1" disabled>
-          <option value="">-- Choose your first reason --</option>
-        </select>
+  <section class="step-card hidden" id="step3" aria-labelledby="step3heading">
+    <h2 class="step-heading" id="step3heading"><span class="step-number">3</span><span>Pick your why</span></h2>
+    <p class="step-help">Choose three different reasons that explain why your recommendation may be helpful. Each dropdown includes options related to your program. To write your own reason, select “Type my own answer…” for that reason.</p>
+    <div class="why-list">
+      <div class="why-item">
+        <div class="field">
+          <label class="field-label" for="why1">WHY 1 — First reason</label>
+          <div class="select-wrap"><select id="why1" class="why-select" disabled><option value="">-- Choose your first reason --</option></select></div>
+          <div class="custom-wrap" id="why1CustomWrap"><label class="field-label" for="why1Custom">Type your first reason</label><input class="custom-answer why-custom" id="why1Custom" type="text" maxlength="250" placeholder="Enter a reason"></div>
+        </div>
       </div>
-      <div class="or-divider">OR</div>
-      <label class="custom-label" for="why1Custom">
-        Type your own first reason
-      </label>
-      <input
-        class="custom-answer why-custom"
-        type="text"
-        id="why1Custom"
-        placeholder="Example: it may reduce preventable errors"
-        autocomplete="off"
-      />
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="why2">
-        WHY 2 — What is your second reason?
-      </label>
-      <div class="select-wrapper">
-        <select id="why2" disabled>
-          <option value="">-- Choose your second reason --</option>
-        </select>
+      <div class="why-item">
+        <div class="field">
+          <label class="field-label" for="why2">WHY 2 — Second reason</label>
+          <div class="select-wrap"><select id="why2" class="why-select" disabled><option value="">-- Choose your second reason --</option></select></div>
+          <div class="custom-wrap" id="why2CustomWrap"><label class="field-label" for="why2Custom">Type your second reason</label><input class="custom-answer why-custom" id="why2Custom" type="text" maxlength="250" placeholder="Enter a different reason"></div>
+        </div>
       </div>
-      <div class="or-divider">OR</div>
-      <label class="custom-label" for="why2Custom">
-        Type your own second reason
-      </label>
-      <input
-        class="custom-answer why-custom"
-        type="text"
-        id="why2Custom"
-        placeholder="Example: it may improve consistency"
-        autocomplete="off"
-      />
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="why3">
-        WHY 3 — What is your third reason?
-      </label>
-      <div class="select-wrapper">
-        <select id="why3" disabled>
-          <option value="">-- Choose your third reason --</option>
-        </select>
+      <div class="why-item">
+        <div class="field">
+          <label class="field-label" for="why3">WHY 3 — Third reason</label>
+          <div class="select-wrap"><select id="why3" class="why-select" disabled><option value="">-- Choose your third reason --</option></select></div>
+          <div class="custom-wrap" id="why3CustomWrap"><label class="field-label" for="why3Custom">Type your third reason</label><input class="custom-answer why-custom" id="why3Custom" type="text" maxlength="250" placeholder="Enter a different reason"></div>
+        </div>
       </div>
-      <div class="or-divider">OR</div>
-      <label class="custom-label" for="why3Custom">
-        Type your own third reason
-      </label>
-      <input
-        class="custom-answer why-custom"
-        type="text"
-        id="why3Custom"
-        placeholder="Example: it may help protect customer information"
-        autocomplete="off"
-      />
     </div>
+    <p class="reason-status" id="reasonStatus" role="status" aria-live="polite"></p>
+  </section>
 
-    <p class="question-help" id="whyGuidance">
-      All three reasons must be completed and different from one another.
-      Try to choose reasons that support your recommendation in distinct ways.
-    </p>
-  </div>
-
-  <!-- STEP 4: WHO -->
-
-  <div class="step-card hidden" id="step4">
-    <div class="question-title">
-      <span class="question-number">Step 4.</span>
-      Who should take action?
+  <section class="step-card hidden" id="step4" aria-labelledby="step4heading">
+    <h2 class="step-heading" id="step4heading"><span class="step-number">4</span><span>Pick your who</span></h2>
+    <p class="step-help">Who should be responsible for taking the action? Choose a group or organization related to your program, or select “Type my own answer…” to enter your own.</p>
+    <div class="field">
+      <label class="field-label" for="who">WHO — Who should take action?</label>
+      <div class="select-wrap"><select id="who" disabled><option value="">-- Choose who should act --</option></select></div>
+      <div class="custom-wrap" id="whoCustomWrap"><label class="field-label" for="whoCustom">Type your own answer</label><input class="custom-answer" id="whoCustom" type="text" maxlength="300" placeholder="Enter the person, team, or organization responsible"></div>
     </div>
+  </section>
 
-    <p class="question-help">
-      Identify the person, team, department, or organization with the
-      responsibility or authority to carry out your recommendation.
-      Choose a suggestion or identify your own decision-maker.
-    </p>
-
-    <div class="claim-template">
-      I think that <strong>[WHO]</strong> should
-      <strong>[DO WHAT]</strong>, because <strong>[WHY 1]</strong>,
-      <strong>[WHY 2]</strong>, and <strong>[WHY 3]</strong>.
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="who">
-        WHO — Who should carry out the recommendation?
-      </label>
-
-      <div class="select-wrapper">
-        <select id="who" disabled>
-          <option value="">-- Choose who should act --</option>
-        </select>
-      </div>
-
-      <div class="or-divider">OR</div>
-
-      <label class="custom-label" for="whoCustom">
-        Type your own decision-maker
-      </label>
-      <input
-        class="custom-answer"
-        type="text"
-        id="whoCustom"
-        placeholder="Example: department managers"
-        autocomplete="off"
-      />
-      <p class="custom-hint">
-        Identify a decision-maker who could realistically carry out
-        the action you selected.
-      </p>
-    </div>
-  </div>
-
-  <!-- FINAL CLAIM -->
-
-  <div class="result-panel" id="finalPanel" aria-live="polite">
-    <div class="result-label">Your Complete Main Claim</div>
-    <h3 class="result-title" id="finalClaim"></h3>
-
-    <div class="result-description">
-      <p>
-        <strong>Check your claim.</strong>
-        Does the selected person or organization have the authority to take
-        the recommended action? Is the action specific? Do your three reasons
-        provide distinct justifications?
-      </p>
-      <p>
-        <strong>Check your evidence.</strong>
-        Your reasons are proposed justifications, not proven facts.
-        Look for credible research, professional standards, government
-        publications, industry reports, or public case studies to evaluate
-        and support each reason.
-      </p>
-      <p>
-        <strong>Keep the topic researchable.</strong>
-        Choose an issue that can be investigated using publicly available
-        information. Avoid topics that require confidential company records,
-        private employee data, or access to an organization you do not have.
-      </p>
-      <p>
-        <strong>Remember:</strong>
-        This claim is a starting point for your argument. Revise it as needed
-        after reviewing the available evidence.
-      </p>
-    </div>
-
+  <section class="result-panel" id="resultPanel" aria-live="polite" aria-labelledby="resultLabel">
+    <div class="result-label" id="resultLabel">Your completed main claim</div>
+    <p class="result-title" id="result"></p>
+    <div class="result-description">This is a starting point for your argument. You will need credible evidence to support the recommendation and explain why the reasons justify the proposed action.</div>
     <div class="button-row">
-      <button type="button" class="action-button" id="copyButton">
-        Copy My Claim
-      </button>
-      <button type="button" class="action-button secondary" id="resetButton">
-        Start Over
-      </button>
+      <button type="button" class="action-button" id="copyButton">Copy My Claim</button>
+      <button type="button" class="action-button secondary" id="resetButton">Start Over</button>
     </div>
-
-    <div class="status-message" id="statusMessage" role="status"></div>
-  </div>
-
-</div>
-</div>
-
+    <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
+  </section>
+</main>
 <script>
 (function () {
 "use strict";
 
-/* =========================================
-   PROGRAM-SPECIFIC OPTIONS
-   ========================================= */
-
+/* Program-specific options */
 const data = {
   ai: {
     who: [
-      "business managers who make data-driven decisions",
-      "data analytics teams",
-      "organizations adopting AI tools",
-      "companies using predictive models",
-      "human resources departments using automated hiring tools",
-      "operations departments responsible for forecasting",
-      "teams responsible for evaluating AI-generated recommendations"
+      "Business managers who make data-driven decisions",
+      "Data analytics teams",
+      "Organizations adopting AI tools",
+      "Companies using predictive models",
+      "Human resources departments using automated hiring tools",
+      "Operations departments responsible for forecasting",
+      "Teams responsible for evaluating AI-generated recommendations"
     ],
     what: [
       "ban employees from entering confidential data into public AI tools",
@@ -567,30 +183,30 @@ const data = {
       "require employees to disclose when they use AI-generated work",
       "allow AI to evaluate employee performance",
       "hold companies legally responsible for harmful AI decisions",
-      "ban fully automated decisions that significantly affect people"
+      "ban fully automated decisions that significantly affect people",
     ],
     why: [
-      "this may help reduce errors in AI-assisted decisions",
-      "this may improve the reliability of business forecasts",
-      "this may help identify potential bias in automated decisions",
-      "this may help identify when predictive models perform poorly",
-      "this may reduce spending on AI tools that do not meet organizational needs",
-      "this may make business decisions more consistent",
-      "this may reduce reliance on inaccurate AI-generated information",
-      "this may clarify who is accountable for decisions informed by AI"
+      "reduce errors in AI-assisted decisions",
+      "improve the accuracy of business forecasts",
+      "identify potential bias in automated decisions",
+      "improve the reliability of predictive models",
+      "reduce unnecessary spending on ineffective AI tools",
+      "improve the consistency of business decisions",
+      "reduce the risk of relying on inaccurate AI-generated information",
+      "improve accountability for decisions informed by AI"
     ]
   },
 
   cyber: {
     who: [
-      "cybersecurity departments",
+      "Cybersecurity departments",
       "IT administrators",
-      "small and medium-sized businesses",
-      "organizations that store customer information",
-      "employees who handle sensitive data",
-      "managers responsible for information security",
-      "organizations that permit remote work",
-      "teams responsible for responding to security incidents"
+      "Small and medium-sized businesses",
+      "Organizations that store customer information",
+      "Employees who handle sensitive data",
+      "Managers responsible for information security",
+      "Organizations that permit remote work",
+      "Teams responsible for responding to security incidents"
     ],
     what: [
       "block unapproved software on company devices",
@@ -600,63 +216,63 @@ const data = {
       "require multifactor authentication for every employee account",
       "require employees to report cybersecurity mistakes",
       "automatically revoke unused system access",
-      "block generative AI tools on company networks"
+      "block generative AI tools on company networks",
     ],
     why: [
-      "this may reduce the risk of unauthorized access",
-      "this may help employees recognize and report phishing attempts",
-      "this may help protect confidential customer information",
-      "this may reduce avoidable security errors",
-      "this may help security teams identify incidents sooner",
-      "this may limit the potential impact of security incidents",
-      "this may help organizations identify risks associated with third-party vendors",
-      "this may help organizations meet applicable security requirements"
+      "reduce the risk of unauthorized access",
+      "reduce employees' susceptibility to phishing attempts",
+      "protect confidential customer information",
+      "reduce avoidable security errors",
+      "improve the speed of incident reporting",
+      "limit the potential impact of security incidents",
+      "reduce risks associated with third-party vendors",
+      "improve compliance with applicable security requirements"
     ]
   },
 
   is: {
     who: [
-      "organizations replacing outdated information systems",
+      "Organizations replacing outdated information systems",
       "IT departments",
-      "business units adopting new software",
-      "managers responsible for technology implementation",
-      "organizations introducing automation",
-      "employees who use enterprise software",
-      "teams responsible for system integration",
-      "organizations moving business operations to cloud-based systems"
+      "Business units adopting new software",
+      "Managers responsible for technology implementation",
+      "Organizations introducing automation",
+      "Employees who use enterprise software",
+      "Teams responsible for system integration",
+      "Organizations moving business operations to cloud-based systems"
     ],
     what: [
-      "conduct user testing before implementing new software",
-      "establish criteria for selecting enterprise information systems",
-      "provide structured training when introducing new technology",
-      "evaluate system usability before organization-wide deployment",
-      "develop procedures for managing software updates",
-      "assess compatibility before integrating new systems",
-      "establish guidelines for adopting emerging technologies",
-      "evaluate existing workflows before automating them"
+      "force employees to use standardized company software",
+      "replace outdated systems even when employees prefer them",
+      "let employees help choose workplace technology",
+      "require employees to adopt new systems by a fixed deadline",
+      "automate repetitive office tasks even when jobs may be eliminated",
+      "move critical business systems entirely to the cloud",
+      "replace custom-built software with standardized commercial systems",
+      "stop supporting legacy systems that are expensive to maintain",
     ],
     why: [
-      "this may help identify implementation problems before deployment",
-      "this may support employee adoption of new systems",
-      "this may reduce disruptions during technology transitions",
-      "this may help identify usability problems",
-      "this may reduce costs associated with incompatible systems",
-      "this may support more reliable business operations",
-      "this may help address employee concerns about technology changes",
-      "this may help prevent investment in technology that does not meet organizational needs"
+      "reduce implementation problems",
+      "improve employee adoption of new systems",
+      "reduce disruptions during technology transitions",
+      "improve system usability",
+      "reduce costs associated with incompatible systems",
+      "improve the reliability of business operations",
+      "reduce resistance to organizational technology changes",
+      "prevent investment in technology that does not meet organizational needs"
     ]
   },
 
   leadership: {
     who: [
-      "department managers",
-      "team leaders",
-      "human resources departments",
-      "organizations experiencing high employee turnover",
-      "managers supervising remote employees",
-      "organizations implementing workplace changes",
-      "supervisors responsible for employee development",
-      "leaders managing cross-functional teams"
+      "Department managers",
+      "Team leaders",
+      "Human resources departments",
+      "Organizations experiencing high employee turnover",
+      "Managers supervising remote employees",
+      "Organizations implementing workplace changes",
+      "Supervisors responsible for employee development",
+      "Leaders managing cross-functional teams"
     ],
     what: [
       "allow employees to evaluate their managers anonymously",
@@ -666,30 +282,30 @@ const data = {
       "make employee salaries transparent within the organization",
       "limit how many employees one manager can supervise",
       "require managers to justify promotion decisions in writing",
-      "tie managers' bonuses to employee retention"
+      "tie managers’ bonuses to employee retention",
     ],
     why: [
-      "this may support employee engagement",
-      "this may help address factors associated with employee turnover",
-      "this may make performance evaluations more consistent",
-      "this may help new managers prepare for leadership responsibilities",
-      "this may reduce misunderstandings among team members",
-      "this may help employees prepare for their job responsibilities",
-      "this may help address workplace conflict",
-      "this may support employees' perceptions of organizational fairness"
+      "improve employee engagement",
+      "reduce avoidable employee turnover",
+      "improve consistency in performance evaluations",
+      "help new managers transition into leadership roles",
+      "reduce misunderstandings among team members",
+      "improve employee preparedness for job responsibilities",
+      "reduce workplace conflict",
+      "improve employees' perceptions of organizational fairness"
     ]
   },
 
   project: {
     who: [
-      "project managers",
-      "project management offices (PMOs)",
-      "project sponsors",
-      "cross-functional project teams",
-      "organizations managing multiple concurrent projects",
-      "managers responsible for project budgets",
-      "teams delivering technology implementations",
-      "project leaders working with external vendors"
+      "Project managers",
+      "Project management offices (PMOs)",
+      "Project sponsors",
+      "Cross-functional project teams",
+      "Organizations managing multiple concurrent projects",
+      "Managers responsible for project budgets",
+      "Teams delivering technology implementations",
+      "Project leaders working with external vendors"
     ],
     what: [
       "cancel projects that repeatedly exceed their budgets",
@@ -699,30 +315,30 @@ const data = {
       "require executive approval for major scope changes",
       "stop projects that no longer meet their original objectives",
       "penalize vendors for missing project deadlines",
-      "prioritize profitable projects over strategically valuable projects"
+      "prioritize profitable projects over strategically valuable projects",
     ],
     why: [
-      "this may help teams identify potential delays earlier",
-      "this may help teams identify risks before they affect project outcomes",
-      "this may improve the accuracy of budget estimates",
-      "this may help teams identify and manage scope changes",
-      "this may improve communication among stakeholders",
-      "this may help teams track progress toward project objectives",
-      "this may support more effective allocation of project resources",
-      "this may help teams avoid repeating previously identified problems"
+      "reduce unexpected project delays",
+      "identify risks before they affect project outcomes",
+      "improve budget accuracy",
+      "reduce scope creep",
+      "improve communication among stakeholders",
+      "increase the likelihood of meeting project objectives",
+      "improve the allocation of project resources",
+      "reduce the recurrence of problems across projects"
     ]
   },
 
   intelligence: {
     who: [
-      "strategic intelligence teams",
-      "corporate risk management departments",
-      "business leaders making strategic decisions",
-      "organizations operating in rapidly changing markets",
-      "analysts responsible for evaluating public information",
-      "teams monitoring industry developments",
-      "organizations assessing geopolitical risks",
-      "decision-makers responsible for business continuity"
+      "Strategic intelligence teams",
+      "Corporate risk management departments",
+      "Business leaders making strategic decisions",
+      "Organizations operating in rapidly changing markets",
+      "Analysts responsible for evaluating public information",
+      "Teams monitoring industry developments",
+      "Organizations assessing geopolitical risks",
+      "Decision-makers responsible for business continuity"
     ],
     what: [
       "allow analysts to use AI to produce intelligence assessments",
@@ -730,32 +346,32 @@ const data = {
       "require analysts to assign confidence ratings to their conclusions",
       "require analysts to disclose evidence that contradicts their conclusions",
       "use competing analyst teams to assess major threats",
-      "allow decision-makers to see analysts' raw intelligence sources",
+      "allow decision-makers to see analysts’ raw intelligence sources",
       "prioritize national security over individual privacy when collecting intelligence",
-      "use publicly available social media posts for intelligence analysis"
+      "use publicly available social media posts for intelligence analysis",
     ],
     why: [
-      "this may help analysts recognize confirmation bias",
-      "this may improve the credibility of strategic assessments",
-      "this may reduce reliance on inaccurate information",
-      "this may help analysts identify emerging threats",
-      "this may improve preparedness for uncertain future events",
-      "this may help distinguish verified information from unsupported claims",
-      "this may make analytical reasoning more transparent",
-      "this may help decision-makers understand uncertainty and competing explanations"
+      "reduce the influence of confirmation bias",
+      "improve the reliability of strategic assessments",
+      "reduce the risk of decisions based on inaccurate information",
+      "identify emerging threats earlier",
+      "improve preparedness for uncertain future events",
+      "distinguish verified information from unsupported claims",
+      "improve the transparency of analytical reasoning",
+      "help decision-makers understand uncertainty and competing explanations"
     ]
   },
 
   technology: {
     who: [
-      "chief information officers (CIOs)",
+      "Chief information officers (CIOs)",
       "IT directors",
-      "technology leadership teams",
-      "executives responsible for digital transformation",
-      "organizations planning major technology investments",
-      "managers overseeing technology adoption",
+      "Technology leadership teams",
+      "Executives responsible for digital transformation",
+      "Organizations planning major technology investments",
+      "Managers overseeing technology adoption",
       "IT governance committees",
-      "business leaders responsible for aligning technology with organizational strategy"
+      "Business leaders responsible for aligning technology with organizational strategy"
     ],
     what: [
       "replace employees with automation when it reduces costs",
@@ -765,469 +381,223 @@ const data = {
       "replace legacy technology even when it still works",
       "centralize major technology decisions under the CIO",
       "require employees to adopt company-approved AI tools",
-      "prioritize cybersecurity over employee convenience"
+      "prioritize cybersecurity over employee convenience",
     ],
     why: [
-      "this may help organizations avoid investments that do not meet their needs",
-      "this may improve alignment between IT projects and business objectives",
-      "this may help organizations identify risks before adopting new technology",
-      "this may improve accountability for technology spending",
-      "this may help organizations evaluate the value of technology investments",
-      "this may help reduce disruptions during digital transformation",
-      "this may improve coordination between business and IT teams",
-      "this may help employees prepare for changing technology requirements"
+      "reduce investment in technology that does not meet organizational needs",
+      "improve alignment between IT projects and business objectives",
+      "reduce risks associated with technology adoption",
+      "improve accountability for technology spending",
+      "increase the value organizations receive from technology investments",
+      "reduce disruption during digital transformation",
+      "improve coordination between business and IT teams",
+      "prepare employees for changing technology requirements"
     ]
   }
 };
 
-/* =========================================
-   ELEMENT REFERENCES
-   ========================================= */
-
+const CUSTOM_VALUE = "__custom__";
 const major = document.getElementById("major");
-
-const what = document.getElementById("what");
-const whatCustom = document.getElementById("whatCustom");
-
-const whySelects = [
-  document.getElementById("why1"),
-  document.getElementById("why2"),
-  document.getElementById("why3")
-];
-
-const whyCustoms = [
-  document.getElementById("why1Custom"),
-  document.getElementById("why2Custom"),
-  document.getElementById("why3Custom")
-];
-
-const who = document.getElementById("who");
-const whoCustom = document.getElementById("whoCustom");
-
 const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
 const step4 = document.getElementById("step4");
-
-const finalPanel = document.getElementById("finalPanel");
-const finalClaim = document.getElementById("finalClaim");
+const what = document.getElementById("what");
+const who = document.getElementById("who");
+const whySelects = [document.getElementById("why1"), document.getElementById("why2"), document.getElementById("why3")];
+const resultPanel = document.getElementById("resultPanel");
+const result = document.getElementById("result");
+const reasonStatus = document.getElementById("reasonStatus");
 const statusMessage = document.getElementById("statusMessage");
 
-const copyButton = document.getElementById("copyButton");
-const resetButton = document.getElementById("resetButton");
-
-/* =========================================
-   ANSWER HELPERS
-   Typed answers take priority over dropdowns.
-   ========================================= */
-
-function getAnswer(select, customInput) {
-  const typed = customInput.value.trim();
-  return typed || select.value;
-}
-
-function getWhat() {
-  return getAnswer(what, whatCustom);
-}
-
-function getWhy(index) {
-  return getAnswer(whySelects[index], whyCustoms[index]);
-}
-
-function getWho() {
-  return getAnswer(who, whoCustom);
-}
-
-function clearSelect(select, placeholder) {
+function populateSelect(select, options, placeholder, includeCustom) {
   select.replaceChildren();
-
-  const option = document.createElement("option");
-  option.value = "";
-  option.textContent = placeholder;
-
-  select.appendChild(option);
-  select.disabled = true;
-}
-
-function populateSelect(select, options, placeholder) {
-  select.replaceChildren();
-
-  const firstOption = document.createElement("option");
-  firstOption.value = "";
-  firstOption.textContent = placeholder;
-  select.appendChild(firstOption);
-
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = placeholder;
+  select.appendChild(first);
   options.forEach(function (item) {
     const option = document.createElement("option");
     option.value = item;
     option.textContent = item;
     select.appendChild(option);
   });
-
+  if (includeCustom) {
+    const custom = document.createElement("option");
+    custom.value = CUSTOM_VALUE;
+    custom.textContent = "Type my own answer…";
+    select.appendChild(custom);
+  }
   select.disabled = false;
 }
 
-function hideFinalClaim() {
-  finalPanel.classList.remove("visible");
-  finalClaim.textContent = "";
+function clearSelect(select, placeholder) {
+  select.replaceChildren();
+  const option = document.createElement("option");
+  option.value = "";
+  option.textContent = placeholder;
+  select.appendChild(option);
+  select.disabled = true;
+}
+
+function customInputFor(select) {
+  return document.getElementById(select.id + "Custom");
+}
+function customWrapFor(select) {
+  return document.getElementById(select.id + "CustomWrap");
+}
+function effectiveValue(select) {
+  if (select.value === CUSTOM_VALUE) return customInputFor(select).value.trim();
+  return select.value.trim();
+}
+function updateCustomVisibility(select) {
+  const isCustom = select.value === CUSTOM_VALUE;
+  customWrapFor(select).classList.toggle("visible", isCustom);
+  const input = customInputFor(select);
+  input.required = isCustom;
+  if (!isCustom) input.value = "";
+}
+function hideResult() {
+  resultPanel.classList.remove("visible");
   statusMessage.textContent = "";
 }
-
-function scrollToElement(element) {
-  element.scrollIntoView({
-    behavior: window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches ? "auto" : "smooth",
-    block: "nearest"
-  });
+function uniqueReasons(values) {
+  const normalized = values.map(value => value.trim().toLocaleLowerCase());
+  return normalized.every((value, index) => normalized.indexOf(value) === index);
 }
-
-/* =========================================
-   STEP 3: DISTINCT REASONS
-   ========================================= */
-
-function reasonsAreComplete() {
-  const reasons = whySelects.map(function (_, index) {
-    return getWhy(index).trim().toLowerCase();
-  });
-
-  return reasons.every(function (reason) {
-    return reason !== "";
-  }) && new Set(reasons).size === 3;
-}
-
-function updateWhyOptions() {
-  whySelects.forEach(function (select, index) {
-    const currentValue = select.value;
-
-    // Exclude options used as answers in the other two fields.
-    const otherAnswers = whySelects
-      .map(function (otherSelect, otherIndex) {
-        if (otherIndex === index) return "";
-        return getWhy(otherIndex).trim().toLowerCase();
-      });
-
-    const placeholder = document.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent =
-      "-- Choose your " +
-      ["first", "second", "third"][index] +
-      " reason --";
-
-    select.replaceChildren();
-    select.appendChild(placeholder);
-
-    data[major.value].why.forEach(function (reason) {
-      const normalized = reason.trim().toLowerCase();
-
-      if (
-        otherAnswers.includes(normalized) &&
-        reason !== currentValue
-      ) {
-        return;
-      }
-
-      const option = document.createElement("option");
-      option.value = reason;
-      option.textContent = reason;
-      select.appendChild(option);
+function resetDownstream(from) {
+  if (from <= 2) {
+    what.value = "";
+    document.getElementById("whatCustom").value = "";
+    document.getElementById("whatCustomWrap").classList.remove("visible");
+    clearSelect(what, "-- Choose an action --");
+    step2.classList.add("hidden");
+  }
+  if (from <= 3) {
+    whySelects.forEach((select, index) => {
+      select.value = "";
+      document.getElementById(select.id + "Custom").value = "";
+      document.getElementById(select.id + "CustomWrap").classList.remove("visible");
+      clearSelect(select, ["-- Choose your first reason --", "-- Choose your second reason --", "-- Choose your third reason --"][index]);
     });
-
-    select.value = currentValue;
-  });
-}
-
-/* =========================================
-   STEP 4: SHOW WHO WHEN REASONS ARE COMPLETE
-   ========================================= */
-
-function updateWhoStep() {
-  hideFinalClaim();
-
-  if (!reasonsAreComplete()) {
-    step4.classList.add("hidden");
-
+    reasonStatus.textContent = "";
+    step3.classList.add("hidden");
+  }
+  if (from <= 4) {
+    who.value = "";
+    document.getElementById("whoCustom").value = "";
+    document.getElementById("whoCustomWrap").classList.remove("visible");
     clearSelect(who, "-- Choose who should act --");
-    whoCustom.value = "";
-    return;
+    step4.classList.add("hidden");
   }
-
-  if (step4.classList.contains("hidden")) {
-    populateSelect(
-      who,
-      data[major.value].who,
-      "-- Choose who should act --"
-    );
-
-    step4.classList.remove("hidden");
-  }
+  hideResult();
 }
-
-/* =========================================
-   FINAL CLAIM GENERATOR
-   ========================================= */
-
-function updateFinalClaim() {
-  const reasons = whySelects.map(function (_, index) {
-    return getWhy(index).trim();
-  });
-
-  const normalizedReasons = reasons.map(function (reason) {
-    return reason.toLowerCase();
-  });
-
-  if (
-    !major.value ||
-    !getWhat().trim() ||
-    !reasons.every(Boolean) ||
-    new Set(normalizedReasons).size !== 3 ||
-    !getWho().trim()
-  ) {
-    hideFinalClaim();
+function updateReasonsAndSteps() {
+  const values = whySelects.map(effectiveValue);
+  const complete = values.every(Boolean);
+  const distinct = complete && uniqueReasons(values);
+  if (!complete) {
+    reasonStatus.textContent = "Choose or enter all three reasons to continue.";
+    step4.classList.add("hidden");
+    resetWhoOnly();
+  } else if (!distinct) {
+    reasonStatus.textContent = "Each reason must be different. Please change or rewrite the repeated reason.";
+    step4.classList.add("hidden");
+    resetWhoOnly();
+  } else {
+    reasonStatus.textContent = "Three distinct reasons selected.";
+    step4.classList.remove("hidden");
+    populateSelect(who, data[major.value].who, "-- Choose who should act --", true);
+  }
+  updateClaim();
+}
+function resetWhoOnly() {
+  who.value = "";
+  document.getElementById("whoCustom").value = "";
+  document.getElementById("whoCustomWrap").classList.remove("visible");
+  clearSelect(who, "-- Choose who should act --");
+  hideResult();
+}
+function updateClaim() {
+  const action = effectiveValue(what);
+  const reasons = whySelects.map(effectiveValue);
+  const actor = effectiveValue(who);
+  const validReasons = reasons.every(Boolean) && uniqueReasons(reasons);
+  if (!major.value || !action || !validReasons || !actor) {
+    resultPanel.classList.remove("visible");
     return;
   }
-
-  finalClaim.textContent =
-    "I think that " + getWho().trim() +
-    " should " + getWhat().trim() +
-    ", because " + reasons[0] +
-    ", " + reasons[1] +
-    ", and " + reasons[2] + ".";
-
-  finalPanel.classList.add("visible");
+  result.textContent = "I think that " + actor + " should " + action + ", because " + reasons[0] + ", " + reasons[1] + ", and " + reasons[2] + ".";
+  resultPanel.classList.add("visible");
   statusMessage.textContent = "";
 }
-
-/* =========================================
-   STEP 1: PROGRAM
-   ========================================= */
 
 major.addEventListener("change", function () {
-  hideFinalClaim();
-
-  whatCustom.value = "";
-  whoCustom.value = "";
-  whyCustoms.forEach(function (input) {
-    input.value = "";
-  });
-
-  clearSelect(what, "-- Choose an action --");
-
-  whySelects.forEach(function (select, index) {
-    clearSelect(
-      select,
-      "-- Choose your " +
-      ["first", "second", "third"][index] +
-      " reason --"
-    );
-  });
-
-  clearSelect(who, "-- Choose who should act --");
-
-  step2.classList.add("hidden");
-  step3.classList.add("hidden");
-  step4.classList.add("hidden");
-
-  if (!major.value) return;
-
-  populateSelect(
-    what,
-    data[major.value].what,
-    "-- Choose an action --"
-  );
-
+  resetDownstream(2);
+  const selected = data[major.value];
+  if (!selected) return;
+  populateSelect(what, selected.what, "-- Choose an action --", true);
   step2.classList.remove("hidden");
-  scrollToElement(step2);
 });
-
-/* =========================================
-   STEP 2: WHAT
-   ========================================= */
-
-function activateWhyStep() {
-  hideFinalClaim();
-
-  if (!getWhat().trim()) {
-    step3.classList.add("hidden");
-    step4.classList.add("hidden");
-
-    clearWhySelections();
-    whoCustom.value = "";
-    clearSelect(who, "-- Choose who should act --");
-    return;
-  }
-
-  if (step3.classList.contains("hidden")) {
-    whySelects.forEach(function (select, index) {
-      populateSelect(
-        select,
-        data[major.value].why,
-        "-- Choose your " +
-        ["first", "second", "third"][index] +
-        " reason --"
-      );
-    });
-
-    step3.classList.remove("hidden");
-  }
-}
-
-function clearWhySelections() {
-  whySelects.forEach(function (select, index) {
-    clearSelect(
-      select,
-      "-- Choose your " +
-      ["first", "second", "third"][index] +
-      " reason --"
-    );
-  });
-
-  whyCustoms.forEach(function (input) {
-    input.value = "";
-  });
-}
 
 what.addEventListener("change", function () {
-  // A new dropdown choice takes priority over the previous typed answer.
-  whatCustom.value = "";
-
-  clearWhySelections();
-  clearSelect(who, "-- Choose who should act --");
-  whoCustom.value = "";
-
-  step3.classList.add("hidden");
-  step4.classList.add("hidden");
-  hideFinalClaim();
-
-  activateWhyStep();
-
-  if (!getWhat().trim()) return;
-
-  scrollToElement(step3);
+  updateCustomVisibility(what);
+  resetDownstream(3);
+  if (!what.value) return;
+  step3.classList.remove("hidden");
+  whySelects.forEach((select, index) => populateSelect(select, data[major.value].why, ["-- Choose your first reason --", "-- Choose your second reason --", "-- Choose your third reason --"][index], true));
+  reasonStatus.textContent = "Choose or enter all three reasons to continue.";
+  updateClaim();
 });
 
-whatCustom.addEventListener("input", function () {
-  activateWhyStep();
+document.getElementById("whatCustom").addEventListener("input", updateClaim);
 
-  if (!getWhat().trim()) return;
-
-  updateWhoStep();
-  updateFinalClaim();
-});
-
-/* =========================================
-   STEP 3: WHY
-   ========================================= */
-
-whySelects.forEach(function (select, index) {
+whySelects.forEach(function (select) {
   select.addEventListener("change", function () {
-    // Use the new dropdown answer instead of any old typed answer.
-    whyCustoms[index].value = "";
-
-    updateWhyOptions();
-    updateWhoStep();
-    updateFinalClaim();
-
-    if (reasonsAreComplete()) {
-      scrollToElement(step4);
-    }
+    updateCustomVisibility(select);
+    updateReasonsAndSteps();
   });
+  customInputFor(select).addEventListener("input", updateReasonsAndSteps);
 });
-
-whyCustoms.forEach(function (input) {
-  input.addEventListener("input", function () {
-    updateWhyOptions();
-    updateWhoStep();
-    updateFinalClaim();
-
-    if (reasonsAreComplete()) {
-      scrollToElement(step4);
-    }
-  });
-});
-
-/* =========================================
-   STEP 4: WHO
-   ========================================= */
 
 who.addEventListener("change", function () {
-  whoCustom.value = "";
-  updateFinalClaim();
-
-  if (finalPanel.classList.contains("visible")) {
-    scrollToElement(finalPanel);
-  }
+  updateCustomVisibility(who);
+  updateClaim();
 });
+document.getElementById("whoCustom").addEventListener("input", updateClaim);
 
-whoCustom.addEventListener("input", function () {
-  updateFinalClaim();
-});
-
-/* =========================================
-   COPY CLAIM
-   ========================================= */
-
-copyButton.addEventListener("click", async function () {
-  if (!finalClaim.textContent.trim()) {
-    statusMessage.textContent =
-      "Please complete all four steps before copying your claim.";
-    return;
-  }
-
-  try {
-    await navigator.clipboard.writeText(finalClaim.textContent);
-    statusMessage.textContent =
-      "Your complete claim has been copied.";
-  } catch (error) {
-    const textArea = document.createElement("textarea");
-    textArea.value = finalClaim.textContent;
-    textArea.setAttribute("readonly", "");
-    textArea.style.position = "fixed";
-    textArea.style.left = "-9999px";
-
-    document.body.appendChild(textArea);
-    textArea.select();
-
-    const copied = document.execCommand("copy");
-    textArea.remove();
-
-    statusMessage.textContent = copied
-      ? "Your complete claim has been copied."
-      : "Copying was blocked. Select the claim text and copy it manually.";
-  }
-});
-
-/* =========================================
-   START OVER
-   ========================================= */
-
-resetButton.addEventListener("click", function () {
+function resetAll() {
   major.value = "";
-
-  whatCustom.value = "";
-  whoCustom.value = "";
-
-  whyCustoms.forEach(function (input) {
-    input.value = "";
-  });
-
-  clearSelect(what, "-- Choose an action --");
-  clearWhySelections();
-  clearSelect(who, "-- Choose who should act --");
-
+  resetDownstream(2);
   step2.classList.add("hidden");
   step3.classList.add("hidden");
   step4.classList.add("hidden");
+  reasonStatus.textContent = "";
+  statusMessage.textContent = "";
+  result.textContent = "";
+}
 
-  hideFinalClaim();
-
-  window.scrollTo({
-    top: 0,
-    behavior: window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches ? "auto" : "smooth"
-  });
+document.getElementById("resetButton").addEventListener("click", resetAll);
+document.getElementById("copyButton").addEventListener("click", async function () {
+  if (!result.textContent || !resultPanel.classList.contains("visible")) {
+    statusMessage.textContent = "Complete all four steps before copying your claim.";
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(result.textContent);
+    statusMessage.textContent = "Your claim has been copied.";
+  } catch (error) {
+    const temporary = document.createElement("textarea");
+    temporary.value = result.textContent;
+    temporary.setAttribute("readonly", "");
+    temporary.style.position = "absolute";
+    temporary.style.left = "-9999px";
+    document.body.appendChild(temporary);
+    temporary.select();
+    const copied = document.execCommand("copy");
+    temporary.remove();
+    statusMessage.textContent = copied ? "Your claim has been copied." : "Copying was blocked by your browser. Please select and copy the claim manually.";
+  }
 });
-
 })();
 </script>
 </body>
