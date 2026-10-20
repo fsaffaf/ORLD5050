@@ -368,11 +368,40 @@ body {
       each dropdown. Your choices should work together to express one
       clear recommendation. You can revise your choices if the completed
       sentence does not make sense.
-      <br>
-            I think that <strong>[WHO]</strong> should
-      <strong>[DO WHAT]</strong> within <strong>[SETTING]</strong>
-      to benefit <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
     </p>
+
+    <div class="claim-template">
+      I think that <strong>[WHO]</strong> should
+      <strong>[DO WHAT]</strong> in the context of
+      <strong>[SETTING]</strong> to benefit
+      <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
+    </div>
+
+    <!-- WHO -->
+
+    <div class="claim-field">
+      <label class="field-label" for="who">
+        WHO — Who should take action?
+      </label>
+      <div class="select-wrapper">
+        <select id="who" disabled>
+          <option value="">-- Choose who should act --</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- DO WHAT -->
+
+    <div class="claim-field">
+      <label class="field-label" for="what">
+        DO WHAT — What should they do?
+      </label>
+      <div class="select-wrapper">
+        <select id="what" disabled>
+          <option value="">-- Choose an action --</option>
+        </select>
+      </div>
+    </div>
 
     <!-- SETTING -->
 
@@ -384,13 +413,14 @@ body {
         <select id="setting" disabled>
           <option value="">-- Choose a workplace process --</option>
         </select>
+      </div>
     </div>
 
     <!-- POPULATION -->
 
     <div class="claim-field">
       <label class="field-label" for="population">
-        POPULATION — Who will be affected? 
+        POPULATION — Who will be affected?
       </label>
       <div class="select-wrapper">
         <select id="population" disabled>
@@ -410,51 +440,54 @@ body {
           <option value="">-- Choose a reason --</option>
         </select>
       </div>
-  </div>
-
-  <!-- FINAL SENTENCE GENERATOR -->
-
-  <div class="result-panel" id="resultPanel" aria-live="polite">
-    <div class="result-label">Your Main Claim</div>
-
-    <h3 class="result-title" id="result"></h3>
-
-    <div class="result-description">
-      This claim is a starting point, not a proven conclusion. Find
-      credible evidence that supports your recommendation and its
-      expected benefit. Consider evidence that challenges your
-      recommendation, too. Your topic should be narrow enough to
-      investigate using publicly accessible sources without requiring
-      confidential company records or private employee data.
-      <br>
-      Choose a researchable setting.
-        Select a specific workplace process, not just an industry or
-        organization type. You should be able to investigate the issue
-        using public research, professional standards, government
-        publications, industry reports, or public case studies. Avoid
-        topics that require confidential company records or private
-        employee information.
-      <br>
-        Choose a reason you can support.
-        Your reason should explain why the recommendation is worth
-        considering. Do not assume it will automatically produce the
-        desired result. Look for credible evidence that supports the
-        expected benefit, and consider evidence that challenges it.
     </div>
 
-    <div class="button-row">
-      <button type="button" class="action-button" id="copyButton">
-        Copy My Claim
-      </button>
+    <!-- FINAL SENTENCE GENERATOR -->
 
-      <button type="button" class="action-button secondary" id="resetButton">
-        Start Over
-      </button>
+    <div class="result-panel" id="resultPanel" aria-live="polite">
+      <div class="result-label">Your Main Claim</div>
+
+      <h3 class="result-title" id="result"></h3>
+
+      <div class="result-description">
+        This claim is a starting point, not a proven conclusion. Find
+        credible evidence that supports your recommendation and its
+        expected benefit. Consider evidence that challenges your
+        recommendation, too.
+
+        <p>
+          <strong>Choose a researchable setting.</strong>
+          Select a specific workplace process, not just an industry or
+          organization type. You should be able to investigate the issue
+          using public research, professional standards, government
+          publications, industry reports, or public case studies. Avoid
+          topics that require confidential company records or private
+          employee information.
+        </p>
+
+        <p>
+          <strong>Choose a reason you can support.</strong>
+          Your reason should explain why the recommendation is worth
+          considering. Do not assume it will automatically produce the
+          desired result. Look for credible evidence that supports the
+          expected benefit, and consider evidence that challenges it.
+        </p>
+      </div>
+
+      <div class="button-row">
+        <button type="button" class="action-button" id="copyButton">
+          Copy My Claim
+        </button>
+
+        <button type="button" class="action-button secondary" id="resetButton">
+          Start Over
+        </button>
+      </div>
+
+      <div class="status-message" id="statusMessage" role="status"></div>
     </div>
 
-    <div class="status-message" id="statusMessage" role="status"></div>
   </div>
-
 </div>
 </div>
 
@@ -781,7 +814,6 @@ const settings = {
    ========================================= */
 
 const populations = [
-  // Employees
   "new employees",
   "experienced employees",
   "remote employees",
@@ -797,7 +829,6 @@ const populations = [
   "employees working across multiple time zones",
   "employees transitioning to new technology",
 
-  // Managers and leaders
   "first-time managers",
   "middle managers",
   "senior executives",
@@ -811,7 +842,6 @@ const populations = [
   "managers responsible for employee evaluations",
   "leaders overseeing organizational change",
 
-  // Technology and analytics professionals
   "data analysts",
   "data scientists",
   "business intelligence analysts",
@@ -825,7 +855,6 @@ const populations = [
   "professionals responsible for evaluating AI systems",
   "employees responsible for making data-driven decisions",
 
-  // Customers and external stakeholders
   "customers using online services",
   "customers whose information is collected by businesses",
   "customers using AI-powered services",
@@ -837,7 +866,6 @@ const populations = [
   "members of the public using digital government services",
   "individuals affected by automated decisions",
 
-  // Teams and organizational groups
   "cross-functional teams",
   "software development teams",
   "cybersecurity teams",
@@ -849,7 +877,6 @@ const populations = [
   "teams adopting new collaboration tools",
   "teams responsible for organizational decision-making",
 
-  // Organizations as the population
   "small businesses with fewer than 50 employees",
   "medium-sized businesses",
   "large organizations with multiple departments",
@@ -950,7 +977,7 @@ function updateClaim() {
   result.textContent =
     "I think that " + who.value +
     " should " + what.value +
-    " within " + setting.value +
+    " in the context of " + setting.value +
     " to benefit " + population.value +
     ", because " + why.value + ".";
 
