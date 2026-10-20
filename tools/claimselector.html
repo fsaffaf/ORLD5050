@@ -11,88 +11,71 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   background: #f4f6f9;
-  color: #222222;
+  color: #222;
 }
-
 * { box-sizing: border-box; }
-
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+body { min-height: 100vh; overflow-x: hidden; }
 
 .measurement-wrapper {
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
+  align-items: flex-start;
   padding: 2rem;
 }
-
 .glass {
   width: 100%;
   max-width: 1000px;
   padding: 2.5rem;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #d9e2ec;
   border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 10px rgba(0,0,0,.05);
 }
-
 .glass h2 {
-  margin: 0 0 0.75rem;
+  margin: 0 0 .75rem;
   text-align: center;
   font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -.03em;
   color: #0e68b3;
 }
-
 .glass > p {
   margin: 0 0 2rem;
   text-align: center;
-  color: #444444;
+  color: #444;
   font-size: 1.05rem;
   line-height: 1.8;
 }
-
-/* STEP CARDS */
-
 .step-card {
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #d9e2ec;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  animation: fadeIn 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+  animation: fadeIn .3s ease;
 }
-
-.step-card.hidden { display: none; }
+.hidden { display: none !important; }
 
 .question-title {
-  margin-bottom: 0.75rem;
+  margin-bottom: .75rem;
   font-size: 1.05rem;
   font-weight: 650;
   color: #0e68b3;
   line-height: 1.5;
 }
-
 .question-number {
   color: #0e68b3;
-  margin-right: 0.4rem;
+  margin-right: .4rem;
 }
-
 .question-help {
   margin: 0 0 1rem;
-  color: #555555;
+  color: #555;
   line-height: 1.7;
 }
-
-/* SENTENCE TEMPLATES */
-
 .claim-template {
   margin: 1rem 0 1.5rem;
   padding: 1.25rem;
@@ -100,69 +83,49 @@ body {
   border-left: 4px solid #0e68b3;
   border-radius: 8px;
   line-height: 1.9;
-  color: #333333;
+  color: #333;
 }
-
 .claim-template strong { color: #0e68b3; }
 
-/* DROPDOWNS */
-
 .claim-field { margin-top: 1.5rem; }
-
 .field-label {
   display: block;
-  margin-bottom: 0.6rem;
+  margin-bottom: .6rem;
   color: #0e68b3;
   font-size: 1rem;
   font-weight: 650;
   line-height: 1.5;
 }
-
 .select-wrapper { width: 100%; }
-
 .select-wrapper select {
   display: block;
   width: 100%;
   min-height: 48px;
-  padding: 0.85rem 2.5rem 0.85rem 1rem;
+  padding: .85rem 2.5rem .85rem 1rem;
   border: 1px solid #d9e2ec;
   border-radius: 10px;
-  background-color: #ffffff;
-  color: #222222;
+  background: #fff;
+  color: #222;
   font-family: inherit;
   font-size: 1rem;
   line-height: 1.5;
   cursor: pointer;
-  transition: background 0.2s ease,
-              border-color 0.2s ease,
-              box-shadow 0.2s ease;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-
 .select-wrapper select:hover:not(:disabled) {
   border-color: #0e68b3;
-  background-color: #f8fbfe;
+  background: #f8fbfe;
 }
-
 .select-wrapper select:focus {
   outline: none;
   border-color: #0e68b3;
-  box-shadow: 0 0 0 3px rgba(14, 104, 179, 0.15);
+  box-shadow: 0 0 0 3px rgba(14,104,179,.15);
 }
-
 .select-wrapper select:disabled {
-  background-color: #f4f6f9;
-  color: #777777;
+  background: #f4f6f9;
+  color: #777;
   cursor: not-allowed;
 }
-
-.select-wrapper option { white-space: normal; }
-
-.select-wrapper optgroup {
-  font-weight: 700;
-  color: #174a73;
-}
-
-/* RESULT PANELS */
 
 .result-panel {
   display: none;
@@ -171,21 +134,18 @@ body {
   border-radius: 12px;
   border: 1px solid #b9d8ef;
   background: #f0f7fc;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  animation: fadeIn 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,.05);
+  animation: fadeIn .3s ease;
 }
-
 .result-panel.visible { display: block; }
-
 .result-label {
-  font-size: 0.78rem;
+  font-size: .78rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #555555;
-  margin-bottom: 0.6rem;
+  letter-spacing: .12em;
+  color: #555;
+  margin-bottom: .6rem;
   line-height: 1.5;
 }
-
 .result-title {
   margin: 0;
   font-size: 1.1rem;
@@ -194,65 +154,52 @@ body {
   line-height: 1.8;
   overflow-wrap: anywhere;
 }
-
 .result-description {
-  margin-top: 0.75rem;
-  color: #333333;
+  margin-top: .75rem;
+  color: #333;
   line-height: 1.8;
 }
-
-.result-description p { margin: 0.75rem 0 0; }
-
+.result-description p { margin: .75rem 0 0; }
 .result-description strong { color: #174a73; }
-
-/* BUTTONS */
 
 .button-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: .75rem;
   margin-top: 1rem;
 }
-
 .action-button {
   flex: 1 1 180px;
   border: 1px solid #0e68b3;
   border-radius: 999px;
-  padding: 0.9rem 1.25rem;
+  padding: .9rem 1.25rem;
   background: #0e68b3;
-  color: #ffffff;
+  color: #fff;
   font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease,
-              border-color 0.2s ease,
-              transform 0.2s ease;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
 }
-
 .action-button:hover {
   background: #2b6cb0;
   border-color: #2b6cb0;
   transform: translateY(-1px);
 }
-
 .action-button.secondary {
-  background: #ffffff;
+  background: #fff;
   color: #0e68b3;
 }
-
 .action-button.secondary:hover { background: #f0f7fc; }
-
 .action-button:focus-visible {
-  outline: 3px solid rgba(14, 104, 179, 0.3);
+  outline: 3px solid rgba(14,104,179,.3);
   outline-offset: 3px;
 }
-
 .status-message {
   min-height: 1.5rem;
-  margin-top: 0.75rem;
+  margin-top: .75rem;
   color: #276749;
-  font-size: 0.9rem;
+  font-size: .9rem;
   line-height: 1.6;
 }
 
@@ -260,23 +207,20 @@ body {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @media (max-width: 700px) {
   .measurement-wrapper { padding: 1rem; }
   .glass { padding: 1.5rem; }
   .step-card, .result-panel { padding: 1.25rem; }
 }
-
 @media (max-width: 420px) {
-  .measurement-wrapper { padding: 0.75rem; }
+  .measurement-wrapper { padding: .75rem; }
   .glass { padding: 1.25rem; }
   .action-button { flex-basis: 100%; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
     scroll-behavior: auto !important;
   }
 }
@@ -288,14 +232,13 @@ body {
 <div class="glass">
 
   <h2>Main Claim Builder</h2>
-
   <p>
     Choose your graduate program, define the workplace setting and
-    population, and then develop a recommendation. The builder will
-    combine your sentences into a focused main claim.
+    population, and develop a recommendation. The builder will combine
+    your sentences into a focused main claim.
   </p>
 
-  <!-- STEP 1: SELECT PROGRAM -->
+  <!-- STEP 1 -->
 
   <div class="step-card" id="step1">
     <div class="question-title">
@@ -317,27 +260,24 @@ body {
     </div>
   </div>
 
-  <!-- STEP 2: SETTING AND POPULATION -->
+  <!-- STEP 2 -->
 
   <div class="step-card hidden" id="step2">
-
     <div class="question-title">
       <span class="question-number">Step 2.</span>
       Define the Setting and Population
     </div>
 
     <p class="question-help">
-      Identify the specific workplace process or decision you want
-      to address. Then identify the group that would be affected.
-      These choices establish the context for your main claim.
+      First, identify the workplace process or decision you want to address.
+      Then identify the group that would be affected. The available settings
+      are tailored to the graduate program you selected.
     </p>
 
     <div class="claim-template">
       This claim focuses on <strong>[SETTING]</strong> and is intended
       to benefit <strong>[POPULATION]</strong>.
     </div>
-
-    <!-- SETTING -->
 
     <div class="claim-field">
       <label class="field-label" for="setting">
@@ -350,8 +290,6 @@ body {
       </div>
     </div>
 
-    <!-- POPULATION -->
-
     <div class="claim-field">
       <label class="field-label" for="population">
         POPULATION — Who would be affected by this issue?
@@ -363,26 +301,20 @@ body {
       </div>
     </div>
 
-    <!-- GENERATED CONTEXT SENTENCE -->
-
     <div class="result-panel" id="contextPanel" aria-live="polite">
       <div class="result-label">Your Context Sentence</div>
       <h3 class="result-title" id="contextSentence"></h3>
-
       <div class="result-description">
         This sentence establishes the scope of your claim. Make sure
-        your setting describes a specific workplace process or decision,
-        and that your population identifies a group that could be
-        affected by that process.
+        the setting describes a specific process or decision and that
+        the population identifies a group that could be affected.
       </div>
     </div>
-
   </div>
 
-  <!-- STEP 3: WHO, DO WHAT, AND WHY -->
+  <!-- STEP 3 -->
 
   <div class="step-card hidden" id="step3">
-
     <div class="question-title">
       <span class="question-number">Step 3.</span>
       Develop Your Recommendation
@@ -391,15 +323,13 @@ body {
     <p class="question-help">
       Decide who should take action, what they should do, and why
       the action may be helpful. Your recommendation should address
-      the workplace setting and population you selected in Step 2.
+      the setting and population you selected in Step 2.
     </p>
 
     <div class="claim-template">
       I think that <strong>[WHO]</strong> should
       <strong>[DO WHAT]</strong>, because <strong>[WHY]</strong>.
     </div>
-
-    <!-- WHO -->
 
     <div class="claim-field">
       <label class="field-label" for="who">
@@ -412,8 +342,6 @@ body {
       </div>
     </div>
 
-    <!-- DO WHAT -->
-
     <div class="claim-field">
       <label class="field-label" for="what">
         DO WHAT — What should they do?
@@ -424,8 +352,6 @@ body {
         </select>
       </div>
     </div>
-
-    <!-- WHY -->
 
     <div class="claim-field">
       <label class="field-label" for="why">
@@ -438,12 +364,9 @@ body {
       </div>
     </div>
 
-    <!-- GENERATED RECOMMENDATION SENTENCE -->
-
     <div class="result-panel" id="recommendationPanel" aria-live="polite">
       <div class="result-label">Your Recommendation Sentence</div>
       <h3 class="result-title" id="recommendationSentence"></h3>
-
       <div class="result-description">
         This sentence states your proposed action and the reason
         for considering it. The reason is an expected benefit, not
@@ -451,10 +374,9 @@ body {
         the recommendation.
       </div>
     </div>
-
   </div>
 
-  <!-- FINAL COMBINED CLAIM -->
+  <!-- FINAL CLAIM -->
 
   <div class="result-panel" id="finalPanel" aria-live="polite">
     <div class="result-label">Your Complete Main Claim</div>
@@ -468,20 +390,18 @@ body {
         population clear? Can you support the expected benefit with
         credible evidence?
       </p>
-
       <p>
         <strong>Keep the topic researchable.</strong>
-        Choose an issue that can be investigated using public research,
+        Choose an issue you can investigate using public research,
         professional standards, government publications, industry
         reports, or public case studies. Avoid topics that require
         confidential company records or private employee data.
       </p>
-
       <p>
         <strong>Remember:</strong>
         The completed claim is a starting point, not a proven conclusion.
-        Review the wording and revise your selections if the two
-        sentences do not form one coherent recommendation.
+        Revise your selections if the sentences do not form one coherent
+        recommendation.
       </p>
     </div>
 
@@ -489,12 +409,10 @@ body {
       <button type="button" class="action-button" id="copyButton">
         Copy My Claim
       </button>
-
       <button type="button" class="action-button secondary" id="resetButton">
         Start Over
       </button>
     </div>
-
     <div class="status-message" id="statusMessage" role="status"></div>
   </div>
 
@@ -506,7 +424,180 @@ body {
 "use strict";
 
 /* =========================================
-   MAJOR-SPECIFIC OPTIONS
+   PROGRAM-SPECIFIC SETTINGS
+   Each program has its own setting options.
+   ========================================= */
+
+const settingsByMajor = {
+  ai: [
+    "human review of AI-generated business recommendations",
+    "validation of predictive models before business use",
+    "evaluation of AI tools before organizational adoption",
+    "assessment of potential bias in automated decisions",
+    "use of customer data in predictive analytics",
+    "monitoring the accuracy of business forecasts",
+    "evaluation of AI-assisted hiring recommendations",
+    "comparison of AI-assisted decisions with existing methods",
+    "monitoring predictive model performance over time",
+    "evaluation of AI-generated information used in business reports"
+  ],
+
+  cyber: [
+    "employee reporting of suspected phishing messages",
+    "employee access to sensitive information systems",
+    "multifactor authentication for employee accounts",
+    "cybersecurity training and assessment",
+    "response procedures for suspected security incidents",
+    "handling and storage of customer personal information",
+    "security reviews of third-party technology vendors",
+    "security policies for employees working remotely",
+    "management of software vulnerabilities",
+    "protection of organizational data stored in cloud systems"
+  ],
+
+  is: [
+    "user testing before new software is deployed",
+    "employee training during software implementation",
+    "integration of information systems across departments",
+    "migration of business data to cloud-based systems",
+    "testing and approval of software updates",
+    "evaluation of existing workflows before automation",
+    "selection of enterprise software using defined criteria",
+    "adoption of new business information systems",
+    "management of data quality across information systems",
+    "evaluation of system usability and employee adoption"
+  ],
+
+  leadership: [
+    "onboarding procedures for newly hired employees",
+    "use of consistent criteria in employee performance reviews",
+    "structured feedback between managers and employees",
+    "employee scheduling and shift assignments",
+    "communication and supervision of remote employees",
+    "resolution of workplace conflict",
+    "evaluation of employee training effectiveness",
+    "communication during organizational change",
+    "employee participation in workplace decisions",
+    "leadership development for newly promoted managers"
+  ],
+
+  project: [
+    "identification and prioritization of project risks",
+    "review and approval of project scope changes",
+    "monitoring project budgets against actual expenditures",
+    "communication among cross-functional project teams",
+    "evaluation of project progress against defined objectives",
+    "selection of projects using consistent evaluation criteria",
+    "review of lessons learned after project completion",
+    "management of project schedules and deadlines",
+    "allocation of resources across concurrent projects",
+    "evaluation of project outcomes against success criteria"
+  ],
+
+  intelligence: [
+    "evaluation of information sources before strategic decisions",
+    "comparison of competing explanations in analytical assessments",
+    "communication of uncertainty in strategic forecasts",
+    "analysis of publicly available information about emerging threats",
+    "monitoring indicators of industry or geopolitical change",
+    "evaluation of assumptions underlying strategic forecasts",
+    "assessment of potential risks to business continuity",
+    "documentation of analytical judgments and assumptions",
+    "evaluation of conflicting information from multiple sources",
+    "communication of strategic assessments to decision-makers"
+  ],
+
+  technology: [
+    "evaluation of technology investments against business objectives",
+    "alignment of IT projects with organizational strategy",
+    "governance policies for enterprise AI adoption",
+    "evaluation of technology vendors before procurement",
+    "management of organizational change during technology adoption",
+    "review of the business value of major IT projects",
+    "assignment of accountability for technology-related decisions",
+    "planning for technology-related skill gaps",
+    "prioritization of technology initiatives across departments",
+    "evaluation of technology risks and organizational readiness"
+  ]
+};
+
+/* =========================================
+   SHARED POPULATIONS
+   ========================================= */
+
+const populations = [
+  "new employees",
+  "experienced employees",
+  "remote employees",
+  "hybrid employees",
+  "employees working in person",
+  "employees who handle customer information",
+  "employees who use AI tools",
+  "employees with access to sensitive data",
+  "employees undergoing job training",
+  "employees working in customer support",
+  "employees in technical roles",
+  "employees in nontechnical roles",
+  "employees working across multiple time zones",
+  "employees transitioning to new technology",
+  "first-time managers",
+  "middle managers",
+  "senior executives",
+  "IT managers",
+  "project managers",
+  "human resources managers",
+  "cybersecurity managers",
+  "data analytics managers",
+  "team leaders",
+  "managers supervising remote teams",
+  "managers responsible for employee evaluations",
+  "leaders overseeing organizational change",
+  "data analysts",
+  "data scientists",
+  "business intelligence analysts",
+  "cybersecurity analysts",
+  "IT administrators",
+  "software developers",
+  "AI developers",
+  "systems analysts",
+  "information security officers",
+  "technology project managers",
+  "professionals responsible for evaluating AI systems",
+  "employees responsible for making data-driven decisions",
+  "customers using online services",
+  "customers whose information is collected by businesses",
+  "customers using AI-powered services",
+  "small-business clients",
+  "employees of third-party vendors",
+  "external contractors",
+  "technology vendors",
+  "business partners",
+  "members of the public using digital government services",
+  "individuals affected by automated decisions",
+  "cross-functional teams",
+  "software development teams",
+  "cybersecurity teams",
+  "remote project teams",
+  "newly formed teams",
+  "teams working under tight deadlines",
+  "teams responsible for major technology implementations",
+  "teams with members from multiple departments",
+  "teams adopting new collaboration tools",
+  "teams responsible for organizational decision-making",
+  "small businesses with fewer than 50 employees",
+  "medium-sized businesses",
+  "large organizations with multiple departments",
+  "organizations with remote workforces",
+  "organizations adopting AI for the first time",
+  "organizations in highly regulated industries",
+  "organizations that handle sensitive personal information",
+  "organizations with limited technology budgets",
+  "organizations undergoing digital transformation",
+  "organizations that rely heavily on data-driven decisions"
+];
+
+/* =========================================
+   PROGRAM-SPECIFIC WHO, WHAT, AND WHY
    ========================================= */
 
 const data = {
@@ -524,7 +615,7 @@ const data = {
       "evaluate AI tools before adopting them for business decisions",
       "validate predictive models before using their results",
       "establish standards for evaluating AI-generated recommendations",
-      "compare AI-assisted decisions with decisions made using existing methods",
+      "compare AI-assisted decisions with existing methods",
       "monitor predictive model performance over time",
       "require human review of AI-generated recommendations in high-impact decisions",
       "evaluate analytical models for potential bias",
@@ -742,163 +833,6 @@ const data = {
 };
 
 /* =========================================
-   SHARED SETTINGS
-   ========================================= */
-
-const settings = {
-  "Cybersecurity and Information Protection": [
-    "employee reporting of suspected phishing messages",
-    "employee access to sensitive information systems",
-    "multifactor authentication for employee accounts",
-    "cybersecurity training and assessment",
-    "response procedures for suspected security incidents",
-    "handling and storage of customer personal information",
-    "security reviews of third-party technology vendors"
-  ],
-
-  "AI and Business Analytics": [
-    "human review of AI-generated business recommendations",
-    "validation of predictive models before business use",
-    "evaluation of AI tools before organizational adoption",
-    "assessment of potential bias in automated decisions",
-    "use of customer data in predictive analytics",
-    "monitoring the accuracy of business forecasts",
-    "evaluation of AI-assisted hiring recommendations"
-  ],
-
-  "Software and Information Systems": [
-    "user testing before new software is deployed",
-    "employee training during software implementation",
-    "integration of information systems across departments",
-    "migration of business data to cloud-based systems",
-    "testing and approval of software updates",
-    "evaluation of existing workflows before automation",
-    "selection of enterprise software using defined criteria"
-  ],
-
-  "Human Resources and Leadership": [
-    "onboarding procedures for newly hired employees",
-    "use of consistent criteria in employee performance reviews",
-    "structured feedback between managers and employees",
-    "employee scheduling and shift assignments",
-    "communication and supervision of remote employees",
-    "resolution of workplace conflict",
-    "evaluation of employee training effectiveness",
-    "communication during organizational change"
-  ],
-
-  "Customer Service and Business Operations": [
-    "routing and resolution of customer complaints",
-    "prioritization of customer support tickets",
-    "retail inventory monitoring and replenishment",
-    "patient scheduling and administrative workflows",
-    "review of potentially fraudulent transactions",
-    "handling customer requests across support channels",
-    "evaluation of customer service performance"
-  ],
-
-  "Project Management": [
-    "identification and prioritization of project risks",
-    "review and approval of project scope changes",
-    "monitoring project budgets against actual expenditures",
-    "communication among cross-functional project teams",
-    "evaluation of project progress against defined objectives",
-    "selection of projects using consistent evaluation criteria",
-    "review of lessons learned after project completion"
-  ],
-
-  "Strategic Analysis and Technology Governance": [
-    "evaluation of information sources before strategic decisions",
-    "comparison of competing explanations in analytical assessments",
-    "communication of uncertainty in strategic forecasts",
-    "evaluation of technology investments against business objectives",
-    "assessment of technology vendors before procurement",
-    "assignment of accountability for technology-related decisions",
-    "monitoring publicly available indicators of emerging risks"
-  ]
-};
-
-/* =========================================
-   SHARED POPULATIONS
-   ========================================= */
-
-const populations = [
-  "new employees",
-  "experienced employees",
-  "remote employees",
-  "hybrid employees",
-  "employees working in person",
-  "employees who handle customer information",
-  "employees who use AI tools",
-  "employees with access to sensitive data",
-  "employees undergoing job training",
-  "employees working in customer support",
-  "employees in technical roles",
-  "employees in nontechnical roles",
-  "employees working across multiple time zones",
-  "employees transitioning to new technology",
-
-  "first-time managers",
-  "middle managers",
-  "senior executives",
-  "IT managers",
-  "project managers",
-  "human resources managers",
-  "cybersecurity managers",
-  "data analytics managers",
-  "team leaders",
-  "managers supervising remote teams",
-  "managers responsible for employee evaluations",
-  "leaders overseeing organizational change",
-
-  "data analysts",
-  "data scientists",
-  "business intelligence analysts",
-  "cybersecurity analysts",
-  "IT administrators",
-  "software developers",
-  "AI developers",
-  "systems analysts",
-  "information security officers",
-  "technology project managers",
-  "professionals responsible for evaluating AI systems",
-  "employees responsible for making data-driven decisions",
-
-  "customers using online services",
-  "customers whose information is collected by businesses",
-  "customers using AI-powered services",
-  "small-business clients",
-  "employees of third-party vendors",
-  "external contractors",
-  "technology vendors",
-  "business partners",
-  "members of the public using digital government services",
-  "individuals affected by automated decisions",
-
-  "cross-functional teams",
-  "software development teams",
-  "cybersecurity teams",
-  "remote project teams",
-  "newly formed teams",
-  "teams working under tight deadlines",
-  "teams responsible for major technology implementations",
-  "teams with members from multiple departments",
-  "teams adopting new collaboration tools",
-  "teams responsible for organizational decision-making",
-
-  "small businesses with fewer than 50 employees",
-  "medium-sized businesses",
-  "large organizations with multiple departments",
-  "organizations with remote workforces",
-  "organizations adopting AI for the first time",
-  "organizations in highly regulated industries",
-  "organizations that handle sensitive personal information",
-  "organizations with limited technology budgets",
-  "organizations undergoing digital transformation",
-  "organizations that rely heavily on data-driven decisions"
-];
-
-/* =========================================
    ELEMENTS
    ========================================= */
 
@@ -915,10 +849,8 @@ const step3 = document.getElementById("step3");
 const contextPanel = document.getElementById("contextPanel");
 const contextSentence = document.getElementById("contextSentence");
 
-const recommendationPanel =
-  document.getElementById("recommendationPanel");
-const recommendationSentence =
-  document.getElementById("recommendationSentence");
+const recommendationPanel = document.getElementById("recommendationPanel");
+const recommendationSentence = document.getElementById("recommendationSentence");
 
 const finalPanel = document.getElementById("finalPanel");
 const finalClaim = document.getElementById("finalClaim");
@@ -939,28 +871,12 @@ function populateSelect(select, options, placeholder) {
   firstOption.textContent = placeholder;
   select.appendChild(firstOption);
 
-  if (Array.isArray(options)) {
-    options.forEach(function (item) {
-      const option = document.createElement("option");
-      option.value = item;
-      option.textContent = item;
-      select.appendChild(option);
-    });
-  } else {
-    Object.entries(options).forEach(function ([groupName, items]) {
-      const optgroup = document.createElement("optgroup");
-      optgroup.label = groupName;
-
-      items.forEach(function (item) {
-        const option = document.createElement("option");
-        option.value = item;
-        option.textContent = item;
-        optgroup.appendChild(option);
-      });
-
-      select.appendChild(optgroup);
-    });
-  }
+  options.forEach(function (item) {
+    const option = document.createElement("option");
+    option.value = item;
+    option.textContent = item;
+    select.appendChild(option);
+  });
 
   select.disabled = false;
 }
@@ -1033,28 +949,32 @@ function updateFinalClaim() {
   statusMessage.textContent = "";
 }
 
-/* =========================================
-   HIDE RESULTS WHEN CHOICES CHANGE
-   ========================================= */
-
-function hideRecommendationResults() {
-  recommendationPanel.classList.remove("visible");
-  recommendationSentence.textContent = "";
-  finalPanel.classList.remove("visible");
-  finalClaim.textContent = "";
-  statusMessage.textContent = "";
-}
-
 function hideAllResults() {
   contextPanel.classList.remove("visible");
   contextSentence.textContent = "";
 
-  hideRecommendationResults();
+  recommendationPanel.classList.remove("visible");
+  recommendationSentence.textContent = "";
+
+  finalPanel.classList.remove("visible");
+  finalClaim.textContent = "";
+
+  statusMessage.textContent = "";
 }
 
-/* =========================================
-   SCROLL HELPER
-   ========================================= */
+function resetRecommendation() {
+  clearSelect(who, "-- Choose who should act --");
+  clearSelect(what, "-- Choose an action --");
+  clearSelect(why, "-- Choose a reason --");
+
+  recommendationPanel.classList.remove("visible");
+  recommendationSentence.textContent = "";
+
+  finalPanel.classList.remove("visible");
+  finalClaim.textContent = "";
+
+  statusMessage.textContent = "";
+}
 
 function scrollToElement(element) {
   setTimeout(function () {
@@ -1068,33 +988,39 @@ function scrollToElement(element) {
 }
 
 /* =========================================
-   STEP 1: SELECT MAJOR
+   STEP 1: SELECT PROGRAM
+   Populate only that program's settings.
    ========================================= */
 
 major.addEventListener("change", function () {
-  const selected = data[major.value];
+  const selectedMajor = major.value;
 
   clearSelect(setting, "-- Choose a workplace process --");
   clearSelect(population, "-- Choose a population --");
-  clearSelect(who, "-- Choose who should act --");
-  clearSelect(what, "-- Choose an action --");
-  clearSelect(why, "-- Choose a reason --");
-
+  resetRecommendation();
   hideAllResults();
-  statusMessage.textContent = "";
 
   step3.classList.add("hidden");
 
-  if (!selected) {
+  if (!selectedMajor) {
     step2.classList.add("hidden");
     return;
   }
 
-  populateSelect(setting, settings, "-- Choose a workplace process --");
-  populateSelect(population, populations, "-- Choose a population --");
+  // KEY CHANGE: use only the settings for the selected major.
+  populateSelect(
+    setting,
+    settingsByMajor[selectedMajor],
+    "-- Choose a workplace process --"
+  );
+
+  populateSelect(
+    population,
+    populations,
+    "-- Choose a population --"
+  );
 
   step2.classList.remove("hidden");
-
   scrollToElement(step2);
 });
 
@@ -1104,18 +1030,10 @@ major.addEventListener("change", function () {
 
 setting.addEventListener("change", function () {
   hideAllResults();
-
-  // Changing the context resets the recommendation selections.
-  clearSelect(who, "-- Choose who should act --");
-  clearSelect(what, "-- Choose an action --");
-  clearSelect(why, "-- Choose a reason --");
-
+  resetRecommendation();
   step3.classList.add("hidden");
 
-  if (!setting.value) return;
-
-  // Open Step 3 only after both context selections are complete.
-  if (population.value) {
+  if (setting.value && population.value) {
     updateContextSentence();
 
     populateSelect(
@@ -1135,18 +1053,10 @@ setting.addEventListener("change", function () {
 
 population.addEventListener("change", function () {
   hideAllResults();
-
-  // Changing the context resets the recommendation selections.
-  clearSelect(who, "-- Choose who should act --");
-  clearSelect(what, "-- Choose an action --");
-  clearSelect(why, "-- Choose a reason --");
-
+  resetRecommendation();
   step3.classList.add("hidden");
 
-  if (!population.value) return;
-
-  // Open Step 3 only after both context selections are complete.
-  if (setting.value) {
+  if (setting.value && population.value) {
     updateContextSentence();
 
     populateSelect(
@@ -1168,7 +1078,11 @@ who.addEventListener("change", function () {
   clearSelect(what, "-- Choose an action --");
   clearSelect(why, "-- Choose a reason --");
 
-  hideRecommendationResults();
+  recommendationPanel.classList.remove("visible");
+  recommendationSentence.textContent = "";
+  finalPanel.classList.remove("visible");
+  finalClaim.textContent = "";
+  statusMessage.textContent = "";
 
   if (!who.value) return;
 
@@ -1186,7 +1100,11 @@ who.addEventListener("change", function () {
 what.addEventListener("change", function () {
   clearSelect(why, "-- Choose a reason --");
 
-  hideRecommendationResults();
+  recommendationPanel.classList.remove("visible");
+  recommendationSentence.textContent = "";
+  finalPanel.classList.remove("visible");
+  finalClaim.textContent = "";
+  statusMessage.textContent = "";
 
   if (!what.value) return;
 
@@ -1202,7 +1120,8 @@ what.addEventListener("change", function () {
    ========================================= */
 
 why.addEventListener("change", function () {
-  hideRecommendationResults();
+  recommendationPanel.classList.remove("visible");
+  finalPanel.classList.remove("visible");
 
   if (!why.value) return;
 
@@ -1229,10 +1148,8 @@ copyButton.addEventListener("click", async function () {
 
   try {
     await navigator.clipboard.writeText(finalClaim.textContent);
-    statusMessage.textContent =
-      "Your complete claim has been copied.";
+    statusMessage.textContent = "Your complete claim has been copied.";
   } catch (error) {
-    // Fallback for browsers that block clipboard access.
     const textArea = document.createElement("textarea");
     textArea.value = finalClaim.textContent;
     textArea.setAttribute("readonly", "");
@@ -1268,7 +1185,6 @@ resetButton.addEventListener("click", function () {
   step3.classList.add("hidden");
 
   hideAllResults();
-  statusMessage.textContent = "";
 
   window.scrollTo({
     top: 0,
