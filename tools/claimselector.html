@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Main Claim Builder</title>
+
+<style>
+  #claim-builder {
+    font-family: Lato, Aptos, Arial, sans-serif;
+    color: #263746;
+    background: #ffffff;
+    max-width: 950px;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  #claim-builder * {
+    box-sizing: border-box;
+  }
+
+  #claim-builder .cb-header {
+    background: #174a73;
+    color: white;
+    padding: 22px 24px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  #claim-builder .cb-header h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    color: white;
+  }
+
+  #claim-builder .cb-header p {
+    margin: 0;
+    color: #f0f6fb;
+  }
+
+  #claim-builder .cb-body {
+    border: 1px solid #d8e5ef;
+    border-top: none;
+    padding: 22px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  #claim-builder .cb-section {
+    margin-bottom: 23px;
+  }
+
+  #claim-builder .cb-section h3 {
+    color: #0e68b3;
+    font-size: 16px;
+    margin: 0 0 8px;
+  }
+
+  #claim-builder .cb-help {
+    color: #526574;
+    margin: 0 0 12px;
+  }
+
+  #claim-builder label {
+    display: block;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #174a73;
+  }
+
+  #claim-builder select {
+    display: block;
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 11px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #263746;
+    background: white;
+    border: 1px solid #aebfce;
+    border-radius: 5px;
+  }
+
+  #claim-builder select:focus {
+    outline: 2px solid #0e68b3;
+    outline-offset: 2px;
+  }
+
+  #claim-builder .cb-field {
+    margin-bottom: 17px;
+  }
+
+  #claim-builder .cb-sentence {
+    background: #f4f9fe;
+    border-left: 4px solid #0e68b3;
+    border-radius: 5px;
+    padding: 17px 18px;
+    margin: 18px 0;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  #claim-builder .cb-sentence strong {
+    color: #0e68b3;
+  }
+
+  #claim-builder .cb-result {
+    background: white;
+    border: 1px solid #c6dbea;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 10px;
+    overflow-wrap: anywhere;
+  }
+
+  #claim-builder .cb-result-label {
+    color: #174a73;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 7px;
+  }
+
+  #claim-builder #cb-final-claim {
+    margin: 0;
+    font-size: 16px;
+    color: #263746;
+  }
+
+  #claim-builder .cb-button {
+    background: #0e68b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 8px 8px 0 0;
+  }
+
+  #claim-builder .cb-button:hover {
+    background: #174a73;
+  }
+
+  #claim-builder .cb-button:focus {
+    outline: 2px solid #e67e22;
+    outline-offset: 2px;
+  }
+
+  #claim-builder .cb-button.cb-secondary {
+    background: #eaf2f8;
+    color: #174a73;
+    border: 1px solid #c6dbea;
+  }
+
+  #claim-builder .cb-button.cb-secondary:hover {
+    background: #d8e8f5;
+  }
+
+  #claim-builder .cb-note {
+    background: #fff7ed;
+    border-left: 4px solid #e67e22;
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin-top: 18px;
+  }
+
+  #claim-builder .cb-note strong {
+    color: #9a4c0c;
+  }
+
+  #claim-builder .cb-status {
+    min-height: 22px;
+    color: #276749;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  #claim-builder .cb-hidden {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    #claim-builder .cb-body {
+      padding: 15px;
+    }
+
+    #claim-builder .cb-header {
+      padding: 18px;
+    }
+
+    #claim-builder .cb-header h2 {
+      font-size: 20px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="claim-builder">
+
+  <div class="cb-header">
+    <h2>Main Claim Builder</h2>
+    <p>Build a focused claim about a workplace problem related to your graduate program.</p>
+  </div>
+
+  <div class="cb-body">
+
+    <div class="cb-section">
+      <h3>Step 1: Choose your graduate program</h3>
+      <p class="cb-help">
+        Select your major to see examples related to your field. You will use
+        these examples to build a sentence explaining what someone should do
+        and why.
+      </p>
+
+      <label for="cb-major">My graduate program</label>
+      <select id="cb-major">
+        <option value="">-- Select your major --</option>
+        <option value="ai">Applied AI and Decision Analytics, M.S.</option>
+        <option value="cyber">Cybersecurity, M.S.</option>
+        <option value="is">Information Systems and Emerging Technologies, M.S.</option>
+        <option value="leadership">Leadership and Organizational Development, M.A.</option>
+        <option value="project">Project Management, M.S.</option>
+        <option value="intelligence">Strategic Intelligence, M.S.</option>
+        <option value="technology">Technology Leadership, M.S.</option>
+      </select>
+    </div>
+
+    <div id="cb-builder-fields" class="cb-hidden">
+
+      <div class="cb-section">
+        <h3>Step 2: Complete the sentence</h3>
+        <p class="cb-help">
+          Choose one answer from each dropdown. Think about who has the ability
+          to act, what specific action they should take, and what problem that
+          action could help address.
+        </p>
+
+        <div class="cb-field">
+          <label for="cb-who">WHO — Who should act?</label>
+          <select id="cb-who">
+            <option value="">-- Choose who should act --</option>
+          </select>
+        </div>
+
+        <div class="cb-field">
+          <label for="cb-what">DO WHAT — What should they do?</label>
+          <select id="cb-what">
+            <option value="">-- Choose an action --</option>
+          </select>
+        </div>
+
+        <div class="cb-field">
+          <label for="cb-why">WHY — Why should they do it?</label>
+          <select id="cb-why">
+            <option value="">-- Choose a reason --</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cb-section">
+        <h3>Step 3: Review your main claim</h3>
+
+        <div class="cb-sentence">
+          <strong>Sentence structure:</strong><br>
+          I think that <strong>[WHO]</strong> should
+          <strong>[DO WHAT]</strong>, because <strong>[WHY]</strong>.
+        </div>
+
+        <div class="cb-result" aria-live="polite">
+          <div class="cb-result-label">Your completed sentence</div>
+          <p id="cb-final-claim">Choose an option from each dropdown to build your claim.</p>
+        </div>
+
+        <button type="button" class="cb-button" id="cb-copy">
+          Copy my claim
+        </button>
+
+        <button type="button" class="cb-button cb-secondary" id="cb-reset">
+          Start over
+        </button>
+
+        <div id="cb-status" class="cb-status" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="cb-note">
+        <strong>Before you use this claim:</strong>
+        Make sure your topic is specific enough to investigate. You should be
+        able to find credible evidence about the problem and the proposed
+        action. Avoid claims that require confidential company records,
+        private employee information, or access to an entire organization's
+        internal systems. You can narrow a broad topic to one industry,
+        workplace process, group, or measurable outcome.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const data = {
+    ai: {
+      who: [
+        "Business managers who make data-driven decisions",
+        "Data analytics teams",
+        "Organizations adopting AI tools",
+        "Companies using predictive models",
+        "Human resources departments using automated hiring tools",
+        "Operations departments responsible for forecasting",
+        "Teams responsible for evaluating AI-generated recommendations"
+      ],
+      what: [
+        "Evaluate AI tools before adopting them for business decisions",
+        "Validate predictive models before using their results",
+        "Establish standards for evaluating AI-generated recommendations",
+        "Compare AI-assisted decisions with decisions made using existing methods",
+        "Monitor predictive model performance over time",
+        "Require human review of AI-generated recommendations in high-impact decisions",
+        "Evaluate analytical models for potential bias",
+        "Establish guidelines for using AI tools with sensitive information"
+      ],
+      why: [
+        "Reduce errors in AI-assisted decisions",
+        "Improve the accuracy of business forecasts",
+        "Identify potential bias in automated decisions",
+        "Improve the reliability of predictive models",
+        "Reduce unnecessary spending on ineffective AI tools",
+        "Improve the consistency of business decisions",
+        "Reduce the risk of relying on inaccurate AI-generated information",
+        "Improve accountability for decisions informed by AI"
+      ]
+    },
+
+    cyber: {
+      who: [
+        "Cybersecurity departments",
+        "IT administrators",
+        "Small and medium-sized businesses",
+        "Organizations that store customer information",
+        "Employees who handle sensitive data",
+        "Managers responsible for information security",
+        "Organizations that permit remote work",
+        "Teams responsible for responding to security incidents"
+      ],
+      what: [
+        "Require cybersecurity awareness training for employees",
+        "Implement multifactor authentication for access to sensitive systems",
+        "Review employee access permissions regularly",
+        "Establish procedures for reporting suspected phishing attempts",
+        "Adopt a standardized process for responding to security incidents",
+        "Conduct regular security awareness assessments",
+        "Establish policies for using personal devices for work",
+        "Evaluate third-party vendors before sharing sensitive information"
+      ],
+      why: [
+        "Reduce the risk of unauthorized access",
+        "Reduce employees' susceptibility to phishing attempts",
+        "Protect confidential customer information",
+        "Reduce avoidable security errors",
+        "Improve the speed of incident reporting",
+        "Limit the potential impact of security incidents",
+        "Reduce risks associated with third-party vendors",
+        "Improve compliance with applicable security requirements"
+      ]
+    },
+
+    is: {
+      who: [
+        "Organizations replacing outdated information systems",
+        "IT departments",
+        "Business units adopting new software",
+        "Managers responsible for technology implementation",
+        "Organizations introducing automation",
+        "Employees who use enterprise software",
+        "Teams responsible for system integration",
+        "Organizations moving business operations to cloud-based systems"
+      ],
+      what: [
+        "Conduct user testing before implementing new software",
+        "Establish criteria for selecting enterprise information systems",
+        "Provide structured training when introducing new technology",
+        "Evaluate system usability before organization-wide deployment",
+        "Develop procedures for managing software updates",
+        "Assess compatibility before integrating new systems",
+        "Establish guidelines for adopting emerging technologies",
+        "Evaluate existing workflows before automating them"
+      ],
+      why: [
+        "Reduce implementation problems",
+        "Improve employee adoption of new systems",
+        "Reduce disruptions during technology transitions",
+        "Improve system usability",
+        "Reduce costs associated with incompatible systems",
+        "Improve the reliability of business operations",
+        "Reduce resistance to organizational technology changes",
+        "Prevent investment in technology that does not meet organizational needs"
+      ]
+    },
+
+    leadership: {
+      who: [
+        "Department managers",
+        "Team leaders",
+        "Human resources departments",
+        "Organizations experiencing high employee turnover",
+        "Managers supervising remote employees",
+        "Organizations implementing workplace changes",
+        "Supervisors responsible for employee development",
+        "Leaders managing cross-functional teams"
+      ],
+      what: [
+        "Establish structured feedback processes for employees",
+        "Provide leadership training for newly promoted managers",
+        "Use consistent criteria for employee performance evaluations",
+        "Introduce structured onboarding for new employees",
+        "Establish regular communication practices for remote teams",
+        "Involve employees in decisions that directly affect their work",
+        "Develop formal processes for resolving workplace conflict",
+        "Evaluate employee development programs using defined outcomes"
+      ],
+      why: [
+        "Improve employee engagement",
+        "Reduce avoidable employee turnover",
+        "Improve consistency in performance evaluations",
+        "Help new managers transition into leadership roles",
+        "Reduce misunderstandings among team members",
+        "Improve employee preparedness for job responsibilities",
+        "Reduce workplace conflict",
+        "Improve employees' perceptions of organizational fairness"
+      ]
+    },
+
+    project: {
+      who: [
+        "Project managers",
+        "Project management offices (PMOs)",
+        "Project sponsors",
+        "Cross-functional project teams",
+        "Organizations managing multiple concurrent projects",
+        "Managers responsible for project budgets",
+        "Teams delivering technology implementations",
+        "Project leaders working with external vendors"
+      ],
+      what: [
+        "Conduct risk assessments during project planning",
+        "Establish clear criteria for evaluating project success",
+        "Use standardized processes for tracking project progress",
+        "Require formal review of major scope changes",
+        "Establish regular stakeholder communication schedules",
+        "Compare estimated project costs with actual expenditures",
+        "Use lessons-learned reviews after project completion",
+        "Prioritize projects using consistent selection criteria"
+      ],
+      why: [
+        "Reduce unexpected project delays",
+        "Identify risks before they affect project outcomes",
+        "Improve budget accuracy",
+        "Reduce scope creep",
+        "Improve communication among stakeholders",
+        "Increase the likelihood of meeting project objectives",
+        "Improve the allocation of project resources",
+        "Reduce the recurrence of problems across projects"
+      ]
+    },
+
+    intelligence: {
+      who: [
+        "Strategic intelligence teams",
+        "Corporate risk management departments",
+        "Business leaders making strategic decisions",
+        "Organizations operating in rapidly changing markets",
+        "Analysts responsible for evaluating public information",
+        "Teams monitoring industry developments",
+        "Organizations assessing geopolitical risks",
+        "Decision-makers responsible for business continuity"
+      ],
+      what: [
+        "Use structured analytical techniques when evaluating competing explanations",
+        "Establish criteria for assessing the credibility of information sources",
+        "Compare multiple sources before drawing strategic conclusions",
+        "Conduct scenario analysis when evaluating emerging threats",
+        "Establish procedures for communicating analytical uncertainty",
+        "Monitor publicly available indicators of industry change",
+        "Review assumptions underlying strategic forecasts",
+        "Develop standardized processes for documenting analytical judgments"
+      ],
+      why: [
+        "Reduce the influence of confirmation bias",
+        "Improve the reliability of strategic assessments",
+        "Reduce the risk of decisions based on inaccurate information",
+        "Identify emerging threats earlier",
+        "Improve preparedness for uncertain future events",
+        "Distinguish verified information from unsupported claims",
+        "Improve the transparency of analytical reasoning",
+        "Help decision-makers understand uncertainty and competing explanations"
+      ]
+    },
+
+    technology: {
+      who: [
+        "Chief information officers (CIOs)",
+        "IT directors",
+        "Technology leadership teams",
+        "Executives responsible for digital transformation",
+        "Organizations planning major technology investments",
+        "Managers overseeing technology adoption",
+        "IT governance committees",
+        "Business leaders responsible for aligning technology with organizational strategy"
+      ],
+      what: [
+        "Establish criteria for evaluating technology investments",
+        "Align IT projects with defined organizational objectives",
+        "Develop governance policies for enterprise AI adoption",
+        "Establish procedures for evaluating technology vendors",
+        "Create plans for managing technology-related organizational change",
+        "Review the business value of major IT projects",
+        "Establish clear accountability for technology-related decisions",
+        "Develop strategies for addressing critical technology skill gaps"
+      ],
+      why: [
+        "Reduce investment in technology that does not meet organizational needs",
+        "Improve alignment between IT projects and business objectives",
+        "Reduce risks associated with technology adoption",
+        "Improve accountability for technology spending",
+        "Increase the value organizations receive from technology investments",
+        "Reduce disruption during digital transformation",
+        "Improve coordination between business and IT teams",
+        "Prepare employees for changing technology requirements"
+      ]
+    }
+  };
+
+  const major = document.getElementById("cb-major");
+  const fields = document.getElementById("cb-builder-fields");
+  const who = document.getElementById("cb-who");
+  const what = document.getElementById("cb-what");
+  const why = document.getElementById("cb-why");
+  const result = document.getElementById("cb-final-claim");
+  const status = document.getElementById("cb-status");
+  const copyButton = document.getElementById("cb-copy");
+  const resetButton = document.getElementById("cb-reset");
+
+  function populate(select, options, placeholder) {
+    select.replaceChildren();
+
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = placeholder;
+    select.appendChild(first);
+
+    options.forEach(function (item) {
+      const option = document.createElement("option");
+      option.value = item;
+      option.textContent = item;
+      select.appendChild(option);
+    });
+  }
+
+  function updateClaim() {
+    const selectedWho = who.value;
+    const selectedWhat = what.value;
+    const selectedWhy = why.value;
+
+    if (selectedWho && selectedWhat && selectedWhy) {
+      result.textContent =
+        "I think that " + selectedWho +
+        " should " + selectedWhat +
+        ", because " + selectedWhy + ".";
+
+      status.textContent = "";
+    } else {
+      const parts = [];
+
+      if (selectedWho) {
+        parts.push("WHO selected");
+      }
+
+      if (selectedWhat) {
+        parts.push("DO WHAT selected");
+      }
+
+      if (selectedWhy) {
+        parts.push("WHY selected");
+      }
+
+      result.textContent =
+        "Choose an option from each dropdown to build your claim.";
+
+      status.textContent = parts.length
+        ? parts.join(" • ") + ". Complete the remaining selections."
+        : "";
+    }
+  }
+
+  major.addEventListener("change", function () {
+    const selected = data[major.value];
+
+    if (!selected) {
+      fields.classList.add("cb-hidden");
+      return;
+    }
+
+    populate(who, selected.who, "-- Choose who should act --");
+    populate(what, selected.what, "-- Choose an action --");
+    populate(why, selected.why, "-- Choose a reason --");
+
+    fields.classList.remove("cb-hidden");
+    updateClaim();
+  });
+
+  [who, what, why].forEach(function (select) {
+    select.addEventListener("change", updateClaim);
+  });
+
+  copyButton.addEventListener("click", async function () {
+    if (!who.value || !what.value || !why.value) {
+      status.textContent =
+        "Please complete all three dropdowns before copying your claim.";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(result.textContent);
+      status.textContent = "Your claim has been copied.";
+    } catch (error) {
+      // Fallback for browsers that block clipboard access.
+      const range = document.createRange();
+      range.selectNodeContents(result);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      status.textContent =
+        "Automatic copying was blocked. Select and copy the highlighted sentence.";
+    }
+  });
+
+  resetButton.addEventListener("click", function () {
+    major.value = "";
+    fields.classList.add("cb-hidden");
+
+    populate(who, [], "-- Choose who should act --");
+    populate(what, [], "-- Choose an action --");
+    populate(why, [], "-- Choose a reason --");
+
+    result.textContent =
+      "Choose an option from each dropdown to build your claim.";
+
+    status.textContent = "";
+    major.focus();
+  });
+})();
+</script>
+
+</body>
+</html>
