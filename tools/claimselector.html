@@ -351,8 +351,8 @@ body {
 
     <div class="claim-template">
       I think that <strong>[WHO]</strong> should
-      <strong>[DO WHAT]</strong> in <strong>[SETTING]</strong>
-      for <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
+      <strong>[DO WHAT]</strong> within <strong>[SETTING]</strong>
+      to benefit <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
     </div>
 
     <div class="definition-list">
@@ -724,66 +724,71 @@ const data = {
    ========================================= */
 
 const settings = [
-  "Small businesses",
-  "Large corporations",
-  "Technology companies",
-  "Healthcare organizations",
-  "Financial institutions",
-  "Insurance companies",
-  "Retail businesses",
-  "Manufacturing companies",
-  "Consulting firms",
-  "Nonprofit organizations",
-  "Government agencies",
-  "Educational institutions",
-  "Startups and newly established businesses",
-  "Organizations that operate across multiple countries",
+  // Organizations and industries
+  "small businesses",
+  "large corporations",
+  "technology companies",
+  "healthcare organizations",
+  "financial institutions",
+  "insurance companies",
+  "retail businesses",
+  "manufacturing companies",
+  "consulting firms",
+  "nonprofit organizations",
+  "government agencies",
+  "educational institutions",
+  "startups and newly established businesses",
+  "organizations operating across multiple countries",
 
-  "Human resources departments",
-  "Information technology (IT) departments",
-  "Cybersecurity departments",
-  "Data analytics departments",
-  "Customer support departments",
-  "Marketing departments",
-  "Finance and accounting departments",
-  "Operations departments",
-  "Project management offices",
-  "Training and development departments",
-  "Research and development departments",
-  "Supply chain and logistics departments",
+  // Departments and business functions
+  "human resources departments",
+  "information technology (IT) departments",
+  "cybersecurity departments",
+  "data analytics departments",
+  "customer support departments",
+  "marketing departments",
+  "finance and accounting departments",
+  "operations departments",
+  "project management offices",
+  "training and development departments",
+  "research and development departments",
+  "supply chain and logistics departments",
 
-  "Remote workplaces",
-  "Hybrid workplaces",
-  "Traditional office environments",
-  "Distributed teams working across time zones",
-  "Organizations with multiple physical locations",
-  "Organizations with centralized decision-making",
-  "Organizations with decentralized decision-making",
-  "Workplaces undergoing organizational change",
-  "Workplaces implementing new technology",
-  "Workplaces experiencing staffing shortages",
+  // Work arrangements and environments
+  "remote work environments",
+  "hybrid work environments",
+  "traditional office environments",
+  "distributed teams working across time zones",
+  "organizations with multiple physical locations",
+  "organizations with centralized decision-making",
+  "organizations with decentralized decision-making",
+  "workplaces undergoing organizational change",
+  "workplaces implementing new technology",
+  "workplaces experiencing staffing shortages",
 
-  "Organizations adopting artificial intelligence",
-  "Workplaces using automated decision-making systems",
-  "Organizations transitioning to cloud-based systems",
-  "Businesses integrating multiple information systems",
-  "Organizations managing sensitive customer information",
-  "Organizations using predictive analytics",
-  "Organizations implementing new cybersecurity systems",
-  "Organizations relying on third-party technology vendors",
-  "Organizations collecting large amounts of customer data",
-  "Organizations modernizing outdated technology infrastructure",
+  // Technology and information environments
+  "organizations adopting artificial intelligence",
+  "workplaces using automated decision-making systems",
+  "organizations transitioning to cloud-based systems",
+  "businesses integrating multiple information systems",
+  "organizations managing sensitive customer information",
+  "organizations using predictive analytics",
+  "organizations implementing new cybersecurity systems",
+  "organizations relying on third-party technology vendors",
+  "organizations collecting large amounts of customer data",
+  "organizations modernizing outdated technology infrastructure",
 
-  "Software development projects",
+  // Projects and operational settings
+  "software development projects",
   "IT implementation projects",
-  "Digital transformation initiatives",
-  "Cybersecurity incident response",
-  "Employee onboarding programs",
-  "Employee training programs",
-  "Business process improvement initiatives",
-  "Projects involving multiple departments",
-  "Projects with fixed budgets and deadlines",
-  "Organizations managing several projects simultaneously"
+  "digital transformation initiatives",
+  "cybersecurity incident response operations",
+  "employee onboarding programs",
+  "employee training programs",
+  "business process improvement initiatives",
+  "projects involving multiple departments",
+  "projects with fixed budgets and deadlines",
+  "organizations managing several projects simultaneously"
 ];
 
 /* =========================================
@@ -791,79 +796,85 @@ const settings = [
    ========================================= */
 
 const populations = [
-  "New employees",
-  "Experienced employees",
-  "Remote employees",
-  "Hybrid employees",
-  "Employees working in person",
-  "Employees who handle customer information",
-  "Employees who use AI tools",
-  "Employees with access to sensitive data",
-  "Employees undergoing job training",
-  "Employees working in customer support",
-  "Employees in technical roles",
-  "Employees in nontechnical roles",
-  "Employees working across multiple time zones",
-  "Employees transitioning to new technology",
+  // Employees
+  "new employees",
+  "experienced employees",
+  "remote employees",
+  "hybrid employees",
+  "employees working in person",
+  "employees who handle customer information",
+  "employees who use AI tools",
+  "employees with access to sensitive data",
+  "employees undergoing job training",
+  "employees working in customer support",
+  "employees in technical roles",
+  "employees in nontechnical roles",
+  "employees working across multiple time zones",
+  "employees transitioning to new technology",
 
-  "First-time managers",
-  "Middle managers",
-  "Senior executives",
+  // Managers and leaders
+  "first-time managers",
+  "middle managers",
+  "senior executives",
   "IT managers",
-  "Project managers",
-  "Human resources managers",
-  "Cybersecurity managers",
-  "Data analytics managers",
-  "Team leaders",
-  "Managers supervising remote teams",
-  "Managers responsible for employee evaluations",
-  "Leaders overseeing organizational change",
+  "project managers",
+  "human resources managers",
+  "cybersecurity managers",
+  "data analytics managers",
+  "team leaders",
+  "managers supervising remote teams",
+  "managers responsible for employee evaluations",
+  "leaders overseeing organizational change",
 
-  "Data analysts",
-  "Data scientists",
-  "Business intelligence analysts",
-  "Cybersecurity analysts",
+  // Technology and analytics professionals
+  "data analysts",
+  "data scientists",
+  "business intelligence analysts",
+  "cybersecurity analysts",
   "IT administrators",
-  "Software developers",
+  "software developers",
   "AI developers",
-  "Systems analysts",
-  "Information security officers",
-  "Technology project managers",
-  "Professionals responsible for evaluating AI systems",
-  "Employees responsible for making data-driven decisions",
+  "systems analysts",
+  "information security officers",
+  "technology project managers",
+  "professionals responsible for evaluating AI systems",
+  "employees responsible for making data-driven decisions",
 
-  "Customers using online services",
-  "Customers whose information is collected by businesses",
-  "Customers using AI-powered services",
-  "Small-business clients",
-  "Employees of third-party vendors",
-  "External contractors",
-  "Technology vendors",
-  "Business partners",
-  "Members of the public using digital government services",
-  "Individuals affected by automated decisions",
+  // Customers and external stakeholders
+  "customers using online services",
+  "customers whose information is collected by businesses",
+  "customers using AI-powered services",
+  "small-business clients",
+  "employees of third-party vendors",
+  "external contractors",
+  "technology vendors",
+  "business partners",
+  "members of the public using digital government services",
+  "individuals affected by automated decisions",
 
-  "Cross-functional teams",
-  "Software development teams",
-  "Cybersecurity teams",
-  "Remote project teams",
-  "Newly formed teams",
-  "Teams working under tight deadlines",
-  "Teams responsible for major technology implementations",
-  "Teams with members from multiple departments",
-  "Teams adopting new collaboration tools",
-  "Teams responsible for organizational decision-making",
+  // Teams and organizational groups
+  "cross-functional teams",
+  "software development teams",
+  "cybersecurity teams",
+  "remote project teams",
+  "newly formed teams",
+  "teams working under tight deadlines",
+  "teams responsible for major technology implementations",
+  "teams with members from multiple departments",
+  "teams adopting new collaboration tools",
+  "teams responsible for organizational decision-making",
 
-  "Small businesses with fewer than 50 employees",
-  "Medium-sized businesses",
-  "Large organizations with multiple departments",
-  "Organizations with remote workforces",
-  "Organizations adopting AI for the first time",
-  "Organizations in highly regulated industries",
-  "Organizations that handle sensitive personal information",
-  "Organizations with limited technology budgets",
-  "Organizations undergoing digital transformation",
-  "Organizations that rely heavily on data-driven decisions"
+  // Organizations as the population
+  "small businesses with fewer than 50 employees",
+  "medium-sized businesses",
+  "large organizations with multiple departments",
+  "organizations with remote workforces",
+  "organizations adopting AI for the first time",
+  "organizations in highly regulated industries",
+  "organizations that handle sensitive personal information",
+  "organizations with limited technology budgets",
+  "organizations undergoing digital transformation",
+  "organizations that rely heavily on data-driven decisions"
 ];
 
 /* =========================================
@@ -937,8 +948,8 @@ function updateClaim() {
   result.textContent =
     "I think that " + who.value +
     " should " + what.value +
-    " in " + setting.value +
-    " for " + population.value +
+    " within " + setting.value +
+    " to benefit " + population.value +
     ", because " + why.value + ".";
 
   resultPanel.classList.add("visible");
