@@ -1190,8 +1190,9 @@ function updateClaim() {
     resultPanel.classList.remove("visible");
     return;
   }
- result.textContent = "I think that " + actor + " should " + action +
-  ", because " + reasons[0] + ", " + reasons[1] +
+result.textContent =
+  "I think we should " + action + " in " + actor +
+  " because it can " + reasons[0] + ", " + reasons[1] +
   ", and " + reasons[2] + ".";
 
 resultPanel.classList.add("visible");
