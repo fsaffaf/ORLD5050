@@ -78,7 +78,7 @@ h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1r
   <p class="intro">Choose your graduate program, then build a focused main claim by selecting or writing an action, three distinct reasons, and the person or group responsible for taking action. Each step offers options tailored to your program.</p>
 
   <section class="step-card" id="step1" aria-labelledby="step1heading">
-    <h2 class="step-heading" id="step1heading"><span class="step-number">1</span><span>Pick your program</span></h2>
+    <h2 class="step-heading" id="step1heading"><span class="step-number">1</span><span>Select your Program</span></h2>
     <p class="step-help">Choose the graduate program you are enrolled in. The remaining options will be based on your selection.</p>
     <div class="select-wrap">
       <label class="field-label" for="major">Graduate program</label>
@@ -96,11 +96,10 @@ h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1r
   </section>
 
   <section class="step-card hidden" id="step2" aria-labelledby="step2heading">
-    <h2 class="step-heading" id="step2heading"><span class="step-number">2</span><span>Pick your what</span></h2>
-    <p class="step-help">What specific action do you think should happen? Choose an option related to your program, or select “Type my own answer…” to enter your own action.</p>
-    <div class="claim-template">I think that <strong>[WHO]</strong> should <strong>[WHAT]</strong>, because <strong>[WHY 1]</strong>, <strong>[WHY 2]</strong>, and <strong>[WHY 3]</strong>.</div>
+    <h2 class="step-heading" id="step2heading"><span class="step-number">2</span><span>Select your Main Claim</span></h2>
+    <p class="step-help">Select an option from the drop-down menu below, or select “Type my own answer…” to enter your own answer.</p>
     <div class="field">
-      <label class="field-label" for="what">WHAT — What should they do?</label>
+      <label class="field-label" for="what">I think we should ...</label>
       <div class="select-wrap"><select id="what" disabled><option value="">-- Choose an action --</option></select></div>
       <div class="custom-wrap" id="whatCustomWrap">
         <label class="field-label" for="whatCustom">Type your own action</label>
@@ -110,26 +109,26 @@ h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1r
   </section>
 
   <section class="step-card hidden" id="step3" aria-labelledby="step3heading">
-    <h2 class="step-heading" id="step3heading"><span class="step-number">3</span><span>Pick your why</span></h2>
-    <p class="step-help">Choose three different reasons that explain why your recommendation may be helpful. Each dropdown includes options related to your program. To write your own reason, select “Type my own answer…” for that reason.</p>
+    <h2 class="step-heading" id="step3heading"><span class="step-number">3</span><span>Pick Three Reasons Why</span></h2>
+    <p class="step-help">Choose three different reasons that explain why your main claim is true. Select an option from the drop-down menu below, or select “Type my own answer…” to enter your own answer.</p>
     <div class="why-list">
       <div class="why-item">
         <div class="field">
-          <label class="field-label" for="why1">WHY 1 — First reason</label>
+          <label class="field-label" for="why1">Reason #1</label>
           <div class="select-wrap"><select id="why1" class="why-select" disabled><option value="">-- Choose your first reason --</option></select></div>
           <div class="custom-wrap" id="why1CustomWrap"><label class="field-label" for="why1Custom">Type your first reason</label><input class="custom-answer why-custom" id="why1Custom" type="text" maxlength="250" placeholder="Enter a reason"></div>
         </div>
       </div>
       <div class="why-item">
         <div class="field">
-          <label class="field-label" for="why2">WHY 2 — Second reason</label>
+          <label class="field-label" for="why2">Reason #2</label>
           <div class="select-wrap"><select id="why2" class="why-select" disabled><option value="">-- Choose your second reason --</option></select></div>
           <div class="custom-wrap" id="why2CustomWrap"><label class="field-label" for="why2Custom">Type your second reason</label><input class="custom-answer why-custom" id="why2Custom" type="text" maxlength="250" placeholder="Enter a different reason"></div>
         </div>
       </div>
       <div class="why-item">
         <div class="field">
-          <label class="field-label" for="why3">WHY 3 — Third reason</label>
+          <label class="field-label" for="why3">Reason #3</label>
           <div class="select-wrap"><select id="why3" class="why-select" disabled><option value="">-- Choose your third reason --</option></select></div>
           <div class="custom-wrap" id="why3CustomWrap"><label class="field-label" for="why3Custom">Type your third reason</label><input class="custom-answer why-custom" id="why3Custom" type="text" maxlength="250" placeholder="Enter a different reason"></div>
         </div>
@@ -139,10 +138,10 @@ h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1r
   </section>
 
   <section class="step-card hidden" id="step4" aria-labelledby="step4heading">
-    <h2 class="step-heading" id="step4heading"><span class="step-number">4</span><span>Pick your who</span></h2>
-    <p class="step-help">Who should be responsible for taking the action? Choose a group or organization related to your program, or select “Type my own answer…” to enter your own.</p>
+    <h2 class="step-heading" id="step4heading"><span class="step-number">4</span><span>Who is Responsible?</span></h2>
+    <p class="step-help">Who should be responsible for taking the action? Select an option from the drop-down menu below, or select “Type my own answer…” to enter your own answer.</p>
     <div class="field">
-      <label class="field-label" for="who">WHO — Who should take action?</label>
+      <label class="field-label" for="who">Who should take action?</label>
       <div class="select-wrap"><select id="who" disabled><option value="">-- Choose who should act --</option></select></div>
       <div class="custom-wrap" id="whoCustomWrap"><label class="field-label" for="whoCustom">Type your own answer</label><input class="custom-answer" id="whoCustom" type="text" maxlength="300" placeholder="Enter the person, team, or organization responsible"></div>
     </div>
