@@ -91,6 +91,21 @@ body {
   line-height: 1.7;
 }
 
+.research-note {
+  margin: 0.75rem 0 0;
+  padding: 1rem;
+  background: #f4f9fe;
+  border-left: 4px solid #0e68b3;
+  border-radius: 6px;
+  color: #333333;
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.research-note strong {
+  color: #0e68b3;
+}
+
 /* CLAIM TEMPLATE */
 
 .claim-template {
@@ -180,6 +195,11 @@ body {
 }
 
 .select-wrapper option { white-space: normal; }
+
+.select-wrapper optgroup {
+  font-weight: 700;
+  color: #174a73;
+}
 
 /* RESULT */
 
@@ -346,7 +366,8 @@ body {
     <p class="question-help">
       Complete each part of the sentence by selecting an option from
       each dropdown. Your choices should work together to express one
-      clear recommendation.
+      clear recommendation. You can revise your choices if the completed
+      sentence does not make sense.
     </p>
 
     <div class="claim-template">
@@ -358,29 +379,31 @@ body {
     <div class="definition-list">
       <div class="definition">
         <strong>WHO</strong>
-        The organization, group, or person responsible for taking action.
+        The person, group, or department that has the authority or
+        responsibility to take action.
       </div>
 
       <div class="definition">
         <strong>DO WHAT</strong>
-        The specific recommendation.
+        A specific action or recommendation that someone could realistically implement.
       </div>
 
       <div class="definition">
         <strong>SETTING</strong>
-        The specific workplace process, activity, or situation where
-        the recommendation applies. Choose a context narrow enough to
-        investigate using credible, accessible evidence.
+        The specific workplace process or decision your recommendation
+        addresses. Choose a process that can be investigated using
+        credible, accessible evidence.
       </div>
 
       <div class="definition">
         <strong>POPULATION</strong>
-        The people affected by the recommendation.
+        The people who may be affected by the recommendation or benefit from it.
       </div>
 
       <div class="definition">
         <strong>WHY</strong>
-        The reason the recommendation is justified.
+        The reason the recommendation may be helpful. Choose a potential
+        benefit that you can investigate and support with credible evidence.
       </div>
     </div>
 
@@ -414,13 +437,22 @@ body {
 
     <div class="claim-field">
       <label class="field-label" for="setting">
-        SETTING — Where should the recommendation apply?
+        SETTING — Which workplace process or decision are you addressing?
       </label>
       <div class="select-wrapper">
         <select id="setting" disabled>
-          <option value="">-- Choose a setting --</option>
+          <option value="">-- Choose a workplace process --</option>
         </select>
       </div>
+      <p class="research-note">
+        <strong>Choose a researchable setting.</strong>
+        Select a specific workplace process, not just an industry or
+        organization type. You should be able to investigate the issue
+        using public research, professional standards, government
+        publications, industry reports, or public case studies. Avoid
+        topics that require confidential company records or private
+        employee information.
+      </p>
     </div>
 
     <!-- POPULATION -->
@@ -440,13 +472,20 @@ body {
 
     <div class="claim-field">
       <label class="field-label" for="why">
-        WHY — Why is the recommendation justified?
+        WHY — Why might the recommendation be helpful?
       </label>
       <div class="select-wrapper">
         <select id="why" disabled>
           <option value="">-- Choose a reason --</option>
         </select>
       </div>
+      <p class="research-note">
+        <strong>Choose a reason you can support.</strong>
+        Your reason should explain why the recommendation is worth
+        considering. Do not assume it will automatically produce the
+        desired result. Look for credible evidence that supports the
+        expected benefit, and consider evidence that challenges it.
+      </p>
     </div>
 
   </div>
@@ -459,9 +498,12 @@ body {
     <h3 class="result-title" id="result"></h3>
 
     <div class="result-description">
-      This is a starting point for your argument. You will need credible
-      evidence to support the proposed action and explain why it is
-      appropriate for the selected setting and population.
+      This claim is a starting point, not a proven conclusion. Find
+      credible evidence that supports your recommendation and its
+      expected benefit. Consider evidence that challenges your
+      recommendation, too. Your topic should be narrow enough to
+      investigate using publicly accessible sources without requiring
+      confidential company records or private employee data.
     </div>
 
     <div class="button-row">
@@ -510,14 +552,14 @@ const data = {
       "establish guidelines for using AI tools with sensitive information"
     ],
     why: [
-      "reduce errors in AI-assisted decisions",
-      "improve the accuracy of business forecasts",
-      "identify potential bias in automated decisions",
-      "improve the reliability of predictive models",
-      "reduce unnecessary spending on ineffective AI tools",
-      "improve the consistency of business decisions",
-      "reduce the risk of relying on inaccurate AI-generated information",
-      "improve accountability for decisions informed by AI"
+      "this may help reduce errors in AI-assisted decisions",
+      "this may improve the reliability of business forecasts",
+      "this may help identify potential bias in automated decisions",
+      "this may help identify when predictive models perform poorly",
+      "this may reduce spending on AI tools that do not meet organizational needs",
+      "this may make business decisions more consistent",
+      "this may reduce reliance on inaccurate AI-generated information",
+      "this may clarify who is accountable for decisions informed by AI"
     ]
   },
 
@@ -543,14 +585,14 @@ const data = {
       "evaluate third-party vendors before sharing sensitive information"
     ],
     why: [
-      "reduce the risk of unauthorized access",
-      "reduce employees' susceptibility to phishing attempts",
-      "protect confidential customer information",
-      "reduce avoidable security errors",
-      "improve the speed of incident reporting",
-      "limit the potential impact of security incidents",
-      "reduce risks associated with third-party vendors",
-      "improve compliance with applicable security requirements"
+      "this may reduce the risk of unauthorized access",
+      "this may help employees recognize and report phishing attempts",
+      "this may help protect confidential customer information",
+      "this may reduce avoidable security errors",
+      "this may help security teams identify incidents sooner",
+      "this may limit the potential impact of security incidents",
+      "this may help organizations identify risks associated with third-party vendors",
+      "this may help organizations meet applicable security requirements"
     ]
   },
 
@@ -576,14 +618,14 @@ const data = {
       "evaluate existing workflows before automating them"
     ],
     why: [
-      "reduce implementation problems",
-      "improve employee adoption of new systems",
-      "reduce disruptions during technology transitions",
-      "improve system usability",
-      "reduce costs associated with incompatible systems",
-      "improve the reliability of business operations",
-      "reduce resistance to organizational technology changes",
-      "prevent investment in technology that does not meet organizational needs"
+      "this may help identify implementation problems before deployment",
+      "this may support employee adoption of new systems",
+      "this may reduce disruptions during technology transitions",
+      "this may help identify usability problems",
+      "this may reduce costs associated with incompatible systems",
+      "this may support more reliable business operations",
+      "this may help address employee concerns about technology changes",
+      "this may help prevent investment in technology that does not meet organizational needs"
     ]
   },
 
@@ -609,14 +651,14 @@ const data = {
       "evaluate employee development programs using defined outcomes"
     ],
     why: [
-      "improve employee engagement",
-      "reduce avoidable employee turnover",
-      "improve consistency in performance evaluations",
-      "help new managers transition into leadership roles",
-      "reduce misunderstandings among team members",
-      "improve employee preparedness for job responsibilities",
-      "reduce workplace conflict",
-      "improve employees' perceptions of organizational fairness"
+      "this may support employee engagement",
+      "this may help address factors associated with employee turnover",
+      "this may make performance evaluations more consistent",
+      "this may help new managers prepare for leadership responsibilities",
+      "this may reduce misunderstandings among team members",
+      "this may help employees prepare for their job responsibilities",
+      "this may help address workplace conflict",
+      "this may support employees' perceptions of organizational fairness"
     ]
   },
 
@@ -642,14 +684,14 @@ const data = {
       "prioritize projects using consistent selection criteria"
     ],
     why: [
-      "reduce unexpected project delays",
-      "identify risks before they affect project outcomes",
-      "improve budget accuracy",
-      "reduce scope creep",
-      "improve communication among stakeholders",
-      "increase the likelihood of meeting project objectives",
-      "improve the allocation of project resources",
-      "reduce the recurrence of problems across projects"
+      "this may help teams identify potential delays earlier",
+      "this may help teams identify risks before they affect project outcomes",
+      "this may improve the accuracy of budget estimates",
+      "this may help teams identify and manage scope changes",
+      "this may improve communication among stakeholders",
+      "this may help teams track progress toward project objectives",
+      "this may support more effective allocation of project resources",
+      "this may help teams avoid repeating previously identified problems"
     ]
   },
 
@@ -675,14 +717,14 @@ const data = {
       "develop standardized processes for documenting analytical judgments"
     ],
     why: [
-      "reduce the influence of confirmation bias",
-      "improve the reliability of strategic assessments",
-      "reduce the risk of decisions based on inaccurate information",
-      "identify emerging threats earlier",
-      "improve preparedness for uncertain future events",
-      "distinguish verified information from unsupported claims",
-      "improve the transparency of analytical reasoning",
-      "help decision-makers understand uncertainty and competing explanations"
+      "this may help analysts recognize confirmation bias",
+      "this may improve the credibility of strategic assessments",
+      "this may reduce reliance on inaccurate information",
+      "this may help analysts identify emerging threats",
+      "this may improve preparedness for uncertain future events",
+      "this may help distinguish verified information from unsupported claims",
+      "this may make analytical reasoning more transparent",
+      "this may help decision-makers understand uncertainty and competing explanations"
     ]
   },
 
@@ -708,86 +750,93 @@ const data = {
       "develop strategies for addressing critical technology skill gaps"
     ],
     why: [
-      "reduce investment in technology that does not meet organizational needs",
-      "improve alignment between IT projects and business objectives",
-      "reduce risks associated with technology adoption",
-      "improve accountability for technology spending",
-      "increase the value organizations receive from technology investments",
-      "reduce disruption during digital transformation",
-      "improve coordination between business and IT teams",
-      "prepare employees for changing technology requirements"
+      "this may help organizations avoid investments that do not meet their needs",
+      "this may improve alignment between IT projects and business objectives",
+      "this may help organizations identify risks before adopting new technology",
+      "this may improve accountability for technology spending",
+      "this may help organizations evaluate the value of technology investments",
+      "this may help reduce disruptions during digital transformation",
+      "this may improve coordination between business and IT teams",
+      "this may help employees prepare for changing technology requirements"
     ]
   }
 };
 
 /* =========================================
    SHARED SETTINGS
-   Grouped by workplace context and process
+   Specific workplace processes and decisions
    ========================================= */
 
 const settings = {
-  "General Workplace Settings": [
-    "small businesses",
-    "large corporations",
-    "government agencies",
-    "nonprofit organizations",
-    "technology companies"
-  ],
-
-  "IT, Cybersecurity, and Data": [
-    "IT help desk ticket handling",
-    "cybersecurity awareness training for employees",
-    "phishing reporting procedures",
-    "employee access permissions for sensitive systems",
-    "cybersecurity incident response",
-    "customer data privacy and access controls",
-    "evaluation of third-party technology vendors"
+  "Cybersecurity and Information Protection": [
+    "employee reporting of suspected phishing messages",
+    "employee access to sensitive information systems",
+    "multifactor authentication for employee accounts",
+    "cybersecurity training and assessment",
+    "response procedures for suspected security incidents",
+    "handling and storage of customer personal information",
+    "security reviews of third-party technology vendors"
   ],
 
   "AI and Business Analytics": [
-    "AI-assisted hiring decisions",
     "human review of AI-generated business recommendations",
-    "predictive analytics for business forecasting",
-    "evaluation of bias in automated decisions",
-    "use of customer data in business analytics",
-    "selection and evaluation of AI tools"
+    "validation of predictive models before business use",
+    "evaluation of AI tools before organizational adoption",
+    "assessment of potential bias in automated decisions",
+    "use of customer data in predictive analytics",
+    "monitoring the accuracy of business forecasts",
+    "evaluation of AI-assisted hiring recommendations"
   ],
 
-  "Software and Technology Implementation": [
-    "employee adoption of newly implemented business software",
+  "Software and Information Systems": [
+    "user testing before new software is deployed",
     "employee training during software implementation",
-    "integration of systems used by different departments",
+    "integration of information systems across departments",
     "migration of business data to cloud-based systems",
-    "software usability testing before deployment",
-    "management of software updates"
+    "testing and approval of software updates",
+    "evaluation of existing workflows before automation",
+    "selection of enterprise software using defined criteria"
   ],
 
-  "Human Resources and Employee Management": [
-    "onboarding of newly hired employees",
-    "employee performance evaluation procedures",
-    "structured feedback for employees",
+  "Human Resources and Leadership": [
+    "onboarding procedures for newly hired employees",
+    "use of consistent criteria in employee performance reviews",
+    "structured feedback between managers and employees",
     "employee scheduling and shift assignments",
-    "supervision of remote employees",
-    "communication within hybrid teams",
+    "communication and supervision of remote employees",
     "resolution of workplace conflict",
-    "employee training and development"
+    "evaluation of employee training effectiveness",
+    "communication during organizational change"
   ],
 
   "Customer Service and Business Operations": [
-    "customer complaint handling",
-    "customer support ticket prioritization",
-    "retail employee scheduling",
-    "retail inventory management",
+    "routing and resolution of customer complaints",
+    "prioritization of customer support tickets",
+    "retail inventory monitoring and replenishment",
     "patient scheduling and administrative workflows",
-    "fraud detection and transaction monitoring"
+    "review of potentially fraudulent transactions",
+    "handling customer requests across support channels",
+    "evaluation of customer service performance"
   ],
 
-  "Project Management and Organizational Change": [
-    "project risk assessment during planning",
-    "management of project scope changes",
-    "tracking project budgets and expenditures",
-    "communication among cross-department project teams",
-    "employee adoption of organizational changes"
+  "Project Management": [
+    "identification and prioritization of project risks",
+    "review and approval of project scope changes",
+    "monitoring project budgets against actual expenditures",
+    "communication among cross-functional project teams",
+    "evaluation of project progress against defined objectives",
+    "selection of projects using consistent evaluation criteria",
+    "review of lessons learned after project completion"
+  ],
+
+  "Strategic Analysis and Technology Governance": [
+    "evaluation of information sources before strategic decisions",
+    "comparison of competing explanations in analytical assessments",
+    "communication of uncertainty in strategic forecasts",
+    "evaluation of technology investments against business objectives",
+    "assessment of technology vendors before procurement",
+    "assignment of accountability for technology-related decisions",
+    "monitoring publicly available indicators of emerging risks"
   ]
 };
 
@@ -982,7 +1031,7 @@ major.addEventListener("change", function () {
 
   clearSelect(who, "-- Choose who should act --");
   clearSelect(what, "-- Choose an action --");
-  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(setting, "-- Choose a workplace process --");
   clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
@@ -1006,7 +1055,7 @@ major.addEventListener("change", function () {
 
 who.addEventListener("change", function () {
   clearSelect(what, "-- Choose an action --");
-  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(setting, "-- Choose a workplace process --");
   clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
@@ -1023,7 +1072,7 @@ who.addEventListener("change", function () {
    ========================================= */
 
 what.addEventListener("change", function () {
-  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(setting, "-- Choose a workplace process --");
   clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
@@ -1032,7 +1081,7 @@ what.addEventListener("change", function () {
 
   if (!what.value) return;
 
-  populateSelect(setting, settings, "-- Choose a setting --");
+  populateSelect(setting, settings, "-- Choose a workplace process --");
 });
 
 /* =========================================
@@ -1087,7 +1136,9 @@ why.addEventListener("change", function () {
 function scrollToElement(element) {
   setTimeout(function () {
     element.scrollIntoView({
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
       block: "nearest"
     });
   }, 100);
@@ -1128,7 +1179,7 @@ resetButton.addEventListener("click", function () {
 
   clearSelect(who, "-- Choose who should act --");
   clearSelect(what, "-- Choose an action --");
-  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(setting, "-- Choose a workplace process --");
   clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
@@ -1138,7 +1189,9 @@ resetButton.addEventListener("click", function () {
 
   window.scrollTo({
     top: 0,
-    behavior: "smooth"
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth"
   });
 });
 
