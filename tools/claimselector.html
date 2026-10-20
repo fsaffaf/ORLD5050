@@ -233,12 +233,12 @@ body { min-height: 100vh; overflow-x: hidden; }
 
   <h2>Main Claim Builder</h2>
   <p>
-    Choose your graduate program, define the workplace setting and
-    population, and develop a recommendation. The builder will combine
-    your sentences into a focused main claim.
+    Choose your graduate program, identify an action you want to recommend,
+    select three reasons supporting that action, and identify who should act.
+    The builder will combine your selections into one main claim.
   </p>
 
-  <!-- STEP 1 -->
+  <!-- STEP 1: PROGRAM -->
 
   <div class="step-card" id="step1">
     <div class="question-title">
@@ -246,9 +246,14 @@ body { min-height: 100vh; overflow-x: hidden; }
       Which graduate program are you in?
     </div>
 
+    <p class="question-help">
+      Your program determines which actions, reasons, and decision-makers
+      are available in the following steps.
+    </p>
+
     <div class="select-wrapper">
       <select id="major">
-        <option value="">-- Select your major --</option>
+        <option value="">-- Select your graduate program --</option>
         <option value="ai">Applied AI and Decision Analytics, M.S.</option>
         <option value="cyber">Cybersecurity, M.S.</option>
         <option value="is">Information Systems and Emerging Technologies, M.S.</option>
@@ -260,91 +265,29 @@ body { min-height: 100vh; overflow-x: hidden; }
     </div>
   </div>
 
-  <!-- STEP 2 -->
+  <!-- STEP 2: WHAT -->
 
   <div class="step-card hidden" id="step2">
     <div class="question-title">
       <span class="question-number">Step 2.</span>
-      Define the Setting and Population
+      What should be done?
     </div>
 
     <p class="question-help">
-      First, identify the workplace process or decision you want to address.
-      Then identify the group that would be affected. The available settings
-      are tailored to the graduate program you selected.
-    </p>
-
-    <div class="claim-template">
-      This claim focuses on <strong>[SETTING]</strong> and is intended
-      to benefit <strong>[POPULATION]</strong>.
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="setting">
-        SETTING — What workplace process or decision are you addressing?
-      </label>
-      <div class="select-wrapper">
-        <select id="setting" disabled>
-          <option value="">-- Choose a workplace process --</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="population">
-        POPULATION — Who would be affected by this issue?
-      </label>
-      <div class="select-wrapper">
-        <select id="population" disabled>
-          <option value="">-- Choose a population --</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="result-panel" id="contextPanel" aria-live="polite">
-      <div class="result-label">Your Context Sentence</div>
-      <h3 class="result-title" id="contextSentence"></h3>
-      <div class="result-description">
-        This sentence establishes the scope of your claim. Make sure
-        the setting describes a specific process or decision and that
-        the population identifies a group that could be affected.
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 3 -->
-
-  <div class="step-card hidden" id="step3">
-    <div class="question-title">
-      <span class="question-number">Step 3.</span>
-      Develop Your Recommendation
-    </div>
-
-    <p class="question-help">
-      Decide who should take action, what they should do, and why
-      the action may be helpful. Your recommendation should address
-      the setting and population you selected in Step 2.
+      Choose a specific action, policy, or practice you think an organization
+      should adopt, change, or discontinue. Select an action that you can
+      investigate using credible, publicly available evidence.
     </p>
 
     <div class="claim-template">
       I think that <strong>[WHO]</strong> should
-      <strong>[DO WHAT]</strong>, because <strong>[WHY]</strong>.
-    </div>
-
-    <div class="claim-field">
-      <label class="field-label" for="who">
-        WHO — Who should take action?
-      </label>
-      <div class="select-wrapper">
-        <select id="who" disabled>
-          <option value="">-- Choose who should act --</option>
-        </select>
-      </div>
+      <strong>[DO WHAT]</strong>, because <strong>[WHY 1]</strong>,
+      <strong>[WHY 2]</strong>, and <strong>[WHY 3]</strong>.
     </div>
 
     <div class="claim-field">
       <label class="field-label" for="what">
-        DO WHAT — What should they do?
+        DO WHAT — Which action do you recommend?
       </label>
       <div class="select-wrapper">
         <select id="what" disabled>
@@ -352,26 +295,97 @@ body { min-height: 100vh; overflow-x: hidden; }
         </select>
       </div>
     </div>
+  </div>
+
+  <!-- STEP 3: THREE REASONS -->
+
+  <div class="step-card hidden" id="step3">
+    <div class="question-title">
+      <span class="question-number">Step 3.</span>
+      Why should this action be taken?
+    </div>
+
+    <p class="question-help">
+      Choose three reasons that explain why your recommended action may be
+      beneficial. Each reason should identify a distinct potential benefit,
+      problem, or outcome. You will need credible evidence to support these
+      reasons in your final argument.
+    </p>
+
+    <div class="claim-template">
+      This action may be helpful because
+      <strong>[WHY 1]</strong>, <strong>[WHY 2]</strong>, and
+      <strong>[WHY 3]</strong>.
+    </div>
 
     <div class="claim-field">
-      <label class="field-label" for="why">
-        WHY — Why might the recommendation be helpful?
+      <label class="field-label" for="why1">
+        WHY 1 — What is one reason for your recommendation?
       </label>
       <div class="select-wrapper">
-        <select id="why" disabled>
-          <option value="">-- Choose a reason --</option>
+        <select id="why1" disabled>
+          <option value="">-- Choose your first reason --</option>
         </select>
       </div>
     </div>
 
-    <div class="result-panel" id="recommendationPanel" aria-live="polite">
-      <div class="result-label">Your Recommendation Sentence</div>
-      <h3 class="result-title" id="recommendationSentence"></h3>
-      <div class="result-description">
-        This sentence states your proposed action and the reason
-        for considering it. The reason is an expected benefit, not
-        a proven result. You will need credible evidence to support
-        the recommendation.
+    <div class="claim-field">
+      <label class="field-label" for="why2">
+        WHY 2 — What is another reason?
+      </label>
+      <div class="select-wrapper">
+        <select id="why2" disabled>
+          <option value="">-- Choose your second reason --</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="claim-field">
+      <label class="field-label" for="why3">
+        WHY 3 — What is a third reason?
+      </label>
+      <div class="select-wrapper">
+        <select id="why3" disabled>
+          <option value="">-- Choose your third reason --</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="question-help" id="whyGuidance">
+      Select three different reasons. If two reasons mean nearly the same
+      thing, choose another option to make your argument stronger.
+    </p>
+  </div>
+
+  <!-- STEP 4: WHO -->
+
+  <div class="step-card hidden" id="step4">
+    <div class="question-title">
+      <span class="question-number">Step 4.</span>
+      Who should take action?
+    </div>
+
+    <p class="question-help">
+      Identify the person, team, department, or organization with the
+      responsibility or authority to carry out your recommendation.
+      Choose a decision-maker who could realistically take the action
+      you selected in Step 2.
+    </p>
+
+    <div class="claim-template">
+      I think that <strong>[WHO]</strong> should
+      <strong>[DO WHAT]</strong>, because <strong>[WHY 1]</strong>,
+      <strong>[WHY 2]</strong>, and <strong>[WHY 3]</strong>.
+    </div>
+
+    <div class="claim-field">
+      <label class="field-label" for="who">
+        WHO — Who should carry out the recommendation?
+      </label>
+      <div class="select-wrapper">
+        <select id="who" disabled>
+          <option value="">-- Choose who should act --</option>
+        </select>
       </div>
     </div>
   </div>
@@ -385,23 +399,28 @@ body { min-height: 100vh; overflow-x: hidden; }
     <div class="result-description">
       <p>
         <strong>Check your claim.</strong>
-        Do the two sentences work together? Does the recommendation
-        address the workplace process you identified? Is the intended
-        population clear? Can you support the expected benefit with
-        credible evidence?
+        Does the selected person or organization have the ability to take
+        the recommended action? Is the action specific? Do the three reasons
+        offer distinct justifications for the recommendation?
+      </p>
+      <p>
+        <strong>Check your evidence.</strong>
+        Your reasons are proposed justifications, not proven facts.
+        Look for credible research, professional standards, government
+        publications, industry reports, or public case studies that can
+        help you evaluate and support each reason.
       </p>
       <p>
         <strong>Keep the topic researchable.</strong>
-        Choose an issue you can investigate using public research,
-        professional standards, government publications, industry
-        reports, or public case studies. Avoid topics that require
-        confidential company records or private employee data.
+        Choose an issue that can be investigated using publicly available
+        information. Avoid topics that require confidential company records,
+        private employee data, or access to an organization that you do
+        not have.
       </p>
       <p>
         <strong>Remember:</strong>
-        The completed claim is a starting point, not a proven conclusion.
-        Revise your selections if the sentences do not form one coherent
-        recommendation.
+        This claim is a starting point for your argument. You may need to
+        revise it after reviewing the available evidence.
       </p>
     </div>
 
@@ -413,6 +432,7 @@ body { min-height: 100vh; overflow-x: hidden; }
         Start Over
       </button>
     </div>
+
     <div class="status-message" id="statusMessage" role="status"></div>
   </div>
 
@@ -422,179 +442,6 @@ body { min-height: 100vh; overflow-x: hidden; }
 <script>
 (function () {
 "use strict";
-
-/* =========================================
-   PROGRAM-SPECIFIC SETTINGS
-   Each program has its own setting options.
-   ========================================= */
-
-const settingsByMajor = {
-  ai: [
-    "human review of AI-generated business recommendations",
-    "validation of predictive models before business use",
-    "evaluation of AI tools before organizational adoption",
-    "assessment of potential bias in automated decisions",
-    "use of customer data in predictive analytics",
-    "monitoring the accuracy of business forecasts",
-    "evaluation of AI-assisted hiring recommendations",
-    "comparison of AI-assisted decisions with existing methods",
-    "monitoring predictive model performance over time",
-    "evaluation of AI-generated information used in business reports"
-  ],
-
-  cyber: [
-    "employee reporting of suspected phishing messages",
-    "employee access to sensitive information systems",
-    "multifactor authentication for employee accounts",
-    "cybersecurity training and assessment",
-    "response procedures for suspected security incidents",
-    "handling and storage of customer personal information",
-    "security reviews of third-party technology vendors",
-    "security policies for employees working remotely",
-    "management of software vulnerabilities",
-    "protection of organizational data stored in cloud systems"
-  ],
-
-  is: [
-    "user testing before new software is deployed",
-    "employee training during software implementation",
-    "integration of information systems across departments",
-    "migration of business data to cloud-based systems",
-    "testing and approval of software updates",
-    "evaluation of existing workflows before automation",
-    "selection of enterprise software using defined criteria",
-    "adoption of new business information systems",
-    "management of data quality across information systems",
-    "evaluation of system usability and employee adoption"
-  ],
-
-  leadership: [
-    "onboarding procedures for newly hired employees",
-    "use of consistent criteria in employee performance reviews",
-    "structured feedback between managers and employees",
-    "employee scheduling and shift assignments",
-    "communication and supervision of remote employees",
-    "resolution of workplace conflict",
-    "evaluation of employee training effectiveness",
-    "communication during organizational change",
-    "employee participation in workplace decisions",
-    "leadership development for newly promoted managers"
-  ],
-
-  project: [
-    "identification and prioritization of project risks",
-    "review and approval of project scope changes",
-    "monitoring project budgets against actual expenditures",
-    "communication among cross-functional project teams",
-    "evaluation of project progress against defined objectives",
-    "selection of projects using consistent evaluation criteria",
-    "review of lessons learned after project completion",
-    "management of project schedules and deadlines",
-    "allocation of resources across concurrent projects",
-    "evaluation of project outcomes against success criteria"
-  ],
-
-  intelligence: [
-    "evaluation of information sources before strategic decisions",
-    "comparison of competing explanations in analytical assessments",
-    "communication of uncertainty in strategic forecasts",
-    "analysis of publicly available information about emerging threats",
-    "monitoring indicators of industry or geopolitical change",
-    "evaluation of assumptions underlying strategic forecasts",
-    "assessment of potential risks to business continuity",
-    "documentation of analytical judgments and assumptions",
-    "evaluation of conflicting information from multiple sources",
-    "communication of strategic assessments to decision-makers"
-  ],
-
-  technology: [
-    "evaluation of technology investments against business objectives",
-    "alignment of IT projects with organizational strategy",
-    "governance policies for enterprise AI adoption",
-    "evaluation of technology vendors before procurement",
-    "management of organizational change during technology adoption",
-    "review of the business value of major IT projects",
-    "assignment of accountability for technology-related decisions",
-    "planning for technology-related skill gaps",
-    "prioritization of technology initiatives across departments",
-    "evaluation of technology risks and organizational readiness"
-  ]
-};
-
-/* =========================================
-   SHARED POPULATIONS
-   ========================================= */
-
-const populations = [
-  "new employees",
-  "experienced employees",
-  "remote employees",
-  "hybrid employees",
-  "employees working in person",
-  "employees who handle customer information",
-  "employees who use AI tools",
-  "employees with access to sensitive data",
-  "employees undergoing job training",
-  "employees working in customer support",
-  "employees in technical roles",
-  "employees in nontechnical roles",
-  "employees working across multiple time zones",
-  "employees transitioning to new technology",
-  "first-time managers",
-  "middle managers",
-  "senior executives",
-  "IT managers",
-  "project managers",
-  "human resources managers",
-  "cybersecurity managers",
-  "data analytics managers",
-  "team leaders",
-  "managers supervising remote teams",
-  "managers responsible for employee evaluations",
-  "leaders overseeing organizational change",
-  "data analysts",
-  "data scientists",
-  "business intelligence analysts",
-  "cybersecurity analysts",
-  "IT administrators",
-  "software developers",
-  "AI developers",
-  "systems analysts",
-  "information security officers",
-  "technology project managers",
-  "professionals responsible for evaluating AI systems",
-  "employees responsible for making data-driven decisions",
-  "customers using online services",
-  "customers whose information is collected by businesses",
-  "customers using AI-powered services",
-  "small-business clients",
-  "employees of third-party vendors",
-  "external contractors",
-  "technology vendors",
-  "business partners",
-  "members of the public using digital government services",
-  "individuals affected by automated decisions",
-  "cross-functional teams",
-  "software development teams",
-  "cybersecurity teams",
-  "remote project teams",
-  "newly formed teams",
-  "teams working under tight deadlines",
-  "teams responsible for major technology implementations",
-  "teams with members from multiple departments",
-  "teams adopting new collaboration tools",
-  "teams responsible for organizational decision-making",
-  "small businesses with fewer than 50 employees",
-  "medium-sized businesses",
-  "large organizations with multiple departments",
-  "organizations with remote workforces",
-  "organizations adopting AI for the first time",
-  "organizations in highly regulated industries",
-  "organizations that handle sensitive personal information",
-  "organizations with limited technology budgets",
-  "organizations undergoing digital transformation",
-  "organizations that rely heavily on data-driven decisions"
-];
 
 /* =========================================
    PROGRAM-SPECIFIC WHO, WHAT, AND WHY
@@ -612,14 +459,14 @@ const data = {
       "teams responsible for evaluating AI-generated recommendations"
     ],
     what: [
-      "evaluate AI tools before adopting them for business decisions",
-      "validate predictive models before using their results",
-      "establish standards for evaluating AI-generated recommendations",
-      "compare AI-assisted decisions with existing methods",
-      "monitor predictive model performance over time",
-      "require human review of AI-generated recommendations in high-impact decisions",
-      "evaluate analytical models for potential bias",
-      "establish guidelines for using AI tools with sensitive information"
+      "ban employees from entering confidential data into public AI tools",
+      "require human approval for decisions made by AI",
+      "allow AI to screen job applicants",
+      "replace some entry-level jobs with AI",
+      "require employees to disclose when they use AI-generated work",
+      "allow AI to evaluate employee performance",
+      "hold companies legally responsible for harmful AI decisions",
+      "ban fully automated decisions that significantly affect people"
     ],
     why: [
       "this may help reduce errors in AI-assisted decisions",
@@ -645,14 +492,14 @@ const data = {
       "teams responsible for responding to security incidents"
     ],
     what: [
-      "require cybersecurity awareness training for employees",
-      "implement multifactor authentication for access to sensitive systems",
-      "review employee access permissions regularly",
-      "establish procedures for reporting suspected phishing attempts",
-      "adopt a standardized process for responding to security incidents",
-      "conduct regular security awareness assessments",
-      "establish policies for using personal devices for work",
-      "evaluate third-party vendors before sharing sensitive information"
+      "block unapproved software on company devices",
+      "ban employees from using personal devices for work",
+      "monitor employee activity on company devices",
+      "automatically block websites considered security risks",
+      "require multifactor authentication for every employee account",
+      "require employees to report cybersecurity mistakes",
+      "automatically revoke unused system access",
+      "block generative AI tools on company networks"
     ],
     why: [
       "this may reduce the risk of unauthorized access",
@@ -711,14 +558,14 @@ const data = {
       "leaders managing cross-functional teams"
     ],
     what: [
-      "establish structured feedback processes for employees",
-      "provide leadership training for newly promoted managers",
-      "use consistent criteria for employee performance evaluations",
-      "introduce structured onboarding for new employees",
-      "establish regular communication practices for remote teams",
-      "involve employees in decisions that directly affect their work",
-      "develop formal processes for resolving workplace conflict",
-      "evaluate employee development programs using defined outcomes"
+      "allow employees to evaluate their managers anonymously",
+      "require leadership training before anyone can supervise employees",
+      "require employees to work in person several days each week",
+      "eliminate annual performance reviews",
+      "make employee salaries transparent within the organization",
+      "limit how many employees one manager can supervise",
+      "require managers to justify promotion decisions in writing",
+      "tie managers' bonuses to employee retention"
     ],
     why: [
       "this may support employee engagement",
@@ -744,14 +591,14 @@ const data = {
       "project leaders working with external vendors"
     ],
     what: [
-      "conduct risk assessments during project planning",
-      "establish clear criteria for evaluating project success",
-      "use standardized processes for tracking project progress",
-      "require formal review of major scope changes",
-      "establish regular stakeholder communication schedules",
-      "compare estimated project costs with actual expenditures",
-      "use lessons-learned reviews after project completion",
-      "prioritize projects using consistent selection criteria"
+      "cancel projects that repeatedly exceed their budgets",
+      "freeze project requirements once development begins",
+      "remove project managers from small project teams",
+      "use AI to replace routine project management tasks",
+      "require executive approval for major scope changes",
+      "stop projects that no longer meet their original objectives",
+      "penalize vendors for missing project deadlines",
+      "prioritize profitable projects over strategically valuable projects"
     ],
     why: [
       "this may help teams identify potential delays earlier",
@@ -777,14 +624,14 @@ const data = {
       "decision-makers responsible for business continuity"
     ],
     what: [
-      "use structured analytical techniques when evaluating competing explanations",
-      "establish criteria for assessing the credibility of information sources",
-      "compare multiple sources before drawing strategic conclusions",
-      "conduct scenario analysis when evaluating emerging threats",
-      "establish procedures for communicating analytical uncertainty",
-      "monitor publicly available indicators of industry change",
-      "review assumptions underlying strategic forecasts",
-      "develop standardized processes for documenting analytical judgments"
+      "allow analysts to use AI to produce intelligence assessments",
+      "exclude anonymous sources from high-stakes intelligence assessments",
+      "require analysts to assign confidence ratings to their conclusions",
+      "require analysts to disclose evidence that contradicts their conclusions",
+      "use competing analyst teams to assess major threats",
+      "allow decision-makers to see analysts' raw intelligence sources",
+      "prioritize national security over individual privacy when collecting intelligence",
+      "use publicly available social media posts for intelligence analysis"
     ],
     why: [
       "this may help analysts recognize confirmation bias",
@@ -810,14 +657,14 @@ const data = {
       "business leaders responsible for aligning technology with organizational strategy"
     ],
     what: [
-      "establish criteria for evaluating technology investments",
-      "align IT projects with defined organizational objectives",
-      "develop governance policies for enterprise AI adoption",
-      "establish procedures for evaluating technology vendors",
-      "create plans for managing technology-related organizational change",
-      "review the business value of major IT projects",
-      "establish clear accountability for technology-related decisions",
-      "develop strategies for addressing critical technology skill gaps"
+      "replace employees with automation when it reduces costs",
+      "ban unapproved AI tools across the organization",
+      "require measurable financial returns from major technology investments",
+      "outsource IT operations when outside vendors can do them more cheaply",
+      "replace legacy technology even when it still works",
+      "centralize major technology decisions under the CIO",
+      "require employees to adopt company-approved AI tools",
+      "prioritize cybersecurity over employee convenience"
     ],
     why: [
       "this may help organizations avoid investments that do not meet their needs",
@@ -837,20 +684,15 @@ const data = {
    ========================================= */
 
 const major = document.getElementById("major");
-const who = document.getElementById("who");
 const what = document.getElementById("what");
-const setting = document.getElementById("setting");
-const population = document.getElementById("population");
-const why = document.getElementById("why");
+const why1 = document.getElementById("why1");
+const why2 = document.getElementById("why2");
+const why3 = document.getElementById("why3");
+const who = document.getElementById("who");
 
 const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
-
-const contextPanel = document.getElementById("contextPanel");
-const contextSentence = document.getElementById("contextSentence");
-
-const recommendationPanel = document.getElementById("recommendationPanel");
-const recommendationSentence = document.getElementById("recommendationSentence");
+const step4 = document.getElementById("step4");
 
 const finalPanel = document.getElementById("finalPanel");
 const finalClaim = document.getElementById("finalClaim");
@@ -858,6 +700,8 @@ const statusMessage = document.getElementById("statusMessage");
 
 const copyButton = document.getElementById("copyButton");
 const resetButton = document.getElementById("resetButton");
+
+const whySelects = [why1, why2, why3];
 
 /* =========================================
    DROPDOWN HELPERS
@@ -893,131 +737,127 @@ function clearSelect(select, placeholder) {
 }
 
 /* =========================================
-   SENTENCE GENERATORS
+   RESET RESULTS AND DEPENDENT STEPS
    ========================================= */
 
-function updateContextSentence() {
-  if (!setting.value || !population.value) {
-    contextPanel.classList.remove("visible");
-    contextSentence.textContent = "";
-    return;
-  }
-
-  contextSentence.textContent =
-    "This claim focuses on " + setting.value +
-    " and is intended to benefit " + population.value + ".";
-
-  contextPanel.classList.add("visible");
+function hideFinalClaim() {
+  finalPanel.classList.remove("visible");
+  finalClaim.textContent = "";
+  statusMessage.textContent = "";
 }
 
-function updateRecommendationSentence() {
-  if (!who.value || !what.value || !why.value) {
-    recommendationPanel.classList.remove("visible");
-    recommendationSentence.textContent = "";
-    return;
-  }
-
-  recommendationSentence.textContent =
-    "I think that " + who.value +
-    " should " + what.value +
-    ", because " + why.value + ".";
-
-  recommendationPanel.classList.add("visible");
+function clearWhySelections() {
+  clearSelect(why1, "-- Choose your first reason --");
+  clearSelect(why2, "-- Choose your second reason --");
+  clearSelect(why3, "-- Choose your third reason --");
 }
+
+function updateWhyOptions() {
+  const selectedReasons = whySelects.map(function (select) {
+    return select.value;
+  });
+
+  whySelects.forEach(function (select, index) {
+    const currentValue = select.value;
+
+    select.replaceChildren();
+
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent =
+      "-- Choose your " +
+      ["first", "second", "third"][index] +
+      " reason --";
+
+    select.appendChild(placeholder);
+
+    data[major.value].why.forEach(function (reason) {
+      const alreadySelected = selectedReasons.includes(reason);
+
+      // Do not allow the same reason to be selected twice.
+      if (alreadySelected && reason !== currentValue) {
+        return;
+      }
+
+      const option = document.createElement("option");
+      option.value = reason;
+      option.textContent = reason;
+      select.appendChild(option);
+    });
+
+    select.value = currentValue;
+  });
+}
+
+function scrollToElement(element) {
+  element.scrollIntoView({
+    behavior: window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches ? "auto" : "smooth",
+    block: "nearest"
+  });
+}
+
+/* =========================================
+   GENERATE THE COMPLETE MAIN CLAIM
+   ========================================= */
 
 function updateFinalClaim() {
+  const reasons = whySelects.map(function (select) {
+    return select.value;
+  });
+
+  const allReasonsSelected =
+    reasons.every(function (reason) {
+      return reason !== "";
+    });
+
+  const reasonsAreUnique =
+    new Set(reasons).size === 3;
+
   if (
-    !setting.value ||
-    !population.value ||
-    !who.value ||
+    !major.value ||
     !what.value ||
-    !why.value
+    !allReasonsSelected ||
+    !reasonsAreUnique ||
+    !who.value
   ) {
-    finalPanel.classList.remove("visible");
-    finalClaim.textContent = "";
+    hideFinalClaim();
     return;
   }
 
-  updateContextSentence();
-  updateRecommendationSentence();
-
   finalClaim.textContent =
-    contextSentence.textContent + " " +
-    recommendationSentence.textContent;
+    "I think that " + who.value +
+    " should " + what.value +
+    ", because " + reasons[0] +
+    ", " + reasons[1] +
+    ", and " + reasons[2] + ".";
 
   finalPanel.classList.add("visible");
   statusMessage.textContent = "";
 }
 
-function hideAllResults() {
-  contextPanel.classList.remove("visible");
-  contextSentence.textContent = "";
-
-  recommendationPanel.classList.remove("visible");
-  recommendationSentence.textContent = "";
-
-  finalPanel.classList.remove("visible");
-  finalClaim.textContent = "";
-
-  statusMessage.textContent = "";
-}
-
-function resetRecommendation() {
-  clearSelect(who, "-- Choose who should act --");
-  clearSelect(what, "-- Choose an action --");
-  clearSelect(why, "-- Choose a reason --");
-
-  recommendationPanel.classList.remove("visible");
-  recommendationSentence.textContent = "";
-
-  finalPanel.classList.remove("visible");
-  finalClaim.textContent = "";
-
-  statusMessage.textContent = "";
-}
-
-function scrollToElement(element) {
-  setTimeout(function () {
-    element.scrollIntoView({
-      behavior: window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches ? "auto" : "smooth",
-      block: "nearest"
-    });
-  }, 100);
-}
-
 /* =========================================
    STEP 1: SELECT PROGRAM
-   Populate only that program's settings.
    ========================================= */
 
 major.addEventListener("change", function () {
-  const selectedMajor = major.value;
+  hideFinalClaim();
 
-  clearSelect(setting, "-- Choose a workplace process --");
-  clearSelect(population, "-- Choose a population --");
-  resetRecommendation();
-  hideAllResults();
+  clearSelect(what, "-- Choose an action --");
+  clearWhySelections();
+  clearSelect(who, "-- Choose who should act --");
 
+  step2.classList.add("hidden");
   step3.classList.add("hidden");
+  step4.classList.add("hidden");
 
-  if (!selectedMajor) {
-    step2.classList.add("hidden");
-    return;
-  }
-
-  // KEY CHANGE: use only the settings for the selected major.
-  populateSelect(
-    setting,
-    settingsByMajor[selectedMajor],
-    "-- Choose a workplace process --"
-  );
+  if (!major.value) return;
 
   populateSelect(
-    population,
-    populations,
-    "-- Choose a population --"
+    what,
+    data[major.value].what,
+    "-- Choose an action --"
   );
 
   step2.classList.remove("hidden");
@@ -1025,113 +865,87 @@ major.addEventListener("change", function () {
 });
 
 /* =========================================
-   STEP 2: SETTING
-   ========================================= */
-
-setting.addEventListener("change", function () {
-  hideAllResults();
-  resetRecommendation();
-  step3.classList.add("hidden");
-
-  if (setting.value && population.value) {
-    updateContextSentence();
-
-    populateSelect(
-      who,
-      data[major.value].who,
-      "-- Choose who should act --"
-    );
-
-    step3.classList.remove("hidden");
-    scrollToElement(step3);
-  }
-});
-
-/* =========================================
-   STEP 2: POPULATION
-   ========================================= */
-
-population.addEventListener("change", function () {
-  hideAllResults();
-  resetRecommendation();
-  step3.classList.add("hidden");
-
-  if (setting.value && population.value) {
-    updateContextSentence();
-
-    populateSelect(
-      who,
-      data[major.value].who,
-      "-- Choose who should act --"
-    );
-
-    step3.classList.remove("hidden");
-    scrollToElement(step3);
-  }
-});
-
-/* =========================================
-   STEP 3: WHO
-   ========================================= */
-
-who.addEventListener("change", function () {
-  clearSelect(what, "-- Choose an action --");
-  clearSelect(why, "-- Choose a reason --");
-
-  recommendationPanel.classList.remove("visible");
-  recommendationSentence.textContent = "";
-  finalPanel.classList.remove("visible");
-  finalClaim.textContent = "";
-  statusMessage.textContent = "";
-
-  if (!who.value) return;
-
-  populateSelect(
-    what,
-    data[major.value].what,
-    "-- Choose an action --"
-  );
-});
-
-/* =========================================
-   STEP 3: DO WHAT
+   STEP 2: SELECT WHAT
    ========================================= */
 
 what.addEventListener("change", function () {
-  clearSelect(why, "-- Choose a reason --");
+  hideFinalClaim();
 
-  recommendationPanel.classList.remove("visible");
-  recommendationSentence.textContent = "";
-  finalPanel.classList.remove("visible");
-  finalClaim.textContent = "";
-  statusMessage.textContent = "";
+  clearWhySelections();
+  clearSelect(who, "-- Choose who should act --");
+
+  step3.classList.add("hidden");
+  step4.classList.add("hidden");
 
   if (!what.value) return;
 
-  populateSelect(
-    why,
-    data[major.value].why,
-    "-- Choose a reason --"
-  );
+  // Populate all three reason dropdowns for this program.
+  whySelects.forEach(function (select, index) {
+    populateSelect(
+      select,
+      data[major.value].why,
+      "-- Choose your " +
+      ["first", "second", "third"][index] +
+      " reason --"
+    );
+  });
+
+  step3.classList.remove("hidden");
+  scrollToElement(step3);
 });
 
 /* =========================================
-   STEP 3: WHY
+   STEP 3: SELECT THREE DISTINCT REASONS
    ========================================= */
 
-why.addEventListener("change", function () {
-  recommendationPanel.classList.remove("visible");
-  finalPanel.classList.remove("visible");
+whySelects.forEach(function (select) {
+  select.addEventListener("change", function () {
+    hideFinalClaim();
 
-  if (!why.value) return;
+    clearSelect(who, "-- Choose who should act --");
+    step4.classList.add("hidden");
 
-  updateRecommendationSentence();
+    // Refresh choices to prevent duplicate reasons.
+    updateWhyOptions();
+
+    const reasons = whySelects.map(function (item) {
+      return item.value;
+    });
+
+    const allReasonsSelected =
+      reasons.every(function (reason) {
+        return reason !== "";
+      });
+
+    const reasonsAreUnique =
+      new Set(reasons).size === 3;
+
+    if (allReasonsSelected && reasonsAreUnique) {
+      populateSelect(
+        who,
+        data[major.value].who,
+        "-- Choose who should act --"
+      );
+
+      step4.classList.remove("hidden");
+      scrollToElement(step4);
+    }
+  });
+});
+
+/* =========================================
+   STEP 4: SELECT WHO
+   ========================================= */
+
+who.addEventListener("change", function () {
+  hideFinalClaim();
+
+  if (!who.value) return;
+
   updateFinalClaim();
 
   if (finalPanel.classList.contains("visible")) {
     scrollToElement(finalPanel);
-  } else {
-    scrollToElement(recommendationPanel);
   }
 });
 
@@ -1142,13 +956,14 @@ why.addEventListener("change", function () {
 copyButton.addEventListener("click", async function () {
   if (!finalClaim.textContent.trim()) {
     statusMessage.textContent =
-      "Please complete Steps 2 and 3 before copying your claim.";
+      "Please complete all four steps before copying your claim.";
     return;
   }
 
   try {
     await navigator.clipboard.writeText(finalClaim.textContent);
-    statusMessage.textContent = "Your complete claim has been copied.";
+    statusMessage.textContent =
+      "Your complete claim has been copied.";
   } catch (error) {
     const textArea = document.createElement("textarea");
     textArea.value = finalClaim.textContent;
@@ -1169,22 +984,21 @@ copyButton.addEventListener("click", async function () {
 });
 
 /* =========================================
-   RESET
+   RESET EVERYTHING
    ========================================= */
 
 resetButton.addEventListener("click", function () {
   major.value = "";
 
-  clearSelect(setting, "-- Choose a workplace process --");
-  clearSelect(population, "-- Choose a population --");
-  clearSelect(who, "-- Choose who should act --");
   clearSelect(what, "-- Choose an action --");
-  clearSelect(why, "-- Choose a reason --");
+  clearWhySelections();
+  clearSelect(who, "-- Choose who should act --");
 
   step2.classList.add("hidden");
   step3.classList.add("hidden");
+  step4.classList.add("hidden");
 
-  hideAllResults();
+  hideFinalClaim();
 
   window.scrollTo({
     top: 0,
