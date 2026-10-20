@@ -368,70 +368,11 @@ body {
       each dropdown. Your choices should work together to express one
       clear recommendation. You can revise your choices if the completed
       sentence does not make sense.
-    </p>
-
-    <div class="claim-template">
-      I think that <strong>[WHO]</strong> should
+      <br>
+            I think that <strong>[WHO]</strong> should
       <strong>[DO WHAT]</strong> within <strong>[SETTING]</strong>
       to benefit <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
-    </div>
-
-    <div class="definition-list">
-      <div class="definition">
-        <strong>WHO</strong>
-        The person, group, or department that has the authority or
-        responsibility to take action.
-      </div>
-
-      <div class="definition">
-        <strong>DO WHAT</strong>
-        A specific action or recommendation that someone could realistically implement.
-      </div>
-
-      <div class="definition">
-        <strong>SETTING</strong>
-        The specific workplace process or decision your recommendation
-        addresses. Choose a process that can be investigated using
-        credible, accessible evidence.
-      </div>
-
-      <div class="definition">
-        <strong>POPULATION</strong>
-        The people who may be affected by the recommendation or benefit from it.
-      </div>
-
-      <div class="definition">
-        <strong>WHY</strong>
-        The reason the recommendation may be helpful. Choose a potential
-        benefit that you can investigate and support with credible evidence.
-      </div>
-    </div>
-
-    <!-- WHO -->
-
-    <div class="claim-field">
-      <label class="field-label" for="who">
-        WHO — Who should take action?
-      </label>
-      <div class="select-wrapper">
-        <select id="who" disabled>
-          <option value="">-- Choose who should act --</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- DO WHAT -->
-
-    <div class="claim-field">
-      <label class="field-label" for="what">
-        DO WHAT — What should they do?
-      </label>
-      <div class="select-wrapper">
-        <select id="what" disabled>
-          <option value="">-- Choose an action --</option>
-        </select>
-      </div>
-    </div>
+    </p>
 
     <!-- SETTING -->
 
@@ -459,7 +400,7 @@ body {
 
     <div class="claim-field">
       <label class="field-label" for="population">
-        POPULATION — Who will be affected?
+        POPULATION — Who will be affected? 
       </label>
       <div class="select-wrapper">
         <select id="population" disabled>
@@ -493,7 +434,7 @@ body {
   <!-- FINAL SENTENCE GENERATOR -->
 
   <div class="result-panel" id="resultPanel" aria-live="polite">
-    <div class="result-label">Your completed main claim</div>
+    <div class="result-label">Your Main Claim</div>
 
     <h3 class="result-title" id="result"></h3>
 
@@ -533,13 +474,13 @@ body {
 const data = {
   ai: {
     who: [
-      "Business managers who make data-driven decisions",
-      "Data analytics teams",
-      "Organizations adopting AI tools",
-      "Companies using predictive models",
-      "Human resources departments using automated hiring tools",
-      "Operations departments responsible for forecasting",
-      "Teams responsible for evaluating AI-generated recommendations"
+      "business managers who make data-driven decisions",
+      "data analytics teams",
+      "organizations adopting AI tools",
+      "companies using predictive models",
+      "human resources departments using automated hiring tools",
+      "operations departments responsible for forecasting",
+      "teams responsible for evaluating AI-generated recommendations"
     ],
     what: [
       "evaluate AI tools before adopting them for business decisions",
@@ -565,14 +506,14 @@ const data = {
 
   cyber: {
     who: [
-      "Cybersecurity departments",
+      "cybersecurity departments",
       "IT administrators",
-      "Small and medium-sized businesses",
-      "Organizations that store customer information",
-      "Employees who handle sensitive data",
-      "Managers responsible for information security",
-      "Organizations that permit remote work",
-      "Teams responsible for responding to security incidents"
+      "small and medium-sized businesses",
+      "organizations that store customer information",
+      "employees who handle sensitive data",
+      "managers responsible for information security",
+      "organizations that permit remote work",
+      "teams responsible for responding to security incidents"
     ],
     what: [
       "require cybersecurity awareness training for employees",
@@ -598,14 +539,14 @@ const data = {
 
   is: {
     who: [
-      "Organizations replacing outdated information systems",
+      "organizations replacing outdated information systems",
       "IT departments",
-      "Business units adopting new software",
-      "Managers responsible for technology implementation",
-      "Organizations introducing automation",
-      "Employees who use enterprise software",
-      "Teams responsible for system integration",
-      "Organizations moving business operations to cloud-based systems"
+      "business units adopting new software",
+      "managers responsible for technology implementation",
+      "organizations introducing automation",
+      "employees who use enterprise software",
+      "teams responsible for system integration",
+      "organizations moving business operations to cloud-based systems"
     ],
     what: [
       "conduct user testing before implementing new software",
@@ -631,14 +572,14 @@ const data = {
 
   leadership: {
     who: [
-      "Department managers",
-      "Team leaders",
-      "Human resources departments",
-      "Organizations experiencing high employee turnover",
-      "Managers supervising remote employees",
-      "Organizations implementing workplace changes",
-      "Supervisors responsible for employee development",
-      "Leaders managing cross-functional teams"
+      "department managers",
+      "team leaders",
+      "human resources departments",
+      "organizations experiencing high employee turnover",
+      "managers supervising remote employees",
+      "organizations implementing workplace changes",
+      "supervisors responsible for employee development",
+      "leaders managing cross-functional teams"
     ],
     what: [
       "establish structured feedback processes for employees",
@@ -664,14 +605,14 @@ const data = {
 
   project: {
     who: [
-      "Project managers",
-      "Project management offices (PMOs)",
-      "Project sponsors",
-      "Cross-functional project teams",
-      "Organizations managing multiple concurrent projects",
-      "Managers responsible for project budgets",
-      "Teams delivering technology implementations",
-      "Project leaders working with external vendors"
+      "project managers",
+      "project management offices (PMOs)",
+      "project sponsors",
+      "cross-functional project teams",
+      "organizations managing multiple concurrent projects",
+      "managers responsible for project budgets",
+      "teams delivering technology implementations",
+      "project leaders working with external vendors"
     ],
     what: [
       "conduct risk assessments during project planning",
@@ -697,14 +638,14 @@ const data = {
 
   intelligence: {
     who: [
-      "Strategic intelligence teams",
-      "Corporate risk management departments",
-      "Business leaders making strategic decisions",
-      "Organizations operating in rapidly changing markets",
-      "Analysts responsible for evaluating public information",
-      "Teams monitoring industry developments",
-      "Organizations assessing geopolitical risks",
-      "Decision-makers responsible for business continuity"
+      "strategic intelligence teams",
+      "corporate risk management departments",
+      "business leaders making strategic decisions",
+      "organizations operating in rapidly changing markets",
+      "analysts responsible for evaluating public information",
+      "teams monitoring industry developments",
+      "organizations assessing geopolitical risks",
+      "decision-makers responsible for business continuity"
     ],
     what: [
       "use structured analytical techniques when evaluating competing explanations",
@@ -730,14 +671,14 @@ const data = {
 
   technology: {
     who: [
-      "Chief information officers (CIOs)",
+      "chief information officers (CIOs)",
       "IT directors",
-      "Technology leadership teams",
-      "Executives responsible for digital transformation",
-      "Organizations planning major technology investments",
-      "Managers overseeing technology adoption",
+      "technology leadership teams",
+      "executives responsible for digital transformation",
+      "organizations planning major technology investments",
+      "managers overseeing technology adoption",
       "IT governance committees",
-      "Business leaders responsible for aligning technology with organizational strategy"
+      "business leaders responsible for aligning technology with organizational strategy"
     ],
     what: [
       "establish criteria for evaluating technology investments",
