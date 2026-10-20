@@ -97,11 +97,13 @@ body { min-height: 100vh; overflow-x: hidden; }
   line-height: 1.5;
 }
 .select-wrapper { width: 100%; }
-.select-wrapper select {
+
+.select-wrapper select,
+.custom-answer {
   display: block;
   width: 100%;
   min-height: 48px;
-  padding: .85rem 2.5rem .85rem 1rem;
+  padding: .85rem 1rem;
   border: 1px solid #d9e2ec;
   border-radius: 10px;
   background: #fff;
@@ -109,14 +111,18 @@ body { min-height: 100vh; overflow-x: hidden; }
   font-family: inherit;
   font-size: 1rem;
   line-height: 1.5;
-  cursor: pointer;
   transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-.select-wrapper select:hover:not(:disabled) {
+.select-wrapper select {
+  cursor: pointer;
+}
+.select-wrapper select:hover:not(:disabled),
+.custom-answer:hover {
   border-color: #0e68b3;
   background: #f8fbfe;
 }
-.select-wrapper select:focus {
+.select-wrapper select:focus,
+.custom-answer:focus {
   outline: none;
   border-color: #0e68b3;
   box-shadow: 0 0 0 3px rgba(14,104,179,.15);
@@ -125,6 +131,35 @@ body { min-height: 100vh; overflow-x: hidden; }
   background: #f4f6f9;
   color: #777;
   cursor: not-allowed;
+}
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 1rem 0;
+  color: #777;
+  font-size: .85rem;
+}
+.or-divider::before,
+.or-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #d9e2ec;
+}
+.custom-label {
+  display: block;
+  margin-bottom: .5rem;
+  color: #444;
+  font-size: .95rem;
+  font-weight: 600;
+}
+.custom-hint {
+  margin: .4rem 0 0;
+  color: #666;
+  font-size: .85rem;
+  line-height: 1.6;
 }
 
 .result-panel {
@@ -235,7 +270,7 @@ body { min-height: 100vh; overflow-x: hidden; }
   <p>
     Choose your graduate program, identify an action you want to recommend,
     select three reasons supporting that action, and identify who should act.
-    The builder will combine your selections into one main claim.
+    Use the dropdown suggestions or type your own answers at every step.
   </p>
 
   <!-- STEP 1: PROGRAM -->
@@ -247,8 +282,7 @@ body { min-height: 100vh; overflow-x: hidden; }
     </div>
 
     <p class="question-help">
-      Your program determines which actions, reasons, and decision-makers
-      are available in the following steps.
+      Your program determines which suggestions appear in the following steps.
     </p>
 
     <div class="select-wrapper">
@@ -274,9 +308,9 @@ body { min-height: 100vh; overflow-x: hidden; }
     </div>
 
     <p class="question-help">
-      Choose a specific action, policy, or practice you think an organization
-      should adopt, change, or discontinue. Select an action that you can
-      investigate using credible, publicly available evidence.
+      Choose a specific action, policy, or practice that an organization
+      should adopt, change, or discontinue. You can use a suggestion or
+      enter an action of your own.
     </p>
 
     <div class="claim-template">
@@ -289,15 +323,34 @@ body { min-height: 100vh; overflow-x: hidden; }
       <label class="field-label" for="what">
         DO WHAT — Which action do you recommend?
       </label>
+
       <div class="select-wrapper">
         <select id="what" disabled>
           <option value="">-- Choose an action --</option>
         </select>
       </div>
+
+      <div class="or-divider">OR</div>
+
+      <label class="custom-label" for="whatCustom">
+        Type your own action
+      </label>
+      <input
+        class="custom-answer"
+        type="text"
+        id="whatCustom"
+        placeholder="Example: establish a required review process"
+        autocomplete="off"
+      />
+      <p class="custom-hint">
+        Start with an action verb, such as require, establish, evaluate,
+        implement, or revise. If you type an answer, it will be used instead
+        of the dropdown selection.
+      </p>
     </div>
   </div>
 
-  <!-- STEP 3: THREE REASONS -->
+  <!-- STEP 3: WHY -->
 
   <div class="step-card hidden" id="step3">
     <div class="question-title">
@@ -306,54 +359,86 @@ body { min-height: 100vh; overflow-x: hidden; }
     </div>
 
     <p class="question-help">
-      Choose three reasons that explain why your recommended action may be
-      beneficial. Each reason should identify a distinct potential benefit,
-      problem, or outcome. You will need credible evidence to support these
-      reasons in your final argument.
+      Choose three different reasons that explain why your recommendation
+      may be beneficial. You may use the suggestions, write your own reasons,
+      or combine both approaches.
     </p>
 
     <div class="claim-template">
-      This action may be helpful because
+      The reasons for this recommendation are
       <strong>[WHY 1]</strong>, <strong>[WHY 2]</strong>, and
       <strong>[WHY 3]</strong>.
     </div>
 
     <div class="claim-field">
       <label class="field-label" for="why1">
-        WHY 1 — What is one reason for your recommendation?
+        WHY 1 — What is your first reason?
       </label>
       <div class="select-wrapper">
         <select id="why1" disabled>
           <option value="">-- Choose your first reason --</option>
         </select>
       </div>
+      <div class="or-divider">OR</div>
+      <label class="custom-label" for="why1Custom">
+        Type your own first reason
+      </label>
+      <input
+        class="custom-answer why-custom"
+        type="text"
+        id="why1Custom"
+        placeholder="Example: it may reduce preventable errors"
+        autocomplete="off"
+      />
     </div>
 
     <div class="claim-field">
       <label class="field-label" for="why2">
-        WHY 2 — What is another reason?
+        WHY 2 — What is your second reason?
       </label>
       <div class="select-wrapper">
         <select id="why2" disabled>
           <option value="">-- Choose your second reason --</option>
         </select>
       </div>
+      <div class="or-divider">OR</div>
+      <label class="custom-label" for="why2Custom">
+        Type your own second reason
+      </label>
+      <input
+        class="custom-answer why-custom"
+        type="text"
+        id="why2Custom"
+        placeholder="Example: it may improve consistency"
+        autocomplete="off"
+      />
     </div>
 
     <div class="claim-field">
       <label class="field-label" for="why3">
-        WHY 3 — What is a third reason?
+        WHY 3 — What is your third reason?
       </label>
       <div class="select-wrapper">
         <select id="why3" disabled>
           <option value="">-- Choose your third reason --</option>
         </select>
       </div>
+      <div class="or-divider">OR</div>
+      <label class="custom-label" for="why3Custom">
+        Type your own third reason
+      </label>
+      <input
+        class="custom-answer why-custom"
+        type="text"
+        id="why3Custom"
+        placeholder="Example: it may help protect customer information"
+        autocomplete="off"
+      />
     </div>
 
     <p class="question-help" id="whyGuidance">
-      Select three different reasons. If two reasons mean nearly the same
-      thing, choose another option to make your argument stronger.
+      All three reasons must be completed and different from one another.
+      Try to choose reasons that support your recommendation in distinct ways.
     </p>
   </div>
 
@@ -368,8 +453,7 @@ body { min-height: 100vh; overflow-x: hidden; }
     <p class="question-help">
       Identify the person, team, department, or organization with the
       responsibility or authority to carry out your recommendation.
-      Choose a decision-maker who could realistically take the action
-      you selected in Step 2.
+      Choose a suggestion or identify your own decision-maker.
     </p>
 
     <div class="claim-template">
@@ -382,11 +466,29 @@ body { min-height: 100vh; overflow-x: hidden; }
       <label class="field-label" for="who">
         WHO — Who should carry out the recommendation?
       </label>
+
       <div class="select-wrapper">
         <select id="who" disabled>
           <option value="">-- Choose who should act --</option>
         </select>
       </div>
+
+      <div class="or-divider">OR</div>
+
+      <label class="custom-label" for="whoCustom">
+        Type your own decision-maker
+      </label>
+      <input
+        class="custom-answer"
+        type="text"
+        id="whoCustom"
+        placeholder="Example: department managers"
+        autocomplete="off"
+      />
+      <p class="custom-hint">
+        Identify a decision-maker who could realistically carry out
+        the action you selected.
+      </p>
     </div>
   </div>
 
@@ -399,28 +501,27 @@ body { min-height: 100vh; overflow-x: hidden; }
     <div class="result-description">
       <p>
         <strong>Check your claim.</strong>
-        Does the selected person or organization have the ability to take
-        the recommended action? Is the action specific? Do the three reasons
-        offer distinct justifications for the recommendation?
+        Does the selected person or organization have the authority to take
+        the recommended action? Is the action specific? Do your three reasons
+        provide distinct justifications?
       </p>
       <p>
         <strong>Check your evidence.</strong>
         Your reasons are proposed justifications, not proven facts.
         Look for credible research, professional standards, government
-        publications, industry reports, or public case studies that can
-        help you evaluate and support each reason.
+        publications, industry reports, or public case studies to evaluate
+        and support each reason.
       </p>
       <p>
         <strong>Keep the topic researchable.</strong>
         Choose an issue that can be investigated using publicly available
         information. Avoid topics that require confidential company records,
-        private employee data, or access to an organization that you do
-        not have.
+        private employee data, or access to an organization you do not have.
       </p>
       <p>
         <strong>Remember:</strong>
-        This claim is a starting point for your argument. You may need to
-        revise it after reviewing the available evidence.
+        This claim is a starting point for your argument. Revise it as needed
+        after reviewing the available evidence.
       </p>
     </div>
 
@@ -444,7 +545,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 "use strict";
 
 /* =========================================
-   PROGRAM-SPECIFIC WHO, WHAT, AND WHY
+   PROGRAM-SPECIFIC OPTIONS
    ========================================= */
 
 const data = {
@@ -680,15 +781,28 @@ const data = {
 };
 
 /* =========================================
-   ELEMENTS
+   ELEMENT REFERENCES
    ========================================= */
 
 const major = document.getElementById("major");
+
 const what = document.getElementById("what");
-const why1 = document.getElementById("why1");
-const why2 = document.getElementById("why2");
-const why3 = document.getElementById("why3");
+const whatCustom = document.getElementById("whatCustom");
+
+const whySelects = [
+  document.getElementById("why1"),
+  document.getElementById("why2"),
+  document.getElementById("why3")
+];
+
+const whyCustoms = [
+  document.getElementById("why1Custom"),
+  document.getElementById("why2Custom"),
+  document.getElementById("why3Custom")
+];
+
 const who = document.getElementById("who");
+const whoCustom = document.getElementById("whoCustom");
 
 const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
@@ -701,11 +815,38 @@ const statusMessage = document.getElementById("statusMessage");
 const copyButton = document.getElementById("copyButton");
 const resetButton = document.getElementById("resetButton");
 
-const whySelects = [why1, why2, why3];
-
 /* =========================================
-   DROPDOWN HELPERS
+   ANSWER HELPERS
+   Typed answers take priority over dropdowns.
    ========================================= */
+
+function getAnswer(select, customInput) {
+  const typed = customInput.value.trim();
+  return typed || select.value;
+}
+
+function getWhat() {
+  return getAnswer(what, whatCustom);
+}
+
+function getWhy(index) {
+  return getAnswer(whySelects[index], whyCustoms[index]);
+}
+
+function getWho() {
+  return getAnswer(who, whoCustom);
+}
+
+function clearSelect(select, placeholder) {
+  select.replaceChildren();
+
+  const option = document.createElement("option");
+  option.value = "";
+  option.textContent = placeholder;
+
+  select.appendChild(option);
+  select.disabled = true;
+}
 
 function populateSelect(select, options, placeholder) {
   select.replaceChildren();
@@ -725,42 +866,45 @@ function populateSelect(select, options, placeholder) {
   select.disabled = false;
 }
 
-function clearSelect(select, placeholder) {
-  select.replaceChildren();
-
-  const option = document.createElement("option");
-  option.value = "";
-  option.textContent = placeholder;
-  select.appendChild(option);
-
-  select.disabled = true;
-}
-
-/* =========================================
-   RESET RESULTS AND DEPENDENT STEPS
-   ========================================= */
-
 function hideFinalClaim() {
   finalPanel.classList.remove("visible");
   finalClaim.textContent = "";
   statusMessage.textContent = "";
 }
 
-function clearWhySelections() {
-  clearSelect(why1, "-- Choose your first reason --");
-  clearSelect(why2, "-- Choose your second reason --");
-  clearSelect(why3, "-- Choose your third reason --");
+function scrollToElement(element) {
+  element.scrollIntoView({
+    behavior: window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches ? "auto" : "smooth",
+    block: "nearest"
+  });
+}
+
+/* =========================================
+   STEP 3: DISTINCT REASONS
+   ========================================= */
+
+function reasonsAreComplete() {
+  const reasons = whySelects.map(function (_, index) {
+    return getWhy(index).trim().toLowerCase();
+  });
+
+  return reasons.every(function (reason) {
+    return reason !== "";
+  }) && new Set(reasons).size === 3;
 }
 
 function updateWhyOptions() {
-  const selectedReasons = whySelects.map(function (select) {
-    return select.value;
-  });
-
   whySelects.forEach(function (select, index) {
     const currentValue = select.value;
 
-    select.replaceChildren();
+    // Exclude options used as answers in the other two fields.
+    const otherAnswers = whySelects
+      .map(function (otherSelect, otherIndex) {
+        if (otherIndex === index) return "";
+        return getWhy(otherIndex).trim().toLowerCase();
+      });
 
     const placeholder = document.createElement("option");
     placeholder.value = "";
@@ -769,13 +913,16 @@ function updateWhyOptions() {
       ["first", "second", "third"][index] +
       " reason --";
 
+    select.replaceChildren();
     select.appendChild(placeholder);
 
     data[major.value].why.forEach(function (reason) {
-      const alreadySelected = selectedReasons.includes(reason);
+      const normalized = reason.trim().toLowerCase();
 
-      // Do not allow the same reason to be selected twice.
-      if (alreadySelected && reason !== currentValue) {
+      if (
+        otherAnswers.includes(normalized) &&
+        reason !== currentValue
+      ) {
         return;
       }
 
@@ -789,46 +936,59 @@ function updateWhyOptions() {
   });
 }
 
-function scrollToElement(element) {
-  element.scrollIntoView({
-    behavior: window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches ? "auto" : "smooth",
-    block: "nearest"
-  });
+/* =========================================
+   STEP 4: SHOW WHO WHEN REASONS ARE COMPLETE
+   ========================================= */
+
+function updateWhoStep() {
+  hideFinalClaim();
+
+  if (!reasonsAreComplete()) {
+    step4.classList.add("hidden");
+
+    clearSelect(who, "-- Choose who should act --");
+    whoCustom.value = "";
+    return;
+  }
+
+  if (step4.classList.contains("hidden")) {
+    populateSelect(
+      who,
+      data[major.value].who,
+      "-- Choose who should act --"
+    );
+
+    step4.classList.remove("hidden");
+  }
 }
 
 /* =========================================
-   GENERATE THE COMPLETE MAIN CLAIM
+   FINAL CLAIM GENERATOR
    ========================================= */
 
 function updateFinalClaim() {
-  const reasons = whySelects.map(function (select) {
-    return select.value;
+  const reasons = whySelects.map(function (_, index) {
+    return getWhy(index).trim();
   });
 
-  const allReasonsSelected =
-    reasons.every(function (reason) {
-      return reason !== "";
-    });
-
-  const reasonsAreUnique =
-    new Set(reasons).size === 3;
+  const normalizedReasons = reasons.map(function (reason) {
+    return reason.toLowerCase();
+  });
 
   if (
     !major.value ||
-    !what.value ||
-    !allReasonsSelected ||
-    !reasonsAreUnique ||
-    !who.value
+    !getWhat().trim() ||
+    !reasons.every(Boolean) ||
+    new Set(normalizedReasons).size !== 3 ||
+    !getWho().trim()
   ) {
     hideFinalClaim();
     return;
   }
 
   finalClaim.textContent =
-    "I think that " + who.value +
-    " should " + what.value +
+    "I think that " + getWho().trim() +
+    " should " + getWhat().trim() +
     ", because " + reasons[0] +
     ", " + reasons[1] +
     ", and " + reasons[2] + ".";
@@ -838,14 +998,29 @@ function updateFinalClaim() {
 }
 
 /* =========================================
-   STEP 1: SELECT PROGRAM
+   STEP 1: PROGRAM
    ========================================= */
 
 major.addEventListener("change", function () {
   hideFinalClaim();
 
+  whatCustom.value = "";
+  whoCustom.value = "";
+  whyCustoms.forEach(function (input) {
+    input.value = "";
+  });
+
   clearSelect(what, "-- Choose an action --");
-  clearWhySelections();
+
+  whySelects.forEach(function (select, index) {
+    clearSelect(
+      select,
+      "-- Choose your " +
+      ["first", "second", "third"][index] +
+      " reason --"
+    );
+  });
+
   clearSelect(who, "-- Choose who should act --");
 
   step2.classList.add("hidden");
@@ -865,83 +1040,117 @@ major.addEventListener("change", function () {
 });
 
 /* =========================================
-   STEP 2: SELECT WHAT
+   STEP 2: WHAT
    ========================================= */
 
-what.addEventListener("change", function () {
+function activateWhyStep() {
   hideFinalClaim();
 
-  clearWhySelections();
-  clearSelect(who, "-- Choose who should act --");
+  if (!getWhat().trim()) {
+    step3.classList.add("hidden");
+    step4.classList.add("hidden");
 
-  step3.classList.add("hidden");
-  step4.classList.add("hidden");
+    clearWhySelections();
+    whoCustom.value = "";
+    clearSelect(who, "-- Choose who should act --");
+    return;
+  }
 
-  if (!what.value) return;
+  if (step3.classList.contains("hidden")) {
+    whySelects.forEach(function (select, index) {
+      populateSelect(
+        select,
+        data[major.value].why,
+        "-- Choose your " +
+        ["first", "second", "third"][index] +
+        " reason --"
+      );
+    });
 
-  // Populate all three reason dropdowns for this program.
+    step3.classList.remove("hidden");
+  }
+}
+
+function clearWhySelections() {
   whySelects.forEach(function (select, index) {
-    populateSelect(
+    clearSelect(
       select,
-      data[major.value].why,
       "-- Choose your " +
       ["first", "second", "third"][index] +
       " reason --"
     );
   });
 
-  step3.classList.remove("hidden");
+  whyCustoms.forEach(function (input) {
+    input.value = "";
+  });
+}
+
+what.addEventListener("change", function () {
+  // A new dropdown choice takes priority over the previous typed answer.
+  whatCustom.value = "";
+
+  clearWhySelections();
+  clearSelect(who, "-- Choose who should act --");
+  whoCustom.value = "";
+
+  step3.classList.add("hidden");
+  step4.classList.add("hidden");
+  hideFinalClaim();
+
+  activateWhyStep();
+
+  if (!getWhat().trim()) return;
+
   scrollToElement(step3);
 });
 
+whatCustom.addEventListener("input", function () {
+  activateWhyStep();
+
+  if (!getWhat().trim()) return;
+
+  updateWhoStep();
+  updateFinalClaim();
+});
+
 /* =========================================
-   STEP 3: SELECT THREE DISTINCT REASONS
+   STEP 3: WHY
    ========================================= */
 
-whySelects.forEach(function (select) {
+whySelects.forEach(function (select, index) {
   select.addEventListener("change", function () {
-    hideFinalClaim();
+    // Use the new dropdown answer instead of any old typed answer.
+    whyCustoms[index].value = "";
 
-    clearSelect(who, "-- Choose who should act --");
-    step4.classList.add("hidden");
-
-    // Refresh choices to prevent duplicate reasons.
     updateWhyOptions();
+    updateWhoStep();
+    updateFinalClaim();
 
-    const reasons = whySelects.map(function (item) {
-      return item.value;
-    });
+    if (reasonsAreComplete()) {
+      scrollToElement(step4);
+    }
+  });
+});
 
-    const allReasonsSelected =
-      reasons.every(function (reason) {
-        return reason !== "";
-      });
+whyCustoms.forEach(function (input) {
+  input.addEventListener("input", function () {
+    updateWhyOptions();
+    updateWhoStep();
+    updateFinalClaim();
 
-    const reasonsAreUnique =
-      new Set(reasons).size === 3;
-
-    if (allReasonsSelected && reasonsAreUnique) {
-      populateSelect(
-        who,
-        data[major.value].who,
-        "-- Choose who should act --"
-      );
-
-      step4.classList.remove("hidden");
+    if (reasonsAreComplete()) {
       scrollToElement(step4);
     }
   });
 });
 
 /* =========================================
-   STEP 4: SELECT WHO
+   STEP 4: WHO
    ========================================= */
 
 who.addEventListener("change", function () {
-  hideFinalClaim();
-
-  if (!who.value) return;
-
+  whoCustom.value = "";
   updateFinalClaim();
 
   if (finalPanel.classList.contains("visible")) {
@@ -949,8 +1158,12 @@ who.addEventListener("change", function () {
   }
 });
 
+whoCustom.addEventListener("input", function () {
+  updateFinalClaim();
+});
+
 /* =========================================
-   COPY COMPLETE CLAIM
+   COPY CLAIM
    ========================================= */
 
 copyButton.addEventListener("click", async function () {
@@ -984,11 +1197,18 @@ copyButton.addEventListener("click", async function () {
 });
 
 /* =========================================
-   RESET EVERYTHING
+   START OVER
    ========================================= */
 
 resetButton.addEventListener("click", function () {
   major.value = "";
+
+  whatCustom.value = "";
+  whoCustom.value = "";
+
+  whyCustoms.forEach(function (input) {
+    input.value = "";
+  });
 
   clearSelect(what, "-- Choose an action --");
   clearWhySelections();
