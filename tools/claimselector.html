@@ -352,35 +352,7 @@ body {
     <div class="claim-template">
       I think that <strong>[WHO]</strong> should
       <strong>[DO WHAT]</strong> within <strong>[SETTING]</strong>
-      to benefit <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
-    </div>
-
-    <div class="definition-list">
-      <div class="definition">
-        <strong>WHO</strong>
-        The organization, group, or person responsible for taking action.
-      </div>
-
-      <div class="definition">
-        <strong>DO WHAT</strong>
-        The specific recommendation.
-      </div>
-
-      <div class="definition">
-        <strong>SETTING</strong>
-        The workplace, industry, department, or situation where the
-        recommendation applies.
-      </div>
-
-      <div class="definition">
-        <strong>POPULATION</strong>
-        The people affected by the recommendation.
-      </div>
-
-      <div class="definition">
-        <strong>WHY</strong>
-        The reason the recommendation is justified.
-      </div>
+      to benefit <strong>[POPULATION]</strong>, in order to <strong>[WHY]</strong>.
     </div>
 
     <!-- WHO -->
@@ -950,7 +922,7 @@ function updateClaim() {
     " should " + what.value +
     " within " + setting.value +
     " to benefit " + population.value +
-    ", because " + why.value + ".";
+    ", in order to " + why.value + ".";
 
   resultPanel.classList.add("visible");
   statusMessage.textContent = "";
