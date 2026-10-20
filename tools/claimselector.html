@@ -352,7 +352,36 @@ body {
     <div class="claim-template">
       I think that <strong>[WHO]</strong> should
       <strong>[DO WHAT]</strong> within <strong>[SETTING]</strong>
-      to benefit <strong>[POPULATION]</strong>, in order to <strong>[WHY]</strong>.
+      to benefit <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
+    </div>
+
+    <div class="definition-list">
+      <div class="definition">
+        <strong>WHO</strong>
+        The organization, group, or person responsible for taking action.
+      </div>
+
+      <div class="definition">
+        <strong>DO WHAT</strong>
+        The specific recommendation.
+      </div>
+
+      <div class="definition">
+        <strong>SETTING</strong>
+        The specific workplace process, activity, or situation where
+        the recommendation applies. Choose a context narrow enough to
+        investigate using credible, accessible evidence.
+      </div>
+
+      <div class="definition">
+        <strong>POPULATION</strong>
+        The people affected by the recommendation.
+      </div>
+
+      <div class="definition">
+        <strong>WHY</strong>
+        The reason the recommendation is justified.
+      </div>
     </div>
 
     <!-- WHO -->
@@ -429,6 +458,12 @@ body {
 
     <h3 class="result-title" id="result"></h3>
 
+    <div class="result-description">
+      This is a starting point for your argument. You will need credible
+      evidence to support the proposed action and explain why it is
+      appropriate for the selected setting and population.
+    </div>
+
     <div class="button-row">
       <button type="button" class="action-button" id="copyButton">
         Copy My Claim
@@ -488,14 +523,14 @@ const data = {
 
   cyber: {
     who: [
-      "cybersecurity departments",
+      "Cybersecurity departments",
       "IT administrators",
-      "organizations with hybrid employees",
-      "organizations with entirely remote workers",
-      "organizations that store customer information",
-      "employees who handle sensitive data",
-      "managers responsible for information security",
-      "teams responsible for responding to security incidents"
+      "Small and medium-sized businesses",
+      "Organizations that store customer information",
+      "Employees who handle sensitive data",
+      "Managers responsible for information security",
+      "Organizations that permit remote work",
+      "Teams responsible for responding to security incidents"
     ],
     what: [
       "require cybersecurity awareness training for employees",
@@ -521,14 +556,14 @@ const data = {
 
   is: {
     who: [
-      "organizations replacing outdated information systems",
+      "Organizations replacing outdated information systems",
       "IT departments",
-      "business units adopting new software",
-      "managers responsible for technology implementation",
-      "organizations introducing automation",
-      "employees who use enterprise software",
-      "teams responsible for system integration",
-      "organizations moving business operations to cloud-based systems"
+      "Business units adopting new software",
+      "Managers responsible for technology implementation",
+      "Organizations introducing automation",
+      "Employees who use enterprise software",
+      "Teams responsible for system integration",
+      "Organizations moving business operations to cloud-based systems"
     ],
     what: [
       "conduct user testing before implementing new software",
@@ -554,14 +589,14 @@ const data = {
 
   leadership: {
     who: [
-      "department managers",
-      "team leaders",
-      "human resources departments",
-      "organizations experiencing high employee turnover",
-      "managers supervising remote employees",
-      "organizations implementing workplace changes",
-      "supervisors responsible for employee development",
-      "leaders managing cross-functional teams"
+      "Department managers",
+      "Team leaders",
+      "Human resources departments",
+      "Organizations experiencing high employee turnover",
+      "Managers supervising remote employees",
+      "Organizations implementing workplace changes",
+      "Supervisors responsible for employee development",
+      "Leaders managing cross-functional teams"
     ],
     what: [
       "establish structured feedback processes for employees",
@@ -587,14 +622,14 @@ const data = {
 
   project: {
     who: [
-      "project managers",
-      "project management offices (PMOs)",
-      "project sponsors",
-      "cross-functional project teams",
-      "organizations managing multiple concurrent projects",
-      "managers responsible for project budgets",
-      "teams delivering technology implementations",
-      "project leaders working with external vendors"
+      "Project managers",
+      "Project management offices (PMOs)",
+      "Project sponsors",
+      "Cross-functional project teams",
+      "Organizations managing multiple concurrent projects",
+      "Managers responsible for project budgets",
+      "Teams delivering technology implementations",
+      "Project leaders working with external vendors"
     ],
     what: [
       "conduct risk assessments during project planning",
@@ -620,14 +655,14 @@ const data = {
 
   intelligence: {
     who: [
-      "strategic intelligence teams",
-      "corporate risk management departments",
-      "business leaders making strategic decisions",
-      "organizations operating in rapidly changing markets",
-      "analysts responsible for evaluating public information",
-      "teams monitoring industry developments",
-      "organizations assessing geopolitical risks",
-      "decision-makers responsible for business continuity"
+      "Strategic intelligence teams",
+      "Corporate risk management departments",
+      "Business leaders making strategic decisions",
+      "Organizations operating in rapidly changing markets",
+      "Analysts responsible for evaluating public information",
+      "Teams monitoring industry developments",
+      "Organizations assessing geopolitical risks",
+      "Decision-makers responsible for business continuity"
     ],
     what: [
       "use structured analytical techniques when evaluating competing explanations",
@@ -653,14 +688,14 @@ const data = {
 
   technology: {
     who: [
-      "chief information officers (CIOs)",
+      "Chief information officers (CIOs)",
       "IT directors",
-      "technology leadership teams",
-      "executives responsible for digital transformation",
-      "organizations planning major technology investments",
-      "managers overseeing technology adoption",
+      "Technology leadership teams",
+      "Executives responsible for digital transformation",
+      "Organizations planning major technology investments",
+      "Managers overseeing technology adoption",
       "IT governance committees",
-      "business leaders responsible for aligning technology with organizational strategy"
+      "Business leaders responsible for aligning technology with organizational strategy"
     ],
     what: [
       "establish criteria for evaluating technology investments",
@@ -687,75 +722,74 @@ const data = {
 
 /* =========================================
    SHARED SETTINGS
+   Grouped by workplace context and process
    ========================================= */
 
-const settings = [
-  // Organizations and industries
-  "small businesses",
-  "large corporations",
-  "technology companies",
-  "healthcare organizations",
-  "financial institutions",
-  "insurance companies",
-  "retail businesses",
-  "manufacturing companies",
-  "consulting firms",
-  "nonprofit organizations",
-  "government agencies",
-  "educational institutions",
-  "startups and newly established businesses",
-  "organizations operating across multiple countries",
+const settings = {
+  "General Workplace Settings": [
+    "small businesses",
+    "large corporations",
+    "government agencies",
+    "nonprofit organizations",
+    "technology companies"
+  ],
 
-  // Departments and business functions
-  "human resources departments",
-  "information technology (IT) departments",
-  "cybersecurity departments",
-  "data analytics departments",
-  "customer support departments",
-  "marketing departments",
-  "finance and accounting departments",
-  "operations departments",
-  "project management offices",
-  "training and development departments",
-  "research and development departments",
-  "supply chain and logistics departments",
+  "IT, Cybersecurity, and Data": [
+    "IT help desk ticket handling",
+    "cybersecurity awareness training for employees",
+    "phishing reporting procedures",
+    "employee access permissions for sensitive systems",
+    "cybersecurity incident response",
+    "customer data privacy and access controls",
+    "evaluation of third-party technology vendors"
+  ],
 
-  // Work arrangements and environments
-  "remote work environments",
-  "hybrid work environments",
-  "traditional office environments",
-  "distributed teams working across time zones",
-  "organizations with multiple physical locations",
-  "organizations with centralized decision-making",
-  "organizations with decentralized decision-making",
-  "workplaces undergoing organizational change",
-  "workplaces implementing new technology",
-  "workplaces experiencing staffing shortages",
+  "AI and Business Analytics": [
+    "AI-assisted hiring decisions",
+    "human review of AI-generated business recommendations",
+    "predictive analytics for business forecasting",
+    "evaluation of bias in automated decisions",
+    "use of customer data in business analytics",
+    "selection and evaluation of AI tools"
+  ],
 
-  // Technology and information environments
-  "organizations adopting artificial intelligence",
-  "workplaces using automated decision-making systems",
-  "organizations transitioning to cloud-based systems",
-  "businesses integrating multiple information systems",
-  "organizations managing sensitive customer information",
-  "organizations using predictive analytics",
-  "organizations implementing new cybersecurity systems",
-  "organizations relying on third-party technology vendors",
-  "organizations collecting large amounts of customer data",
-  "organizations modernizing outdated technology infrastructure",
+  "Software and Technology Implementation": [
+    "employee adoption of newly implemented business software",
+    "employee training during software implementation",
+    "integration of systems used by different departments",
+    "migration of business data to cloud-based systems",
+    "software usability testing before deployment",
+    "management of software updates"
+  ],
 
-  // Projects and operational settings
-  "software development projects",
-  "IT implementation projects",
-  "digital transformation initiatives",
-  "cybersecurity incident response operations",
-  "employee onboarding programs",
-  "employee training programs",
-  "business process improvement initiatives",
-  "projects involving multiple departments",
-  "projects with fixed budgets and deadlines",
-  "organizations managing several projects simultaneously"
-];
+  "Human Resources and Employee Management": [
+    "onboarding of newly hired employees",
+    "employee performance evaluation procedures",
+    "structured feedback for employees",
+    "employee scheduling and shift assignments",
+    "supervision of remote employees",
+    "communication within hybrid teams",
+    "resolution of workplace conflict",
+    "employee training and development"
+  ],
+
+  "Customer Service and Business Operations": [
+    "customer complaint handling",
+    "customer support ticket prioritization",
+    "retail employee scheduling",
+    "retail inventory management",
+    "patient scheduling and administrative workflows",
+    "fraud detection and transaction monitoring"
+  ],
+
+  "Project Management and Organizational Change": [
+    "project risk assessment during planning",
+    "management of project scope changes",
+    "tracking project budgets and expenditures",
+    "communication among cross-department project teams",
+    "employee adoption of organizational changes"
+  ]
+};
 
 /* =========================================
    SHARED POPULATIONS
@@ -864,6 +898,7 @@ const resetButton = document.getElementById("resetButton");
 
 /* =========================================
    DROPDOWN HELPERS
+   Supports ordinary arrays and grouped options
    ========================================= */
 
 function populateSelect(select, options, placeholder) {
@@ -874,12 +909,28 @@ function populateSelect(select, options, placeholder) {
   firstOption.textContent = placeholder;
   select.appendChild(firstOption);
 
-  options.forEach(function (item) {
-    const option = document.createElement("option");
-    option.value = item;
-    option.textContent = item;
-    select.appendChild(option);
-  });
+  if (Array.isArray(options)) {
+    options.forEach(function (item) {
+      const option = document.createElement("option");
+      option.value = item;
+      option.textContent = item;
+      select.appendChild(option);
+    });
+  } else {
+    Object.entries(options).forEach(function ([groupName, items]) {
+      const optgroup = document.createElement("optgroup");
+      optgroup.label = groupName;
+
+      items.forEach(function (item) {
+        const option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        optgroup.appendChild(option);
+      });
+
+      select.appendChild(optgroup);
+    });
+  }
 
   select.disabled = false;
 }
@@ -916,7 +967,7 @@ function updateClaim() {
     " should " + what.value +
     " within " + setting.value +
     " to benefit " + population.value +
-    ", in order to " + why.value + ".";
+    ", because " + why.value + ".";
 
   resultPanel.classList.add("visible");
   statusMessage.textContent = "";
@@ -1055,7 +1106,7 @@ copyButton.addEventListener("click", async function () {
     !why.value
   ) {
     statusMessage.textContent =
-      "Please complete all five dropdowns.";
+      "Please complete all five dropdowns before copying.";
     return;
   }
 
