@@ -60,14 +60,19 @@ body {
   line-height: 1.8;
 }
 
-/* QUESTION ROWS */
+/* STEP CARDS */
 
-.question-row {
+.step-card {
   margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   animation: fadeIn 0.3s ease;
 }
 
-.question-row.hidden {
+.step-card.hidden {
   display: none;
 }
 
@@ -85,7 +90,7 @@ body {
 }
 
 .question-help {
-  margin: 0 0 0.85rem;
+  margin: 0 0 1rem;
   color: #555555;
   line-height: 1.7;
 }
@@ -109,10 +114,9 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: background 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
 .select-wrapper select:hover {
@@ -136,23 +140,40 @@ body {
   white-space: normal;
 }
 
-/* SENTENCE PREVIEW */
+/* STEP 2 CLAIM TEMPLATE */
 
-.sentence-preview {
+.claim-template {
   margin: 1rem 0 1.5rem;
   padding: 1.25rem;
-  background: #f8fafc;
-  border: 1px solid #d9e2ec;
-  border-radius: 12px;
+  background: #f4f9fe;
+  border-left: 4px solid #0e68b3;
+  border-radius: 8px;
   line-height: 1.9;
   color: #333333;
 }
 
-.sentence-preview strong {
+.claim-template strong {
   color: #0e68b3;
 }
 
-/* RESULT PANEL */
+.claim-field {
+  margin-top: 1.5rem;
+}
+
+.claim-field:first-of-type {
+  margin-top: 0;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #0e68b3;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+/* FINAL SENTENCE GENERATOR */
 
 .result-panel {
   display: none;
@@ -163,6 +184,10 @@ body {
   background: #f0f7fc;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.3s ease;
+}
+
+.result-panel.visible {
+  display: block;
 }
 
 .result-label {
@@ -207,10 +232,9 @@ body {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+  transition: background 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.2s ease;
 }
 
 .action-button:hover {
@@ -241,22 +265,6 @@ body {
   line-height: 1.6;
 }
 
-/* RESEARCH REMINDER */
-
-.research-note {
-  margin-top: 1.5rem;
-  padding: 1rem 1.15rem;
-  border-left: 4px solid #e67e22;
-  border-radius: 5px;
-  background: #fff8f0;
-  color: #333333;
-  line-height: 1.8;
-}
-
-.research-note strong {
-  color: #9a4c0c;
-}
-
 /* ANIMATION */
 
 @keyframes fadeIn {
@@ -281,6 +289,7 @@ body {
     padding: 1.5rem;
   }
 
+  .step-card,
   .result-panel {
     padding: 1.25rem;
   }
@@ -313,7 +322,6 @@ body {
 </head>
 
 <body>
-
 <div class="measurement-wrapper">
 <div class="glass">
 
@@ -325,12 +333,11 @@ body {
     why that action matters.
   </p>
 
-  <!-- QUESTION 1: MAJOR -->
+  <!-- STEP 1: SELECT MAJOR -->
 
-  <div class="question-row" id="question1">
-
+  <div class="step-card" id="step1">
     <div class="question-title">
-      <span class="question-number">1.</span>
+      <span class="question-number">Step 1.</span>
       Which graduate program are you in?
     </div>
 
@@ -346,90 +353,63 @@ body {
         <option value="technology">Technology Leadership, M.S.</option>
       </select>
     </div>
-
   </div>
 
-  <!-- QUESTION 2: WHO -->
+  <!-- STEP 2: WHO, DO WHAT, AND WHY IN ONE CARD -->
 
-  <div class="question-row hidden" id="question2">
+  <div class="step-card hidden" id="step2">
 
     <div class="question-title">
-      <span class="question-number">2.</span>
-      WHO should take action?
+      <span class="question-number">Step 2.</span>
+      Build Your Main Claim
     </div>
 
     <p class="question-help">
-      Identify the group or role that has the ability to address the problem.
+      Complete each part of the sentence by selecting an option from
+      each dropdown.
     </p>
 
-    <div class="select-wrapper">
-      <select id="who" disabled>
-        <option value="">-- Choose who should act --</option>
-      </select>
-    </div>
-
-  </div>
-
-  <!-- QUESTION 3: DO WHAT -->
-
-  <div class="question-row hidden" id="question3">
-
-    <div class="question-title">
-      <span class="question-number">3.</span>
-      DO WHAT should they do?
-    </div>
-
-    <p class="question-help">
-      Choose a specific action rather than a vague goal.
-    </p>
-
-    <div class="select-wrapper">
-      <select id="what" disabled>
-        <option value="">-- Choose an action --</option>
-      </select>
-    </div>
-
-  </div>
-
-  <!-- QUESTION 4: WHY -->
-
-  <div class="question-row hidden" id="question4">
-
-    <div class="question-title">
-      <span class="question-number">4.</span>
-      WHY should they do it?
-    </div>
-
-    <p class="question-help">
-      Select the benefit or problem that explains why the action matters.
-    </p>
-
-    <div class="select-wrapper">
-      <select id="why" disabled>
-        <option value="">-- Choose a reason --</option>
-      </select>
-    </div>
-
-  </div>
-
-  <!-- SENTENCE STRUCTURE -->
-
-  <div class="question-row hidden" id="sentenceSection">
-
-    <div class="question-title">
-      <span class="question-number">5.</span>
-      Review your sentence
-    </div>
-
-    <div class="sentence-preview">
-      <strong>Sentence structure:</strong><br>
+    <div class="claim-template">
       I think that <strong>[WHO]</strong> should
       <strong>[DO WHAT]</strong>, because <strong>[WHY]</strong>.
     </div>
 
+    <div class="claim-field">
+      <label class="field-label" for="who">
+        WHO — Who should take action?
+      </label>
+      <div class="select-wrapper">
+        <select id="who" disabled>
+          <option value="">-- Choose who should act --</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="claim-field">
+      <label class="field-label" for="what">
+        DO WHAT — What should they do?
+      </label>
+      <div class="select-wrapper">
+        <select id="what" disabled>
+          <option value="">-- Choose an action --</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="claim-field">
+      <label class="field-label" for="why">
+        WHY — Why should they do it?
+      </label>
+      <div class="select-wrapper">
+        <select id="why" disabled>
+          <option value="">-- Choose a reason --</option>
+        </select>
+      </div>
+    </div>
+
   </div>
 
-  <!-- RESULT -->
+  <!-- FINAL SENTENCE GENERATOR -->
 
   <div class="result-panel" id="resultPanel" aria-live="polite">
 
@@ -443,7 +423,6 @@ body {
     </div>
 
     <div class="button-row">
-
       <button type="button" class="action-button" id="copyButton">
         Copy My Claim
       </button>
@@ -451,20 +430,10 @@ body {
       <button type="button" class="action-button secondary" id="resetButton">
         Start Over
       </button>
-
     </div>
 
     <div class="status-message" id="statusMessage" role="status"></div>
 
-  </div>
-
-  <div class="research-note">
-    <strong>Before you use your claim:</strong>
-    Make sure the topic is specific enough to investigate using credible,
-    accessible evidence. Avoid topics that require confidential company
-    records or private employee information. If the topic is too broad,
-    narrow it to a particular workplace process, population, setting, or
-    measurable outcome.
   </div>
 
 </div>
@@ -711,7 +680,7 @@ const data = {
 };
 
 /* =========================================
-   ELEMENTS AND STATE
+   ELEMENTS
    ========================================= */
 
 const major = document.getElementById("major");
@@ -719,11 +688,7 @@ const who = document.getElementById("who");
 const what = document.getElementById("what");
 const why = document.getElementById("why");
 
-const question2 = document.getElementById("question2");
-const question3 = document.getElementById("question3");
-const question4 = document.getElementById("question4");
-const sentenceSection = document.getElementById("sentenceSection");
-
+const step2 = document.getElementById("step2");
 const resultPanel = document.getElementById("resultPanel");
 const result = document.getElementById("result");
 const statusMessage = document.getElementById("statusMessage");
@@ -732,7 +697,7 @@ const copyButton = document.getElementById("copyButton");
 const resetButton = document.getElementById("resetButton");
 
 /* =========================================
-   POPULATE DROPDOWNS
+   DROPDOWN HELPERS
    ========================================= */
 
 function populateSelect(select, options, placeholder) {
@@ -765,12 +730,12 @@ function clearSelect(select, placeholder) {
 }
 
 /* =========================================
-   UPDATE CLAIM
+   SENTENCE GENERATOR
    ========================================= */
 
 function updateClaim() {
   if (!who.value || !what.value || !why.value) {
-    resultPanel.style.display = "none";
+    resultPanel.classList.remove("visible");
     return;
   }
 
@@ -779,12 +744,12 @@ function updateClaim() {
     " should " + what.value +
     ", because " + why.value + ".";
 
-  resultPanel.style.display = "block";
+  resultPanel.classList.add("visible");
   statusMessage.textContent = "";
 }
 
 /* =========================================
-   QUESTION 1: MAJOR
+   STEP 1: SELECT MAJOR
    ========================================= */
 
 major.addEventListener("change", function () {
@@ -794,79 +759,62 @@ major.addEventListener("change", function () {
   clearSelect(what, "-- Choose an action --");
   clearSelect(why, "-- Choose a reason --");
 
-  question3.classList.add("hidden");
-  question4.classList.add("hidden");
-  sentenceSection.classList.add("hidden");
-
-  resultPanel.style.display = "none";
+  resultPanel.classList.remove("visible");
   statusMessage.textContent = "";
 
   if (!selected) {
-    question2.classList.add("hidden");
+    step2.classList.add("hidden");
     return;
   }
 
   populateSelect(who, selected.who, "-- Choose who should act --");
-  question2.classList.remove("hidden");
+  step2.classList.remove("hidden");
 
-  scrollToElement(question2);
+  scrollToElement(step2);
 });
 
 /* =========================================
-   QUESTION 2: WHO
+   STEP 2: WHO
    ========================================= */
 
 who.addEventListener("change", function () {
   clearSelect(what, "-- Choose an action --");
   clearSelect(why, "-- Choose a reason --");
 
-  question4.classList.add("hidden");
-  sentenceSection.classList.add("hidden");
-  resultPanel.style.display = "none";
+  resultPanel.classList.remove("visible");
   statusMessage.textContent = "";
 
   if (!who.value) {
-    question3.classList.add("hidden");
     return;
   }
 
   populateSelect(what, data[major.value].what, "-- Choose an action --");
-  question3.classList.remove("hidden");
-
-  scrollToElement(question3);
 });
 
 /* =========================================
-   QUESTION 3: DO WHAT
+   STEP 2: DO WHAT
    ========================================= */
 
 what.addEventListener("change", function () {
   clearSelect(why, "-- Choose a reason --");
 
-  sentenceSection.classList.add("hidden");
-  resultPanel.style.display = "none";
+  resultPanel.classList.remove("visible");
   statusMessage.textContent = "";
 
   if (!what.value) {
-    question4.classList.add("hidden");
     return;
   }
 
   populateSelect(why, data[major.value].why, "-- Choose a reason --");
-  question4.classList.remove("hidden");
-
-  scrollToElement(question4);
 });
 
 /* =========================================
-   QUESTION 4: WHY
+   STEP 2: WHY
    ========================================= */
 
 why.addEventListener("change", function () {
-  sentenceSection.classList.toggle("hidden", !why.value);
-
   if (!why.value) {
-    resultPanel.style.display = "none";
+    resultPanel.classList.remove("visible");
     return;
   }
 
@@ -918,12 +866,8 @@ resetButton.addEventListener("click", function () {
   clearSelect(what, "-- Choose an action --");
   clearSelect(why, "-- Choose a reason --");
 
-  question2.classList.add("hidden");
-  question3.classList.add("hidden");
-  question4.classList.add("hidden");
-  sentenceSection.classList.add("hidden");
-
-  resultPanel.style.display = "none";
+  step2.classList.add("hidden");
+  resultPanel.classList.remove("visible");
   statusMessage.textContent = "";
 
   window.scrollTo({
@@ -934,6 +878,5 @@ resetButton.addEventListener("click", function () {
 
 })();
 </script>
-
 </body>
 </html>
