@@ -10,6 +10,10 @@
 
 <style>
 
+/* =========================
+   BASE
+========================= */
+
 body{
     margin:0;
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -22,6 +26,37 @@ body{
     margin:auto;
     padding:50px 20px;
 }
+
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.learning-objectives strong{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
 
 h1{
     text-align:left;
@@ -41,34 +76,46 @@ h1{
     font-size:.95rem;
 }
 
-h2,
-h3{
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
     color:#0e68b3;
     position:relative;
     font-weight:500;
     display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
 }
 
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
 }
 
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
-}
+
+/* =========================
+   BODY TEXT
+========================= */
 
 p{
     line-height:1.8;
 }
+
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:white;
@@ -78,7 +125,7 @@ p{
     border:1px solid #d9e2ec;
 
     box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
+        0 3px 10px rgba(0,0,0,.05);
 
     animation:fadeUp .6s ease forwards;
     transition:all .25s ease;
@@ -86,17 +133,51 @@ p{
 
 .card:hover{
     transform:translateY(-4px);
+
     box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
+        0 10px 25px rgba(14,104,179,.15);
 }
 
+
+/* =========================
+   CALLOUTS
+========================= */
+
 .highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
     margin:20px 0;
 }
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
 
 ul{
     padding-left:25px;
@@ -109,6 +190,11 @@ ol{
 li{
     margin-bottom:8px;
 }
+
+
+/* =========================
+   TABLES
+========================= */
 
 table{
     width:100%;
@@ -140,6 +226,68 @@ tr:hover{
     background:#edf6ff;
 }
 
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
 hr{
     border:none;
     height:1px;
@@ -147,16 +295,29 @@ hr{
     margin:30px 0;
 }
 
+
+/* =========================
+   ANIMATION
+========================= */
+
 @keyframes fadeUp{
+
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width:768px){
 
@@ -174,158 +335,204 @@ hr{
         font-size:.95rem;
     }
 
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 </style>
 
-</head>
-
-<body>
 
 <div class="container">
 
-    <h1>Heuristics &amp; Biases</h1>
+    <header>
+        <h1>Heuristics &amp; Biases</h1>
+    </header>
 
-    <div class="subtitle">ORLD Lecture 2</div>
 
+    <!-- =========================
+         OVERVIEW
+    ========================== -->
 
-    <div class="card">
-
-        <div class="highlight">
-            🎧 Use the Immersive Reader feature (button in the top-right corner) to have this page read aloud.
-        </div>
-
+    <section class="card">
         <h2>Overview</h2>
 
         <p>
             Decision making involves two closely connected types of thinking:
-            <strong>intuitive thinking</strong> and <strong>analytical thinking</strong>.
-        </p>
-
-        <h3>Intuitive Thinking</h3>
-
-        <p>
-            A fast, automatic form of thinking based on patterns, experience, and immediate impressions.
-        </p>
-
-        <h3>Analytical Thinking</h3>
-
-        <p>
-            A slower, more deliberate way of thinking that evaluates information, evidence, and outcomes.
-        </p>
-
-        <p>
-            In many Western countries, such as the USA, Australia, and England, decision making tends to favor
-            analytical reasoning over intuitive thinking. In contrast, Eastern countries like China, India, and
-            Japan have largely preserved the role of intuition alongside analytical thought.
-        </p>
-
-        <p>
-            Research suggests that "intuitive" and "analytical" thinking are not separate processes. These two
-            methods of thinking actually work together during decision making. For example, when searching for
-            a house, intuition may draw your attention to certain listings that feel appealing, while analytical
-            reasoning helps you review details such as price, inspections, and long-term suitability.
-            Intuition helps narrow options quickly, while analytical thinking helps evaluate them more thoroughly.
+            <strong>intuitive thinking</strong> and
+            <strong>analytical thinking</strong>.
         </p>
 
         <div class="highlight">
-            <strong>Effective decision making therefore comes from balancing intuitive judgments with careful analysis.</strong>
+            <strong class="blue-heading">Intuitive Thinking</strong><br>
+            A fast, automatic form of thinking based on patterns, experience,
+            and immediate impressions.
         </div>
 
-    </div>
+        <div class="highlight">
+            <strong class="blue-heading">Analytical Thinking</strong><br>
+            A slower, more deliberate way of thinking that evaluates information,
+            evidence, and outcomes.
+        </div>
+
+        <p>
+            Approaches to decision making can also vary across cultures and
+            contexts. Some cultures and institutions place greater emphasis on
+            explicit analytical reasoning, while others may place greater value
+            on intuition, experience, relationships, and contextual judgment.
+            In practice, both forms of thinking can contribute to decisions.
+        </p>
+
+        <p>
+            Intuitive and analytical thinking should not be viewed as completely
+            separate processes. These two methods of thinking can work together
+            during decision making.
+        </p>
+
+        <p>
+            For example, when searching for a house, intuition may draw your
+            attention to certain listings that feel appealing, while analytical
+            reasoning helps you review details such as price, inspections, and
+            long-term suitability. Intuition helps narrow options quickly, while
+            analytical thinking helps evaluate them more thoroughly.
+        </p>
+
+        <div class="highlight">
+            <strong>
+                Effective decision making comes from balancing intuitive judgments
+                with careful analysis.
+            </strong>
+        </div>
+    </section>
 
 
-    <div class="card">
+    <!-- =========================
+         HEURISTICS
+    ========================== -->
 
+    <section class="card">
         <h2>Heuristics</h2>
 
         <p>
-            The human brain cannot process every piece of information available, all the time, every day.
-            If we did, it would take forever to make every little decision in our everyday life
-            (when to wake up, what to eat, what to wear, how to get to class, etc.).
-            Therefore, the human brain often uses mental shortcuts called heuristics.
+            The human brain cannot process every piece of information available,
+            all the time, every day. If we tried to carefully analyze every detail,
+            it would take too long to make even simple decisions, such as when to
+            wake up, what to eat, what to wear, or how to get to class.
         </p>
 
         <p>
-            Heuristics are intentional, analytical mental shortcuts that allow us to make faster decisions.
-            The brain automatically focuses on the most important information and ignores the other details.
-            The decisions made using heuristics can be accurate or inaccurate.
+            Therefore, the human brain often uses mental shortcuts called
+            <strong>heuristics</strong>.
         </p>
 
         <div class="highlight">
-            <strong>Heuristics</strong><br>
-            Intentional mental shortcuts that simplify decision making by focusing on key information.
+            <strong class="blue-heading">Heuristics</strong><br>
+            Intentional mental shortcuts that simplify decision making by focusing
+            on key information.
         </div>
+
+        <p>
+            Heuristics allow us to make faster decisions by focusing on a limited
+            amount of information rather than carefully analyzing every possible
+            detail. Decisions made using heuristics can be accurate or inaccurate.
+        </p>
 
         <h3>Benefits</h3>
 
         <p>
-            These shortcuts allow us to make practical decisions in complex situations. These shortcuts are
-            widely used in everyday life and help us function efficiently in environments where time,
-            information, and cognitive resources are limited.
+            These shortcuts allow us to make practical decisions in complex
+            situations. They are widely used in everyday life and help us function
+            efficiently in environments where time, information, and cognitive
+            resources are limited.
         </p>
 
         <p>
-            For example, if a decision we made yesterday worked successfully, such as the decision of when
-            to leave the house to arrive at class on time, why not make the same choice today?
-            However, it is not guaranteed that the decisions made using heuristics will always be accurate.
+            For example, if a decision we made yesterday worked successfully,
+            such as deciding when to leave the house to arrive at class on time,
+            it may be reasonable to make the same choice today.
+        </p>
+
+        <p>
+            However, it is not guaranteed that decisions made using heuristics
+            will always be accurate.
         </p>
 
         <h3>Limitations</h3>
 
         <p>
-            Heuristics focus on only a small portion of the available information. If important details are
-            ignored, the decision may be flawed. For example, choosing a job candidate based only on GPA may
-            overlook important qualities such as work experience.
+            Heuristics focus on only a small portion of the available information.
+            If important details are ignored, the decision may be flawed.
         </p>
 
         <p>
-            Additionally, heuristics typically work best in environments where we have relevant experience.
-            When situations are new or unfamiliar, the shortcut may no longer be reliable. For example,
-            brand recognition may help when buying common products but may fail when choosing items in a
-            completely new category.
+            For example, choosing a job candidate based only on GPA may overlook
+            important qualities such as work experience.
+        </p>
+
+        <p>
+            Additionally, heuristics typically work best in environments where we
+            have relevant experience. When situations are new or unfamiliar, the
+            shortcut may no longer be reliable.
+        </p>
+
+        <p>
+            For example, brand recognition may help when buying common products
+            but may fail when choosing items in a completely new category.
         </p>
 
         <h3>Solutions</h3>
 
         <p>
-            Our brain will always use heuristics, whether we want to or not. Therefore, in EEBDM, we analyze
-            our heuristics to determine when they are useful (lead to accurate decisions) versus not useful
-            (lead to inaccurate decisions).
+            Our brains will use heuristics regularly. Therefore, in EEBDM, we
+            analyze our heuristics to determine when they are useful and lead to
+            accurate decisions versus when they are not useful and lead to
+            inaccurate decisions.
         </p>
 
         <p>
-            To analyze our heuristics, we must become more attentive to the criteria driving our decisions—
-            what we focus on, what we overlook, and why. When those criteria are thoughtfully chosen,
-            even simplified decisions can be well-reasoned ones.
+            To analyze our heuristics, we must become more attentive to the
+            criteria driving our decisions: what we focus on, what we overlook,
+            and why.
+        </p>
+
+        <div class="highlight">
+            When decision criteria are thoughtfully chosen, even simplified
+            decisions can be <strong>well-reasoned decisions</strong>.
+        </div>
+
+        <p>
+            Heuristics help people make fast, efficient, and often effective
+            decisions, but because they rely on simplified information, they can
+            sometimes produce biases or mistakes.
         </p>
 
         <p>
-            Heuristics help people make fast, efficient, and often effective decisions, but because they rely
-            on simplified information, they can sometimes produce biases or mistakes. Effective decision making
-            involves recognizing when heuristics are useful and when more careful analysis is needed.
+            Effective decision making involves recognizing when heuristics are
+            useful and when more careful analysis is needed.
         </p>
+    </section>
 
-    </div>
 
+    <!-- =========================
+         TYPES OF HEURISTICS
+    ========================== -->
 
-    <div class="card">
-
+    <section class="card">
         <h2>Types of Heuristics</h2>
 
         <table>
-
             <thead>
                 <tr>
-                    <th>Heuristic</th>
-                    <th>Definition</th>
-                    <th>Helpful</th>
-                    <th>Harmful</th>
+                    <th scope="col">Heuristic</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col">Helpful</th>
+                    <th scope="col">Harmful</th>
                 </tr>
             </thead>
 
             <tbody>
-
                 <tr>
                     <td><strong>Well-Known Heuristic</strong></td>
                     <td>Choose what you recognize.</td>
@@ -367,252 +574,312 @@ hr{
                     <td>Helpful when trends are real.</td>
                     <td>Misleading if events are rare.</td>
                 </tr>
-
             </tbody>
-
         </table>
+    </section>
 
-    </div>
 
+    <!-- =========================
+         BIASES
+    ========================== -->
 
-    <div class="card">
-
+    <section class="card">
         <h2>Biases</h2>
 
         <p>
-            Biases are related to heuristics. Heuristics are often within our conscious awareness
-            (we know when we are using them), while biases are often outside of our conscious awareness
-            (we often do not know when we are using them).
+            Biases are closely related to heuristics. Heuristics can involve
+            shortcuts that we recognize we are using, while biases often operate
+            outside of our conscious awareness.
         </p>
 
         <p>
-            You can think of biases as intuitive heuristics. Biases influence how we interpret information
-            and make decisions, usually outside of conscious awareness. Like heuristics, biases allow us
-            to make quick decisions when time or information is limited.
+            One way to think about biases is as intuitive shortcuts. Biases
+            influence how we interpret information and make decisions, often
+            without us realizing that they are affecting our judgment.
         </p>
 
         <div class="highlight">
-            <strong>Biases</strong><br>
+            <strong class="blue-heading">Biases</strong><br>
             Unintentional shortcuts that simplify decisions but may introduce error.
         </div>
 
         <p>
-            Biases are intuitive mental shortcuts that operate outside conscious awareness and influence
-            how we interpret information. They are unintentional, intuitive mental shortcuts that allow us
-            to make faster decisions. The brain automatically focuses on the most important information and
-            ignores the other details. The decisions made using biases can be accurate or inaccurate.
+            Biases can operate outside conscious awareness and influence how we
+            interpret information. Like heuristics, they can help us reach
+            decisions quickly when time, information, or cognitive resources are
+            limited.
+        </p>
+
+        <p>
+            The brain may focus on certain information and give less attention
+            to other details. As a result, decisions influenced by biases can
+            sometimes be accurate and sometimes be inaccurate.
         </p>
 
         <h3>Benefits</h3>
 
         <p>
-            Biases can provide practical advantages by helping individuals and groups make faster, more
-            efficient decisions. For example, filtering and prioritizing information focuses attention on
-            key aspects when overwhelmed, allowing a doctor to concentrate on the most likely diagnosis
-            rather than investigating every rare possibility.
+            Biases can provide practical advantages by helping individuals and
+            groups make faster, more efficient decisions.
         </p>
 
         <p>
-            Anchoring decisions in core beliefs offers consistency and stability, giving confidence that
-            choices align with long-held values. Streamlining and enforcing value-driven choices simplifies
-            decisions by emphasizing ethical or moral priorities, as seen when a nonprofit leader favors
-            projects aligned with the organization's mission.
+            For example, filtering and prioritizing information can focus attention
+            on key aspects when someone is overwhelmed. A doctor, for instance,
+            may concentrate first on the most likely diagnosis rather than
+            immediately investigating every rare possibility.
         </p>
 
         <p>
-            Facilitating decisions under uncertainty helps people act quickly by highlighting relevant cues,
-            like an emergency responder prioritizing victims showing visible distress. Finally, reinforcing
-            identity and social cohesion promotes harmony within groups, supporting collective well-being,
-            and reducing cognitive dissonance preserves self-coherence, helping individuals rationalize
-            past choices.
+            Anchoring decisions in core beliefs can also provide consistency and
+            stability by helping people make choices that align with long-held
+            values.
+        </p>
+
+        <p>
+            Value-driven choices may simplify decisions by emphasizing ethical or
+            moral priorities. For example, a nonprofit leader might favor projects
+            that most closely align with the organization's mission.
+        </p>
+
+        <p>
+            Biases may also facilitate decisions under uncertainty by directing
+            attention toward particular cues, such as an emergency responder
+            prioritizing victims showing visible distress.
+        </p>
+
+        <p>
+            Finally, processes that reinforce identity and social cohesion can
+            promote harmony within groups, while reducing cognitive dissonance
+            can help individuals maintain a coherent understanding of their past
+            choices.
         </p>
 
         <h3>Limitations</h3>
 
         <p>
-            While adaptive, these biases can also create significant problems. Filtering and prioritizing
-            information can lead to overlooking critical evidence, resulting in one-sided decisions.
-            Anchoring in core beliefs may block necessary change, causing stagnation or missed opportunities.
+            While these processes can be adaptive, they can also create significant
+            problems. Filtering and prioritizing information can cause critical
+            evidence to be overlooked, resulting in one-sided decisions.
         </p>
 
         <p>
-            Value-driven simplification can prevent flexible thinking, limiting better outcomes. Facilitating
-            decisions under uncertainty may cause hidden issues to be ignored in favor of visible or familiar
+            Anchoring in core beliefs may block necessary change, causing
+            stagnation or missed opportunities.
+        </p>
+
+        <p>
+            Value-driven simplification can prevent flexible thinking and limit
+            better outcomes. Decisions made under uncertainty can also cause
+            hidden issues to be ignored in favor of more visible or familiar
             problems.
         </p>
 
         <p>
-            Biases that reinforce group cohesion can lead to groupthink, excluding diverse perspectives.
-            Reducing cognitive dissonance may block honest reflection, while preserving core worldviews can
-            prevent incorporating new evidence that would improve decision quality.
+            Biases that reinforce group cohesion can contribute to groupthink and
+            the exclusion of diverse perspectives. Reducing cognitive dissonance
+            may also block honest reflection, while preserving core worldviews can
+            make it harder to incorporate new evidence that could improve decision
+            quality.
         </p>
 
         <h3>Solutions</h3>
 
         <p>
-            To manage the drawbacks of biases while preserving their benefits, decision makers should actively
-            evaluate assumptions, seek diverse perspectives, and test beliefs against evidence.
+            To manage the drawbacks of biases while preserving potential benefits,
+            decision makers should actively evaluate assumptions, seek diverse
+            perspectives, and test beliefs against evidence.
         </p>
 
         <p>
-            Techniques such as structured reflection, checklists, and "pre-mortem" exercises can make biases
-            visible and adjustable. Encouraging flexibility, questioning entrenched views, and treating
-            beliefs as probabilistic rather than absolute can reduce the risk of overcommitment to flawed
-            judgments while retaining the efficiency and coherence that biases provide.
+            Techniques such as structured reflection, checklists, and
+            <strong>pre-mortem exercises</strong> can make possible biases more
+            visible and adjustable.
         </p>
 
-    </div>
+        <p>
+            Encouraging flexibility, questioning entrenched views, and treating
+            beliefs as probabilistic rather than absolute can reduce the risk of
+            overcommitment to flawed judgments while retaining the efficiency and
+            coherence that shortcuts can provide.
+        </p>
+    </section>
 
 
-    <div class="card">
+    <!-- =========================
+         TYPES OF BIASES
+    ========================== -->
 
+    <section class="card">
         <h2>Types of Biases</h2>
 
         <table>
-
             <thead>
                 <tr>
-                    <th>Bias</th>
-                    <th>Definition</th>
-                    <th>Helpful</th>
-                    <th>Harmful</th>
+                    <th scope="col">Bias</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col">Helpful</th>
+                    <th scope="col">Harmful</th>
                 </tr>
             </thead>
 
             <tbody>
-
                 <tr>
                     <td><strong>Confirmation Bias</strong></td>
-
                     <td>
-                        Favoring information that supports your pre-existing beliefs while ignoring
-                        contradictory evidence.
+                        Favoring information that supports your pre-existing
+                        beliefs while ignoring contradictory evidence.
                     </td>
-
                     <td>
-                        Helpful for experts quickly filtering information in familiar situations.
+                        May help experts quickly filter information in familiar
+                        situations.
                     </td>
-
                     <td>
-                        Blocks new understanding.
+                        Can block new understanding.
                     </td>
                 </tr>
-
 
                 <tr>
                     <td><strong>Sunk Cost Bias</strong></td>
-
                     <td>
                         Continuing to invest in a decision due to prior investments.
                     </td>
-
                     <td>
-                        Helpful when it is predicted the investment will pay off.
+                        May coincide with persistence when evidence predicts that
+                        the investment will ultimately pay off.
                     </td>
-
                     <td>
-                        Harmful when it is predicted the investment will <strong>not</strong> pay off.
+                        Harmful when future evidence suggests that continued
+                        investment will not pay off.
                     </td>
                 </tr>
-
 
                 <tr>
                     <td><strong>Overconfidence Bias</strong></td>
-
                     <td>
                         The overestimation of one's skills or abilities.
                     </td>
-
                     <td>
-                        Helpful when it encourages quick action, especially in competitive environments
-                        where risk-taking leads to opportunities.
+                        Can encourage quick action, especially in competitive
+                        environments where risk-taking creates opportunities.
                     </td>
-
                     <td>
-                        Harmful when it leads to underestimation of risks and no backup plans.
+                        Can lead to underestimating risks or failing to create
+                        backup plans.
                     </td>
                 </tr>
-
 
                 <tr>
                     <td><strong>Anchoring Bias</strong></td>
-
                     <td>
-                        Focusing too much on the first piece of information encountered (the "anchor")
-                        when making decisions.
+                        Focusing too much on the first piece of information
+                        encountered, or the "anchor," when making decisions.
                     </td>
-
                     <td>
-                        Helpful when the anchor is legitimate. It provides a starting point in ambiguous
-                        situations, speeding up judgment.
+                        A legitimate anchor can provide a useful starting point
+                        in an ambiguous situation and speed up judgment.
                     </td>
-
                     <td>
-                        Harmful when the anchor is irrelevant or misleading, preventing proper adjustment
-                        when new information emerges.
+                        An irrelevant or misleading anchor can prevent adequate
+                        adjustment when new information emerges.
                     </td>
                 </tr>
-
 
                 <tr>
                     <td><strong>Loyalty Bias</strong></td>
-
                     <td>
                         Staying loyal to a group or organization.
                     </td>
-
                     <td>
-                        Helpful when it leads to long-term team building and group stability.
+                        Can contribute to long-term team building and group stability.
                     </td>
-
                     <td>
-                        Harmful when it protects underperformance, unethical behavior, or poor decisions.
+                        Can protect underperformance, unethical behavior, or poor
+                        decisions.
                     </td>
                 </tr>
-
             </tbody>
-
         </table>
+    </section>
 
-    </div>
 
+    <!-- =========================
+         EEBDM CONNECTION
+    ========================== -->
 
-    <div class="card">
-
+    <section class="card">
         <h2>Why This Matters in EEBDM</h2>
 
         <p>
-            Heuristics and biases are unavoidable parts of human decision making. The goal is not to
-            eliminate them, but to recognize when they are influencing our decisions and determine whether
-            they are helping or hurting the quality of our reasoning.
+            Heuristics and biases are unavoidable parts of human decision making.
+            The goal is not to eliminate them, but to recognize when they are
+            influencing our decisions and determine whether they are helping or
+            hurting the quality of our reasoning.
         </p>
 
         <p>
-            Effective decision makers understand that fast thinking can be useful, but they also know when
-            a situation requires slower, more deliberate analysis. By examining what information we notice,
-            what we overlook, and why we are drawn toward particular conclusions, we can make more thoughtful
-            and evidence-based decisions.
+            Effective decision makers understand that fast thinking can be useful,
+            but they also know when a situation requires slower, more deliberate
+            analysis.
         </p>
 
-    </div>
+        <div class="highlight">
+            <strong class="blue-heading">Ask yourself:</strong>
+            What information am I noticing? What am I overlooking? Why am I drawn
+            toward this particular conclusion?
+        </div>
+
+        <p>
+            By examining what information we notice, what we overlook, and why we
+            are drawn toward particular conclusions, we can make more thoughtful
+            and evidence-based decisions.
+        </p>
+    </section>
 
 
-    <div class="card">
+    <!-- =========================
+         KEY TAKEAWAYS
+    ========================== -->
 
+    <section class="card">
         <h2>Key Takeaways</h2>
 
         <ul>
-            <li>Intuitive and analytical thinking work together during decision making.</li>
-            <li>Heuristics are mental shortcuts that help us make decisions efficiently.</li>
-            <li>Heuristics can be useful, but they can also produce inaccurate decisions when important information is overlooked.</li>
-            <li>Biases are often outside conscious awareness and can influence how we interpret information.</li>
-            <li>Biases can sometimes be useful, but they can also cause errors, groupthink, and resistance to new evidence.</li>
-            <li>Effective decision making involves recognizing when shortcuts are useful and when more careful analysis is needed.</li>
+            <li>
+                Intuitive and analytical thinking work together during decision making.
+            </li>
+
+            <li>
+                Heuristics are mental shortcuts that help us make decisions efficiently.
+            </li>
+
+            <li>
+                Heuristics can be useful, but they can also produce inaccurate
+                decisions when important information is overlooked.
+            </li>
+
+            <li>
+                Biases are often outside conscious awareness and can influence how
+                we interpret information.
+            </li>
+
+            <li>
+                Biases can sometimes support efficient judgment, but they can also
+                contribute to errors, groupthink, and resistance to new evidence.
+            </li>
+
+            <li>
+                Effective decision making involves recognizing when shortcuts are
+                useful and when more careful analysis is needed.
+            </li>
         </ul>
 
-    </div>
+        <div class="highlight">
+            <strong>
+                In EEBDM, the goal is not to eliminate shortcuts. The goal is to
+                recognize them, evaluate them, and know when to slow down.
+            </strong>
+        </div>
+    </section>
 
 </div>
-
-</body>
-</html>
