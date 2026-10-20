@@ -16,9 +16,7 @@ html, body {
   color: #222222;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   min-height: 100vh;
@@ -72,9 +70,7 @@ body {
   animation: fadeIn 0.3s ease;
 }
 
-.step-card.hidden {
-  display: none;
-}
+.step-card.hidden { display: none; }
 
 .question-title {
   margin-bottom: 0.75rem;
@@ -95,11 +91,58 @@ body {
   line-height: 1.7;
 }
 
+/* CLAIM TEMPLATE */
+
+.claim-template {
+  margin: 1rem 0 1.5rem;
+  padding: 1.25rem;
+  background: #f4f9fe;
+  border-left: 4px solid #0e68b3;
+  border-radius: 8px;
+  line-height: 1.9;
+  color: #333333;
+}
+
+.claim-template strong { color: #0e68b3; }
+
+/* DEFINITIONS */
+
+.definition-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.definition {
+  padding: 0.85rem 1rem;
+  background: #f8fafc;
+  border: 1px solid #e1e8ef;
+  border-radius: 8px;
+  line-height: 1.6;
+  font-size: 0.94rem;
+}
+
+.definition strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: #0e68b3;
+}
+
 /* DROPDOWNS */
 
-.select-wrapper {
-  width: 100%;
+.claim-field { margin-top: 1.5rem; }
+
+.field-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #0e68b3;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.5;
 }
+
+.select-wrapper { width: 100%; }
 
 .select-wrapper select {
   display: block;
@@ -119,7 +162,7 @@ body {
               box-shadow 0.2s ease;
 }
 
-.select-wrapper select:hover {
+.select-wrapper select:hover:not(:disabled) {
   border-color: #0e68b3;
   background-color: #f8fbfe;
 }
@@ -136,44 +179,9 @@ body {
   cursor: not-allowed;
 }
 
-.select-wrapper option {
-  white-space: normal;
-}
+.select-wrapper option { white-space: normal; }
 
-/* STEP 2 CLAIM TEMPLATE */
-
-.claim-template {
-  margin: 1rem 0 1.5rem;
-  padding: 1.25rem;
-  background: #f4f9fe;
-  border-left: 4px solid #0e68b3;
-  border-radius: 8px;
-  line-height: 1.9;
-  color: #333333;
-}
-
-.claim-template strong {
-  color: #0e68b3;
-}
-
-.claim-field {
-  margin-top: 1.5rem;
-}
-
-.claim-field:first-of-type {
-  margin-top: 0;
-}
-
-.field-label {
-  display: block;
-  margin-bottom: 0.6rem;
-  color: #0e68b3;
-  font-size: 1rem;
-  font-weight: 650;
-  line-height: 1.5;
-}
-
-/* FINAL SENTENCE GENERATOR */
+/* RESULT */
 
 .result-panel {
   display: none;
@@ -186,9 +194,7 @@ body {
   animation: fadeIn 0.3s ease;
 }
 
-.result-panel.visible {
-  display: block;
-}
+.result-panel.visible { display: block; }
 
 .result-label {
   font-size: 0.78rem;
@@ -248,9 +254,7 @@ body {
   color: #0e68b3;
 }
 
-.action-button.secondary:hover {
-  background: #f0f7fc;
-}
+.action-button.secondary:hover { background: #f0f7fc; }
 
 .action-button:focus-visible {
   outline: 3px solid rgba(14, 104, 179, 0.3);
@@ -265,54 +269,29 @@ body {
   line-height: 1.6;
 }
 
-/* ANIMATION */
-
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* TABLET AND MOBILE */
-
 @media (max-width: 700px) {
-  .measurement-wrapper {
-    padding: 1rem;
-  }
+  .measurement-wrapper { padding: 1rem; }
+  .glass { padding: 1.5rem; }
+  .step-card, .result-panel { padding: 1.25rem; }
+}
 
-  .glass {
-    padding: 1.5rem;
-  }
-
-  .step-card,
-  .result-panel {
-    padding: 1.25rem;
-  }
+@media (max-width: 520px) {
+  .definition-list { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 420px) {
-  .measurement-wrapper {
-    padding: 0.75rem;
-  }
-
-  .glass {
-    padding: 1.25rem;
-  }
-
-  .action-button {
-    flex-basis: 100%;
-  }
+  .measurement-wrapper { padding: 0.75rem; }
+  .glass { padding: 1.25rem; }
+  .action-button { flex-basis: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
@@ -329,11 +308,11 @@ body {
 
   <p>
     Choose your graduate program and complete the sentence to develop
-    a focused claim about a workplace problem, a proposed action, and
-    why that action matters.
+    a focused claim about a workplace problem, a proposed action, where
+    it applies, who it affects, and why the action matters.
   </p>
 
-  <!-- STEP 1: SELECT MAJOR -->
+  <!-- STEP 1 -->
 
   <div class="step-card" id="step1">
     <div class="question-title">
@@ -355,7 +334,7 @@ body {
     </div>
   </div>
 
-  <!-- STEP 2: WHO, DO WHAT, AND WHY IN ONE CARD -->
+  <!-- STEP 2 -->
 
   <div class="step-card hidden" id="step2">
 
@@ -366,13 +345,45 @@ body {
 
     <p class="question-help">
       Complete each part of the sentence by selecting an option from
-      each dropdown.
+      each dropdown. Your choices should work together to express one
+      clear recommendation.
     </p>
 
     <div class="claim-template">
       I think that <strong>[WHO]</strong> should
-      <strong>[DO WHAT]</strong>, because <strong>[WHY]</strong>.
+      <strong>[DO WHAT]</strong> in <strong>[SETTING]</strong>
+      for <strong>[POPULATION]</strong>, because <strong>[WHY]</strong>.
     </div>
+
+    <div class="definition-list">
+      <div class="definition">
+        <strong>WHO</strong>
+        The organization, group, or person responsible for taking action.
+      </div>
+
+      <div class="definition">
+        <strong>DO WHAT</strong>
+        The specific recommendation.
+      </div>
+
+      <div class="definition">
+        <strong>SETTING</strong>
+        The workplace, industry, department, or situation where the
+        recommendation applies.
+      </div>
+
+      <div class="definition">
+        <strong>POPULATION</strong>
+        The people affected by the recommendation.
+      </div>
+
+      <div class="definition">
+        <strong>WHY</strong>
+        The reason the recommendation is justified.
+      </div>
+    </div>
+
+    <!-- WHO -->
 
     <div class="claim-field">
       <label class="field-label" for="who">
@@ -385,6 +396,8 @@ body {
       </div>
     </div>
 
+    <!-- DO WHAT -->
+
     <div class="claim-field">
       <label class="field-label" for="what">
         DO WHAT — What should they do?
@@ -396,9 +409,37 @@ body {
       </div>
     </div>
 
+    <!-- SETTING -->
+
+    <div class="claim-field">
+      <label class="field-label" for="setting">
+        SETTING — Where should the recommendation apply?
+      </label>
+      <div class="select-wrapper">
+        <select id="setting" disabled>
+          <option value="">-- Choose a setting --</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- POPULATION -->
+
+    <div class="claim-field">
+      <label class="field-label" for="population">
+        POPULATION — Who will be affected?
+      </label>
+      <div class="select-wrapper">
+        <select id="population" disabled>
+          <option value="">-- Choose a population --</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- WHY -->
+
     <div class="claim-field">
       <label class="field-label" for="why">
-        WHY — Why should they do it?
+        WHY — Why is the recommendation justified?
       </label>
       <div class="select-wrapper">
         <select id="why" disabled>
@@ -412,14 +453,14 @@ body {
   <!-- FINAL SENTENCE GENERATOR -->
 
   <div class="result-panel" id="resultPanel" aria-live="polite">
-
     <div class="result-label">Your completed main claim</div>
 
     <h3 class="result-title" id="result"></h3>
 
     <div class="result-description">
       This is a starting point for your argument. You will need credible
-      evidence to support both the proposed action and the reason it matters.
+      evidence to support the proposed action and explain why it is
+      appropriate for the selected setting and population.
     </div>
 
     <div class="button-row">
@@ -433,7 +474,6 @@ body {
     </div>
 
     <div class="status-message" id="statusMessage" role="status"></div>
-
   </div>
 
 </div>
@@ -680,12 +720,161 @@ const data = {
 };
 
 /* =========================================
+   SHARED SETTINGS
+   ========================================= */
+
+const settings = [
+  "Small businesses",
+  "Large corporations",
+  "Technology companies",
+  "Healthcare organizations",
+  "Financial institutions",
+  "Insurance companies",
+  "Retail businesses",
+  "Manufacturing companies",
+  "Consulting firms",
+  "Nonprofit organizations",
+  "Government agencies",
+  "Educational institutions",
+  "Startups and newly established businesses",
+  "Organizations that operate across multiple countries",
+
+  "Human resources departments",
+  "Information technology (IT) departments",
+  "Cybersecurity departments",
+  "Data analytics departments",
+  "Customer support departments",
+  "Marketing departments",
+  "Finance and accounting departments",
+  "Operations departments",
+  "Project management offices",
+  "Training and development departments",
+  "Research and development departments",
+  "Supply chain and logistics departments",
+
+  "Remote workplaces",
+  "Hybrid workplaces",
+  "Traditional office environments",
+  "Distributed teams working across time zones",
+  "Organizations with multiple physical locations",
+  "Organizations with centralized decision-making",
+  "Organizations with decentralized decision-making",
+  "Workplaces undergoing organizational change",
+  "Workplaces implementing new technology",
+  "Workplaces experiencing staffing shortages",
+
+  "Organizations adopting artificial intelligence",
+  "Workplaces using automated decision-making systems",
+  "Organizations transitioning to cloud-based systems",
+  "Businesses integrating multiple information systems",
+  "Organizations managing sensitive customer information",
+  "Organizations using predictive analytics",
+  "Organizations implementing new cybersecurity systems",
+  "Organizations relying on third-party technology vendors",
+  "Organizations collecting large amounts of customer data",
+  "Organizations modernizing outdated technology infrastructure",
+
+  "Software development projects",
+  "IT implementation projects",
+  "Digital transformation initiatives",
+  "Cybersecurity incident response",
+  "Employee onboarding programs",
+  "Employee training programs",
+  "Business process improvement initiatives",
+  "Projects involving multiple departments",
+  "Projects with fixed budgets and deadlines",
+  "Organizations managing several projects simultaneously"
+];
+
+/* =========================================
+   SHARED POPULATIONS
+   ========================================= */
+
+const populations = [
+  "New employees",
+  "Experienced employees",
+  "Remote employees",
+  "Hybrid employees",
+  "Employees working in person",
+  "Employees who handle customer information",
+  "Employees who use AI tools",
+  "Employees with access to sensitive data",
+  "Employees undergoing job training",
+  "Employees working in customer support",
+  "Employees in technical roles",
+  "Employees in nontechnical roles",
+  "Employees working across multiple time zones",
+  "Employees transitioning to new technology",
+
+  "First-time managers",
+  "Middle managers",
+  "Senior executives",
+  "IT managers",
+  "Project managers",
+  "Human resources managers",
+  "Cybersecurity managers",
+  "Data analytics managers",
+  "Team leaders",
+  "Managers supervising remote teams",
+  "Managers responsible for employee evaluations",
+  "Leaders overseeing organizational change",
+
+  "Data analysts",
+  "Data scientists",
+  "Business intelligence analysts",
+  "Cybersecurity analysts",
+  "IT administrators",
+  "Software developers",
+  "AI developers",
+  "Systems analysts",
+  "Information security officers",
+  "Technology project managers",
+  "Professionals responsible for evaluating AI systems",
+  "Employees responsible for making data-driven decisions",
+
+  "Customers using online services",
+  "Customers whose information is collected by businesses",
+  "Customers using AI-powered services",
+  "Small-business clients",
+  "Employees of third-party vendors",
+  "External contractors",
+  "Technology vendors",
+  "Business partners",
+  "Members of the public using digital government services",
+  "Individuals affected by automated decisions",
+
+  "Cross-functional teams",
+  "Software development teams",
+  "Cybersecurity teams",
+  "Remote project teams",
+  "Newly formed teams",
+  "Teams working under tight deadlines",
+  "Teams responsible for major technology implementations",
+  "Teams with members from multiple departments",
+  "Teams adopting new collaboration tools",
+  "Teams responsible for organizational decision-making",
+
+  "Small businesses with fewer than 50 employees",
+  "Medium-sized businesses",
+  "Large organizations with multiple departments",
+  "Organizations with remote workforces",
+  "Organizations adopting AI for the first time",
+  "Organizations in highly regulated industries",
+  "Organizations that handle sensitive personal information",
+  "Organizations with limited technology budgets",
+  "Organizations undergoing digital transformation",
+  "Organizations that rely heavily on data-driven decisions"
+];
+
+/* =========================================
    ELEMENTS
    ========================================= */
 
 const major = document.getElementById("major");
 const who = document.getElementById("who");
 const what = document.getElementById("what");
+const setting = document.getElementById("setting");
+const population = document.getElementById("population");
 const why = document.getElementById("why");
 
 const step2 = document.getElementById("step2");
@@ -734,7 +923,13 @@ function clearSelect(select, placeholder) {
    ========================================= */
 
 function updateClaim() {
-  if (!who.value || !what.value || !why.value) {
+  if (
+    !who.value ||
+    !what.value ||
+    !setting.value ||
+    !population.value ||
+    !why.value
+  ) {
     resultPanel.classList.remove("visible");
     return;
   }
@@ -742,6 +937,8 @@ function updateClaim() {
   result.textContent =
     "I think that " + who.value +
     " should " + what.value +
+    " in " + setting.value +
+    " for " + population.value +
     ", because " + why.value + ".";
 
   resultPanel.classList.add("visible");
@@ -757,6 +954,8 @@ major.addEventListener("change", function () {
 
   clearSelect(who, "-- Choose who should act --");
   clearSelect(what, "-- Choose an action --");
+  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
   resultPanel.classList.remove("visible");
@@ -774,42 +973,73 @@ major.addEventListener("change", function () {
 });
 
 /* =========================================
-   STEP 2: WHO
+   WHO
    ========================================= */
 
 who.addEventListener("change", function () {
   clearSelect(what, "-- Choose an action --");
+  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
   resultPanel.classList.remove("visible");
   statusMessage.textContent = "";
 
-  if (!who.value) {
-    return;
-  }
+  if (!who.value) return;
 
   populateSelect(what, data[major.value].what, "-- Choose an action --");
 });
 
 /* =========================================
-   STEP 2: DO WHAT
+   DO WHAT
    ========================================= */
 
 what.addEventListener("change", function () {
+  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
   resultPanel.classList.remove("visible");
   statusMessage.textContent = "";
 
-  if (!what.value) {
-    return;
-  }
+  if (!what.value) return;
+
+  populateSelect(setting, settings, "-- Choose a setting --");
+});
+
+/* =========================================
+   SETTING
+   ========================================= */
+
+setting.addEventListener("change", function () {
+  clearSelect(population, "-- Choose a population --");
+  clearSelect(why, "-- Choose a reason --");
+
+  resultPanel.classList.remove("visible");
+  statusMessage.textContent = "";
+
+  if (!setting.value) return;
+
+  populateSelect(population, populations, "-- Choose a population --");
+});
+
+/* =========================================
+   POPULATION
+   ========================================= */
+
+population.addEventListener("change", function () {
+  clearSelect(why, "-- Choose a reason --");
+
+  resultPanel.classList.remove("visible");
+  statusMessage.textContent = "";
+
+  if (!population.value) return;
 
   populateSelect(why, data[major.value].why, "-- Choose a reason --");
 });
 
 /* =========================================
-   STEP 2: WHY
+   WHY
    ========================================= */
 
 why.addEventListener("change", function () {
@@ -840,9 +1070,15 @@ function scrollToElement(element) {
    ========================================= */
 
 copyButton.addEventListener("click", async function () {
-  if (!who.value || !what.value || !why.value) {
+  if (
+    !who.value ||
+    !what.value ||
+    !setting.value ||
+    !population.value ||
+    !why.value
+  ) {
     statusMessage.textContent =
-      "Please complete all three dropdowns before copying.";
+      "Please complete all five dropdowns before copying.";
     return;
   }
 
@@ -864,6 +1100,8 @@ resetButton.addEventListener("click", function () {
 
   clearSelect(who, "-- Choose who should act --");
   clearSelect(what, "-- Choose an action --");
+  clearSelect(setting, "-- Choose a setting --");
+  clearSelect(population, "-- Choose a population --");
   clearSelect(why, "-- Choose a reason --");
 
   step2.classList.add("hidden");
