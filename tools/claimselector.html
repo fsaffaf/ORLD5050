@@ -490,11 +490,11 @@ const data = {
     who: [
       "cybersecurity departments",
       "IT administrators",
-      "small and medium-sized businesses",
+      "organizations with hybrid employees",
+      "organizations with entirely remote workers",
       "organizations that store customer information",
       "employees who handle sensitive data",
       "managers responsible for information security",
-      "organizations that permit remote work",
       "teams responsible for responding to security incidents"
     ],
     what: [
@@ -1055,7 +1055,7 @@ copyButton.addEventListener("click", async function () {
     !why.value
   ) {
     statusMessage.textContent =
-      "Please complete all five dropdowns before copying.";
+      "Please complete all five dropdowns.";
     return;
   }
 
