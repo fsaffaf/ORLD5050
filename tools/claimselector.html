@@ -60,7 +60,7 @@ body {
   line-height: 1.8;
 }
 
-/* QUESTIONS */
+/* QUESTION ROWS */
 
 .question-row {
   margin-bottom: 1.5rem;
@@ -80,85 +80,60 @@ body {
 }
 
 .question-number {
-  margin-right: 0.4rem;
   color: #0e68b3;
+  margin-right: 0.4rem;
 }
 
 .question-help {
-  margin: 0 0 1rem;
+  margin: 0 0 0.85rem;
   color: #555555;
   line-height: 1.7;
 }
 
-/* OPTIONS */
+/* DROPDOWNS */
 
-.feature-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+.select-wrapper {
+  width: 100%;
 }
 
-#question1 .feature-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.feature-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  min-width: 0;
-  padding: 1rem 1.15rem;
-  border-radius: 12px;
-  background: #ffffff;
+.select-wrapper select {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.85rem 2.5rem 0.85rem 1rem;
   border: 1px solid #d9e2ec;
+  border-radius: 10px;
+  background-color: #ffffff;
   color: #222222;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
   cursor: pointer;
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
-    transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.feature-option:hover {
-  background: #f0f7fc;
+.select-wrapper select:hover {
   border-color: #0e68b3;
-  transform: translateY(-1px);
+  background-color: #f8fbfe;
 }
 
-.feature-option:has(input:checked) {
-  background: #f0f7fc;
+.select-wrapper select:focus {
+  outline: none;
   border-color: #0e68b3;
-  box-shadow: 0 0 0 1px #0e68b3;
+  box-shadow: 0 0 0 3px rgba(14, 104, 179, 0.15);
 }
 
-.feature-option input {
-  width: 1.1rem;
-  height: 1.1rem;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-  accent-color: #0e68b3;
-  cursor: pointer;
+.select-wrapper select:disabled {
+  background-color: #f4f6f9;
+  color: #777777;
+  cursor: not-allowed;
 }
 
-.feature-option input:focus-visible {
-  outline: 2px solid #0e68b3;
-  outline-offset: 3px;
-}
-
-.feature-title {
-  display: block;
-  font-weight: 600;
-  color: #0e68b3;
-  line-height: 1.5;
-}
-
-.feature-subtitle {
-  display: block;
-  font-size: 0.85rem;
-  color: #555555;
-  margin-top: 0.25rem;
-  line-height: 1.6;
+.select-wrapper option {
+  white-space: normal;
 }
 
 /* SENTENCE PREVIEW */
@@ -177,7 +152,7 @@ body {
   color: #0e68b3;
 }
 
-/* RESULT */
+/* RESULT PANEL */
 
 .result-panel {
   display: none;
@@ -204,14 +179,14 @@ body {
   font-size: 1.1rem;
   font-weight: 650;
   color: #0e68b3;
-  line-height: 1.5;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
 }
 
 .result-description {
   margin-top: 0.75rem;
   color: #333333;
   line-height: 1.8;
-  overflow-wrap: anywhere;
 }
 
 .button-row {
@@ -266,7 +241,7 @@ body {
   line-height: 1.6;
 }
 
-/* RESEARCHABILITY REMINDER */
+/* RESEARCH REMINDER */
 
 .research-note {
   margin-top: 1.5rem;
@@ -295,7 +270,7 @@ body {
   }
 }
 
-/* RESPONSIVE */
+/* TABLET AND MOBILE */
 
 @media (max-width: 700px) {
   .measurement-wrapper {
@@ -304,11 +279,6 @@ body {
 
   .glass {
     padding: 1.5rem;
-  }
-
-  .feature-list,
-  #question1 .feature-list {
-    grid-template-columns: 1fr;
   }
 
   .result-panel {
@@ -325,8 +295,8 @@ body {
     padding: 1.25rem;
   }
 
-  .feature-option {
-    padding: 1rem;
+  .action-button {
+    flex-basis: 100%;
   }
 }
 
@@ -350,8 +320,9 @@ body {
   <h2>Main Claim Builder</h2>
 
   <p>
-    Choose your graduate program and build a focused claim about a
-    workplace problem, a proposed action, and the reason that action matters.
+    Choose your graduate program and complete the sentence to develop
+    a focused claim about a workplace problem, a proposed action, and
+    why that action matters.
   </p>
 
   <!-- QUESTION 1: MAJOR -->
@@ -363,79 +334,19 @@ body {
       Which graduate program are you in?
     </div>
 
-    <div class="feature-list">
-
-      <label class="feature-option">
-        <input type="radio" name="major" value="ai">
-        <span>
-          <span class="feature-title">Applied AI and Decision Analytics, M.S.</span>
-          <span class="feature-subtitle">
-            Artificial intelligence, predictive analytics, and data-driven decisions.
-          </span>
-        </span>
-      </label>
-
-      <label class="feature-option">
-        <input type="radio" name="major" value="cyber">
-        <span>
-          <span class="feature-title">Cybersecurity, M.S.</span>
-          <span class="feature-subtitle">
-            Information security, risk management, and incident prevention.
-          </span>
-        </span>
-      </label>
-
-      <label class="feature-option">
-        <input type="radio" name="major" value="is">
-        <span>
-          <span class="feature-title">Information Systems and Emerging Technologies, M.S.</span>
-          <span class="feature-subtitle">
-            Information systems, software adoption, and digital transformation.
-          </span>
-        </span>
-      </label>
-
-      <label class="feature-option">
-        <input type="radio" name="major" value="leadership">
-        <span>
-          <span class="feature-title">Leadership and Organizational Development, M.A.</span>
-          <span class="feature-subtitle">
-            Leadership practices, employee development, and workplace communication.
-          </span>
-        </span>
-      </label>
-
-      <label class="feature-option">
-        <input type="radio" name="major" value="project">
-        <span>
-          <span class="feature-title">Project Management, M.S.</span>
-          <span class="feature-subtitle">
-            Project planning, risk management, and project performance.
-          </span>
-        </span>
-      </label>
-
-      <label class="feature-option">
-        <input type="radio" name="major" value="intelligence">
-        <span>
-          <span class="feature-title">Strategic Intelligence, M.S.</span>
-          <span class="feature-subtitle">
-            Intelligence analysis, threat assessment, and strategic decisions.
-          </span>
-        </span>
-      </label>
-
-      <label class="feature-option">
-        <input type="radio" name="major" value="technology">
-        <span>
-          <span class="feature-title">Technology Leadership, M.S.</span>
-          <span class="feature-subtitle">
-            Technology strategy, IT governance, and technology investments.
-          </span>
-        </span>
-      </label>
-
+    <div class="select-wrapper">
+      <select id="major">
+        <option value="">-- Select your major --</option>
+        <option value="ai">Applied AI and Decision Analytics, M.S.</option>
+        <option value="cyber">Cybersecurity, M.S.</option>
+        <option value="is">Information Systems and Emerging Technologies, M.S.</option>
+        <option value="leadership">Leadership and Organizational Development, M.A.</option>
+        <option value="project">Project Management, M.S.</option>
+        <option value="intelligence">Strategic Intelligence, M.S.</option>
+        <option value="technology">Technology Leadership, M.S.</option>
+      </select>
     </div>
+
   </div>
 
   <!-- QUESTION 2: WHO -->
@@ -448,15 +359,18 @@ body {
     </div>
 
     <p class="question-help">
-      Identify the specific group or role that has the ability to address
-      the problem.
+      Identify the group or role that has the ability to address the problem.
     </p>
 
-    <div class="feature-list" id="whoOptions"></div>
+    <div class="select-wrapper">
+      <select id="who" disabled>
+        <option value="">-- Choose who should act --</option>
+      </select>
+    </div>
 
   </div>
 
-  <!-- QUESTION 3: WHAT -->
+  <!-- QUESTION 3: DO WHAT -->
 
   <div class="question-row hidden" id="question3">
 
@@ -466,11 +380,14 @@ body {
     </div>
 
     <p class="question-help">
-      Choose a specific action. Avoid vague suggestions such as
-      "improve things" or "use technology better."
+      Choose a specific action rather than a vague goal.
     </p>
 
-    <div class="feature-list" id="whatOptions"></div>
+    <div class="select-wrapper">
+      <select id="what" disabled>
+        <option value="">-- Choose an action --</option>
+      </select>
+    </div>
 
   </div>
 
@@ -484,11 +401,14 @@ body {
     </div>
 
     <p class="question-help">
-      Choose a reason that explains the potential benefit or problem
-      the proposed action could address.
+      Select the benefit or problem that explains why the action matters.
     </p>
 
-    <div class="feature-list" id="whyOptions"></div>
+    <div class="select-wrapper">
+      <select id="why" disabled>
+        <option value="">-- Choose a reason --</option>
+      </select>
+    </div>
 
   </div>
 
@@ -515,16 +435,15 @@ body {
 
     <div class="result-label">Your completed main claim</div>
 
-    <h3 class="result-title" id="result">
-      Complete all three selections.
-    </h3>
+    <h3 class="result-title" id="result"></h3>
 
-    <div class="result-description" id="resultDescription">
-      Your sentence will appear here after you select a WHO, a DO WHAT,
-      and a WHY.
+    <div class="result-description">
+      This is a starting point for your argument. You will need credible
+      evidence to support both the proposed action and the reason it matters.
     </div>
 
     <div class="button-row">
+
       <button type="button" class="action-button" id="copyButton">
         Copy My Claim
       </button>
@@ -532,6 +451,7 @@ body {
       <button type="button" class="action-button secondary" id="resetButton">
         Start Over
       </button>
+
     </div>
 
     <div class="status-message" id="statusMessage" role="status"></div>
@@ -543,9 +463,8 @@ body {
     Make sure the topic is specific enough to investigate using credible,
     accessible evidence. Avoid topics that require confidential company
     records or private employee information. If the topic is too broad,
-    narrow it to a particular workplace process, population, setting,
-    or measurable outcome. The generated sentence is a starting point,
-    not a substitute for research.
+    narrow it to a particular workplace process, population, setting, or
+    measurable outcome.
   </div>
 
 </div>
@@ -571,24 +490,24 @@ const data = {
       "Teams responsible for evaluating AI-generated recommendations"
     ],
     what: [
-      "Evaluate AI tools before adopting them for business decisions",
-      "Validate predictive models before using their results",
-      "Establish standards for evaluating AI-generated recommendations",
-      "Compare AI-assisted decisions with decisions made using existing methods",
-      "Monitor predictive model performance over time",
-      "Require human review of AI-generated recommendations in high-impact decisions",
-      "Evaluate analytical models for potential bias",
-      "Establish guidelines for using AI tools with sensitive information"
+      "evaluate AI tools before adopting them for business decisions",
+      "validate predictive models before using their results",
+      "establish standards for evaluating AI-generated recommendations",
+      "compare AI-assisted decisions with decisions made using existing methods",
+      "monitor predictive model performance over time",
+      "require human review of AI-generated recommendations in high-impact decisions",
+      "evaluate analytical models for potential bias",
+      "establish guidelines for using AI tools with sensitive information"
     ],
     why: [
-      "Reduce errors in AI-assisted decisions",
-      "Improve the accuracy of business forecasts",
-      "Identify potential bias in automated decisions",
-      "Improve the reliability of predictive models",
-      "Reduce unnecessary spending on ineffective AI tools",
-      "Improve the consistency of business decisions",
-      "Reduce the risk of relying on inaccurate AI-generated information",
-      "Improve accountability for decisions informed by AI"
+      "reduce errors in AI-assisted decisions",
+      "improve the accuracy of business forecasts",
+      "identify potential bias in automated decisions",
+      "improve the reliability of predictive models",
+      "reduce unnecessary spending on ineffective AI tools",
+      "improve the consistency of business decisions",
+      "reduce the risk of relying on inaccurate AI-generated information",
+      "improve accountability for decisions informed by AI"
     ]
   },
 
@@ -604,24 +523,24 @@ const data = {
       "Teams responsible for responding to security incidents"
     ],
     what: [
-      "Require cybersecurity awareness training for employees",
-      "Implement multifactor authentication for access to sensitive systems",
-      "Review employee access permissions regularly",
-      "Establish procedures for reporting suspected phishing attempts",
-      "Adopt a standardized process for responding to security incidents",
-      "Conduct regular security awareness assessments",
-      "Establish policies for using personal devices for work",
-      "Evaluate third-party vendors before sharing sensitive information"
+      "require cybersecurity awareness training for employees",
+      "implement multifactor authentication for access to sensitive systems",
+      "review employee access permissions regularly",
+      "establish procedures for reporting suspected phishing attempts",
+      "adopt a standardized process for responding to security incidents",
+      "conduct regular security awareness assessments",
+      "establish policies for using personal devices for work",
+      "evaluate third-party vendors before sharing sensitive information"
     ],
     why: [
-      "Reduce the risk of unauthorized access",
-      "Reduce employees' susceptibility to phishing attempts",
-      "Protect confidential customer information",
-      "Reduce avoidable security errors",
-      "Improve the speed of incident reporting",
-      "Limit the potential impact of security incidents",
-      "Reduce risks associated with third-party vendors",
-      "Improve compliance with applicable security requirements"
+      "reduce the risk of unauthorized access",
+      "reduce employees' susceptibility to phishing attempts",
+      "protect confidential customer information",
+      "reduce avoidable security errors",
+      "improve the speed of incident reporting",
+      "limit the potential impact of security incidents",
+      "reduce risks associated with third-party vendors",
+      "improve compliance with applicable security requirements"
     ]
   },
 
@@ -637,24 +556,24 @@ const data = {
       "Organizations moving business operations to cloud-based systems"
     ],
     what: [
-      "Conduct user testing before implementing new software",
-      "Establish criteria for selecting enterprise information systems",
-      "Provide structured training when introducing new technology",
-      "Evaluate system usability before organization-wide deployment",
-      "Develop procedures for managing software updates",
-      "Assess compatibility before integrating new systems",
-      "Establish guidelines for adopting emerging technologies",
-      "Evaluate existing workflows before automating them"
+      "conduct user testing before implementing new software",
+      "establish criteria for selecting enterprise information systems",
+      "provide structured training when introducing new technology",
+      "evaluate system usability before organization-wide deployment",
+      "develop procedures for managing software updates",
+      "assess compatibility before integrating new systems",
+      "establish guidelines for adopting emerging technologies",
+      "evaluate existing workflows before automating them"
     ],
     why: [
-      "Reduce implementation problems",
-      "Improve employee adoption of new systems",
-      "Reduce disruptions during technology transitions",
-      "Improve system usability",
-      "Reduce costs associated with incompatible systems",
-      "Improve the reliability of business operations",
-      "Reduce resistance to organizational technology changes",
-      "Prevent investment in technology that does not meet organizational needs"
+      "reduce implementation problems",
+      "improve employee adoption of new systems",
+      "reduce disruptions during technology transitions",
+      "improve system usability",
+      "reduce costs associated with incompatible systems",
+      "improve the reliability of business operations",
+      "reduce resistance to organizational technology changes",
+      "prevent investment in technology that does not meet organizational needs"
     ]
   },
 
@@ -670,24 +589,24 @@ const data = {
       "Leaders managing cross-functional teams"
     ],
     what: [
-      "Establish structured feedback processes for employees",
-      "Provide leadership training for newly promoted managers",
-      "Use consistent criteria for employee performance evaluations",
-      "Introduce structured onboarding for new employees",
-      "Establish regular communication practices for remote teams",
-      "Involve employees in decisions that directly affect their work",
-      "Develop formal processes for resolving workplace conflict",
-      "Evaluate employee development programs using defined outcomes"
+      "establish structured feedback processes for employees",
+      "provide leadership training for newly promoted managers",
+      "use consistent criteria for employee performance evaluations",
+      "introduce structured onboarding for new employees",
+      "establish regular communication practices for remote teams",
+      "involve employees in decisions that directly affect their work",
+      "develop formal processes for resolving workplace conflict",
+      "evaluate employee development programs using defined outcomes"
     ],
     why: [
-      "Improve employee engagement",
-      "Reduce avoidable employee turnover",
-      "Improve consistency in performance evaluations",
-      "Help new managers transition into leadership roles",
-      "Reduce misunderstandings among team members",
-      "Improve employee preparedness for job responsibilities",
-      "Reduce workplace conflict",
-      "Improve employees' perceptions of organizational fairness"
+      "improve employee engagement",
+      "reduce avoidable employee turnover",
+      "improve consistency in performance evaluations",
+      "help new managers transition into leadership roles",
+      "reduce misunderstandings among team members",
+      "improve employee preparedness for job responsibilities",
+      "reduce workplace conflict",
+      "improve employees' perceptions of organizational fairness"
     ]
   },
 
@@ -703,24 +622,24 @@ const data = {
       "Project leaders working with external vendors"
     ],
     what: [
-      "Conduct risk assessments during project planning",
-      "Establish clear criteria for evaluating project success",
-      "Use standardized processes for tracking project progress",
-      "Require formal review of major scope changes",
-      "Establish regular stakeholder communication schedules",
-      "Compare estimated project costs with actual expenditures",
-      "Use lessons-learned reviews after project completion",
-      "Prioritize projects using consistent selection criteria"
+      "conduct risk assessments during project planning",
+      "establish clear criteria for evaluating project success",
+      "use standardized processes for tracking project progress",
+      "require formal review of major scope changes",
+      "establish regular stakeholder communication schedules",
+      "compare estimated project costs with actual expenditures",
+      "use lessons-learned reviews after project completion",
+      "prioritize projects using consistent selection criteria"
     ],
     why: [
-      "Reduce unexpected project delays",
-      "Identify risks before they affect project outcomes",
-      "Improve budget accuracy",
-      "Reduce scope creep",
-      "Improve communication among stakeholders",
-      "Increase the likelihood of meeting project objectives",
-      "Improve the allocation of project resources",
-      "Reduce the recurrence of problems across projects"
+      "reduce unexpected project delays",
+      "identify risks before they affect project outcomes",
+      "improve budget accuracy",
+      "reduce scope creep",
+      "improve communication among stakeholders",
+      "increase the likelihood of meeting project objectives",
+      "improve the allocation of project resources",
+      "reduce the recurrence of problems across projects"
     ]
   },
 
@@ -736,24 +655,24 @@ const data = {
       "Decision-makers responsible for business continuity"
     ],
     what: [
-      "Use structured analytical techniques when evaluating competing explanations",
-      "Establish criteria for assessing the credibility of information sources",
-      "Compare multiple sources before drawing strategic conclusions",
-      "Conduct scenario analysis when evaluating emerging threats",
-      "Establish procedures for communicating analytical uncertainty",
-      "Monitor publicly available indicators of industry change",
-      "Review assumptions underlying strategic forecasts",
-      "Develop standardized processes for documenting analytical judgments"
+      "use structured analytical techniques when evaluating competing explanations",
+      "establish criteria for assessing the credibility of information sources",
+      "compare multiple sources before drawing strategic conclusions",
+      "conduct scenario analysis when evaluating emerging threats",
+      "establish procedures for communicating analytical uncertainty",
+      "monitor publicly available indicators of industry change",
+      "review assumptions underlying strategic forecasts",
+      "develop standardized processes for documenting analytical judgments"
     ],
     why: [
-      "Reduce the influence of confirmation bias",
-      "Improve the reliability of strategic assessments",
-      "Reduce the risk of decisions based on inaccurate information",
-      "Identify emerging threats earlier",
-      "Improve preparedness for uncertain future events",
-      "Distinguish verified information from unsupported claims",
-      "Improve the transparency of analytical reasoning",
-      "Help decision-makers understand uncertainty and competing explanations"
+      "reduce the influence of confirmation bias",
+      "improve the reliability of strategic assessments",
+      "reduce the risk of decisions based on inaccurate information",
+      "identify emerging threats earlier",
+      "improve preparedness for uncertain future events",
+      "distinguish verified information from unsupported claims",
+      "improve the transparency of analytical reasoning",
+      "help decision-makers understand uncertainty and competing explanations"
     ]
   },
 
@@ -769,24 +688,24 @@ const data = {
       "Business leaders responsible for aligning technology with organizational strategy"
     ],
     what: [
-      "Establish criteria for evaluating technology investments",
-      "Align IT projects with defined organizational objectives",
-      "Develop governance policies for enterprise AI adoption",
-      "Establish procedures for evaluating technology vendors",
-      "Create plans for managing technology-related organizational change",
-      "Review the business value of major IT projects",
-      "Establish clear accountability for technology-related decisions",
-      "Develop strategies for addressing critical technology skill gaps"
+      "establish criteria for evaluating technology investments",
+      "align IT projects with defined organizational objectives",
+      "develop governance policies for enterprise AI adoption",
+      "establish procedures for evaluating technology vendors",
+      "create plans for managing technology-related organizational change",
+      "review the business value of major IT projects",
+      "establish clear accountability for technology-related decisions",
+      "develop strategies for addressing critical technology skill gaps"
     ],
     why: [
-      "Reduce investment in technology that does not meet organizational needs",
-      "Improve alignment between IT projects and business objectives",
-      "Reduce risks associated with technology adoption",
-      "Improve accountability for technology spending",
-      "Increase the value organizations receive from technology investments",
-      "Reduce disruption during digital transformation",
-      "Improve coordination between business and IT teams",
-      "Prepare employees for changing technology requirements"
+      "reduce investment in technology that does not meet organizational needs",
+      "improve alignment between IT projects and business objectives",
+      "reduce risks associated with technology adoption",
+      "improve accountability for technology spending",
+      "increase the value organizations receive from technology investments",
+      "reduce disruption during digital transformation",
+      "improve coordination between business and IT teams",
+      "prepare employees for changing technology requirements"
     ]
   }
 };
@@ -795,12 +714,10 @@ const data = {
    ELEMENTS AND STATE
    ========================================= */
 
-const state = {
-  major: null,
-  who: null,
-  what: null,
-  why: null
-};
+const major = document.getElementById("major");
+const who = document.getElementById("who");
+const what = document.getElementById("what");
+const why = document.getElementById("why");
 
 const question2 = document.getElementById("question2");
 const question3 = document.getElementById("question3");
@@ -809,161 +726,153 @@ const sentenceSection = document.getElementById("sentenceSection");
 
 const resultPanel = document.getElementById("resultPanel");
 const result = document.getElementById("result");
-const resultDescription = document.getElementById("resultDescription");
 const statusMessage = document.getElementById("statusMessage");
-
-const whoOptions = document.getElementById("whoOptions");
-const whatOptions = document.getElementById("whatOptions");
-const whyOptions = document.getElementById("whyOptions");
 
 const copyButton = document.getElementById("copyButton");
 const resetButton = document.getElementById("resetButton");
 
 /* =========================================
-   BUILD SELECTABLE CARDS
+   POPULATE DROPDOWNS
    ========================================= */
 
-function createOptions(container, name, options, onSelect) {
-  container.replaceChildren();
+function populateSelect(select, options, placeholder) {
+  select.replaceChildren();
 
-  options.forEach(function (text, index) {
-    const label = document.createElement("label");
-    label.className = "feature-option";
+  const firstOption = document.createElement("option");
+  firstOption.value = "";
+  firstOption.textContent = placeholder;
+  select.appendChild(firstOption);
 
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = name;
-    input.value = text;
-    input.id = name + "-" + index;
-
-    const content = document.createElement("span");
-
-    const title = document.createElement("span");
-    title.className = "feature-title";
-    title.textContent = text;
-
-    content.appendChild(title);
-    label.appendChild(input);
-    label.appendChild(content);
-    container.appendChild(label);
-
-    input.addEventListener("change", function () {
-      onSelect(text);
-    });
+  options.forEach(function (item) {
+    const option = document.createElement("option");
+    option.value = item;
+    option.textContent = item;
+    select.appendChild(option);
   });
+
+  select.disabled = false;
 }
 
-/* =========================================
-   MAJOR SELECTION
-   ========================================= */
+function clearSelect(select, placeholder) {
+  select.replaceChildren();
 
-document.querySelectorAll('input[name="major"]').forEach(function (input) {
-  input.addEventListener("change", function () {
-    state.major = input.value;
-    state.who = null;
-    state.what = null;
-    state.why = null;
+  const option = document.createElement("option");
+  option.value = "";
+  option.textContent = placeholder;
+  select.appendChild(option);
 
-    const selected = data[state.major];
-
-    createOptions(whoOptions, "who", selected.who, selectWho);
-
-    whatOptions.replaceChildren();
-    whyOptions.replaceChildren();
-
-    question2.classList.remove("hidden");
-    question3.classList.add("hidden");
-    question4.classList.add("hidden");
-    sentenceSection.classList.add("hidden");
-
-    resultPanel.style.display = "none";
-    statusMessage.textContent = "";
-
-    scrollToElement(question2);
-  });
-});
-
-/* =========================================
-   WHO SELECTION
-   ========================================= */
-
-function selectWho(value) {
-  state.who = value;
-  state.what = null;
-  state.why = null;
-
-  const selected = data[state.major];
-
-  createOptions(whatOptions, "what", selected.what, selectWhat);
-  whyOptions.replaceChildren();
-
-  question3.classList.remove("hidden");
-  question4.classList.add("hidden");
-  sentenceSection.classList.add("hidden");
-
-  resultPanel.style.display = "none";
-  statusMessage.textContent = "";
-
-  scrollToElement(question3);
-}
-
-/* =========================================
-   DO WHAT SELECTION
-   ========================================= */
-
-function selectWhat(value) {
-  state.what = value;
-  state.why = null;
-
-  const selected = data[state.major];
-
-  createOptions(whyOptions, "why", selected.why, selectWhy);
-
-  question4.classList.remove("hidden");
-  sentenceSection.classList.add("hidden");
-
-  resultPanel.style.display = "none";
-  statusMessage.textContent = "";
-
-  scrollToElement(question4);
-}
-
-/* =========================================
-   WHY SELECTION
-   ========================================= */
-
-function selectWhy(value) {
-  state.why = value;
-
-  sentenceSection.classList.remove("hidden");
-  updateResult();
-
-  scrollToElement(resultPanel);
+  select.disabled = true;
 }
 
 /* =========================================
    UPDATE CLAIM
    ========================================= */
 
-function updateResult() {
-  if (!state.who || !state.what || !state.why) {
+function updateClaim() {
+  if (!who.value || !what.value || !why.value) {
     resultPanel.style.display = "none";
     return;
   }
 
   result.textContent =
-    "I think that " + state.who +
-    " should " + state.what +
-    ", because " + state.why + ".";
-
-  resultDescription.textContent =
-    "This is your starting claim. Before using it in your assignment, " +
-    "check whether you can find credible evidence to support the proposed " +
-    "action and the reason for taking it.";
+    "I think that " + who.value +
+    " should " + what.value +
+    ", because " + why.value + ".";
 
   resultPanel.style.display = "block";
   statusMessage.textContent = "";
 }
+
+/* =========================================
+   QUESTION 1: MAJOR
+   ========================================= */
+
+major.addEventListener("change", function () {
+  const selected = data[major.value];
+
+  clearSelect(who, "-- Choose who should act --");
+  clearSelect(what, "-- Choose an action --");
+  clearSelect(why, "-- Choose a reason --");
+
+  question3.classList.add("hidden");
+  question4.classList.add("hidden");
+  sentenceSection.classList.add("hidden");
+
+  resultPanel.style.display = "none";
+  statusMessage.textContent = "";
+
+  if (!selected) {
+    question2.classList.add("hidden");
+    return;
+  }
+
+  populateSelect(who, selected.who, "-- Choose who should act --");
+  question2.classList.remove("hidden");
+
+  scrollToElement(question2);
+});
+
+/* =========================================
+   QUESTION 2: WHO
+   ========================================= */
+
+who.addEventListener("change", function () {
+  clearSelect(what, "-- Choose an action --");
+  clearSelect(why, "-- Choose a reason --");
+
+  question4.classList.add("hidden");
+  sentenceSection.classList.add("hidden");
+  resultPanel.style.display = "none";
+  statusMessage.textContent = "";
+
+  if (!who.value) {
+    question3.classList.add("hidden");
+    return;
+  }
+
+  populateSelect(what, data[major.value].what, "-- Choose an action --");
+  question3.classList.remove("hidden");
+
+  scrollToElement(question3);
+});
+
+/* =========================================
+   QUESTION 3: DO WHAT
+   ========================================= */
+
+what.addEventListener("change", function () {
+  clearSelect(why, "-- Choose a reason --");
+
+  sentenceSection.classList.add("hidden");
+  resultPanel.style.display = "none";
+  statusMessage.textContent = "";
+
+  if (!what.value) {
+    question4.classList.add("hidden");
+    return;
+  }
+
+  populateSelect(why, data[major.value].why, "-- Choose a reason --");
+  question4.classList.remove("hidden");
+
+  scrollToElement(question4);
+});
+
+/* =========================================
+   QUESTION 4: WHY
+   ========================================= */
+
+why.addEventListener("change", function () {
+  sentenceSection.classList.toggle("hidden", !why.value);
+
+  if (!why.value) {
+    resultPanel.style.display = "none";
+    return;
+  }
+
+  updateClaim();
+  scrollToElement(resultPanel);
+});
 
 /* =========================================
    SCROLL HELPER
@@ -983,27 +892,18 @@ function scrollToElement(element) {
    ========================================= */
 
 copyButton.addEventListener("click", async function () {
-  if (!state.who || !state.what || !state.why) {
+  if (!who.value || !what.value || !why.value) {
     statusMessage.textContent =
-      "Please complete all three selections before copying.";
+      "Please complete all three dropdowns before copying.";
     return;
   }
 
-  const claim = result.textContent;
-
   try {
-    await navigator.clipboard.writeText(claim);
+    await navigator.clipboard.writeText(result.textContent);
     statusMessage.textContent = "Your claim has been copied.";
   } catch (error) {
-    const range = document.createRange();
-    range.selectNodeContents(result);
-
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-
     statusMessage.textContent =
-      "Automatic copying was blocked. The claim is selected; copy it manually.";
+      "Copying was blocked by your browser. Select the claim text and copy it manually.";
   }
 });
 
@@ -1012,18 +912,11 @@ copyButton.addEventListener("click", async function () {
    ========================================= */
 
 resetButton.addEventListener("click", function () {
-  state.major = null;
-  state.who = null;
-  state.what = null;
-  state.why = null;
+  major.value = "";
 
-  document.querySelectorAll('input[name="major"]').forEach(function (input) {
-    input.checked = false;
-  });
-
-  whoOptions.replaceChildren();
-  whatOptions.replaceChildren();
-  whyOptions.replaceChildren();
+  clearSelect(who, "-- Choose who should act --");
+  clearSelect(what, "-- Choose an action --");
+  clearSelect(why, "-- Choose a reason --");
 
   question2.classList.add("hidden");
   question3.classList.add("hidden");
