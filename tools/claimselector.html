@@ -110,8 +110,8 @@ h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1r
   <section class="step-card hidden" id="step3" aria-labelledby="step3heading">
     <h2 class="step-heading" id="step3heading"><span class="step-number">3</span><span>Pick Three Reasons Why</span></h2>
     <p class="step-help">Choose three different reasons that explain why your main claim is true. Select an option from the drop-down menu below, or select “Type my own answer…” to enter your own answer.</p>
-    <label class="field-label" for="what">We should do this because it will ... </label>
-<div class="why-list">
+<p class="field-label">We should do this because it will ...</p>
+    <div class="why-list">
       <div class="why-item">
         <div class="field">
           <label class="field-label" for="why1">Reason #1</label>
@@ -203,7 +203,7 @@ const data = {
 "pay customers when companies profit from their personal data",
 "prioritize simple analytical models over complex models when performance is comparable",
 "stop investing in analytics projects that do not produce measurable financial returns",
-"require organizations to disclose uncertainty when presenting forecasts"
+"require organizations to disclose uncertainty when presenting forecasts",
       "require independent validation before deploying predictive models",
 "prohibit organizations from using customer data for purposes beyond its original intended use",
 "prioritize data quality over collecting larger datasets",
@@ -346,9 +346,7 @@ const data = {
     ]
   },
 
-  is: {
-    who: [
-     
+  is: {     
 who: [
   "healthcare industry in a patient record management system",
   "healthcare industry in a hospital scheduling system",
@@ -490,7 +488,6 @@ who: [
   },
 
   leadership: {
-    who: [
 who: [
   "healthcare industry in hospital management",
   "healthcare industry in nurse staffing and scheduling",
@@ -652,7 +649,6 @@ who: [
   },
 
   project: {
-    who: [
 who: [
   "technology industry in software development projects",
   "technology industry in IT system upgrades",
@@ -820,7 +816,6 @@ who: [
   },
 
   intelligence: {
-    who: [
 who: [
   "technology industry in competitor product analysis",
   "technology industry in emerging technology trend analysis",
@@ -1050,7 +1045,7 @@ who: [
   "corporate office in employee device and application management",
   "corporate office in IT budgeting and technology investment",
   "corporate office in legacy system replacement"
-]
+],
     what: [
             "require employees to use company-approved devices for all work activities",
       "outsource IT support instead of maintaining an internal IT department",
