@@ -111,7 +111,8 @@ h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1r
   <section class="step-card hidden" id="step3" aria-labelledby="step3heading">
     <h2 class="step-heading" id="step3heading"><span class="step-number">3</span><span>Pick Three Reasons Why</span></h2>
     <p class="step-help">Choose three different reasons that explain why your main claim is true. Select an option from the drop-down menu below, or select “Type my own answer…” to enter your own answer.</p>
-    <div class="why-list">
+    <label class="field-label" for="what">We should do this because it will ... </label>
+<div class="why-list">
       <div class="why-item">
         <div class="field">
           <label class="field-label" for="why1">Reason #1</label>
@@ -139,9 +140,9 @@ h1 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.65rem, 4vw, 2.1r
 
   <section class="step-card hidden" id="step4" aria-labelledby="step4heading">
     <h2 class="step-heading" id="step4heading"><span class="step-number">4</span><span>Who is Responsible?</span></h2>
-    <p class="step-help">Who should be responsible for taking the action? Select an option from the drop-down menu below, or select “Type my own answer…” to enter your own answer.</p>
+    <p class="step-help">What specific industry/ setting will you focus on? Select an option from the drop-down menu below, or select “Type my own answer…” to enter your own answer.</p>
     <div class="field">
-      <label class="field-label" for="who">Who should take action?</label>
+      <label class="field-label" for="who">I will specifically apply this claim to ...</label>
       <div class="select-wrap"><select id="who" disabled><option value="">-- Choose who should act --</option></select></div>
       <div class="custom-wrap" id="whoCustomWrap"><label class="field-label" for="whoCustom">Type your own answer</label><input class="custom-answer" id="whoCustom" type="text" maxlength="300" placeholder="Enter the person, team, or organization responsible"></div>
     </div>
@@ -312,7 +313,7 @@ const data = {
 
   is: {
     who: [
-       "healthcare - patient record systems",
+      "healthcare - patient record systems",
       "healthcare - hospital scheduling systems",
       "healthcare - medical billing systems",
       "healthcare - patient monitoring systems",
@@ -1317,9 +1318,12 @@ function updateClaim() {
     resultPanel.classList.remove("visible");
     return;
   }
-  result.textContent = "I think that " + actor + " should " + action + ", because " + reasons[0] + ", " + reasons[1] + ", and " + reasons[2] + ".";
-  resultPanel.classList.add("visible");
-  statusMessage.textContent = "";
+ result.textContent = "I think that " + actor + " should " + action +
+  ", because " + reasons[0] + ", " + reasons[1] +
+  ", and " + reasons[2] + ".";
+
+resultPanel.classList.add("visible");
+statusMessage.textContent = "";
 }
 
 major.addEventListener("change", function () {
