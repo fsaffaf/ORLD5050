@@ -1189,9 +1189,8 @@ function updateClaim() {
     return;
   }
 result.textContent =
-  "I think we should " + action + " in " + actor +
-  ". Supporting my claim will " + reasons[0] + ", " + reasons[1] +
-  ", and " + reasons[2] + ".";
+  "I think we should " + action + ", because it will " + reasons[0] + ", " + reasons[1] +
+  ", and " + reasons[2] + ". To narrow my scope, I will focus on " + actor + ".";
 
 resultPanel.classList.add("visible");
 statusMessage.textContent = "";
