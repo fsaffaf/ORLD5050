@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +17,7 @@
   --white: #ffffff;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -45,10 +42,7 @@ h1 {
   line-height: 1.3;
 }
 
-.intro {
-  margin: 0 0 22px;
-  color: var(--muted);
-}
+.intro { margin: 0 0 22px; color: var(--muted); }
 
 .step {
   margin: 0 0 20px;
@@ -64,10 +58,7 @@ h1 {
   font-size: 16px;
 }
 
-.help {
-  margin: 0 0 12px;
-  color: var(--muted);
-}
+.help { margin: 0 0 12px; color: var(--muted); }
 
 label {
   display: block;
@@ -87,17 +78,12 @@ select {
   font: inherit;
 }
 
-select:focus,
-button:focus {
+select:focus, button:focus {
   outline: 3px solid #b9ddfa;
   outline-offset: 2px;
 }
 
-.reason-note {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 13px;
-}
+.reason-note { margin-top: 12px; color: var(--muted); font-size: 13px; }
 
 .output {
   margin-top: 24px;
@@ -107,11 +93,7 @@ button:focus {
   background: var(--blue-pale);
 }
 
-.output h2 {
-  margin: 0 0 10px;
-  color: var(--blue-dark);
-  font-size: 18px;
-}
+.output h2 { margin: 0 0 10px; color: var(--blue-dark); font-size: 18px; }
 
 #claimResult {
   margin: 0;
@@ -127,12 +109,7 @@ button:focus {
   font-weight: 700;
 }
 
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 
 button {
   padding: 10px 16px;
@@ -145,325 +122,574 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: var(--blue-dark);
-  border-color: var(--blue-dark);
-}
+button:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+button.secondary { background: var(--white); color: var(--blue); }
+button.secondary:hover { background: var(--blue-pale); }
 
-button.secondary {
-  background: var(--white);
-  color: var(--blue);
-}
-
-button.secondary:hover {
-  background: var(--blue-pale);
-}
-
-.guidance {
-  margin-top: 20px;
-  padding-left: 18px;
-}
-
-.guidance li {
-  margin: 6px 0;
-}
+.guidance { margin-top: 20px; padding-left: 18px; }
+.guidance li { margin: 6px 0; }
 
 @media (max-width: 520px) {
-  body {
-    padding: 16px 10px;
-  }
-
-  .step {
-    padding: 14px;
-  }
-
-  h1 {
-    font-size: 21px;
-  }
+  body { padding: 16px 10px; }
+  .step { padding: 14px; }
+  h1 { font-size: 21px; }
 }
 </style>
 </head>
 
 <body>
 <main class="container">
-
   <h1>Main Claim Builder</h1>
   <p class="intro">
-    Build a focused, debatable claim about applied analytics and
-    decision-making. Choose a position, identify a setting, narrow
-    the topic to a business application, and select three supporting reasons.
+    Build a focused, debatable claim connected to your graduate program.
+    Choose a program, take a position, identify a setting, narrow the issue
+    to a specific application, and select three supporting reasons.
   </p>
 
   <section class="step">
-    <h2>Part 1. Choose Your Position</h2>
-    <p class="help">
-      What do you think organizations should do? Choose a position
-      that someone could reasonably disagree with.
-    </p>
+    <h2>Choose Your Program</h2>
+    <p class="help">Start by selecting your graduate program. The examples in the remaining dropdowns will be tailored to your selection.</p>
+    <label for="program">My program is...</label>
+    <select id="program">
+      <option value="">-- Select your program --</option>
+      <option value="ai">Applied AI and Decision Analytics, M.S.</option>
+      <option value="cyber">Cybersecurity, M.S.</option>
+      <option value="is">Information Systems and Emerging Technologies, M.S.</option>
+      <option value="leadership">Leadership and Organizational Development, M.A.</option>
+      <option value="project">Project Management, M.S.</option>
+      <option value="intelligence">Strategic Intelligence, M.S.</option>
+      <option value="technology">Technology Leadership, M.S.</option>
+    </select>
+  </section>
 
+  <section class="step">
+    <h2>Part 1. Choose Your Position</h2>
+    <p class="help">What do you think organizations should do? Choose a position that someone could reasonably disagree with.</p>
     <label for="position">Organizations should...</label>
-    <select id="position">
-      <option value="">-- Select a position --</option>
-      <option value="prioritize data over managerial experience">
-        Prioritize data over managerial experience
-      </option>
-      <option value="treat practical business impact as more important than statistical significance">
-        Treat practical business impact as more important than statistical significance
-      </option>
-      <option value="replace routine data analyst tasks with AI-generated analytical reports">
-        Replace routine data analyst tasks with AI-generated analytical reports
-      </option>
-      <option value="evaluate employee performance primarily through quantitative metrics">
-        Evaluate employee performance primarily through quantitative metrics
-      </option>
-      <option value="use predictive analytics to guide decisions even when causation has not been established">
-        Use predictive analytics to guide decisions even when causation has not been established
-      </option>
-      <option value="prioritize model accuracy over model interpretability">
-        Prioritize model accuracy over model interpretability
-      </option>
-      <option value="limit real-time dashboards to prevent overreaction to short-term changes">
-        Limit real-time dashboards to prevent overreaction to short-term changes
-      </option>
-      <option value="compensate customers when the organization profits from using their personal data">
-        Compensate customers when the organization profits from using their personal data
-      </option>
-      <option value="stop investing in analytics projects that do not produce measurable business value">
-        Stop investing in analytics projects that do not produce measurable business value
-      </option>
-      <option value="prohibit the use of customer data beyond its original intended purpose">
-        Prohibit the use of customer data beyond its original intended purpose
-      </option>
-      <option value="prioritize data quality over collecting larger amounts of data">
-        Prioritize data quality over collecting larger amounts of data
-      </option>
-      <option value="replicate important analytical findings before making major decisions">
-        Replicate important analytical findings before making major decisions
-      </option>
-      <option value="delete personal data when it is no longer needed">
-        Delete personal data when it is no longer needed
-      </option>
-      <option value="use customer behavior data to set individualized prices">
-        Use customer behavior data to set individualized prices
-      </option>
-      <option value="require analysts to disclose the limitations of their methods">
-        Require analysts to disclose the limitations of their methods
-      </option>
-      <option value="hold executives accountable for ignoring credible evidence">
-        Hold executives accountable for ignoring credible evidence
-      </option>
+    <select id="position" disabled>
+      <option value="">-- Select a program first --</option>
     </select>
   </section>
 
   <section class="step">
     <h2>Part 2. Choose Your Industry or Setting</h2>
-    <p class="help">
-      Where would this issue occur? Choose an organizational setting
-      that gives your essay a clear focus.
-    </p>
-
+    <p class="help">Where would this issue occur? Choose an organizational setting that gives your essay a clear focus.</p>
     <label for="setting">In...</label>
-    <select id="setting">
-      <option value="">-- Select an industry or setting --</option>
-      <option value="retail businesses">Retail businesses</option>
-      <option value="e-commerce companies">E-commerce companies</option>
-      <option value="banks and financial institutions">Banks and financial institutions</option>
-      <option value="insurance companies">Insurance companies</option>
-      <option value="healthcare organizations">Healthcare organizations</option>
-      <option value="manufacturing companies">Manufacturing companies</option>
-      <option value="technology companies">Technology companies</option>
-      <option value="IT departments">IT departments</option>
-      <option value="logistics and transportation companies">Logistics and transportation companies</option>
-      <option value="educational institutions">Educational institutions</option>
-      <option value="government agencies">Government agencies</option>
-      <option value="marketing departments">Marketing departments</option>
-      <option value="human resources departments">Human resources departments</option>
-      <option value="hospitality businesses">Hospitality businesses</option>
-      <option value="professional services firms">Professional services firms</option>
-      <option value="customer service departments">Customer service departments</option>
+    <select id="setting" disabled>
+      <option value="">-- Select a program first --</option>
     </select>
   </section>
 
   <section class="step">
-    <h2>Part 3. Narrow Your Business Application</h2>
-    <p class="help">
-      What specific organizational decision or process should your claim address?
-      Choose an application that fits your selected setting.
-    </p>
-
+    <h2>Part 3. Narrow Your Application</h2>
+    <p class="help">What specific system, decision, process, or project should your claim address?</p>
     <label for="application">When making decisions about...</label>
-    <select id="application">
-      <option value="">-- Select a business application --</option>
-      <option value="inventory planning and purchasing">Inventory planning and purchasing</option>
-      <option value="product and service pricing">Product and service pricing</option>
-      <option value="sales forecasting and revenue planning">Sales forecasting and revenue planning</option>
-      <option value="marketing campaigns and customer targeting">Marketing campaigns and customer targeting</option>
-      <option value="customer retention">Customer retention</option>
-      <option value="employee hiring and selection">Employee hiring and selection</option>
-      <option value="employee performance evaluations">Employee performance evaluations</option>
-      <option value="workforce scheduling and staffing">Workforce scheduling and staffing</option>
-      <option value="budget allocation and cost management">Budget allocation and cost management</option>
-      <option value="credit approval and lending">Credit approval and lending</option>
-      <option value="fraud detection and risk management">Fraud detection and risk management</option>
-      <option value="quality control and production planning">Quality control and production planning</option>
-      <option value="supply chain and delivery operations">Supply chain and delivery operations</option>
-      <option value="customer service performance">Customer service performance</option>
-      <option value="technology investments">Technology investments</option>
-      <option value="strategic planning and resource allocation">Strategic planning and resource allocation</option>
-      <option value="business performance reporting">Business performance reporting</option>
-      <option value="customer data collection and use">Customer data collection and use</option>
+    <select id="application" disabled>
+      <option value="">-- Select a program first --</option>
     </select>
-    <p class="reason-note">
-      Tip: A focused application makes it easier to find relevant evidence
-      and explain the practical consequences of your position.
-    </p>
+    <p class="reason-note">Tip: A focused application makes it easier to find relevant evidence and explain the practical consequences of your position.</p>
   </section>
 
   <section class="step">
     <h2>Part 4. Select Three Supporting Reasons</h2>
-    <p class="help">
-      Why should an organization take this position? Choose three
-      different reasons that you could support with evidence.
-    </p>
+    <p class="help">Why should an organization take this position? Choose three different reasons that you could support with evidence.</p>
 
     <label for="reason1">Reason 1</label>
-    <select class="reason-select" id="reason1">
-      <option value="">-- Select a reason --</option>
-      <option value="improve the accuracy and consistency of decisions">Improve decision accuracy and consistency</option>
-      <option value="reduce unnecessary costs and resource waste">Reduce costs and resource waste</option>
-      <option value="increase revenue or profitability">Increase revenue or profitability</option>
-      <option value="improve operational efficiency">Improve operational efficiency</option>
-      <option value="identify risks earlier">Identify risks earlier</option>
-      <option value="make decisions more transparent and accountable">Increase transparency and accountability</option>
-      <option value="reduce the influence of personal bias">Reduce the influence of personal bias</option>
-      <option value="improve customer satisfaction and retention">Improve customer satisfaction and retention</option>
-      <option value="protect customer privacy and trust">Protect customer privacy and trust</option>
-      <option value="improve employee productivity">Improve employee productivity</option>
-      <option value="support decisions with stronger evidence">Support decisions with stronger evidence</option>
-      <option value="reduce errors caused by human judgment">Reduce errors caused by human judgment</option>
-      <option value="make better use of available data">Make better use of available data</option>
-      <option value="improve the reliability of business forecasts">Improve the reliability of business forecasts</option>
-      <option value="align decisions with organizational goals">Align decisions with organizational goals</option>
-      <option value="reduce the risk of costly mistakes">Reduce the risk of costly mistakes</option>
-    </select>
+    <select class="reason-select" id="reason1" disabled><option value="">-- Select a program first --</option></select>
 
     <label for="reason2">Reason 2</label>
-    <select class="reason-select" id="reason2">
-      <option value="">-- Select a reason --</option>
-      <option value="improve the accuracy and consistency of decisions">Improve decision accuracy and consistency</option>
-      <option value="reduce unnecessary costs and resource waste">Reduce costs and resource waste</option>
-      <option value="increase revenue or profitability">Increase revenue or profitability</option>
-      <option value="improve operational efficiency">Improve operational efficiency</option>
-      <option value="identify risks earlier">Identify risks earlier</option>
-      <option value="make decisions more transparent and accountable">Increase transparency and accountability</option>
-      <option value="reduce the influence of personal bias">Reduce the influence of personal bias</option>
-      <option value="improve customer satisfaction and retention">Improve customer satisfaction and retention</option>
-      <option value="protect customer privacy and trust">Protect customer privacy and trust</option>
-      <option value="improve employee productivity">Improve employee productivity</option>
-      <option value="support decisions with stronger evidence">Support decisions with stronger evidence</option>
-      <option value="reduce errors caused by human judgment">Reduce errors caused by human judgment</option>
-      <option value="make better use of available data">Make better use of available data</option>
-      <option value="improve the reliability of business forecasts">Improve the reliability of business forecasts</option>
-      <option value="align decisions with organizational goals">Align decisions with organizational goals</option>
-      <option value="reduce the risk of costly mistakes">Reduce the risk of costly mistakes</option>
-    </select>
+    <select class="reason-select" id="reason2" disabled><option value="">-- Select a program first --</option></select>
 
     <label for="reason3">Reason 3</label>
-    <select class="reason-select" id="reason3">
-      <option value="">-- Select a reason --</option>
-      <option value="improve the accuracy and consistency of decisions">Improve decision accuracy and consistency</option>
-      <option value="reduce unnecessary costs and resource waste">Reduce costs and resource waste</option>
-      <option value="increase revenue or profitability">Increase revenue or profitability</option>
-      <option value="improve operational efficiency">Improve operational efficiency</option>
-      <option value="identify risks earlier">Identify risks earlier</option>
-      <option value="make decisions more transparent and accountable">Increase transparency and accountability</option>
-      <option value="reduce the influence of personal bias">Reduce the influence of personal bias</option>
-      <option value="improve customer satisfaction and retention">Improve customer satisfaction and retention</option>
-      <option value="protect customer privacy and trust">Protect customer privacy and trust</option>
-      <option value="improve employee productivity">Improve employee productivity</option>
-      <option value="support decisions with stronger evidence">Support decisions with stronger evidence</option>
-      <option value="reduce errors caused by human judgment">Reduce errors caused by human judgment</option>
-      <option value="make better use of available data">Make better use of available data</option>
-      <option value="improve the reliability of business forecasts">Improve the reliability of business forecasts</option>
-      <option value="align decisions with organizational goals">Align decisions with organizational goals</option>
-      <option value="reduce the risk of costly mistakes">Reduce the risk of costly mistakes</option>
-    </select>
+    <select class="reason-select" id="reason3" disabled><option value="">-- Select a program first --</option></select>
 
-    <p class="reason-note">
-      Choose reasons that are meaningfully different from one another.
-      Each reason could become a supporting point in your essay.
-    </p>
+    <p class="reason-note">Choose reasons that are meaningfully different from one another. Each reason could become a supporting point in your essay.</p>
   </section>
 
   <section class="output" aria-labelledby="outputHeading">
     <h2 id="outputHeading">Your Draft Main Claim</h2>
-    <p id="claimResult" aria-live="polite">
-      Your main claim will appear here after you make your selections.
-    </p>
-
+    <p id="claimResult" aria-live="polite">Your main claim will appear here after you make your selections.</p>
     <div class="buttons">
       <button type="button" id="copyButton">Copy Main Claim</button>
       <button type="button" class="secondary" id="resetButton">Start Over</button>
     </div>
-
     <p class="status" id="statusMessage" role="status"></p>
   </section>
 
   <section class="step" style="margin-top: 20px;">
     <h2>Before You Use Your Claim</h2>
-    <p class="help">
-      The builder creates a starting point, not a finished argument.
-      Review your sentence and make sure it expresses a position you can defend.
-    </p>
+    <p class="help">The builder creates a starting point, not a finished argument. Review your sentence and make sure it expresses a position you can defend.</p>
     <ul class="guidance">
       <li><strong>Debatable:</strong> A reasonable person could disagree with your position.</li>
-      <li><strong>Focused:</strong> The setting and business application are specific enough for your assignment.</li>
+      <li><strong>Focused:</strong> The setting and application are specific enough for your assignment.</li>
       <li><strong>Evidence-based:</strong> You can find credible evidence to support your position and reasons.</li>
       <li><strong>Logical:</strong> Your three reasons genuinely support the position you selected.</li>
     </ul>
   </section>
-
 </main>
 
 <script>
 (function () {
   "use strict";
 
+  const program = document.getElementById("program");
   const position = document.getElementById("position");
   const setting = document.getElementById("setting");
   const application = document.getElementById("application");
-  const reasonSelects = Array.from(
-    document.querySelectorAll(".reason-select")
-  );
+  const reasonSelects = Array.from(document.querySelectorAll(".reason-select"));
   const claimResult = document.getElementById("claimResult");
   const statusMessage = document.getElementById("statusMessage");
   const copyButton = document.getElementById("copyButton");
   const resetButton = document.getElementById("resetButton");
+  const placeholderText = "Your main claim will appear here after you make your selections.";
 
-  const placeholderText =
-    "Your main claim will appear here after you make your selections.";
+  const programs = {
+    ai: {
+      positions: [
+        "prioritize data over managerial experience when making business decisions",
+        "treat practical business impact as more important than statistical significance",
+        "replace routine data analyst tasks with AI-generated analytical reports",
+        "evaluate employee performance primarily through quantitative metrics",
+        "use predictive analytics to guide decisions even when causation has not been established",
+        "prioritize model accuracy over model interpretability",
+        "limit real-time dashboards to prevent overreaction to short-term changes",
+        "compensate customers when organizations profit from using their personal data",
+        "stop investing in analytics projects that do not produce measurable business value",
+        "prohibit the use of customer data beyond its original intended purpose",
+        "prioritize data quality over collecting larger amounts of data",
+        "replicate important analytical findings before making major decisions",
+        "delete personal data when it is no longer needed",
+        "use customer behavior data to set individualized prices",
+        "require analysts to disclose the limitations of their methods",
+        "hold executives accountable for ignoring credible analytical evidence"
+      ],
+      settings: [
+        "retail businesses", "e-commerce companies", "banks and financial institutions",
+        "insurance companies", "healthcare organizations", "manufacturing companies",
+        "technology companies", "logistics and transportation companies",
+        "educational institutions", "government agencies", "marketing departments",
+        "human resources departments", "hospitality businesses",
+        "professional services firms", "customer service departments"
+      ],
+      applications: [
+        "inventory planning and purchasing", "product and service pricing",
+        "sales forecasting and revenue planning", "marketing campaigns and customer targeting",
+        "customer retention", "employee hiring and selection",
+        "employee performance evaluations", "workforce scheduling and staffing",
+        "budget allocation and cost management", "credit approval and lending",
+        "fraud detection and risk management", "quality control and production planning",
+        "supply chain and delivery operations", "customer service performance",
+        "technology investments", "strategic planning and resource allocation",
+        "business performance reporting", "customer data collection and use"
+      ],
+      reasons: [
+        "improve the accuracy and consistency of decisions", "reduce unnecessary costs and resource waste",
+        "increase revenue or profitability", "improve operational efficiency", "identify risks earlier",
+        "make decisions more transparent and accountable", "reduce the influence of personal bias",
+        "improve customer satisfaction and retention", "protect customer privacy and trust",
+        "improve employee productivity", "support decisions with stronger evidence",
+        "reduce errors caused by human judgment", "make better use of available data",
+        "improve the reliability of business forecasts", "align decisions with organizational goals",
+        "reduce the risk of costly mistakes", "improve data quality", "improve data governance",
+        "increase the return on technology investments", "support evidence-based decisions"
+      ]
+    },
+    cyber: {
+      positions: [
+        "require multifactor authentication for access to sensitive organizational systems",
+        "prioritize security over employee convenience when granting system access",
+        "require organizations to replace software that no longer receives security updates",
+        "prohibit employees from using personal devices to access sensitive work information",
+        "require employees to complete cybersecurity training before accessing organizational systems",
+        "limit employee access to information based on job responsibilities",
+        "require prompt disclosure of significant data breaches to affected individuals",
+        "conduct regular security testing even when it disrupts normal operations",
+        "prioritize security fixes over new technology features",
+        "require human review of high-impact security decisions made by AI systems",
+        "restrict the use of unapproved software on organizational networks",
+        "require organizations to maintain tested incident response plans",
+        "hold managers accountable for repeatedly ignoring documented security risks",
+        "use continuous monitoring to detect suspicious system activity",
+        "require vendors to meet defined cybersecurity standards before receiving access",
+        "prioritize prevention and resilience over responding only after an incident"
+      ],
+      settings: [
+        "healthcare organizations", "banks and financial institutions", "government agencies",
+        "technology companies", "schools and universities", "retail businesses",
+        "manufacturing companies", "insurance companies", "small businesses",
+        "cloud service providers", "IT departments", "e-commerce companies",
+        "logistics and transportation companies", "professional services firms"
+      ],
+      applications: [
+        "employee access to organizational systems", "network monitoring and threat detection",
+        "cloud storage and cloud access", "customer account security", "payment processing",
+        "employee-owned devices used for work", "software updates and patch management",
+        "vendor and contractor access", "incident response planning", "employee security training",
+        "data backup and disaster recovery", "AI-supported security alerts",
+        "sensitive customer and employee records", "remote access to company networks",
+        "security testing before system launches", "reporting and responding to data breaches",
+        "identity verification", "security requirements for new software"
+      ],
+      reasons: [
+        "reduce the risk of data breaches", "protect confidential information",
+        "protect customer privacy", "detect security threats earlier", "reduce financial losses",
+        "improve regulatory compliance", "reduce legal risks", "improve system reliability",
+        "reduce system downtime", "improve business continuity", "improve incident response",
+        "reduce unauthorized access", "strengthen customer trust", "protect organizational reputation",
+        "reduce the impact of security incidents", "improve accountability for security practices",
+        "reduce vulnerabilities in outdated systems", "improve risk management",
+        "protect critical business operations", "support responsible technology use"
+      ]
+    },
+    is: {
+      positions: [
+        "move appropriate organizational systems to cloud-based platforms",
+        "require employees to use a single integrated software platform for key work tasks",
+        "require employees to use company-approved software for organizational work",
+        "use AI to automate routine administrative tasks even when staffing needs change",
+        "replace routine customer service tasks with AI support systems",
+        "restrict employees' access to information based on their job responsibilities",
+        "give employees appropriate access to organizational data across departments",
+        "require technology training before employees use new systems",
+        "allow departments to choose software that meets their operational needs",
+        "prohibit employees from using unapproved free software for organizational work",
+        "replace software that no longer receives security updates",
+        "require human approval before information systems make high-impact decisions",
+        "centralize major IT decisions instead of allowing each department to choose independently",
+        "disclose major information system failures to affected customers",
+        "prioritize system investments that produce measurable organizational value",
+        "replace disconnected systems with integrated digital platforms"
+      ],
+      settings: [
+        "healthcare organizations", "banks and financial institutions", "retail businesses",
+        "manufacturing companies", "technology companies", "government agencies",
+        "educational institutions", "insurance companies", "small businesses",
+        "IT departments", "customer service departments", "professional services firms",
+        "logistics and transportation companies", "large corporate organizations"
+      ],
+      applications: [
+        "patient record management systems", "hospital scheduling systems",
+        "medical billing systems", "online banking systems", "fraud detection systems",
+        "loan processing systems", "insurance claims processing systems",
+        "retail inventory management systems", "point-of-sale retail systems",
+        "online payment systems", "production management systems", "quality control systems",
+        "warehouse management systems", "delivery tracking systems",
+        "student information systems", "learning management systems",
+        "job applicant tracking systems", "employee payroll systems",
+        "public records management systems", "cloud computing systems",
+        "software development systems", "customer support ticketing systems",
+        "employee access management systems", "network management systems",
+        "customer relationship management systems", "legal document management systems"
+      ],
+      reasons: [
+        "increase employee productivity", "reduce operational costs", "increase company profits",
+        "improve customer satisfaction", "reduce human error", "improve decision-making accuracy",
+        "increase data accuracy", "improve system reliability", "reduce system downtime",
+        "improve workflow efficiency", "reduce administrative workload", "improve communication between departments",
+        "improve information sharing", "increase organizational transparency", "strengthen cybersecurity",
+        "protect confidential information", "protect customer privacy", "improve regulatory compliance",
+        "improve the user experience", "improve accessibility for people with disabilities",
+        "reduce duplicate data entry", "improve compatibility between systems",
+        "reduce technology maintenance costs", "increase the return on technology investments",
+        "support evidence-based decisions", "improve business continuity"
+      ]
+    },
+    leadership: {
+      positions: [
+        "require managers to prioritize employee well-being over short-term profits",
+        "connect executive compensation to long-term organizational performance",
+        "require employees to evaluate their managers anonymously",
+        "replace annual performance reviews with more frequent feedback",
+        "promote employees based on performance rather than seniority",
+        "require leaders to explain the reasoning behind major organizational decisions",
+        "prioritize qualified internal candidates for leadership positions",
+        "allow employees to work remotely when job responsibilities permit",
+        "give frontline employees more authority to make operational decisions",
+        "require managers to document measurable goals for their teams",
+        "tie employee bonuses to team performance rather than individual performance",
+        "make salary ranges transparent to employees",
+        "prohibit routine work communications outside scheduled work hours",
+        "remove managers who repeatedly fail to meet agreed team goals",
+        "require managers to complete leadership training before supervising employees",
+        "hold senior leaders accountable for workplace misconduct in their departments",
+        "use employee productivity metrics as one factor in promotion and bonus decisions",
+        "involve employees in decisions that substantially change their work"
+      ],
+      settings: [
+        "healthcare organizations", "technology companies", "retail businesses",
+        "manufacturing companies", "banks and financial institutions", "schools and universities",
+        "government agencies", "hospitality businesses", "customer service departments",
+        "human resources departments", "professional services firms", "nonprofit organizations",
+        "small businesses", "large corporate organizations", "remote and hybrid teams"
+      ],
+      applications: [
+        "employee performance management", "nurse staffing and scheduling",
+        "patient care team leadership", "software development team leadership",
+        "remote employee management", "product development team leadership",
+        "retail store management", "employee scheduling", "sales team management",
+        "factory workforce management", "employee safety management",
+        "compensation decisions", "team leadership in cybersecurity",
+        "customer service team management", "project team leadership",
+        "employee promotion decisions", "leadership succession planning",
+        "departmental budget allocation", "workplace communication policies",
+        "employee work-life balance policies", "return-to-office policies",
+        "employee performance reviews", "employee training and development"
+      ],
+      reasons: [
+        "increase employee productivity", "increase company profitability", "reduce operational costs",
+        "improve employee morale", "increase job satisfaction", "reduce employee turnover",
+        "improve employee retention", "increase employee engagement", "improve workplace communication",
+        "increase employee trust in leadership", "improve manager accountability",
+        "increase leadership transparency", "improve decision-making quality", "improve team collaboration",
+        "increase employee motivation", "reduce workplace conflict", "improve working conditions",
+        "reduce employee burnout", "improve work-life balance", "increase employee autonomy",
+        "increase fairness in workplace decisions", "improve consistency in performance evaluations",
+        "strengthen leadership effectiveness", "improve problem-solving", "strengthen ethical decision-making",
+        "increase accountability for organizational results", "improve employee-manager relationships",
+        "increase employee participation in decision-making", "support long-term organizational growth"
+      ]
+    },
+    project: {
+      positions: [
+        "prioritize meeting project deadlines over staying within budget",
+        "require project teams to use standardized project management methods",
+        "require client approval before making changes to project scope",
+        "prioritize project quality over speed of delivery",
+        "stop projects that exceed their approved budgets by a defined amount",
+        "require teams to estimate costs and timelines before starting work",
+        "allow project teams to adjust deadlines when documented risks arise",
+        "assign the most experienced employees to the highest-priority projects",
+        "prioritize team collaboration over individual performance when evaluating project success",
+        "evaluate project managers based on business outcomes as well as delivery metrics",
+        "require teams to document major project decisions",
+        "require senior leadership approval for major changes to project scope",
+        "give project managers authority over routine budget and staffing decisions",
+        "prioritize projects with the highest expected organizational value",
+        "continue funding delayed projects when their long-term value remains strong",
+        "require teams to conduct formal reviews after projects are completed",
+        "use project management software to track work across projects",
+        "reduce mandatory meetings when written progress updates are sufficient",
+        "use employee productivity metrics cautiously when evaluating individual project contributions",
+        "include stakeholder feedback when evaluating project success"
+      ],
+      settings: [
+        "software development projects", "IT departments", "healthcare organizations",
+        "banks and financial institutions", "retail businesses", "manufacturing companies",
+        "construction companies", "government agencies", "schools and universities",
+        "logistics and transportation companies", "marketing departments",
+        "consulting firms", "human resources departments", "small businesses",
+        "large corporate organizations", "nonprofit organizations"
+      ],
+      applications: [
+        "software development projects", "IT system upgrades", "new product launches",
+        "hospital expansion projects", "patient care improvement projects",
+        "digital system implementation projects", "compliance projects",
+        "new retail store openings", "retail inventory system implementation",
+        "e-commerce website redesigns", "production line upgrades",
+        "commercial building projects", "residential development projects",
+        "infrastructure projects", "learning management system implementation",
+        "campus renovation projects", "public transit expansion projects",
+        "warehouse improvement projects", "supply chain improvement projects",
+        "energy efficiency projects", "customer service improvement projects",
+        "advertising campaigns", "employee training program development",
+        "recruitment system implementation", "security system implementation",
+        "business expansion projects", "organizational change projects"
+      ],
+      reasons: [
+        "complete projects on time", "reduce project costs", "increase project profitability",
+        "improve project quality", "increase team productivity", "improve resource allocation",
+        "reduce project delays", "prevent budget overruns", "improve planning accuracy",
+        "increase client satisfaction", "improve stakeholder communication", "increase team collaboration",
+        "improve accountability", "reduce scope creep", "improve risk management",
+        "identify potential problems earlier", "reduce project failure rates", "increase project success rates",
+        "improve workload distribution", "reduce employee burnout", "improve adaptability to unexpected challenges",
+        "reduce wasted resources", "improve coordination between departments", "increase return on investment",
+        "improve alignment with organizational goals", "prioritize high-value projects",
+        "improve reporting accuracy", "increase the predictability of project outcomes",
+        "reduce rework and duplicated effort", "support sustainable organizational growth"
+      ]
+    },
+    intelligence: {
+      positions: [
+        "prioritize competitor intelligence over internal performance analysis",
+        "prioritize market research over executive intuition when making business decisions",
+        "use AI to identify possible changes in competitors' strategies",
+        "share relevant competitive intelligence across departments",
+        "restrict access to sensitive strategic intelligence to authorized personnel",
+        "use competitor pricing data to inform pricing decisions",
+        "prioritize accuracy over speed when gathering strategic intelligence",
+        "use predictive analytics to identify potential markets before competitors enter them",
+        "use customer behavior data to anticipate changes in demand",
+        "require executives to disclose conflicts of interest that could influence strategic decisions",
+        "invest in intelligence gathering when benefits are uncertain but strategic risks are high",
+        "use external consultants to supplement internal intelligence teams",
+        "share strategic intelligence across business units when it supports organizational decisions",
+        "prioritize long-term market trends over short-term financial results",
+        "use scenario planning to prepare for unlikely but high-impact events",
+        "use social media sentiment as one input to major business decisions",
+        "change strategies when credible intelligence contradicts core assumptions",
+        "prioritize emerging market opportunities over protecting existing revenue sources",
+        "hold executives accountable for failing to act on credible strategic warnings"
+      ],
+      settings: [
+        "technology companies", "healthcare organizations", "banks and financial institutions",
+        "retail businesses", "e-commerce companies", "manufacturing companies",
+        "automotive companies", "energy companies", "insurance companies",
+        "transportation and logistics companies", "telecommunications companies",
+        "marketing departments", "hospitality businesses", "media and entertainment companies",
+        "real estate companies", "government agencies", "educational institutions",
+        "consulting firms", "human resources departments", "nonprofit organizations",
+        "small businesses", "large corporate organizations"
+      ],
+      applications: [
+        "competitor product analysis", "technology trend analysis", "market trend analysis",
+        "competitor pricing analysis", "consumer purchasing trend analysis",
+        "market opportunity analysis", "competitor website analysis",
+        "customer behavior analysis", "supply chain risk analysis", "demand forecasting",
+        "competitor strategy analysis", "customer demand forecasting",
+        "competitor service analysis", "consumer sentiment analysis",
+        "competitor campaign analysis", "audience trend analysis",
+        "competitor hotel pricing analysis", "tourism demand forecasting",
+        "property market analysis", "student enrollment forecasting",
+        "regional economic trend analysis", "public policy impact analysis",
+        "labor market trend analysis", "competitor compensation analysis",
+        "strategic risk assessment", "long-term business trend forecasting"
+      ],
+      reasons: [
+        "increase competitive advantage", "increase company profitability", "identify new market opportunities",
+        "improve strategic decision-making", "anticipate competitor actions", "identify emerging industry trends",
+        "improve demand forecasting", "reduce strategic uncertainty", "identify potential business risks",
+        "improve risk management", "increase market share", "improve customer retention",
+        "identify changing customer preferences", "improve pricing strategies", "increase sales revenue",
+        "improve resource allocation", "identify opportunities for business expansion",
+        "improve product development decisions", "accelerate innovation", "identify unmet customer needs",
+        "improve marketing effectiveness", "improve supply chain resilience",
+        "anticipate supply chain disruptions", "improve organizational preparedness",
+        "reduce financial losses", "improve investment decisions", "respond faster to market changes",
+        "improve long-term strategic planning", "reduce dependence on outdated market assumptions",
+        "support evidence-based executive decisions", "strengthen organizational resilience",
+        "support sustainable business growth"
+      ]
+    },
+    technology: {
+      positions: [
+        "require employee training before introducing major new technology",
+        "require employees to use company-approved AI tools for work activities",
+        "allow employees to use AI tools for routine workplace tasks",
+        "require human review of important decisions supported by AI",
+        "use AI to automate repetitive administrative tasks",
+        "adopt new technology only when it supports clear organizational goals",
+        "replace outdated systems even when replacement costs are high",
+        "prioritize employee needs when selecting new technology",
+        "involve employees in decisions about workplace technology",
+        "pilot new technology with a small group before organization-wide adoption",
+        "provide additional training when introducing automated systems",
+        "redesign employee workflows when introducing new technology",
+        "standardize major technology tools across the organization",
+        "limit the use of AI in high-impact employee decisions",
+        "require human judgment alongside data-driven recommendations",
+        "replace multiple disconnected systems with integrated digital platforms",
+        "move appropriate organizational systems to cloud-based platforms",
+        "evaluate technology investments based on organizational outcomes",
+        "discontinue technology that no longer provides sufficient organizational value",
+        "require clear organizational policies for employee use of generative AI",
+        "retrain employees when automation changes job responsibilities",
+        "prioritize improving existing technology before purchasing new systems",
+        "measure whether digital transformation improves organizational performance"
+      ],
+      settings: [
+        "healthcare organizations", "banks and financial institutions", "technology companies",
+        "retail businesses", "manufacturing companies", "educational institutions",
+        "government agencies", "insurance companies", "logistics and transportation companies",
+        "marketing departments", "hospitality businesses", "legal services firms",
+        "accounting firms", "consulting firms", "human resources departments",
+        "small businesses", "large corporate organizations", "IT departments"
+      ],
+      applications: [
+        "new technology adoption", "digital system implementation", "AI tool adoption",
+        "cloud technology adoption", "software implementation", "workplace technology implementation",
+        "point-of-sale technology implementation", "e-commerce technology implementation",
+        "online payment technology", "automation in manufacturing", "digital learning technology",
+        "digital service implementation", "technology modernization", "warehouse technology",
+        "delivery technology", "marketing technology implementation", "reservation technology",
+        "property management technology", "financial software implementation",
+        "employee technology training", "enterprise software implementation",
+        "legacy system replacement", "workplace automation", "digital transformation",
+        "technology investment decisions", "data-driven decision systems"
+      ],
+      reasons: [
+        "improve organizational effectiveness", "improve decision-making", "support responsible technology use",
+        "align technology with organizational goals", "improve employee productivity",
+        "improve employee experience", "improve customer experience",
+        "increase employee acceptance of new technology", "reduce resistance to technological change",
+        "improve employee technology skills", "prepare employees for changes in their work",
+        "improve collaboration across departments", "reduce repetitive employee work",
+        "allow employees to focus on higher-value work", "maintain human oversight of important decisions",
+        "reduce the risks of inappropriate AI use", "protect confidential organizational information",
+        "improve data privacy", "strengthen cybersecurity", "improve accessibility",
+        "improve integration between digital systems", "increase organizational flexibility",
+        "support organizational growth", "accelerate responsible innovation",
+        "improve technology investment decisions", "increase the value of technology investments",
+        "reduce unnecessary technology spending", "improve long-term technology planning",
+        "improve accountability for technology decisions", "balance innovation with organizational risk",
+        "support evidence-based decision-making", "improve service quality",
+        "improve organizational performance", "support responsible automation"
+      ]
+    }
+  };
+
+  function fillSelect(select, values, placeholder) {
+    select.replaceChildren();
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = placeholder;
+    select.appendChild(first);
+
+    values.forEach(function (value) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value.charAt(0).toUpperCase() + value.slice(1);
+      select.appendChild(option);
+    });
+    select.disabled = values.length === 0;
+  }
+
+  function updateProgramOptions() {
+    const data = programs[program.value];
+
+    if (!data) {
+      [position, setting, application].concat(reasonSelects).forEach(function (select) {
+        fillSelect(select, [], " -- Select a program first -- ");
+      });
+      claimResult.textContent = placeholderText;
+      statusMessage.textContent = "Select your program to see relevant examples.";
+      return;
+    }
+
+    fillSelect(position, data.positions, "-- Select a position --");
+    fillSelect(setting, data.settings, "-- Select a setting --");
+    fillSelect(application, data.applications, "-- Select an application --");
+    reasonSelects.forEach(function (select, index) {
+      fillSelect(select, data.reasons, "-- Select reason " + (index + 1) + " --");
+    });
+    buildClaim();
+  }
 
   function getSelectedReasons() {
-    return reasonSelects.map(function (select) {
-      return select.value;
-    });
+    return reasonSelects.map(function (select) { return select.value; });
   }
 
   function updateReasonOptions() {
     const selectedValues = getSelectedReasons();
-
     reasonSelects.forEach(function (select, index) {
       Array.from(select.options).forEach(function (option) {
-        if (option.value === "") {
+        if (!option.value) {
           option.disabled = false;
           return;
         }
-
-        const chosenElsewhere = selectedValues.some(function (value, otherIndex) {
+        option.disabled = selectedValues.some(function (value, otherIndex) {
           return otherIndex !== index && value === option.value;
         });
-
-        option.disabled = chosenElsewhere;
       });
     });
   }
@@ -473,58 +699,45 @@ button.secondary:hover {
     const chosenSetting = setting.value;
     const chosenApplication = application.value;
     const reasons = getSelectedReasons();
-
     updateReasonOptions();
 
-    if (
-      !chosenPosition ||
-      !chosenSetting ||
-      !chosenApplication ||
-      reasons.some(function (reason) {
-        return !reason;
-      })
-    ) {
+    if (!program.value || !chosenPosition || !chosenSetting || !chosenApplication ||
+        reasons.some(function (reason) { return !reason; })) {
       claimResult.textContent = placeholderText;
-      statusMessage.textContent =
-        "Complete all four parts to generate your main claim.";
+      statusMessage.textContent = program.value
+        ? "Complete all four parts to generate your main claim."
+        : "Select your program to begin.";
       return;
     }
 
     if (new Set(reasons).size !== 3) {
       claimResult.textContent = placeholderText;
-      statusMessage.textContent =
-        "Choose three different supporting reasons.";
+      statusMessage.textContent = "Choose three different supporting reasons.";
       return;
     }
 
-    const reasonSentence =
-      reasons[0] + ", " + reasons[1] + ", and " + reasons[2];
-
-    const claim =
-      "In " + chosenSetting + ", organizations should " +
-      chosenPosition + " when making decisions about " +
+    claimResult.textContent =
+      "In " + chosenSetting + ", organizations should " + chosenPosition +
+      " when making decisions about " +
       chosenApplication + ". This position is supported by its potential to " +
-      reasonSentence + ".";
+      reasons[0] + ", " + reasons[1] + ", and " + reasons[2] + ".";
 
-    claimResult.textContent = claim;
     statusMessage.textContent =
       "Draft generated. Review the wording and make sure the reasons fit your position.";
   }
 
+  program.addEventListener("change", updateProgramOptions);
   [position, setting, application].forEach(function (select) {
     select.addEventListener("change", buildClaim);
   });
-
   reasonSelects.forEach(function (select) {
     select.addEventListener("change", buildClaim);
   });
 
   copyButton.addEventListener("click", async function () {
     const claim = claimResult.textContent;
-
     if (!claim || claim === placeholderText) {
-      statusMessage.textContent =
-        "Complete all four parts before copying your claim.";
+      statusMessage.textContent = "Complete all parts before copying your claim.";
       return;
     }
 
@@ -539,10 +752,8 @@ button.secondary:hover {
       temporaryTextArea.style.left = "-9999px";
       document.body.appendChild(temporaryTextArea);
       temporaryTextArea.select();
-
       const copied = document.execCommand("copy");
       temporaryTextArea.remove();
-
       statusMessage.textContent = copied
         ? "Main claim copied to your clipboard."
         : "Copy was unsuccessful. Select and copy the claim manually.";
@@ -550,23 +761,14 @@ button.secondary:hover {
   });
 
   resetButton.addEventListener("click", function () {
-    position.value = "";
-    setting.value = "";
-    application.value = "";
-
-    reasonSelects.forEach(function (select) {
-      select.value = "";
-    });
-
-    updateReasonOptions();
+    program.value = "";
+    updateProgramOptions();
     claimResult.textContent = placeholderText;
     statusMessage.textContent = "Selections cleared.";
   });
 
-  updateReasonOptions();
+  updateProgramOptions();
 })();
 </script>
-
 </body>
 </html>
-
