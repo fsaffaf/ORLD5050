@@ -333,6 +333,303 @@ hr{
 }
 
 </style>
+```html
+<style>
+/* BASE */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+/* LEARNING OBJECTIVES */
+.learning-objectives {
+    background: #e8f4fc;
+    border-left: 5px solid #084f8c;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.learning-objectives strong {
+    color: #0e68b3;
+}
+
+/* BLUE TEXT */
+.blue-heading {
+    color: #0e68b3;
+}
+
+/* PAGE TITLE */
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 200;
+    letter-spacing: .08em;
+    margin: 0 0 25px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-bottom: 40px;
+    font-size: .95rem;
+}
+
+/* CARD HEADINGS */
+h2 {
+    color: #0e68b3;
+    position: relative;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 22px;
+    padding-bottom: 6px;
+}
+
+/* SUBHEADINGS */
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
+    margin-top: 28px;
+    margin-bottom: 12px;
+}
+
+/* BODY TEXT */
+p {
+    line-height: 1.8;
+}
+
+/* CARDS */
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 1px solid #d9e2ec;
+    box-shadow: 0 3px 10px rgba(0,0,0,.05);
+    animation: fadeUp .6s ease forwards;
+    transition: box-shadow .25s ease;
+    min-width: 0;
+}
+
+.card:hover {
+    box-shadow: 0 10px 25px rgba(14,104,179,.15);
+}
+
+/* IMAGES */
+.card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+.image-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* CALLOUTS */
+.highlight {
+    background: #ffffff;
+    border-left: 3px solid #0e68b3;
+    padding: 14px 18px;
+    margin: 20px 0;
+    line-height: 1.8;
+}
+
+/* BUTTONS */
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #0e68b3, #1c84d8);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    box-shadow: 0 8px 20px rgba(14,104,179,.20);
+    transition: all .25s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(14,104,179,.30);
+    background: linear-gradient(135deg, #095491, #0e68b3);
+}
+
+/* LISTS */
+ul, ol {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+/* TABLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th {
+    background: #0e68b3;
+    color: #ffffff;
+    text-align: left;
+    padding: 14px;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+tr:hover {
+    background: #edf6ff;
+}
+
+/* SCATTERPLOTS */
+.scatterplot {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.scatterplot img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.scatterplot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 25px 0;
+}
+
+.scatterplot-grid .scatterplot {
+    margin: 0;
+    min-width: 0;
+}
+
+/* OUTLIER EXAMPLES */
+.outlier-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 25px 0;
+}
+
+.outlier-example {
+    text-align: center;
+    min-width: 0;
+}
+
+.outlier-example h3 {
+    margin-top: 0;
+}
+
+.outlier-example img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto 0;
+    border-radius: 8px;
+}
+
+/* HORIZONTAL RULE */
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 30px 14px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: .95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+</style>
 
 <div class="container">
 
@@ -352,6 +649,7 @@ hr{
             <strong>Subclaims:</strong> The major reasons supporting your main claim.<br>
             <strong>Premises:</strong> The specific statements that help establish each subclaim.
         </div>
+
         <p>
             Each premise identifies a specific point that can be investigated through research.
             Together, the premises help establish the subclaim.
@@ -366,26 +664,30 @@ hr{
             understand or believe before accepting that subclaim.
         </p>
 
-       <h3>Example Argument</h3>
-<div style="width: 100%; margin: 20px auto;">
-  <img
-    src="../map/subclaims2.jpg"
-    alt="Argument Map"
-    style="display: block; width: auto; height: auto;"
-  >
-</div>
-       
+        <h3>Example Argument</h3>
+
+        <div class="image-container">
+            <img
+                src="../map/subclaims2.jpg"
+                alt="Argument map showing a main claim and its supporting subclaims"
+                loading="lazy"
+            >
+        </div>
+
         <h3>Example Subclaim</h3>
 
         <div class="highlight">
             A four-day workweek can improve employee well-being.
         </div>
 
-               <div class="highlight">
-            <strong>Useful Test:</strong> Ask, “What evidence would convince a reasonable reader that this statement is accurate?”
+        <div class="highlight">
+            <strong>Useful Test:</strong> Ask, "What evidence would convince a reasonable reader that this statement is accurate?"
         </div>
     </div>
-   
+
+    <div class="card">
+        <h2>Questions to Guide Your Research</h2>
+
         <p>Ask questions such as:</p>
 
         <ul>
@@ -395,18 +697,21 @@ hr{
             <li>What evidence would demonstrate usefulness?</li>
             <li>What limitations or risks should decision-makers consider?</li>
         </ul>
-
-
+    </div>
 
     <div class="card">
         <h2>Distinguish a Premise From a Subclaim</h2>
 
-        <p>A subclaim is a major reason supporting your main claim. A premise directly supports the subclaim. The premise identifies a more specific point
-            that can be researched and supported with evidence.</p>
+        <p>
+            A subclaim is a major reason supporting your main claim. A premise directly supports
+            the subclaim. The premise identifies a more specific point that can be researched
+            and supported with evidence.
+        </p>
 
         <p>
-            A strong argument requires more than a position and a list of reasons. You must identify the
-            specific statements that support each reason. The next step is to investigate whether credible evidence establishes them.
+            A strong argument requires more than a position and a list of reasons. You must identify
+            the specific statements that support each reason. The next step is to investigate
+            whether credible evidence establishes them.
         </p>
     </div>
 
