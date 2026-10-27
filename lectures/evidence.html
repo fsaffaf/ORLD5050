@@ -1,1043 +1,381 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Types of Evidence</title>
-
 <style>
-
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
+:root {
+    --blue: #0e68b3;
+    --dark-blue: #174a73;
+    --pale-blue: #f4f9fe;
+    --orange: #e67e22;
+    --border: #d9e2ec;
+    --text: #222222;
 }
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Lato, "Lato Extended", Aptos, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    background: #f4f6f9;
+    color: var(--text);
 }
-
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 20px;
 }
-
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
+h1 {
+    text-align: left;
+    color: var(--dark-blue);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 0 0 24px;
 }
-
-h2,
-h3{
-    color:#0e68b3;
-    position:relative;
-    font-weight:500;
-    display:inline-block;
+h2, h3 {
+    color: var(--blue);
+    font-weight: 600;
+    line-height: 1.35;
 }
-
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
+h2 { font-size: 1.35rem; margin: 0 0 14px; }
+h3 { font-size: 1.08rem; margin: 20px 0 10px; }
+p { line-height: 1.7; margin: 0 0 14px; }
+.card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.04);
 }
-
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
-}
-
-p{
-    line-height:1.8;
-}
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
-
-    box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
-
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-    box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
-}
-
-.highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
-    margin:20px 0;
-}
-
-ul{
-    padding-left:25px;
-}
-
-ol{
-    padding-left:25px;
-}
-
-li{
-    margin-bottom:8px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
-}
-
-th{
-    background:#0e68b3;
-    color:white;
-    text-align:left;
-    padding:14px;
-}
-
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
-}
-
-tr:nth-child(even){
-    background:#f8fafc;
-}
-
-tr:hover{
-    background:#edf6ff;
-}
-
-.scatterplot{
-    text-align:center;
-    margin:25px 0;
-}
-
-.scatterplot img{
-    max-width:100%;
-    height:auto;
-    display:block;
-    margin:0 auto;
-    border-radius:8px;
-}
-
-.scatterplot-grid{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:25px;
-    margin:25px 0;
-}
-
-.scatterplot-grid .scatterplot{
-    margin:0;
-}
-
-.outlier-grid{
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:25px;
-    margin:25px 0;
-}
-
-.outlier-example{
-    text-align:center;
-}
-
-.outlier-example h3{
-    margin-top:0;
-}
-
-.outlier-example img{
-    width:100%;
-    height:auto;
-    display:block;
-    margin:20px auto 0;
-    border-radius:8px;
-}
-
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    .card{
-        padding:20px;
-    }
-
-    th,
-    td{
-        padding:10px;
-        font-size:.95rem;
-    }
-
-    .scatterplot-grid,
-    .outlier-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-    
-    <div class="container">
-
-    <h1>Evidence</h1>
-
-       <div class="card">
-
-        <h2>Overview</h2>
-<p>Evidence</p>
-        <ul>
-            <li>Improves the quality of decisions.</li>
-            <li>Helps you use evidence effectively, not just collect it.</li>
-            <li>Reduces bias and errors in reasoning.</li>
-            <li>Strengthens arguments and credibility.</li>
-            <li>Evidence is central to decision making.</li>
-            <li>Quality matters more than quantity.</li>
-            <li>Strong decisions use multiple sources of evidence.</li>
-            <li>All evidence should be evaluated for credibility.</li>
-            <li>Even good evidence has limitations that must be considered.</li>
-        </ul>
-        
-        
-        <div class="card">
-        <h2>Begin With Research Questions, Not Just Keywords</h2>
-
-        <p>
-            Once you identify a potential premise, turn it into a research question.
-        </p>
-
-        <div class="highlight">
-            <strong>Potential premise:</strong> The four-day work week can improve employee well-being.<br><br>
-            <strong>Research question:</strong> Does the four-day work week improve employee well-being?
-        </div>
-
-        ```html
-<section class="research-keywords">
-
-<style>
-.research-keywords {
-    font-family: Lato, "Lato Extended", Aptos, Arial, sans-serif;
-    color: #222222;
+.highlight {
+    background: #eef6fc;
+    border-left: 4px solid var(--blue);
+    border-radius: 6px;
+    padding: 15px 17px;
+    margin: 18px 0;
     line-height: 1.7;
 }
-
-.research-keywords h2,
-.research-keywords h3 {
-    color: #0e68b3;
-    font-weight: 600;
-}
-
-.research-keywords h2 {
-    font-size: 1.35rem;
-    margin-top: 28px;
-    margin-bottom: 12px;
-}
-
-.research-keywords h3 {
-    font-size: 1.05rem;
-    margin-top: 0;
-}
-
-.research-keywords p {
-    margin-bottom: 14px;
-}
-
-.research-keywords .research-card {
-    background: #ffffff;
-    border: 1px solid #d9e2ec;
-    border-radius: 10px;
-    padding: 22px;
-    margin: 18px 0;
-}
-
-.research-keywords .research-highlight {
-    background: #f4f9fe;
-    border-left: 4px solid #0e68b3;
-    border-radius: 6px;
-    padding: 16px;
-    margin: 16px 0;
-}
-
-.research-keywords .keyword-table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.research-keywords table {
+ul, ol { padding-left: 24px; margin-top: 8px; }
+li { margin-bottom: 8px; line-height: 1.65; }
+.table-wrap { width: 100%; overflow-x: auto; margin: 14px 0 20px; }
+table {
     width: 100%;
     border-collapse: collapse;
-    margin: 12px 0;
     background: #ffffff;
 }
-
-.research-keywords th {
-    background: #174a73;
+th {
+    background: var(--dark-blue);
     color: #ffffff;
     text-align: left;
     padding: 12px;
 }
-
-.research-keywords td {
+td {
     padding: 12px;
     border-bottom: 1px solid #e5e7eb;
     vertical-align: top;
+    line-height: 1.6;
 }
-
-.research-keywords tr:nth-child(even) {
-    background: #f4f9fe;
-}
-
-.research-keywords .search-label {
-    display: block;
-    color: #0e68b3;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.research-keywords .search-string {
+tbody tr:nth-child(even) { background: var(--pale-blue); }
+tbody tr:hover { background: #edf6ff; }
+pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
     background: #f4f6f9;
-    border: 1px solid #d9e2ec;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    line-height: 1.6;
+    font-size: .92rem;
+}
+.search-string {
+    background: #f4f6f9;
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 14px;
     overflow-wrap: anywhere;
     font-family: Consolas, "Courier New", monospace;
-    font-size: 0.92rem;
+    font-size: .92rem;
     line-height: 1.8;
     margin: 10px 0 14px;
 }
-
-.research-keywords .copy-button {
+.search-select {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin: 12px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #ffffff;
+}
+.copy-button {
     display: inline-block;
-    background: #0e68b3;
+    background: var(--blue);
     color: #ffffff;
-    border: none;
+    border: 0;
     border-radius: 6px;
     padding: 10px 16px;
-    font-size: 0.9rem;
+    font-size: .92rem;
     font-weight: 600;
     cursor: pointer;
 }
-
-.research-keywords .copy-button:hover {
-    background: #174a73;
-}
-
-.research-keywords .copy-button:focus-visible {
-    outline: 3px solid #e67e22;
+.copy-button:hover { background: var(--dark-blue); }
+.copy-button:focus-visible, select:focus-visible {
+    outline: 3px solid var(--orange);
     outline-offset: 3px;
 }
-
-.research-keywords li {
-    margin-bottom: 10px;
+.status { margin-top: 10px; font-size: .9rem; }
+@media (max-width: 650px) {
+    .container { padding: 24px 14px; }
+    h1 { font-size: 1.8rem; }
+    .card { padding: 18px; }
+    th, td { padding: 9px; font-size: .92rem; }
 }
-
-@media (max-width: 600px) {
-    .research-keywords .research-card {
-        padding: 16px;
-    }
-
-    .research-keywords th,
-    .research-keywords td {
-        padding: 9px;
-        font-size: 0.92rem;
-    }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; }
 }
 </style>
+</head>
+<body>
+<main class="container">
+    <h1>Types of Evidence</h1>
 
-<h2>Developing Keywords for a Research Question</h2>
+    <section class="card">
+        <h2>Overview</h2>
+        <p>Evidence is information used to evaluate a claim, compare options, and support a decision. Strong decision making depends on using evidence effectively—not simply collecting as much information as possible.</p>
+        <ul>
+            <li>Evidence can improve the quality of decisions.</li>
+            <li>Careful evaluation can reduce bias and errors in reasoning.</li>
+            <li>Credible evidence strengthens arguments and their defensibility.</li>
+            <li>Multiple sources can provide a more complete picture.</li>
+            <li>Quality, relevance, and limitations matter more than quantity alone.</li>
+        </ul>
+        <div class="highlight"><strong>Evidence:</strong> Information that can help evaluate a claim or inform a decision, including data, research findings, expert judgment, stakeholder perspectives, and documented experience.</div>
+    </section>
 
-<div class="research-card">
-    <h3>Research Question</h3>
-
-    <p>
-        <strong>Does the four-day work week improve employee well-being?</strong>
-    </p>
-
-    <p>
-        Before searching for scholarly articles, identify the main keywords
-        in your research question. Then, brainstorm alternative search terms
-        that authors might use to discuss the same concepts.
-    </p>
-</div>
-
-<h2>1. Identify Keywords and Search Terms</h2>
-
-<p>
-    A keyword represents an important concept in your research question.
-    Search terms are alternative words or phrases that you can use to find
-    articles about that concept.
-</p>
-
-<div class="keyword-table-wrapper">
-<table>
-    <thead>
-        <tr>
-            <th>Keyword</th>
-            <th>Alternative Search Terms</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td><strong>Four-day work week</strong></td>
-            <td>
-                "four-day workweek," "4-day work week,"
-                "compressed workweek," "reduced workweek,"
-                "shorter workweek," "reduced working hours"
-            </td>
-        </tr>
-
-        <tr>
-            <td><strong>Employee</strong></td>
-            <td>
-                "employees," "workers," "working adults,"
-                "workforce," "personnel," "staff"
-            </td>
-        </tr>
-
-        <tr>
-            <td><strong>Well-being</strong></td>
-            <td>
-                "employee well-being," "employee wellbeing,"
-                "psychological well-being," "workplace well-being,"
-                "mental health," "life satisfaction,"
-                "work-life balance"
-            </td>
-        </tr>
-
-        <tr>
-            <td><strong>Improve</strong></td>
-            <td>
-                "improvement," "effects," "impact," "influence,"
-                "outcomes," "benefits," "association"
-            </td>
-        </tr>
-    </tbody>
-</table>
-</div>
-
-<div class="research-highlight">
-    <strong>Research Tip:</strong>
-    You do not need to use every keyword in every search. Start with the
-    main concepts, then add or remove terms depending on the articles you find.
-</div>
-
-<h2>2. Combine Search Terms</h2>
-
-<p>
-    Research databases allow you to combine keywords using Boolean operators.
-    These operators help you control which articles appear in your results.
-</p>
-
-<div class="research-card">
-    <h3>OR: Search for Alternatives</h3>
-
-    <p>
-        Use <strong>OR</strong> between alternative search terms for the same
-        concept. This broadens your search because an article can contain
-        any of the listed terms.
-    </p>
-
-    <div class="search-string">
-        "four-day workweek" OR "four-day work week" OR
-        "compressed workweek" OR "reduced working hours"
-    </div>
-</div>
-
-<div class="research-card">
-    <h3>AND: Combine Different Concepts</h3>
-
-    <p>
-        Use <strong>AND</strong> to connect different concepts. This narrows
-        your search to articles that address both the work schedule and
-        employee well-being.
-    </p>
-
-    <div class="search-string">
-        ("four-day workweek" OR "compressed workweek")
-        AND
-        ("employee well-being" OR "mental health" OR "work-life balance")
-    </div>
-</div>
-
-<div class="research-card">
-    <h3>Search for Empirical Research</h3>
-
-    <p>
-        Add terms related to research studies when you want to find articles
-        that evaluate outcomes or report collected data.
-    </p>
-
-    <div class="search-string">
-        ("four-day workweek" OR "reduced working hours")
-        AND
-        (well-being OR "mental health" OR "job satisfaction")
-        AND
-        (study OR experiment OR evaluation)
-    </div>
-</div>
-
-<h2>3. Copy a Search String</h2>
-
-<p>
-    Select a search string below to copy it. Paste it into Google Scholar
-    or your university library's academic databases.
-</p>
-
-<div class="research-card">
-    <label for="research-search-select">
-        <strong>Choose a search strategy:</strong>
-    </label>
-
-    <select id="research-search-select"
-        style="display:block; width:100%; max-width:100%; padding:11px; margin:12px 0; border:1px solid #cbd5e1; border-radius:6px; font-size:1rem; background:#ffffff;">
-
-        <option value="broad">Broad search: Work schedules</option>
-        <option value="wellbeing">Focused search: Employee well-being</option>
-        <option value="empirical">Empirical research: Study outcomes</option>
-    </select>
-
-    <div id="research-search-preview"
-        class="search-string"
-        aria-live="polite"></div>
-
-    <button type="button"
-        class="copy-button"
-        id="research-copy-button">
-        Copy Search String
-    </button>
-
-    <p id="research-copy-status"
-        role="status"
-        aria-live="polite"
-        style="margin-top:10px; font-size:0.9rem;"></p>
-</div>
-
-<script>
-(function () {
-    const searches = {
-        broad: '"four-day workweek" OR "four-day work week" OR "compressed workweek" OR "reduced working hours"',
-        wellbeing: '("four-day workweek" OR "compressed workweek") AND ("employee well-being" OR "mental health" OR "work-life balance")',
-        empirical: '("four-day workweek" OR "reduced working hours") AND (well-being OR "mental health" OR "job satisfaction") AND (study OR experiment OR evaluation)'
-    };
-
-    const selector = document.getElementById("research-search-select");
-    const preview = document.getElementById("research-search-preview");
-    const button = document.getElementById("research-copy-button");
-    const status = document.getElementById("research-copy-status");
-
-    if (!selector || !preview || !button || !status) return;
-
-    function updatePreview() {
-        preview.textContent = searches[selector.value];
-        status.textContent = "";
-    }
-
-    selector.addEventListener("change", updatePreview);
-
-    button.addEventListener("click", async function () {
-        const text = searches[selector.value];
-
-        try {
-            await navigator.clipboard.writeText(text);
-            status.textContent = "Search string copied. You can now paste it into your database.";
-        } catch (error) {
-            status.textContent = "Automatic copying is unavailable. Select and copy the search string above.";
-        }
-    });
-
-    updatePreview();
-})();
-</script>
-
-<h2>Recommended Search Strategy</h2>
-
-<ol>
-    <li>
-        <strong>Start broad.</strong>
-        Search for four-day workweeks and alternative work schedules to
-        understand the existing research.
-    </li>
-
-    <li>
-        <strong>Add well-being terms.</strong>
-        Include employee well-being, mental health, stress, burnout,
-        job satisfaction, and work-life balance.
-    </li>
-
-    <li>
-        <strong>Look for measurable outcomes.</strong>
-        Search for studies that measure employee outcomes before and after
-        a schedule change or compare employees working different schedules.
-    </li>
-
-    <li>
-        <strong>Check the type of workweek.</strong>
-        Read each article carefully to determine whether employees work
-        fewer total hours or compress their usual hours into four days.
-    </li>
-</ol>
-
-<div class="research-highlight">
-    <strong>Important Distinction:</strong>
-    A compressed workweek typically fits the usual working hours into fewer,
-    longer days. A reduced-hours four-day workweek decreases the total number
-    of hours worked. These are different interventions and may produce
-    different employee well-being outcomes.
-</div>
-
-</section>
+    <section class="card">
+        <h2>Begin With a Research Question, Not Just Keywords</h2>
+        <p>Once you identify a potential premise, turn it into a research question. A clear question helps you identify what information to search for and which sources are relevant.</p>
+        <div class="highlight">
+            <strong>Potential premise:</strong> A four-day workweek can improve employee well-being.<br><br>
+            <strong>Research question:</strong> Does a four-day workweek improve employee well-being?
+        </div>
 
         <h3>Where Should You Look?</h3>
-
         <ul>
             <li><strong>Google Scholar</strong> for academic studies and scholarly books.</li>
+            <li><strong>University library databases</strong> for scholarly articles and research reports.</li>
             <li><strong>Government publications</strong> for reports, guidance, and statistics.</li>
             <li><strong>Professional organizations</strong> for standards and industry reports.</li>
             <li><strong>Public case studies</strong> describing organizational implementations and outcomes.</li>
-            <li><strong>University libraries</strong> for access to research databases.</li>
         </ul>
-    </div>
+    </section>
 
-    <div class="card">
-        <h2>5. Evaluate Whether an Article Supports Your Premise</h2>
+    <section class="card">
+        <h2>Developing Keywords for a Research Question</h2>
+        <p>A <strong>keyword</strong> represents an important concept in your research question. <strong>Search terms</strong> are alternative words or phrases authors might use to discuss that concept.</p>
+        <h3>Research Question</h3>
+        <p><strong>Does a four-day workweek improve employee well-being?</strong></p>
 
-        <p>
-            Finding an article about a topic does not automatically mean it supports your argument.
-        </p>
+        <h3>1. Identify Keywords and Alternative Search Terms</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Keyword</th><th>Alternative Search Terms</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Four-day workweek</strong></td><td>"four-day work week," "4-day workweek," "compressed workweek," "reduced workweek," "shorter workweek," "reduced working hours"</td></tr>
+                    <tr><td><strong>Employee</strong></td><td>employees, workers, working adults, workforce, personnel, staff</td></tr>
+                    <tr><td><strong>Well-being</strong></td><td>"employee well-being," "employee wellbeing," "psychological well-being," "workplace well-being," "mental health," "life satisfaction," "work-life balance"</td></tr>
+                    <tr><td><strong>Improve</strong></td><td>improvement, effects, impact, influence, outcomes, benefits, association</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="highlight"><strong>Research tip:</strong> You do not need to use every term in every search. Start with the main concepts, then adjust your search based on the articles you find.</div>
 
+        <h3>2. Combine Search Terms</h3>
+        <p>Boolean operators help you control which articles appear in your results.</p>
+        <h3>OR: Search for Alternatives</h3>
+        <p>Use <strong>OR</strong> between alternative terms for the same concept. This broadens your search because results can contain any of the listed terms.</p>
+        <div class="search-string">"four-day workweek" OR "four-day work week" OR "compressed workweek" OR "reduced working hours"</div>
+
+        <h3>AND: Combine Different Concepts</h3>
+        <p>Use <strong>AND</strong> to connect different concepts. This narrows your search to articles that address both the work schedule and employee well-being.</p>
+        <div class="search-string">("four-day workweek" OR "compressed workweek") AND ("employee well-being" OR "mental health" OR "work-life balance")</div>
+
+        <h3>Search for Empirical Research</h3>
+        <p>Add terms related to research studies when you want articles that evaluate outcomes or report collected data.</p>
+        <div class="search-string">("four-day workweek" OR "reduced working hours") AND (well-being OR "mental health" OR "job satisfaction") AND (study OR experiment OR evaluation)</div>
+
+        <h3>3. Copy a Search String</h3>
+        <p>Choose a search strategy, copy the search string, and paste it into Google Scholar or your university library's academic databases.</p>
+        <label for="research-search-select"><strong>Choose a search strategy:</strong></label>
+        <select id="research-search-select" class="search-select">
+            <option value="broad">Broad search: Work schedules</option>
+            <option value="wellbeing">Focused search: Employee well-being</option>
+            <option value="empirical">Empirical research: Study outcomes</option>
+        </select>
+        <div id="research-search-preview" class="search-string" aria-live="polite"></div>
+        <button type="button" class="copy-button" id="research-copy-button">Copy Search String</button>
+        <p id="research-copy-status" class="status" role="status" aria-live="polite"></p>
+
+        <h3>Recommended Search Strategy</h3>
         <ol>
-            <li><strong>Relevance:</strong> Does it directly address your premise?</li>
-            <li><strong>Credibility:</strong> Who produced the information and what expertise do they have?</li>
-            <li><strong>Evidence:</strong> What data or documentation supports the findings?</li>
-            <li><strong>Limitations:</strong> What conditions affect the results?</li>
+            <li><strong>Start broad.</strong> Search for four-day workweeks and alternative work schedules.</li>
+            <li><strong>Add well-being terms.</strong> Try employee well-being, mental health, stress, burnout, job satisfaction, and work-life balance.</li>
+            <li><strong>Look for measurable outcomes.</strong> Search for studies measuring outcomes before and after a schedule change or comparing employees with different schedules.</li>
+            <li><strong>Check what “four-day workweek” means.</strong> Determine whether employees work fewer total hours or compress their usual hours into four days.</li>
+        </ol>
+        <div class="highlight"><strong>Important distinction:</strong> A compressed workweek fits usual working hours into fewer, longer days. A reduced-hours four-day workweek decreases the total number of hours worked. These are different arrangements and may have different effects on employee well-being.</div>
+    </section>
+
+    <section class="card">
+        <h2>Evaluate Whether an Article Supports Your Premise</h2>
+        <p>Finding an article about a topic does not automatically mean it supports your argument. Evaluate each source in relation to the specific statement you need to establish.</p>
+        <ol>
+            <li><strong>Relevance:</strong> Does the source directly address your premise?</li>
+            <li><strong>Credibility:</strong> Who produced the information, and what expertise do they have?</li>
+            <li><strong>Evidence:</strong> What data, methods, or documentation support the findings?</li>
+            <li><strong>Limitations:</strong> What conditions, sample characteristics, or methods limit how much you can apply the results of the article to your argument?</li>
             <li><strong>Accuracy:</strong> Does the source actually support the statement you want to make?</li>
         </ol>
+        <div class="highlight">Use the specific findings that support your point. Do not assume a source supports your argument simply because it discusses the same topic.</div>
+    </section>
 
-        <div class="highlight">
-            Look for evidence that matches the specific point you need to establish rather than assuming a source supports your argument because it discusses the topic.
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>6. Organize Your Research by Subclaim and Premise</h2>
-
-        <p>
-            Organize research materials around the structure of your argument rather than storing all sources in a single folder.
-        </p>
-
+    <section class="card">
+        <h2>Organize Research by Subclaim and Premise</h2>
+        <p>Organize your research around the structure of your argument rather than storing every source in one folder. The example below uses cybersecurity training; adapt the labels to your own topic.</p>
         <h3>Example Folder Structure</h3>
-
-<pre>
-Research Project
+<pre>Research Project
 │
-├── Subclaim 1 - Reduce Phishing Risks
-│   ├── Premise 1 - Phishing Is a Security Risk
-│   ├── Premise 2 - Training Improves Recognition
-│   └── Premise 3 - Training Outcomes Can Be Measured
+├── Subclaim 1 
+│   ├── Premise 1
+│   ├── Premise 2
+│   └── Premise 3
 │
-├── Subclaim 2 - Improve Employee Awareness
-│   ├── Premise 1 - Employees Face Security Threats
-│   ├── Premise 2 - Awareness Influences Behavior
-│   └── Premise 3 - Training Can Address Knowledge Gaps
+├── Subclaim 2
+│   ├── Premise 1
+│   ├── Premise 2
+│   └── Premise 3
 │
-└── Subclaim 3 - Strengthen Organizational Security
-    ├── Premise 1 - Security Policies Guide Behavior
-    ├── Premise 2 - Training Reinforces Policies
-    └── Premise 3 - Organizations Can Evaluate Outcomes
-</pre>
+└── Subclaim 3 
+    ├── Premise 1
+    ├── Premise 2
+    └── Premise 3</pre>
+        <p>Save articles, reports, PDFs, and notes in the folder for the premise they may support. If a source supports more than one premise, you can record it in more than one folder or use a research tracker to cross-reference it.</p>
+    </section>
 
-        <p>
-            Save articles, reports, PDFs, and related materials in the folder associated with the premise they support.
-        </p>
-    </div>
+    <section class="card">
+        <h2>Track What Each Article Contributes</h2>
+        <p>Use a research tracker to record the role each source may play in your argument.</p>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Field</th><th>What to Record</th></tr></thead>
+                <tbody>
+                    <tr><td>Source</td><td>Article title and author or organization</td></tr>
+                    <tr><td>Publication</td><td>Journal, publisher, or website</td></tr>
+                    <tr><td>Year</td><td>Publication year</td></tr>
+                    <tr><td>Premise</td><td>The premise the source may support</td></tr>
+                    <tr><td>Main finding</td><td>The relevant conclusion or result, stated accurately</td></tr>
+                    <tr><td>Evidence type</td><td>Experiment, survey, report, standard, observational study, etc.</td></tr>
+                    <tr><td>Limitations</td><td>Important qualifications or weaknesses</td></tr>
+                    <tr><td>Citation</td><td>DOI, URL, or reference information</td></tr>
+                    <tr><td>Status</td><td>To review, reviewed, useful, or not relevant</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <div class="card">
-        <h2>7. Track What Each Article Contributes</h2>
-
-        <p>Create a research tracker to record the role each source plays in your argument.</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>What to Record</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Source</td>
-                    <td>Article title and author or organization</td>
-                </tr>
-                <tr>
-                    <td>Publication</td>
-                    <td>Journal, publisher, or website</td>
-                </tr>
-                <tr>
-                    <td>Year</td>
-                    <td>Publication year</td>
-                </tr>
-                <tr>
-                    <td>Premise</td>
-                    <td>The premise the source may support</td>
-                </tr>
-                <tr>
-                    <td>Main Finding</td>
-                    <td>The relevant conclusion or result</td>
-                </tr>
-                <tr>
-                    <td>Evidence Type</td>
-                    <td>Experiment, survey, report, standard, observational study, etc.</td>
-                </tr>
-                <tr>
-                    <td>Limitations</td>
-                    <td>Important qualifications or weaknesses</td>
-                </tr>
-                <tr>
-                    <td>Citation</td>
-                    <td>DOI, URL, or reference information</td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td>To review, reviewed, useful, or not relevant</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="card">
-        <h2>8. What If an Article Supports More Than One Premise?</h2>
-
-        <p>
-            Research rarely fits neatly into a single category. One article may contain multiple findings
-            relevant to multiple premises.
-        </p>
-
+    <section class="card">
+        <h2>What If an Article Supports More Than One Premise?</h2>
+        <p>Research rarely fits neatly into a single category. One article may contain findings relevant to multiple premises.</p>
         <ul>
             <li>Identify the specific finding that supports each premise.</li>
-            <li>Record page numbers, tables, figures, or sections.</li>
+            <li>Record page numbers, tables, figures, or sections when useful.</li>
             <li>Avoid treating every finding in an article as support for every premise.</li>
-            <li>Revise premises when evidence suggests a better formulation.</li>
+            <li>Revise premises when the evidence suggests a more accurate formulation.</li>
         </ul>
-    </div>
+    </section>
 
-    <div class="card">
-        <h2>9. When Should You Stop Searching?</h2>
-
-        <p>
-            Research is iterative, but a premise is typically ready for the next stage when you can:
-        </p>
-
+    <section class="card">
+        <h2>When Should You Stop Searching?</h2>
+        <p>A premise is ready for the next stage when you can:</p>
         <ul>
             <li>Explain the statement clearly and specifically.</li>
             <li>Identify credible sources that directly address it.</li>
-            <li>Describe findings accurately.</li>
+            <li>Describe the findings accurately.</li>
             <li>Explain important limitations.</li>
-            <li>Recognize disagreements or contradictory findings.</li>
-            <li>Connect the evidence to the subclaim.</li>
+            <li>Recognize disagreement or contradictory findings.</li>
+            <li>Explain how the evidence connects to the subclaim.</li>
         </ul>
+        <div class="highlight">Your goal is not to collect the largest number of articles. Your goal is to gather enough credible evidence to evaluate the premise responsibly.</div>
+    </section>
 
-        <div class="highlight">
-            Your goal is not to collect the largest number of articles. Your goal is to gather enough credible evidence to evaluate the premise responsibly.
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>10. Your Research Workflow</h2>
-
+    <section class="card">
+        <h2>Your Research Workflow</h2>
         <ol>
             <li>Select a subclaim.</li>
-            <li>Identify supporting premises.</li>
-            <li>Turn premises into research questions.</li>
+            <li>Identify the premises that support it.</li>
+            <li>Turn each premise into a research question.</li>
+            <li>Identify keywords and alternative search terms.</li>
             <li>Search for credible sources.</li>
-            <li>Review evidence and limitations.</li>
-            <li>Organize materials by premise.</li>
-            <li>Update your research tracker.</li>
+            <li>Review findings, methods, and limitations.</li>
+            <li>Organize sources by premise and update your tracker.</li>
             <li>Reassess and revise premises as needed.</li>
-            <li>Repeat for the next premise.</li>
+            <li>Repeat for the remaining premises.</li>
         </ol>
-    </div>
-    
-    <div class="card">
+    </section>
 
-        <h2>Overview</h2>
-
-        <p>
-            Making a decision requires evidence. However, evidence is not about
-            quantity—it is about quality. You need to know what kind of evidence
-            to use, when to use it, and why it matters. The sources, types, and
-            quality of evidence strongly shape the decisions we make.
-        </p>
-
-        <p>
-            Evidence is not just information. It is a strategic and ethical resource
-            that supports valid and defensible decisions. In EEBDM, the main challenge
-            is usually not finding information but using it effectively. Tools such as
-            AI can help organize and analyze evidence, but they cannot replace human judgment.
-        </p>
-
-        <div class="highlight">
-            <strong>Evidence:</strong>
-            Any information that can influence decision making, including preferences,
-            attitudes, experience, data, and anticipated consequences.
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
+    <section class="card">
         <h2>The Four Sources of Evidence</h2>
-
-        <p>
-            Strong arguments draw from multiple types of evidence. Ideally, you should
-            use all four sources when supporting a decision.
-        </p>
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Source</th>
-                    <th>Definition</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td><strong>Expert Opinion</strong></td>
-                    <td>
-                        An informed judgment from someone with relevant expertise
-                        and experience.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Stakeholder Opinion</strong></td>
-                    <td>
-                        The perspective of individuals affected by the decision.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Internal Data</strong></td>
-                    <td>
-                        Data from within the organization (financials, performance,
-                        customer data).
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>External Data</strong></td>
-                    <td>
-                        Data from outside sources (research, competitors, market reports).
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>Evaluating Evidence (CRAAP Test)</h2>
-
-        <div class="highlight">
-            <strong>Why Credibility Matters:</strong>
-            Because there is so much information available, evaluating credibility
-            is essential for making strong, evidence-based decisions.
+        <p>Evidence-based decision making can draw on different sources. Use the sources that are relevant and accessible, and evaluate their quality rather than assuming that every source is equally strong.</p>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Source</th><th>Definition</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Expert opinion</strong></td><td>An informed judgment from someone with relevant expertise or experience.</td><td>A cybersecurity specialist explains common attack methods.</td></tr>
+                    <tr><td><strong>Stakeholder opinion</strong></td><td>The perspectives of people affected by the decision.</td><td>Employees describe barriers to completing security training.</td></tr>
+                    <tr><td><strong>Internal data</strong></td><td>Information collected within an organization.</td><td>Aggregated training completion rates or incident counts, when authorized and available.</td></tr>
+                    <tr><td><strong>External data</strong></td><td>Information from outside the organization.</td><td>Peer-reviewed research, government statistics, or industry reports.</td></tr>
+                </tbody>
+            </table>
         </div>
+    </section>
 
-        <table>
+    <section class="card">
+        <h2>Evaluating Evidence: The CRAAP Test</h2>
+        <div class="highlight"><strong>Why credibility matters:</strong> Because information is abundant, you need to evaluate whether a source is current, relevant, authoritative, accurate, and appropriate for your purpose.</div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Criteria</th><th>Key Question</th><th>Explanation</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Currency</strong></td><td>Is it up to date?</td><td>Recency matters especially in fast-changing fields. Older foundational research may still be valuable.</td></tr>
+                    <tr><td><strong>Relevance</strong></td><td>Does it apply to my question?</td><td>The evidence should address the claim, population, setting, or outcome you are investigating.</td></tr>
+                    <tr><td><strong>Authority</strong></td><td>Who created it?</td><td>Consider the author's expertise, the publisher, and the source's review process.</td></tr>
+                    <tr><td><strong>Accuracy</strong></td><td>Is it supported and verifiable?</td><td>Check methods, citations, data quality, and whether other credible sources corroborate the claim.</td></tr>
+                    <tr><td><strong>Purpose</strong></td><td>Why was it created?</td><td>Consider the intended audience, potential conflicts of interest, and possible persuasive or commercial goals.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-            <thead>
-                <tr>
-                    <th>Criteria</th>
-                    <th>Key Question</th>
-                    <th>Explanation</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td><strong>Currency</strong></td>
-                    <td>Is it up to date?</td>
-                    <td>
-                        Recent information is more useful, especially in fast-changing areas.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Relevance</strong></td>
-                    <td>Does it apply to my decision?</td>
-                    <td>
-                        Evidence must directly address your specific question.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Authority</strong></td>
-                    <td>Who created it?</td>
-                    <td>
-                        Sources should have proper expertise or credentials.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Accuracy</strong></td>
-                    <td>Is it reliable?</td>
-                    <td>
-                        Information should be supported by evidence and consistent across sources.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Purpose</strong></td>
-                    <td>Why was it created?</td>
-                    <td>
-                        Be aware of bias, intent, and possible agendas.
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-
-    <div class="card">
-
+    <section class="card">
         <h2>Evidence Limitations</h2>
-
-        <p>
-            Even strong evidence has limitations. Understanding these helps you
-            avoid common reasoning mistakes.
-        </p>
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Concept</th>
-                    <th>Explanation</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td><strong>Correlation ≠ Causation</strong></td>
-                    <td>
-                        Just because two things are related does not mean one causes the other.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Sample Bias</strong></td>
-                    <td>
-                        Results may be misleading if the sample does not represent the full population.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Ecological Fallacy</strong></td>
-                    <td>
-                        Applying general trends to specific cases can lead to incorrect conclusions.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Overgeneralization</strong></td>
-                    <td>
-                        Drawing broad conclusions from limited or narrow evidence.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>P-Value vs Effect Size</strong></td>
-                    <td>
-                        Statistical significance does not mean the effect is meaningful in practice.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Lying with Data</strong></td>
-                    <td>
-                        Graphs and visuals can be misleading if poorly designed or manipulated.
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
+        <p>Even credible evidence has limitations. Consider these issues before drawing conclusions or recommending action.</p>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Concept</th><th>Explanation</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Correlation does not establish causation</strong></td><td>Two variables may be related without one causing the other. Other variables or reverse causation may explain the relationship.</td></tr>
+                    <tr><td><strong>Sampling bias</strong></td><td>A sample may systematically differ from the population you want to understand.</td></tr>
+                    <tr><td><strong>Ecological fallacy</strong></td><td>Group-level patterns do not necessarily describe individuals within those groups.</td></tr>
+                    <tr><td><strong>Overgeneralization</strong></td><td>A conclusion may go beyond what the sample, setting, or study design can support.</td></tr>
+                    <tr><td><strong>Statistical significance versus effect size</strong></td><td>A statistically significant result is not necessarily large or practically important.</td></tr>
+                    <tr><td><strong>Misleading data displays</strong></td><td>Truncated axes, unclear denominators, selective reporting, or inappropriate visual scales can distort interpretation.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
 
 </body>
 </html>
