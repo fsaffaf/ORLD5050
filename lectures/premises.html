@@ -1,0 +1,674 @@
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.learning-objectives strong{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
+}
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
+}
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
+}
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
+}
+
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.highlight{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
+}
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    padding-left:25px;
+}
+
+ol{
+    padding-left:25px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+<div class="container">
+
+    <h1>Understanding Premises</h1>
+
+    <div class="learning-objectives">
+        <strong>Learning Objectives</strong>
+        <ul>
+            <li>Define the role of premises within a Toulmin-style argument.</li>
+            <li>Distinguish between main claims, subclaims, and premises.</li>
+            <li>Develop researchable premises and convert them into research questions.</li>
+            <li>Evaluate whether evidence actually supports a premise.</li>
+            <li>Organize sources by subclaim and premise for efficient research management.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>1. What Is a Premise?</h2>
+
+        <p>
+            A <strong>premise</strong> is a statement that provides a reason to believe a claim is true.
+            In a Toulmin-style argument, premises support a subclaim by providing the facts,
+            findings, definitions, standards, or reasoning that make the subclaim convincing.
+        </p>
+
+        <div class="highlight">
+            <strong>Main claim:</strong> The overall position you want your audience to accept.<br>
+            <strong>Subclaims:</strong> The major reasons supporting your main claim.<br>
+            <strong>Premises:</strong> The specific statements that help establish each subclaim.
+        </div>
+
+        <h3>Example: Cybersecurity Training</h3>
+
+        <p>
+            <strong>Main claim:</strong> Organizations should require regular cybersecurity training for employees because it can reduce security risks, improve employee awareness, and strengthen organizational security.
+        </p>
+
+        <p><strong>Subclaim 1:</strong> Organizations should require regular cybersecurity training because it can reduce phishing-related security risks.</p>
+
+        <p><strong>Possible premises:</strong></p>
+
+        <ol>
+            <li>Phishing attacks are a significant source of cybersecurity incidents.</li>
+            <li>Employees who receive effective phishing training may become better at recognizing suspicious messages.</li>
+            <li>Organizations can evaluate phishing awareness by examining employee performance on simulated phishing exercises.</li>
+        </ol>
+
+        <p>
+            Each premise identifies a specific point that can be investigated through research.
+            Together, the premises help establish the subclaim.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>2. How Do You Identify Premises?</h2>
+
+        <p>
+            Start with one subclaim at a time and ask what a reasonable reader would need to
+            understand or believe before accepting that subclaim.
+        </p>
+
+        <h3>Example Subclaim</h3>
+
+        <div class="highlight">
+            Organizations should use automated systems to identify unusual activity on their computer networks.
+        </div>
+
+        <p>Ask questions such as:</p>
+
+        <ul>
+            <li>What problem is the organization trying to solve?</li>
+            <li>What limitations exist in current approaches?</li>
+            <li>How could the proposed solution address the problem?</li>
+            <li>What evidence would demonstrate usefulness?</li>
+            <li>What limitations or risks should decision-makers consider?</li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Possible Premise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>What problem exists?</td>
+                    <td>Network intrusions can involve activity that differs from normal user or system behavior.</td>
+                </tr>
+                <tr>
+                    <td>What are the limitations of current approaches?</td>
+                    <td>Manual monitoring can require substantial analyst time.</td>
+                </tr>
+                <tr>
+                    <td>How might the solution help?</td>
+                    <td>Automated detection systems can flag patterns for further investigation.</td>
+                </tr>
+                <tr>
+                    <td>What evidence would demonstrate usefulness?</td>
+                    <td>Detection performance can be evaluated using measures such as false-positive and true-positive rates.</td>
+                </tr>
+                <tr>
+                    <td>What limitations matter?</td>
+                    <td>Automated systems can generate false alarms and may fail to detect some threats.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight">
+            <strong>Useful Test:</strong> Ask, “What evidence would convince a reasonable reader that this statement is accurate?”
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>3. Distinguish a Premise From a Subclaim</h2>
+
+        <p>A subclaim is a major reason supporting your main claim. A premise supports that reason.</p>
+
+        <div class="highlight">
+            <strong>Main claim:</strong> Organizations should improve their cybersecurity training programs.<br><br>
+
+            <strong>Subclaim:</strong> Regular training can improve employees' ability to recognize phishing attempts.<br><br>
+
+            <strong>Premise:</strong> Employees can be assessed on their ability to identify phishing messages using structured tests or simulated phishing exercises.
+        </div>
+
+        <p>
+            The subclaim states the reason being advanced. The premise identifies a more specific point
+            that can be researched and supported with evidence.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>4. Begin With Research Questions, Not Just Keywords</h2>
+
+        <p>
+            Once you identify a potential premise, convert it into a research question.
+        </p>
+
+        <div class="highlight">
+            <strong>Potential premise:</strong> Employees who receive effective cybersecurity training may become better at recognizing phishing messages.<br><br>
+
+            <strong>Research question:</strong> Does cybersecurity training improve employees' ability to identify phishing attempts?
+        </div>
+
+        <h3>Possible Search Terms</h3>
+
+        <ul>
+            <li>Cybersecurity awareness training effectiveness</li>
+            <li>Phishing detection employee training</li>
+            <li>Employee phishing simulation performance</li>
+            <li>Security awareness training evaluation</li>
+            <li>Phishing susceptibility workplace study</li>
+        </ul>
+
+        <h3>Where Should You Look?</h3>
+
+        <ul>
+            <li><strong>Google Scholar</strong> for academic studies and scholarly books.</li>
+            <li><strong>Government publications</strong> for reports, guidance, and statistics.</li>
+            <li><strong>Professional organizations</strong> for standards and industry reports.</li>
+            <li><strong>Public case studies</strong> describing organizational implementations and outcomes.</li>
+            <li><strong>University libraries</strong> for access to research databases.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>5. Evaluate Whether an Article Supports Your Premise</h2>
+
+        <p>
+            Finding an article about a topic does not automatically mean it supports your argument.
+        </p>
+
+        <ol>
+            <li><strong>Relevance:</strong> Does it directly address your premise?</li>
+            <li><strong>Credibility:</strong> Who produced the information and what expertise do they have?</li>
+            <li><strong>Evidence:</strong> What data or documentation supports the findings?</li>
+            <li><strong>Limitations:</strong> What conditions affect the results?</li>
+            <li><strong>Accuracy:</strong> Does the source actually support the statement you want to make?</li>
+        </ol>
+
+        <div class="highlight">
+            Look for evidence that matches the specific point you need to establish rather than assuming a source supports your argument because it discusses the topic.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>6. Organize Your Research by Subclaim and Premise</h2>
+
+        <p>
+            Organize research materials around the structure of your argument rather than storing all sources in a single folder.
+        </p>
+
+        <h3>Example Folder Structure</h3>
+
+<pre>
+Research Project
+│
+├── Subclaim 1 - Reduce Phishing Risks
+│   ├── Premise 1 - Phishing Is a Security Risk
+│   ├── Premise 2 - Training Improves Recognition
+│   └── Premise 3 - Training Outcomes Can Be Measured
+│
+├── Subclaim 2 - Improve Employee Awareness
+│   ├── Premise 1 - Employees Face Security Threats
+│   ├── Premise 2 - Awareness Influences Behavior
+│   └── Premise 3 - Training Can Address Knowledge Gaps
+│
+└── Subclaim 3 - Strengthen Organizational Security
+    ├── Premise 1 - Security Policies Guide Behavior
+    ├── Premise 2 - Training Reinforces Policies
+    └── Premise 3 - Organizations Can Evaluate Outcomes
+</pre>
+
+        <p>
+            Save articles, reports, PDFs, and related materials in the folder associated with the premise they support.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>7. Track What Each Article Contributes</h2>
+
+        <p>Create a research tracker to record the role each source plays in your argument.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>What to Record</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Source</td>
+                    <td>Article title and author or organization</td>
+                </tr>
+                <tr>
+                    <td>Publication</td>
+                    <td>Journal, publisher, or website</td>
+                </tr>
+                <tr>
+                    <td>Year</td>
+                    <td>Publication year</td>
+                </tr>
+                <tr>
+                    <td>Premise</td>
+                    <td>The premise the source may support</td>
+                </tr>
+                <tr>
+                    <td>Main Finding</td>
+                    <td>The relevant conclusion or result</td>
+                </tr>
+                <tr>
+                    <td>Evidence Type</td>
+                    <td>Experiment, survey, report, standard, observational study, etc.</td>
+                </tr>
+                <tr>
+                    <td>Limitations</td>
+                    <td>Important qualifications or weaknesses</td>
+                </tr>
+                <tr>
+                    <td>Citation</td>
+                    <td>DOI, URL, or reference information</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>To review, reviewed, useful, or not relevant</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>8. What If an Article Supports More Than One Premise?</h2>
+
+        <p>
+            Research rarely fits neatly into a single category. One article may contain multiple findings
+            relevant to multiple premises.
+        </p>
+
+        <ul>
+            <li>Identify the specific finding that supports each premise.</li>
+            <li>Record page numbers, tables, figures, or sections.</li>
+            <li>Avoid treating every finding in an article as support for every premise.</li>
+            <li>Revise premises when evidence suggests a better formulation.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>9. When Should You Stop Searching?</h2>
+
+        <p>
+            Research is iterative, but a premise is typically ready for the next stage when you can:
+        </p>
+
+        <ul>
+            <li>Explain the statement clearly and specifically.</li>
+            <li>Identify credible sources that directly address it.</li>
+            <li>Describe findings accurately.</li>
+            <li>Explain important limitations.</li>
+            <li>Recognize disagreements or contradictory findings.</li>
+            <li>Connect the evidence to the subclaim.</li>
+        </ul>
+
+        <div class="highlight">
+            Your goal is not to collect the largest number of articles. Your goal is to gather enough credible evidence to evaluate the premise responsibly.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>10. Your Research Workflow</h2>
+
+        <ol>
+            <li>Select a subclaim.</li>
+            <li>Identify supporting premises.</li>
+            <li>Turn premises into research questions.</li>
+            <li>Search for credible sources.</li>
+            <li>Review evidence and limitations.</li>
+            <li>Organize materials by premise.</li>
+            <li>Update your research tracker.</li>
+            <li>Reassess and revise premises as needed.</li>
+            <li>Repeat for the next premise.</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>Final Takeaway</h2>
+
+        <p>
+            A strong argument requires more than a position and a list of reasons. You must identify the
+            specific statements that support each reason and investigate whether credible evidence establishes them.
+        </p>
+
+        <div class="highlight">
+            <strong>Keep your argument organized, keep your sources connected to specific premises, and let the evidence guide the development of your claims.</strong>
+        </div>
+    </div>
+
+</div>
