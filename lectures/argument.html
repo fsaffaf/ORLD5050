@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +9,11 @@
 <title>Argument Structure</title>
 
 <style>
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -18,72 +23,66 @@ body {
 }
 
 .container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 50px 20px;
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
 h1 {
     text-align: left;
     color: #666666;
-    font-size: 2.75rem;
-    font-weight: 200;
-    letter-spacing: .08em;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #6b7280;
-    text-transform: uppercase;
-    letter-spacing: .15em;
-    margin-bottom: 40px;
-    font-size: .95rem;
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: .04em;
+    margin: 0 0 25px;
 }
 
 h2,
 h3 {
     color: #0e68b3;
-    position: relative;
     font-weight: 500;
-    display: inline-block;
 }
 
-h2::after,
-h3::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 2px;
-    background: #0e68b3;
-    transition: .3s;
-}
-
-.card:hover h2::after,
-.card:hover h3::after {
-    width: 100%;
+h2 {
+    font-size: 1.4rem;
+    margin-top: 0;
 }
 
 p {
     line-height: 1.8;
+    margin: 0 0 16px;
 }
+
+/* Consistent card dimensions and alignment */
 
 .card {
-    background: white;
-    border-radius: 16px;
-    padding: 30px;
-    margin-bottom: 25px;
+    display: block;
+    width: 100%;
+    margin: 0 0 24px;
+    padding: 28px;
+    background: #ffffff;
     border: 1px solid #d9e2ec;
+    border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
-    animation: fadeUp .6s ease forwards;
-    transition: all .25s ease;
+    min-width: 0;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(14, 104, 179, .15);
+/* Keep card contents within the card */
+
+.card img,
+.card table {
+    max-width: 100%;
+}
+
+.card ul,
+.card ol {
+    padding-left: 25px;
+    margin-bottom: 0;
+}
+
+.card li {
+    margin-bottom: 8px;
 }
 
 .highlight {
@@ -94,33 +93,24 @@ p {
     margin: 20px 0;
 }
 
-ul,
-ol {
-    padding-left: 25px;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
 /* Table styling */
 
 .table-wrapper {
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
+    background: #ffffff;
 }
 
 th {
     background: #0e68b3;
-    color: white;
+    color: #ffffff;
     text-align: left;
     padding: 14px;
 }
@@ -135,16 +125,12 @@ tr:nth-child(even) {
     background: #f8fafc;
 }
 
-tr:hover {
-    background: #edf6ff;
-}
-
 /* Article buttons */
 
 .button {
     display: inline-block;
     background: #0e68b3;
-    color: white;
+    color: #ffffff;
     padding: 10px 16px;
     border-radius: 8px;
     text-decoration: none;
@@ -152,12 +138,11 @@ tr:hover {
     font-weight: 600;
     text-align: center;
     white-space: nowrap;
-    transition: background .2s ease;
 }
 
 .button:hover {
     background: #084c87;
-    color: white;
+    color: #ffffff;
 }
 
 .button:focus-visible {
@@ -165,74 +150,27 @@ tr:hover {
     outline-offset: 3px;
 }
 
-/* Images and grids */
+/* Argument map image */
 
-.scatterplot {
-    text-align: center;
-    margin: 25px 0;
+.argument-map {
+    width: 100%;
+    margin: 0 0 24px;
+    padding: 0;
 }
 
-.scatterplot img {
-    max-width: 100%;
-    height: auto;
+.argument-map img {
     display: block;
-    margin: 0 auto;
-    border-radius: 8px;
-}
-
-.scatterplot-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin: 25px 0;
-}
-
-.scatterplot-grid .scatterplot {
-    margin: 0;
-}
-
-.outlier-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
-    margin: 25px 0;
-}
-
-.outlier-example {
-    text-align: center;
-}
-
-.outlier-example h3 {
-    margin-top: 0;
-}
-
-.outlier-example img {
     width: 100%;
     height: auto;
-    display: block;
-    margin: 20px auto 0;
     border-radius: 8px;
 }
 
-hr {
-    border: none;
-    height: 1px;
-    background: #d6e4f0;
-    margin: 30px 0;
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* Mobile layout */
 
 @media (max-width: 768px) {
+    .container {
+        padding: 24px 14px;
+    }
 
     h1 {
         font-size: 2rem;
@@ -240,21 +178,15 @@ hr {
 
     .card {
         padding: 20px;
+        margin-bottom: 18px;
     }
 
     th,
     td {
         padding: 10px;
-        font-size: .95rem;
+        font-size: .9rem;
     }
-
-    .scatterplot-grid,
-    .outlier-grid {
-        grid-template-columns: 1fr;
-    }
-
 }
-
 </style>
 </head>
 
@@ -262,50 +194,45 @@ hr {
 
 <div class="container">
 
-    <h1>Argumentation</h1>
+    <h1>Argument Structure</h1>
 
     <div class="card">
-
         <h2>Overview</h2>
 
         <p>
             Constructing a clear and well-supported argument is the main goal of
-            of Ethical, Evidence-Based Decision Making (EEBDM). In the professional world, 
-            individuals should be able to justify their decisions by providing reasons and evidence.
-            If you understand how to create a solid argument, you can communicate your ideas effectively and 
-            assess the reasoning of others.
+            Ethical, Evidence-Based Decision Making (EEBDM). In the professional world,
+            individuals should be able to justify their decisions by providing reasons
+            and evidence. If you understand how to create a solid argument, you can
+            communicate your ideas effectively and assess the reasoning of others.
         </p>
-
     </div>
-    
-        <div class="card">
 
-         <p>
+    <div class="card">
+        <p>
             In everyday language, the word "argument" often refers to a disagreement
             or conflict. In academic and professional contexts, however, an argument
             has a more precise meaning.
         </p>
+
+        <p>
             <strong>Argument:</strong>
             In the professional world, an argument is an organized set of reasons
             that provide support for a specific decision.
+        </p>
 
-            <ul>
-                <li>Helps you think critically and logically.</li>
-                <li>Improves clarity in writing and presentations.</li>
-                <li>Supports stronger, evidence-based decisions.</li>
-                <li>Allows you to evaluate others' reasoning.</li>
-            </ul>
-
-        </div>
-
+        <ul>
+            <li>Helps you think critically and logically.</li>
+            <li>Improves clarity in writing and presentations.</li>
+            <li>Supports stronger, evidence-based decisions.</li>
+            <li>Allows you to evaluate others' reasoning.</li>
+        </ul>
     </div>
 
     <div class="card">
-
         <h2>Toulmin-Style Arguments</h2>
 
         <div class="table-wrapper">
-
             <table>
                 <thead>
                     <tr>
@@ -316,35 +243,30 @@ hr {
                 </thead>
 
                 <tbody>
-
                     <tr>
                         <td><strong>Main Claim</strong></td>
                         <td>The main point you are arguing for.</td>
                         <td>
-                            <a href="mainclaim.html"
-                               class="button"
-                               target="_blank"
-                               rel="noopener noreferrer">Read Article</a>
+                            <a href="mainclaim.html" class="button"
+                               target="_blank" rel="noopener noreferrer">Read Article</a>
                         </td>
                     </tr>
+
                     <tr>
                         <td><strong>Subclaim</strong></td>
                         <td>The reason supporting your claim.</td>
                         <td>
-                            <a href="subclaims.html"
-                               class="button"
-                               target="_blank"
-                               rel="noopener noreferrer">Read Article</a>
+                            <a href="subclaims.html" class="button"
+                               target="_blank" rel="noopener noreferrer">Read Article</a>
                         </td>
                     </tr>
+
                     <tr>
                         <td><strong>Premise</strong></td>
                         <td>Facts that show the subclaim is true.</td>
                         <td>
-                            <a href="premises.html"
-                               class="button"
-                               target="_blank"
-                               rel="noopener noreferrer">Read Article</a>
+                            <a href="premises.html" class="button"
+                               target="_blank" rel="noopener noreferrer">Read Article</a>
                         </td>
                     </tr>
 
@@ -352,21 +274,17 @@ hr {
                         <td><strong>Evidence</strong></td>
                         <td>References that show the fact is true.</td>
                         <td>
-                            <a href="evidence.html"
-                               class="button"
-                               target="_blank"
-                               rel="noopener noreferrer">Read Article</a>
+                            <a href="evidence.html" class="button"
+                               target="_blank" rel="noopener noreferrer">Read Article</a>
                         </td>
                     </tr>
 
                     <tr>
                         <td><strong>Warrant</strong></td>
-                        <td>The explaination of why the fact is supported by the evidence.</td>
+                        <td>The explanation of why the evidence supports the claim.</td>
                         <td>
-                            <a href="warrants.html"
-                               class="button"
-                               target="_blank"
-                               rel="noopener noreferrer">Read Article</a>
+                            <a href="warrants.html" class="button"
+                               target="_blank" rel="noopener noreferrer">Read Article</a>
                         </td>
                     </tr>
 
@@ -374,10 +292,8 @@ hr {
                         <td><strong>Counterargument</strong></td>
                         <td>An opposing viewpoint.</td>
                         <td>
-                            <a href="counterarguments.html"
-                               class="button"
-                               target="_blank"
-                               rel="noopener noreferrer">Read Article</a>
+                            <a href="counterarguments.html" class="button"
+                               target="_blank" rel="noopener noreferrer">Read Article</a>
                         </td>
                     </tr>
 
@@ -385,42 +301,38 @@ hr {
                         <td><strong>Rebuttal</strong></td>
                         <td>Your response to the counterargument.</td>
                         <td>
-                            <a href="rebuttals.html"
-                               class="button"
-                               target="_blank"
-                               rel="noopener noreferrer">Read Article</a>
+                            <a href="rebuttals.html" class="button"
+                               target="_blank" rel="noopener noreferrer">Read Article</a>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
-
         </div>
-
     </div>
-    <div class="card">
 
+    <div class="card">
         <h2>Simple Argument Map</h2>
 
         <p>
-            Below is a simple argument map. The main claim is supported by three subclaims.<br>
-            Each subclaim is supported by three premises (reasons). <br>
-            Each reason is supported by one piece of evidence.<br>
-            There are also three counterarguments with a rebuttal against each counterargument.<br>
-            In the real world, you would likely have more than three subclaims, more than three premises, and definitely more than one piece of evidence to support each premise.
-            There are also many other areas where counterarguments could be made. 
+            Below is a simple argument map. The main claim is supported by three subclaims.
+            Each subclaim is supported by three premises (reasons). Each reason is supported
+            by one piece of evidence. There are also three counterarguments with a rebuttal
+            against each counterargument. In the real world, you would likely have more than
+            three subclaims, more than three premises, and definitely more than one piece of
+            evidence to support each premise. There are also many other areas where
+            counterarguments could be made.
         </p>
-
     </div>
-<div style="width: 100%; margin: 20px auto;">
-  <img
-    src="../map/Map.jpg"
-    alt="Argument Map"
-    style="display: block; width: 100%; height: auto;"
-  >
-</div>
+
+    <div class="argument-map">
+        <img
+            src="../map/fullmap.jpg"
+            alt="Argument Map showing a main claim, subclaims, premises, evidence, counterarguments, and rebuttals"
+        >
+    </div>
 
 </div>
 
 </body>
 </html>
+```
