@@ -1,151 +1,358 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Types of Evidence</title>
+
+<title>Heuristics & Biases</title>
+
 <style>
-:root {
-    --blue: #0e68b3;
-    --dark-blue: #174a73;
-    --pale-blue: #f4f9fe;
-    --orange: #e67e22;
-    --border: #d9e2ec;
-    --text: #222222;
+
+/* =========================
+   BASE
+========================= */
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:#f4f6f9;
+    color:#222222;
 }
-* { box-sizing: border-box; }
-body {
-    margin: 0;
-    font-family: Lato, "Lato Extended", Aptos, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-    background: #f4f6f9;
-    color: var(--text);
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
 }
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 36px 20px;
+
+
+/* =========================
+   LEARNING OBJECTIVES
+========================= */
+
+.learning-objectives{
+    background:#e8f4fc;
+    border-left:5px solid #084f8c;
+    padding:16px 20px;
+    border-radius:8px;
+    margin:20px 0;
 }
-h1 {
-    text-align: left;
-    color: var(--dark-blue);
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin: 0 0 24px;
+
+.learning-objectives strong{
+    color:#0e68b3;
 }
-h2, h3 {
-    color: var(--blue);
-    font-weight: 600;
-    line-height: 1.35;
+
+
+/* =========================
+   BLUE TEXT
+========================= */
+
+.blue-heading{
+    color:#0e68b3;
 }
-h2 { font-size: 1.35rem; margin: 0 0 14px; }
-h3 { font-size: 1.08rem; margin: 20px 0 10px; }
-p { line-height: 1.7; margin: 0 0 14px; }
-.card {
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 26px;
-    margin-bottom: 22px;
-    box-shadow: 0 3px 10px rgba(0,0,0,.04);
+
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+h1{
+    text-align:left;
+    color:#666666;
+    font-size:2.75rem;
+    font-weight:200;
+    letter-spacing:.08em;
+    margin-bottom:10px;
 }
-.highlight {
-    background: #eef6fc;
-    border-left: 4px solid var(--blue);
-    border-radius: 6px;
-    padding: 15px 17px;
-    margin: 18px 0;
-    line-height: 1.7;
+
+.subtitle{
+    text-align:center;
+    color:#6b7280;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    margin-bottom:40px;
+    font-size:.95rem;
 }
-ul, ol { padding-left: 24px; margin-top: 8px; }
-li { margin-bottom: 8px; line-height: 1.65; }
-.table-wrap { width: 100%; overflow-x: auto; margin: 14px 0 20px; }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
+
+
+/* =========================
+   CARD HEADINGS
+========================= */
+
+h2{
+    color:#0e68b3;
+    position:relative;
+    font-weight:500;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:22px;
+    padding-bottom:6px;
 }
-th {
-    background: var(--dark-blue);
-    color: #ffffff;
-    text-align: left;
-    padding: 12px;
+
+
+/* =========================
+   SUBHEADINGS
+========================= */
+
+h3{
+    color:#0e68b3;
+    font-weight:500;
+    margin-top:28px;
+    margin-bottom:12px;
 }
-td {
-    padding: 12px;
-    border-bottom: 1px solid #e5e7eb;
-    vertical-align: top;
-    line-height: 1.6;
+
+
+/* =========================
+   BODY TEXT
+========================= */
+
+p{
+    line-height:1.8;
 }
-tbody tr:nth-child(even) { background: var(--pale-blue); }
-tbody tr:hover { background: #edf6ff; }
-pre {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    background: #f4f6f9;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
-    line-height: 1.6;
-    font-size: .92rem;
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:25px;
+    border:1px solid #d9e2ec;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.05);
+
+    animation:fadeUp .6s ease forwards;
+    transition:all .25s ease;
 }
-.search-string {
-    background: #f4f6f9;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px;
-    overflow-wrap: anywhere;
-    font-family: Consolas, "Courier New", monospace;
-    font-size: .92rem;
-    line-height: 1.8;
-    margin: 10px 0 14px;
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(14,104,179,.15);
 }
-.search-select {
-    display: block;
-    width: 100%;
-    padding: 11px;
-    margin: 12px 0;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 1rem;
-    background: #ffffff;
+
+
+/* =========================
+   CALLOUTS
+========================= */
+
+.highlight{
+    background:#ffffff;
+    border-left:3px solid #0e68b3;
+    padding:14px 18px;
+    border-radius:0;
+    margin:20px 0;
 }
-.copy-button {
-    display: inline-block;
-    background: var(--blue);
-    color: #ffffff;
-    border: 0;
-    border-radius: 6px;
-    padding: 10px 16px;
-    font-size: .92rem;
-    font-weight: 600;
-    cursor: pointer;
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button{
+    display:inline-block;
+    background:linear-gradient(135deg,#0e68b3,#1c84d8);
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:600;
+    padding:14px 32px;
+    border-radius:9999px;
+    box-shadow:0 8px 20px rgba(14,104,179,.20);
+    transition:all .25s ease;
 }
-.copy-button:hover { background: var(--dark-blue); }
-.copy-button:focus-visible, select:focus-visible {
-    outline: 3px solid var(--orange);
-    outline-offset: 3px;
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(14,104,179,.30);
+    background:linear-gradient(135deg,#095491,#0e68b3);
 }
-.status { margin-top: 10px; font-size: .9rem; }
-@media (max-width: 650px) {
-    .container { padding: 24px 14px; }
-    h1 { font-size: 1.8rem; }
-    .card { padding: 18px; }
-    th, td { padding: 9px; font-size: .92rem; }
+
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+    padding-left:25px;
 }
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { scroll-behavior: auto !important; }
+
+ol{
+    padding-left:25px;
 }
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+th{
+    background:#0e68b3;
+    color:white;
+    text-align:left;
+    padding:14px;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#edf6ff;
+}
+
+
+/* =========================
+   SCATTERPLOTS
+========================= */
+
+.scatterplot{
+    text-align:center;
+    margin:25px 0;
+}
+
+.scatterplot img{
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:8px;
+}
+
+.scatterplot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    margin:25px 0;
+}
+
+.scatterplot-grid .scatterplot{
+    margin:0;
+}
+
+
+/* =========================
+   OUTLIER EXAMPLES
+========================= */
+
+.outlier-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+    margin:25px 0;
+}
+
+.outlier-example{
+    text-align:center;
+}
+
+.outlier-example h3{
+    margin-top:0;
+}
+
+.outlier-example img{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto 0;
+    border-radius:8px;
+}
+
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+hr{
+    border:none;
+    height:1px;
+    background:#d6e4f0;
+    margin:30px 0;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:.95rem;
+    }
+
+    .scatterplot-grid,
+    .outlier-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
 </style>
-</head>
-<body>
+
 <main class="container">
+
     <h1>Types of Evidence</h1>
 
     <section class="card">
         <h2>Overview</h2>
-        <p>Evidence is essential to a strong argument. An argument may sound logical, but without evidence to support its claims, 
-            it has little persuasive strength. However, more evidence does not necessarily make an argument stronger. 
-            The goal is to use an appropriate amount of high-quality evidence that directly supports the argument. 
+        <p>Evidence is essential to a strong argument. An argument may sound logical, but without evidence to support its claims,
+            it has little persuasive strength. However, more evidence does not necessarily make an argument stronger.
+            The goal is to use an appropriate amount of high-quality evidence that directly supports the argument.
             Too much evidence can overwhelm readers and make it harder for them to identify the most important points.</p>
         <ul>
             <li>Evidence can improve the quality of decisions.</li>
@@ -154,41 +361,62 @@ pre {
             <li>Multiple sources can provide a more complete picture.</li>
             <li>Quality, relevance, and limitations matter more than quantity alone.</li>
         </ul>
-       
     </section>
+
     <h1>Part 1: Finding Articles (Quantity)</h1>
-    
+
     <section class="card">
         <h2>Transform Premises to Research Questions</h2>
-        <p>Once you identify a potential premise, turn it into a research question. 
+        <p>Once you identify a potential premise, turn it into a research question.
         A clear question helps you identify what information to search for and which sources are relevant.</p>
         <p>For example:</p>
+        <p>
             <strong>Potential premise:</strong> A four-day workweek can improve employee well-being.<br>
             <strong>Research question:</strong> Does a four-day workweek improve employee well-being?
-        </div>
+        </p>
+    </section>
 
     <section class="card">
         <h2>Identify the Keywords in the Research Question</h2>
         <p>A <strong>keyword</strong> represents an important concept in your research question. <strong>Search terms</strong> are alternative words or phrases authors might use to discuss that concept.</p>
+
         <h3>Research Question</h3>
         <p><strong>Does a four-day workweek improve employee well-being?</strong></p>
 
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Keyword</th><th>Alternative Search Terms</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Alternative Search Terms</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <tr><td><strong>Four-day workweek</strong></td><td>"four-day work week," "4-day workweek," "compressed workweek," "reduced workweek," "shorter workweek," "reduced working hours"</td></tr>
-                    <tr><td><strong>Employee</strong></td><td>employees, workers, working adults, workforce, personnel, staff</td></tr>
-                    <tr><td><strong>Well-being</strong></td><td>"employee well-being," "employee wellbeing," "psychological well-being," "workplace well-being," "mental health," "life satisfaction," "work-life balance"</td></tr>
-                    <tr><td><strong>Improve</strong></td><td>improvement, effects, impact, influence, outcomes, benefits, association</td></tr>
+                    <tr>
+                        <td><strong>Four-day workweek</strong></td>
+                        <td>"four-day work week," "4-day workweek," "compressed workweek," "reduced workweek," "shorter workweek," "reduced working hours"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Employee</strong></td>
+                        <td>employees, workers, working adults, workforce, personnel, staff</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Well-being</strong></td>
+                        <td>"employee well-being," "employee wellbeing," "psychological well-being," "workplace well-being," "mental health," "life satisfaction," "work-life balance"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Improve</strong></td>
+                        <td>improvement, effects, impact, influence, outcomes, benefits, association</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        <div class="highlight"><strong>Research tip:</strong> You do not need to use every term in every search. Start with the main concepts, then adjust your search based on the articles you find.</div>
 
-        
+        <div class="highlight">
+            <strong>Research tip:</strong> You do not need to use every term in every search. Start with the main concepts, then adjust your search based on the articles you find.
+        </div>
+
         <h3>Search for Articles Using the Keywords</h3>
-
         <p>Recommended research databases include:</p>
         <ul>
             <li><strong>Google Scholar</strong> for academic studies and scholarly books.</li>
@@ -199,29 +427,30 @@ pre {
         </ul>
     </section>
 
+    <section class="card">
+        <h2>Tips for Combining Keywords</h2>
+        <p>Use <strong>OR</strong> to include alternative terms and <strong>AND</strong> to combine different concepts.</p>
 
-<h3>Tips for Combining Keywords</h3>
-        
-<p>Use <strong>OR</strong> to include alternative terms and <strong>AND</strong> to combine different concepts.</p>
+        <p><strong>OR: Find alternative terms</strong></p>
+        <div class="search-string">"four-day workweek" OR "compressed workweek" OR "reduced working hours"</div>
 
-<p><strong>OR: Find alternative terms</strong></p>
-<div class="search-string">"four-day workweek" OR "compressed workweek" OR "reduced working hours"</div>
+        <p><strong>AND: Combine concepts</strong></p>
+        <div class="search-string">("four-day workweek" OR "compressed workweek") AND ("employee well-being" OR "mental health" OR "job satisfaction")</div>
 
-<p><strong>AND: Combine concepts</strong></p>
-<div class="search-string">("four-day workweek" OR "compressed workweek") AND ("employee well-being" OR "mental health" OR "job satisfaction")</div>
+        <p><strong>Find research studies</strong></p>
+        <div class="search-string">("four-day workweek" OR "reduced working hours") AND ("employee well-being" OR "mental health") AND (study OR experiment OR evaluation)</div>
 
-<p><strong>Find research studies</strong></p>
-<div class="search-string">("four-day workweek" OR "reduced working hours") AND ("employee well-being" OR "mental health") AND (study OR experiment OR evaluation)</div>
-
-<h3>Recommended Search Strategy</h3>
-<ol>
-    <li><strong>Start broad.</strong> Search for four-day workweeks and alternative work schedules.</li>
-    <li><strong>Add related terms.</strong> Try mental health, stress, burnout, job satisfaction, and work-life balance.</li>
-    <li><strong>Look for research.</strong> Find studies that measure employee outcomes or compare different work schedules.</li>
-    <li><strong>Check the work hours.</strong> Determine whether employees work fewer total hours or fit their usual hours into four longer days.</li>
-</ol>
+        <h3>Recommended Search Strategy</h3>
+        <ol>
+            <li><strong>Start broad.</strong> Search for four-day workweeks and alternative work schedules.</li>
+            <li><strong>Add related terms.</strong> Try mental health, stress, burnout, job satisfaction, and work-life balance.</li>
+            <li><strong>Look for research.</strong> Find studies that measure employee outcomes or compare different work schedules.</li>
+            <li><strong>Check the work hours.</strong> Determine whether employees work fewer total hours or fit their usual hours into four longer days.</li>
+        </ol>
+    </section>
 
     <h3>Briefly Evaluate the Article: Keep or Discard</h3>
+
     <section class="card">
         <h2>Evaluate Whether an Article Supports Your Premise</h2>
         <p>Finding an article about a topic does not automatically mean it supports your argument. Evaluate each source in relation to the specific statement you need to establish.</p>
@@ -238,10 +467,11 @@ pre {
     <section class="card">
         <h2>Organize Research by Subclaim and Premise</h2>
         <p>Organize your research around the structure of your argument rather than storing every source in one folder. The example below uses cybersecurity training; adapt the labels to your own topic.</p>
+
         <h3>Example Folder Structure</h3>
 <pre>Research Project
 │
-├── Subclaim 1 
+├── Subclaim 1
 │   ├── Premise 1
 │   ├── Premise 2
 │   └── Premise 3
@@ -251,11 +481,14 @@ pre {
 │   ├── Premise 2
 │   └── Premise 3
 │
-└── Subclaim 3 
+└── Subclaim 3
     ├── Premise 1
     ├── Premise 2
     └── Premise 3</pre>
+
         <p>Save articles, reports, PDFs, and notes in the folder for the premise they may support. If a source supports more than one premise, you can record it in more than one folder or use a research tracker to cross-reference it.</p>
+    </section>
+
     <section class="card">
         <h2>When Should You Stop Searching?</h2>
         <p>A premise is ready for the next stage when you can:</p>
@@ -271,13 +504,19 @@ pre {
     </section>
 
     <h1>Part 2: Selecting the Best Articles (Quality)</h1>
-    
+
     <section class="card">
         <h2>Track What Each Article Contributes</h2>
         <p>Use a research tracker to record the role each source may play in your argument.</p>
+
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Field</th><th>What to Record</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>What to Record</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr><td>Source</td><td>Article title and author or organization</td></tr>
                     <tr><td>Publication</td><td>Journal, publisher, or website</td></tr>
@@ -293,12 +532,19 @@ pre {
         </div>
     </section>
 
-        <section class="card">
+    <section class="card">
         <h2>The Four Sources of Evidence</h2>
         <p>Evidence-based decision making can draw on different sources. Use the sources that are relevant and accessible, and evaluate their quality rather than assuming that every source is equally strong.</p>
+
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Source</th><th>Definition</th><th>Example</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Definition</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr><td><strong>Expert opinion</strong></td><td>An informed judgment from someone with relevant expertise or experience.</td><td>A cybersecurity specialist explains common attack methods.</td></tr>
                     <tr><td><strong>Stakeholder opinion</strong></td><td>The perspectives of people affected by the decision.</td><td>Employees describe barriers to completing security training.</td></tr>
@@ -312,9 +558,16 @@ pre {
     <section class="card">
         <h2>Evaluating Evidence: The CRAAP Test</h2>
         <div class="highlight"><strong>Why credibility matters:</strong> Because information is abundant, you need to evaluate whether a source is current, relevant, authoritative, accurate, and appropriate for your purpose.</div>
+
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Criteria</th><th>Key Question</th><th>Explanation</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Criteria</th>
+                        <th>Key Question</th>
+                        <th>Explanation</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr><td><strong>Currency</strong></td><td>Is it up to date?</td><td>Recency matters especially in fast-changing fields. Older foundational research may still be valuable.</td></tr>
                     <tr><td><strong>Relevance</strong></td><td>Does it apply to my question?</td><td>The evidence should address the claim, population, setting, or outcome you are investigating.</td></tr>
@@ -329,9 +582,15 @@ pre {
     <section class="card">
         <h2>Evidence Limitations</h2>
         <p>Even credible evidence has limitations. Consider these issues before drawing conclusions or recommending action.</p>
+
         <div class="table-wrap">
             <table>
-                <thead><tr><th>Concept</th><th>Explanation</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Explanation</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr><td><strong>Correlation does not establish causation</strong></td><td>Two variables may be related without one causing the other. Other variables or reverse causation may explain the relationship.</td></tr>
                     <tr><td><strong>Sampling bias</strong></td><td>A sample may systematically differ from the population you want to understand.</td></tr>
@@ -343,7 +602,10 @@ pre {
             </table>
         </div>
     </section>
-</main>
 
+</main>
 </body>
 </html>
+
+
+    
