@@ -1,414 +1,363 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Subclaims</title>
 
-    
-
 <style>
-
-/* =========================
-   BASE
-========================= */
-
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
+/* BASE */
+* {
+    box-sizing: border-box;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
 }
 
-
-/* =========================
-   BLUE TEXT
-========================= */
-
-.blue-heading{
-    color:#0e68b3;
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 20px;
 }
 
-
-/* =========================
-   PAGE TITLE
-========================= */
-
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
+/* PAGE TITLE */
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.75rem;
+    font-weight: 200;
+    letter-spacing: .08em;
+    margin: 0 0 25px;
 }
 
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
+/* HEADINGS */
+h2 {
+    color: #0e68b3;
+    font-weight: 500;
+    margin: 0 0 22px;
+    padding-bottom: 6px;
 }
 
-
-/* =========================
-   CARD HEADINGS
-========================= */
-h2{
-    color:#0e68b3;
-    position:relative;
-    font-weight:500;
-    display:inline-block;
-    margin-top:30px;
-    margin-bottom:22px;
-    padding-bottom:6px;
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 12px;
 }
 
-
-/* =========================
-   SUBHEADINGS
-========================= */
-
-h3{
-    color:#0e68b3;
-    font-weight:500;
-    margin-top:30px;
-    margin-bottom:12px;
+/* BODY TEXT */
+p {
+    line-height: 1.8;
 }
 
-
-/* =========================
-   BODY TEXT
-========================= */
-
-p{
-    line-height:1.8;
+/* CARDS */
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 1px solid #d9e2ec;
+    box-shadow: 0 3px 10px rgba(0,0,0,.05);
+    animation: fadeUp .6s ease forwards;
+    transition: box-shadow .25s ease;
+    min-width: 0;
 }
 
-
-/* =========================
-   CARDS
-========================= */
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.05);
-
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
+.card:hover {
+    box-shadow: 0 10px 25px rgba(14,104,179,.15);
 }
 
-.card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 10px 25px rgba(14,104,179,.15);
+/* IMAGES */
+.card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 8px;
 }
 
-
-/* =========================
-   CALLOUTS
-========================= */
-
-.definition{
-    background:#ffffff;
-    border-left:3px solid #0e68b3;
-    padding:14px 18px;
-    border-radius:0;
-    margin:20px 0 35px 0;
+.image-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-.button{
-    display:inline-block;
-    background:linear-gradient(135deg,#0e68b3,#1c84d8);
-    color:#ffffff;
-    text-decoration:none;
-    font-weight:600;
-    padding:14px 32px;
-    border-radius:9999px;
-    box-shadow:0 8px 20px rgba(14,104,179,.20);
-    transition:all .25s ease;
+.image-container img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
-.button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 25px rgba(14,104,179,.30);
-    background:linear-gradient(135deg,#095491,#0e68b3);
+/* CALLOUTS */
+.definition {
+    background: #ffffff;
+    border-left: 3px solid #0e68b3;
+    padding: 14px 18px;
+    margin: 20px 0 35px;
 }
 
-
-/* =========================
-   LISTS
-========================= */
-
-ul{
-    margin-left:25px;
-    padding-left:0;
+.highlight {
+    background: #f4f9fe;
+    border-left: 4px solid #0e68b3;
+    padding: 16px 20px;
+    margin: 20px 0;
+    line-height: 1.8;
 }
 
-ol{
-    margin-left:25px;
-    padding-left:0;
+/* BUTTONS */
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #0e68b3, #1c84d8);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    box-shadow: 0 8px 20px rgba(14,104,179,.20);
+    transition: all .25s ease;
 }
 
-li{
-    margin-bottom:8px;
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(14,104,179,.30);
+    background: linear-gradient(135deg, #095491, #0e68b3);
 }
 
-
-/* =========================
-   TABLES
-========================= */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
+/* LISTS */
+ul, ol {
+    margin-left: 25px;
+    padding-left: 0;
 }
 
-th{
-    background:#0e68b3;
-    color:white;
-    text-align:left;
-    padding:14px;
+li {
+    margin-bottom: 8px;
+    line-height: 1.7;
 }
 
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
+/* TABLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
-tr:nth-child(even){
-    background:#f8fafc;
+th {
+    background: #0e68b3;
+    color: #ffffff;
+    text-align: left;
+    padding: 14px;
 }
 
-tr:hover{
-    background:#edf6ff;
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
 }
 
-
-/* =========================
-   SCATTERPLOTS
-========================= */
-
-.scatterplot{
-    text-align:center;
-    margin:25px 0;
+tr:nth-child(even) {
+    background: #f8fafc;
 }
 
-.scatterplot img{
-    max-width:100%;
-    height:auto;
-    display:block;
-    margin:0 auto;
-    border-radius:8px;
+tr:hover {
+    background: #edf6ff;
 }
 
-.scatterplot-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
-    margin:25px 0;
+/* SCATTERPLOTS */
+.scatterplot {
+    text-align: center;
+    margin: 25px 0;
 }
 
-.scatterplot-grid .scatterplot{
-    margin:0;
+.scatterplot img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 
-
-/* =========================
-   OUTLIER EXAMPLES
-========================= */
-
-.outlier-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:25px;
-    margin:25px 0;
+.scatterplot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 25px 0;
 }
 
-.outlier-example{
-    text-align:center;
+.scatterplot-grid .scatterplot {
+    margin: 0;
+    min-width: 0;
 }
 
-.outlier-example h3{
-    margin-top:0;
+/* OUTLIER EXAMPLES */
+.outlier-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin: 25px 0;
 }
 
-.outlier-example img{
-    width:100%;
-    height:auto;
-    display:block;
-    margin:20px auto 0;
-    border-radius:8px;
+.outlier-example {
+    text-align: center;
+    min-width: 0;
 }
 
-
-/* =========================
-   HORIZONTAL RULE
-========================= */
-
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
+.outlier-example h3 {
+    margin-top: 0;
 }
 
+.outlier-example img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto 0;
+    border-radius: 8px;
+}
 
-/* =========================
-   ANIMATION
-========================= */
+/* HORIZONTAL RULE */
+hr {
+    border: none;
+    height: 1px;
+    background: #d6e4f0;
+    margin: 30px 0;
+}
 
-@keyframes fadeUp{
+/* ANIMATION */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-    from{
-        opacity:0;
-        transform:translateY(20px);
+/* MOBILE */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
+    .container {
+        padding: 30px 14px;
     }
 
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    .card{
-        padding:20px;
-    }
-
-    th,
-    td{
-        padding:10px;
-        font-size:.95rem;
+    .card {
+        padding: 20px;
     }
 
     .scatterplot-grid,
-    .outlier-grid{
-        grid-template-columns:1fr;
+    .outlier-grid {
+        grid-template-columns: 1fr;
     }
 
+    th, td {
+        padding: 10px;
+        font-size: .95rem;
+    }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<main class="container">
 
     <h1>Subclaims</h1>
 
-<div class="card">
+    <section class="card">
 
-    <h2>Understanding Subclaims</h2>
+        <h2>Understanding Subclaims</h2>
 
-    <p>
-        A <strong>main claim</strong> is the overall position you want your audience to accept.
-        <strong>Subclaims</strong> are the individual reasons that explain why someone should accept
-        that main claim.
-    </p>
+        <p>
+            A <strong>main claim</strong> is the overall position you want your audience to accept.
+            <strong>Subclaims</strong> are the individual reasons that explain why someone should accept
+            that main claim.
+        </p>
 
-    <p>
-        A strong argument often includes three subclaims. Each subclaim should provide a different
-        reason for accepting the main claim rather than repeating the same idea in different words.
-    </p>
+        <p>
+            A strong argument often includes three subclaims. Each subclaim should provide a different
+            reason for accepting the main claim rather than repeating the same idea in different words.
+        </p>
 
-    <p>Visualized, the structure looks like this:</p>
+        <p>Visualized, the structure looks like this:</p>
 
-    </div>
-<div style="width: 100%; margin: 20px auto;">
-  <img
-    src="../map/subclaims.jpg"
-    alt="Argument Map"
-  >
-</div>
+        <div class="image-container">
+            <img
+                src="../map/subclaims.jpg"
+                alt="Diagram showing the structure of a main claim and its supporting subclaims"
+                loading="lazy"
+            >
+        </div>
 
-    <p>
-        Together, the three subclaims support the overall position from three distinct angles.
-    </p>
+        <p>
+            Together, the three subclaims support the overall position from three distinct angles.
+        </p>
 
-<div style="width: 100%; margin: 20px auto;">
-  <img
-    src="../map/subclaims2.jpg"
-    alt="Argument Map"
-  >
-</div>
-</div>
-    
+        <div class="image-container">
+            <img
+                src="../map/subclaims2.jpg"
+                alt="Diagram illustrating three distinct subclaims supporting a main claim"
+                loading="lazy"
+            >
+        </div>
 
-<div class="card">
+    </section>
 
-    <h2>Apply This to Your Own Main Claim</h2>
+    <section class="card">
 
-    <p>
-        When developing your argument, ask yourself:
-    </p>
+        <h2>Apply This to Your Own Main Claim</h2>
 
-    <div class="highlight">
-        <strong>Why should someone accept my main claim?</strong>
-    </div>
+        <p>When developing your argument, ask yourself:</p>
 
-    <p>
-        Identify three distinct answers. Each answer should become a subclaim that supports your
-        overall position.
-    </p>
+        <div class="highlight">
+            <strong>Why should someone accept my main claim?</strong>
+        </div>
 
-    <p>Before moving forward, check your work:</p>
+        <p>
+            Identify three distinct answers. Each answer should become a subclaim that supports your
+            overall position.
+        </p>
 
-    <ul>
-        <li>Does each subclaim support the main claim?</li>
-        <li>Does each subclaim provide a different reason?</li>
-        <li>Are the subclaims specific enough to investigate through research?</li>
-        <li>Do the three subclaims work together to support the overall position?</li>
-    </ul>
+        <p>Before moving forward, check your work:</p>
 
-    <p>
-        In Ethical, Evidence-Based Decision Making (EEBDM), this structure helps you organize a
-        complex position into three clear, distinct reasons. Your subclaims establish the major
-        points your overall argument needs to address.
-    </p>
+        <ul>
+            <li>Does each subclaim support the main claim?</li>
+            <li>Does each subclaim provide a different reason?</li>
+            <li>Are the subclaims specific enough to investigate through research?</li>
+            <li>Do the three subclaims work together to support the overall position?</li>
+        </ul>
 
-</div>
+        <p>
+            In Ethical, Evidence-Based Decision Making (EEBDM), this structure helps you organize a
+            complex position into three clear, distinct reasons. Your subclaims establish the major
+            points your overall argument needs to address.
+        </p>
 
-</div>
+    </section>
+
+</main>
 
 </body>
 </html>
