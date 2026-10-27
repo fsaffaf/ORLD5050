@@ -1,594 +1,378 @@
 
-<!-- =====================================================
-     PHILMAPS / BECAUSE: ARGUMENT MAPPING GUIDE
-     Paste into your GitHub Pages HTML file.
-====================================================== -->
+<!-- PHILMAPS / BECAUSE: HOW TO USE THE EDITOR TOOLS -->
 
-<section class="philmaps-guide">
+<section class="philmaps-tools">
 
-  <style>
-    .philmaps-guide {
-      font-family: Lato, "Lato Extended", Aptos, Arial, sans-serif;
-      color: #263746;
-      line-height: 1.6;
-      max-width: 1100px;
-      margin: 0 auto;
-      font-size: 16px;
-    }
+<style>
+.philmaps-tools {
+  font-family: Lato, "Lato Extended", Aptos, Arial, sans-serif;
+  color: #263746;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 15px;
+}
+.philmaps-tools h2 {
+  color: #174a73;
+  font-size: 1.35rem;
+  margin: 25px 0 10px;
+}
+.philmaps-tools h3 {
+  color: #0e68b3;
+  font-size: 1.05rem;
+  margin: 15px 0 6px;
+}
+.philmaps-tools a {
+  color: #0e68b3;
+}
+.philmaps-tools .tool-intro {
+  background: #f4f9fe;
+  border-left: 4px solid #0e68b3;
+  padding: 14px 18px;
+  margin: 14px 0;
+}
+.philmaps-tools .tool-button {
+  display: inline-block;
+  background: #0e68b3;
+  color: white;
+  padding: 9px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 5px 5px 5px 0;
+}
+.philmaps-tools .tool-button:hover {
+  background: #174a73;
+}
+.philmaps-tools .tool-table-wrap {
+  overflow-x: auto;
+}
+.philmaps-tools table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 20px;
+}
+.philmaps-tools th {
+  background: #174a73;
+  color: white;
+  text-align: left;
+  padding: 9px;
+}
+.philmaps-tools td {
+  border: 1px solid #d8e1ea;
+  padding: 9px;
+  vertical-align: top;
+}
+.philmaps-tools tr:nth-child(even) td {
+  background: #f4f9fe;
+}
+.philmaps-tools code {
+  background: #edf3f8;
+  color: #174a73;
+  padding: 2px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.philmaps-tools .tool-note {
+  background: #fff8ed;
+  border-left: 4px solid #e67e22;
+  padding: 11px 15px;
+  margin: 14px 0;
+}
+.philmaps-tools .tool-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 14px auto;
+  border: 1px solid #d8e1ea;
+}
+.philmaps-tools details {
+  border: 1px solid #d8e1ea;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+.philmaps-tools summary {
+  cursor: pointer;
+  background: #f4f9fe;
+  color: #174a73;
+  font-weight: 700;
+  padding: 11px 14px;
+}
+.philmaps-tools .tool-detail-content {
+  padding: 10px 15px;
+}
+</style>
 
-    .philmaps-guide h2 {
-      color: #174a73;
-      font-size: 1.45rem;
-      margin: 28px 0 12px;
-    }
+<h2>PhilMaps / Because: Editor Tool Guide</h2>
 
-    .philmaps-guide h3 {
-      color: #0e68b3;
-      font-size: 1.08rem;
-      margin: 14px 0 6px;
-    }
-
-    .philmaps-guide p {
-      margin: 8px 0 12px;
-    }
-
-    .philmaps-guide li {
-      margin-bottom: 7px;
-    }
-
-    .philmaps-guide a {
-      color: #0e68b3;
-      font-weight: 600;
-    }
-
-    .philmaps-guide .pm-intro {
-      background: #f4f9fe;
-      border-left: 5px solid #0e68b3;
-      padding: 18px 22px;
-      border-radius: 5px;
-      margin: 18px 0;
-    }
-
-    .philmaps-guide .pm-button {
-      display: inline-block;
-      background: #0e68b3;
-      color: #ffffff;
-      padding: 10px 18px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin: 5px 8px 5px 0;
-    }
-
-    .philmaps-guide .pm-button:hover {
-      background: #174a73;
-    }
-
-    .philmaps-guide .pm-note {
-      background: #fff8ed;
-      border-left: 4px solid #e67e22;
-      padding: 12px 16px;
-      margin: 14px 0;
-    }
-
-    .philmaps-guide .pm-image {
-      display: block;
-      width: 100%;
-      max-width: 900px;
-      height: auto;
-      margin: 14px auto;
-      border: 1px solid #d8e1ea;
-      border-radius: 5px;
-    }
-
-    .philmaps-guide .pm-caption {
-      color: #5b6875;
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: -5px;
-    }
-
-    .philmaps-guide .pm-table-wrap {
-      width: 100%;
-      overflow-x: auto;
-    }
-
-    .philmaps-guide table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 12px 0 20px;
-      font-size: 0.96rem;
-    }
-
-    .philmaps-guide th {
-      background: #174a73;
-      color: white;
-      text-align: left;
-      padding: 10px;
-    }
-
-    .philmaps-guide td {
-      border: 1px solid #d8e1ea;
-      padding: 10px;
-      vertical-align: top;
-    }
-
-    .philmaps-guide tr:nth-child(even) td {
-      background: #f4f9fe;
-    }
-
-    .philmaps-guide code {
-      background: #edf3f8;
-      color: #174a73;
-      padding: 2px 5px;
-      border-radius: 3px;
-      font-size: 0.92em;
-    }
-
-    .philmaps-guide details {
-      border: 1px solid #d8e1ea;
-      border-radius: 5px;
-      margin: 12px 0;
-      background: white;
-    }
-
-    .philmaps-guide summary {
-      cursor: pointer;
-      color: #174a73;
-      font-weight: 700;
-      padding: 12px 15px;
-      background: #f4f9fe;
-    }
-
-    .philmaps-guide .pm-details-content {
-      padding: 12px 18px;
-    }
-
-    .philmaps-guide .pm-shortcut {
-      display: inline-block;
-      min-width: 75px;
-      font-weight: 700;
-      color: #174a73;
-    }
-
-    .philmaps-guide .pm-footer {
-      border-top: 2px solid #0e68b3;
-      margin-top: 28px;
-      padding-top: 16px;
-    }
-
-    @media (max-width: 600px) {
-      .philmaps-guide {
-        font-size: 15px;
-      }
-
-      .philmaps-guide .pm-intro {
-        padding: 14px;
-      }
-
-      .philmaps-guide table {
-        font-size: 0.88rem;
-      }
-    }
-  </style>
-
-  <!-- INTRODUCTION -->
-
-  <h2>PhilMaps: How to Create an Argument Map</h2>
-
-  <div class="pm-intro">
-    <p>
-      <strong>PhilMaps</strong> teaches you how to organize an argument visually.
-      Its argument-mapping editor, called <strong>Because</strong>, lets you
-      create boxes containing claims and connect them to show how reasons
-      support or challenge a main claim.
-    </p>
-
-    <a class="pm-button"
-       href="https://app.philmaps.com/"
-       target="_blank"
-       rel="noopener noreferrer">
-      Open the Because Editor
-    </a>
-
-    <a class="pm-button"
-       href="https://philmaps.com/basics/"
-       target="_blank"
-       rel="noopener noreferrer">
-      Learn the Basics
-    </a>
-  </div>
+<div class="tool-intro">
+  Use this page as a reference for operating the Because argument-map
+  editor. It explains how to add and edit boxes, move items, change
+  display settings, zoom, and save your work.
 
   <p>
-    You do not need to install software or create an account to begin.
-    You can build your map in your browser, save an editable file,
-    and export a printable version.
+    <a class="tool-button"
+       href="https://app.philmaps.com/app/"
+       target="_blank" rel="noopener noreferrer">
+      Open the Editor
+    </a>
+    <a class="tool-button"
+       href="https://philmaps.com/"
+       target="_blank" rel="noopener noreferrer">
+      PhilMaps Website
+    </a>
   </p>
+</div>
 
-  <!-- WHAT AN ARGUMENT MAP LOOKS LIKE -->
+<h2>1. Add, Edit, and Delete Boxes</h2>
 
-  <h2>1. Understand the Structure of an Argument Map</h2>
+<div class="tool-table-wrap">
+<table>
+<thead>
+<tr>
+  <th>Action</th>
+  <th>How to do it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Add a box</td>
+  <td>Select a box and press <code>Enter</code>.</td>
+</tr>
+<tr>
+  <td>Add a co-premise box</td>
+  <td>Select a box and press <code>Tab</code>.</td>
+</tr>
+<tr>
+  <td>Edit box text</td>
+  <td>Select the box and press <code>F2</code> or <code>Space</code>.</td>
+</tr>
+<tr>
+  <td>Delete a box</td>
+  <td>Select it and press <code>Delete</code>.</td>
+</tr>
+<tr>
+  <td>Add an objection</td>
+  <td>Select a box and press <code>Alt + O</code>.</td>
+</tr>
+<tr>
+  <td>Add a sticky note</td>
+  <td>Select a box and press <code>Alt + N</code>.</td>
+</tr>
+<tr>
+  <td>Undo</td>
+  <td>Press <code>Ctrl + Z</code> on Windows.</td>
+</tr>
+<tr>
+  <td>Redo</td>
+  <td>Press <code>Ctrl + Y</code> on Windows.</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-  <p>
-    An argument map displays the relationship between a conclusion and
-    the reasons offered in support of it. The main claim appears above
-    its supporting reasons and objections.
-  </p>
+<h2>2. Move and Resize Boxes</h2>
 
-  <a href="https://philmaps.com/" target="_blank" rel="noopener noreferrer">
-    <img
-      class="pm-image"
-      src="https://philmaps.com/"
-      alt="Visit PhilMaps to view examples of argument maps."
-      loading="lazy">
+<div class="tool-table-wrap">
+<table>
+<thead>
+<tr>
+  <th>Action</th>
+  <th>How to do it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Move a box</td>
+  <td>
+    Select the box. Open <strong>Edit → Move…</strong> or press
+    <code>M</code>. Select the destination box or click an empty
+    area of the map to position it there.
+  </td>
+</tr>
+<tr>
+  <td>Move a box left or right</td>
+  <td>
+    Use <strong>Edit → Move left</strong> or
+    <strong>Edit → Move right</strong>.
+  </td>
+</tr>
+<tr>
+  <td>Make a box wider</td>
+  <td>Use <strong>Edit → Wider claim</strong>.</td>
+</tr>
+<tr>
+  <td>Make a box narrower</td>
+  <td>Use <strong>Edit → Narrower claim</strong>.</td>
+</tr>
+<tr>
+  <td>Detach a box</td>
+  <td>Select it and press <code>D</code>.</td>
+</tr>
+<tr>
+  <td>Collapse or expand a branch</td>
+  <td>Select the box and press <code>F</code>.</td>
+</tr>
+<tr>
+  <td>Select multiple boxes</td>
+  <td>Hold <code>Shift</code> and use the arrow keys.</td>
+</tr>
+<tr>
+  <td>Navigate between boxes</td>
+  <td>Use the arrow keys.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>3. Change Colors and Display Settings</h2>
+
+<div class="tool-table-wrap">
+<table>
+<thead>
+<tr>
+  <th>Action</th>
+  <th>How to do it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Switch between light and dark mode</td>
+  <td>Press <code>Shift + T</code>, or use the View menu.</td>
+</tr>
+<tr>
+  <td>Use high-contrast colors</td>
+  <td>Select <strong>View → High-contrast map colors</strong>.</td>
+</tr>
+<tr>
+  <td>Show or hide claim numbering</td>
+  <td>Use the numbering option in the View menu.</td>
+</tr>
+<tr>
+  <td>Change a claim number to a custom label</td>
+  <td>Click the claim number and enter a label.</td>
+</tr>
+<tr>
+  <td>Add or edit a connector label</td>
+  <td>Select the relevant claim and press <code>L</code>.</td>
+</tr>
+<tr>
+  <td>Enable neutral connectors</td>
+  <td>
+    Select <strong>View → Allow neutral connectors</strong>.
+  </td>
+</tr>
+<tr>
+  <td>Toggle an item's type</td>
+  <td>Select the item and press <code>T</code> or <code>Alt + T</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="tool-note">
+  <strong>Note:</strong> The high-contrast option changes the colors
+  used to display the map. It does not permanently change the saved
+  map file. If you want to change an individual box's background,
+  look for the relevant claim-formatting controls in the editor.
+</div>
+
+<h2>4. Zoom and Navigate the Map</h2>
+
+<div class="tool-table-wrap">
+<table>
+<thead>
+<tr>
+  <th>Action</th>
+  <th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Zoom in</td>
+  <td><code>Z</code></td>
+</tr>
+<tr>
+  <td>Zoom out</td>
+  <td><code>Shift + Z</code></td>
+</tr>
+<tr>
+  <td>Move between items</td>
+  <td>Arrow keys</td>
+</tr>
+<tr>
+  <td>Reorder co-premises</td>
+  <td><code>Ctrl + Left/Right</code> on Windows</td>
+</tr>
+<tr>
+  <td>Leave the map and return to the menus</td>
+  <td><code>Escape</code></td>
+</tr>
+<tr>
+  <td>View all keyboard shortcuts</td>
+  <td><code>?</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>5. Open and Save Files</h2>
+
+<h3>Open an Existing Map</h3>
+
+<ol>
+  <li>Open the Because editor.</li>
+  <li>Select <strong>File → Open</strong>.</li>
+  <li>Select your saved <code>.mup</code> file.</li>
+</ol>
+
+<p>
+  You can also drag a <code>.mup</code> file into the editor window.
+</p>
+
+<h3>Save an Editable Map</h3>
+
+<ol>
+  <li>Open the <strong>File</strong> menu.</li>
+  <li>Select <strong>Save</strong>.</li>
+  <li>Choose where to save the file if prompted.</li>
+  <li>Keep the file with its <code>.mup</code> extension.</li>
+</ol>
+
+<h3>Export or Print a PDF</h3>
+
+<ol>
+  <li>Open the editor's print command, if available.</li>
+  <li>In the browser's print dialog, choose <strong>Save as PDF</strong>.</li>
+  <li>Select the destination and save.</li>
+</ol>
+
+<div class="tool-note">
+  <strong>Important:</strong> A <code>.mup</code> file is editable.
+  A PDF is intended for viewing or printing and is not a replacement
+  for the editable map.
+</div>
+
+<h3>Save to Google Drive or OneDrive</h3>
+
+<p>
+  If the cloud-storage options are enabled in your editor, use the
+  relevant File menu option and follow the sign-in and file-selection
+  prompts. You can also save a local copy to your computer.
+</p>
+
+<h2>6. Find the Full Keyboard Shortcut List</h2>
+
+<p>
+  Open the editor and press <code>?</code> while the map has focus.
+  You can also look under <strong>Help → Keyboard shortcuts</strong>.
+  The displayed reference lists the available shortcuts for your platform.
+</p>
+
+<p>
+  <a href="https://app.philmaps.com/app/"
+     target="_blank" rel="noopener noreferrer">
+    Open Because to view the current keyboard reference.
   </a>
-
-  <p class="pm-caption">
-    Visit the <a href="https://philmaps.com/" target="_blank"
-    rel="noopener noreferrer">PhilMaps website</a> to view its interactive
-    argument-map examples.
-  </p>
-
-  <h3>Important Parts of the Map</h3>
-
-  <ul>
-    <li>
-      <strong>Main claim:</strong> The position you want your audience to accept.
-    </li>
-    <li>
-      <strong>Supporting reason:</strong> A statement explaining why the
-      main claim should be accepted.
-    </li>
-    <li>
-      <strong>Co-premises:</strong> Two or more claims that work together
-      to support another claim.
-    </li>
-    <li>
-      <strong>Objection:</strong> A statement that challenges a claim
-      or its supporting reasoning.
-    </li>
-    <li>
-      <strong>Implicit claim:</strong> An assumption that the argument
-      relies on but does not explicitly state.
-    </li>
-  </ul>
-
-  <!-- CREATE BOXES -->
-
-  <h2>2. Create and Edit Claim Boxes</h2>
-
-  <p>
-    Each box contains one claim: a statement that can be evaluated as true
-    or false. Keep each box focused on one idea.
-  </p>
-
-  <div class="pm-table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Action</th>
-          <th>How to do it</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Create a supporting reason</td>
-          <td>Select a claim and press <code>Enter</code>.</td>
-        </tr>
-        <tr>
-          <td>Add a co-premise</td>
-          <td>Select a claim and press <code>Tab</code>.</td>
-        </tr>
-        <tr>
-          <td>Edit a claim</td>
-          <td>Select the claim and press <code>F2</code> or <code>Space</code>.</td>
-        </tr>
-        <tr>
-          <td>Create an objection</td>
-          <td>Select a claim and press <code>Alt + O</code>.</td>
-        </tr>
-        <tr>
-          <td>Move a claim</td>
-          <td>Drag it to a new position, or use the Edit menu's Move command.</td>
-        </tr>
-        <tr>
-          <td>Remove a claim</td>
-          <td>Select it and press <code>Delete</code>.</td>
-        </tr>
-        <tr>
-          <td>Disconnect a claim</td>
-          <td>Select it and press <code>D</code>.</td>
-        </tr>
-        <tr>
-          <td>Collapse or expand a branch</td>
-          <td>Select the claim and press <code>F</code>.</td>
-        </tr>
-        <tr>
-          <td>Undo an action</td>
-          <td>Press <code>Ctrl + Z</code> on Windows.</td>
-        </tr>
-        <tr>
-          <td>Redo an action</td>
-          <td>Press <code>Ctrl + Y</code> on Windows.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="pm-note">
-    <strong>Important:</strong> Pressing <code>Tab</code> while the map
-    has focus creates a co-premise. To move out of the map and back to
-    the menus, press <code>Escape</code>.
-  </div>
-
-  <!-- COLORS -->
-
-  <h2>3. Understand and Change Colors</h2>
-
-  <p>
-    In Because, bracket colors communicate the logical relationship
-    between claims. They are not just decorative colors.
-  </p>
-
-  <div class="pm-table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Visual feature</th>
-          <th>Meaning</th>
-          <th>How to use it</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong style="color:#23834b;">Green rounded bracket</strong></td>
-          <td>Support</td>
-          <td>Connects reasons that support a claim.</td>
-        </tr>
-        <tr>
-          <td><strong style="color:#c62828;">Red square bracket</strong></td>
-          <td>Objection</td>
-          <td>Connects a challenge to a claim or argument.</td>
-        </tr>
-        <tr>
-          <td><strong style="color:#2467b2;">Blue flat bracket</strong></td>
-          <td>Neutral connector</td>
-          <td>Connects claims without specifying support or objection.</td>
-        </tr>
-        <tr>
-          <td><strong>Dashed claim border</strong></td>
-          <td>Implicit claim</td>
-          <td>Indicates an unstated assumption.</td>
-        </tr>
-        <tr>
-          <td><strong>Yellow sticky note</strong></td>
-          <td>Additional note</td>
-          <td>Stores contextual information outside the argument itself.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>Change the Appearance of Your Map</h3>
-
-  <ul>
-    <li>
-      <strong>Switch between light and dark mode:</strong>
-      Open the View menu or press <code>Shift + T</code>.
-    </li>
-    <li>
-      <strong>Improve color contrast:</strong>
-      Open <strong>View → High-contrast map colors</strong>.
-    </li>
-    <li>
-      <strong>Show or hide claim numbers:</strong>
-      Use the numbering option in the View menu.
-    </li>
-    <li>
-      <strong>Change a claim number to a custom label:</strong>
-      Click the claim number and enter a short label.
-    </li>
-    <li>
-      <strong>Add a sticky note:</strong>
-      Select a claim and press <code>Alt + N</code>.
-    </li>
-    <li>
-      <strong>Label a connector:</strong>
-      Select the claim and press <code>L</code>.
-    </li>
-    <li>
-      <strong>Enable neutral connectors:</strong>
-      Select <strong>View → Allow neutral connectors</strong>.
-      This option is off by default.
-    </li>
-  </ul>
-
-  <div class="pm-note">
-    <strong>Remember:</strong> Green means support, red means objection,
-    and blue means neutral when neutral connectors are enabled. The shapes
-    of the brackets also differ, so do not rely on color alone.
-  </div>
-
-  <!-- NAVIGATION -->
-
-  <h2>4. Navigate and Organize Your Map</h2>
-
-  <div class="pm-table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Action</th>
-          <th>Shortcut</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Move between claims</td>
-          <td>Arrow keys</td>
-        </tr>
-        <tr>
-          <td>Select multiple claims</td>
-          <td><code>Shift</code> + arrow keys</td>
-        </tr>
-        <tr>
-          <td>Reorder co-premises</td>
-          <td><code>Ctrl</code> + Left/Right on Windows</td>
-        </tr>
-        <tr>
-          <td>Zoom in</td>
-          <td><code>Z</code></td>
-        </tr>
-        <tr>
-          <td>Zoom out</td>
-          <td><code>Shift + Z</code></td>
-        </tr>
-        <tr>
-          <td>View all keyboard shortcuts</td>
-          <td><code>?</code></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>
-    You can also use the menus to move, resize, and rearrange claims.
-    You do not have to rely on dragging to organize your map.
-  </p>
-
-  <!-- SAVE -->
-
-  <h2>5. Save Your Argument Map</h2>
-
-  <h3>Option A: Save an Editable File</h3>
-
-  <ol>
-    <li>Open the Because editor.</li>
-    <li>Open the <strong>File</strong> menu.</li>
-    <li>Select <strong>Save</strong>.</li>
-    <li>Save the map as a <code>.mup</code> file on your computer.</li>
-  </ol>
-
-  <p>
-    The <code>.mup</code> file preserves your editable argument map.
-    You can reopen it later using <strong>File → Open</strong> or by
-    dragging the file into the editor.
-  </p>
-
-  <h3>Option B: Save a PDF</h3>
-
-  <ol>
-    <li>Open your completed map.</li>
-    <li>Use the editor's print option, if available.</li>
-    <li>In the browser's print window, select <strong>Save as PDF</strong>.</li>
-    <li>Choose a location and save the PDF.</li>
-  </ol>
-
-  <p>
-    A PDF is useful for viewing and submitting your map, but it is not
-    an editable replacement for the original <code>.mup</code> file.
-  </p>
-
-  <h3>Option C: Use Cloud Storage</h3>
-
-  <p>
-    Google Drive and Microsoft OneDrive integrations are available in
-    supported deployments of Because. Use the relevant File menu option
-    if it is available and follow the prompts to connect and save your map.
-  </p>
-
-  <div class="pm-note">
-    <strong>Do not rely only on autosave.</strong> Because keeps a browser
-    recovery copy, but this is not the same as saving a file you can
-    retrieve later. Save your work to a location you control.
-  </div>
-
-  <!-- WORKFLOW -->
-
-  <h2>6. Recommended Workflow for Your Argumentative Essay</h2>
-
-  <ol>
-    <li>
-      <strong>Write your main claim.</strong>
-      State the position you want to defend.
-    </li>
-    <li>
-      <strong>Add your supporting reasons.</strong>
-      Select the main claim and press <code>Enter</code> to add a reason.
-    </li>
-    <li>
-      <strong>Add supporting claims.</strong>
-      Use co-premises when two or more claims must work together
-      to support a conclusion.
-    </li>
-    <li>
-      <strong>Identify assumptions.</strong>
-      Ask what must be true for each reason to support the claim.
-    </li>
-    <li>
-      <strong>Add objections.</strong>
-      Consider reasonable arguments against your position.
-    </li>
-    <li>
-      <strong>Review the logic.</strong>
-      Check whether each reason actually supports the claim it connects to.
-    </li>
-    <li>
-      <strong>Save your map.</strong>
-      Save the editable file and export a PDF if required.
-    </li>
-  </ol>
-
-  <!-- ADDITIONAL HELP -->
-
-  <h2>7. Additional Resources</h2>
-
-  <details>
-    <summary>PhilMaps: Learn the Basics</summary>
-    <div class="pm-details-content">
-      <p>
-        A guided introduction to reasons, objections, implicit claims,
-        and the structure of argument maps.
-      </p>
-      <a href="https://philmaps.com/basics/"
-         target="_blank" rel="noopener noreferrer">
-        Open the Basics lessons
-      </a>
-    </div>
-  </details>
-
-  <details>
-    <summary>PhilMaps: Handy Hints</summary>
-    <div class="pm-details-content">
-      <p>
-        Advice for writing clearer claims, structuring reasons, and
-        improving the quality of an argument map.
-      </p>
-      <a href="https://philmaps.com/hints/"
-         target="_blank" rel="noopener noreferrer">
-        Read the Handy Hints
-      </a>
-    </div>
-  </details>
-
-  <details>
-    <summary>View All Keyboard Shortcuts</summary>
-    <div class="pm-details-content">
-      <p>
-        Open the editor and press <code>?</code> while the map has focus.
-        You can also consult the keyboard reference directly in the editor.
-      </p>
-      <a href="https://app.philmaps.com/"
-         target="_blank" rel="noopener noreferrer">
-        Open Because
-      </a>
-    </div>
-  </details>
-
-  <div class="pm-footer">
-    <p>
-      <strong>Before submitting:</strong> Make sure your main claim is
-      clear, your reasons are connected correctly, objections are included
-      where appropriate, and your saved file opens successfully.
-    </p>
-  </div>
+</p>
 
 </section>
