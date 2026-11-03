@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article Research Notes Generator</title>
+<style>
+.article-tool {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.5;
+}
+
+.article-tool h2 {
+    color: #174a73;
+    font-size: 22px;
+}
+
+.article-tool h3 {
+    color: #0e68b3;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.article-tool h4 {
+    color: #174a73;
+    font-size: 15px;
+    margin: 0 0 8px;
+}
+
+.article-tool p {
+    margin: 5px 0 12px;
+}
+
+.article-tool .intro {
+    background: #f4f9fe;
+    border-left: 4px solid #0e68b3;
+    padding: 14px;
+    margin-bottom: 20px;
+}
+
+.article-tool .section {
+    border: 1px solid #d9e2ec;
+    border-radius: 7px;
+    padding: 18px;
+    margin-bottom: 16px;
+    background: white;
+}
+
+/* ARTICLE INFORMATION: TWO-COLUMN LAYOUT */
+
+.article-tool .info-row {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    align-items: center;
+    gap: 15px;
+    margin: 12px 0;
+}
+
+.article-tool .info-row > label {
+    margin: 0;
+}
+
+.article-tool .info-row input {
+    margin: 0;
+}
+
+.article-tool label {
+    display: block;
+    font-weight: bold;
+    color: #174a73;
+    margin: 12px 0 5px;
+}
+
+.article-tool input,
+.article-tool textarea,
+.article-tool select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #bdcbd8;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.article-tool select {
+    cursor: pointer;
+}
+
+.article-tool select option {
+    color: #333333;
+    background-color: #ffffff;
+}
+
+.article-tool input::placeholder,
+.article-tool textarea::placeholder {
+    color: #777777;
+    opacity: 1;
+}
+
+.article-tool textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+.article-tool input:focus,
+.article-tool textarea:focus,
+.article-tool select:focus {
+    outline: 2px solid #0e68b3;
+    border-color: #0e68b3;
+}
+
+.article-tool .hint {
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+}
+
+.article-tool .evidence-box {
+    border: 1px solid #d9e2ec;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 16px 0;
+    background: #fafcfe;
+}
+
+.article-tool .required {
+    color: #c45b18;
+}
+
+.article-tool .output {
+    background: #f4f9fe;
+    border: 1px solid #b9d3e8;
+    border-radius: 7px;
+    padding: 18px;
+    margin-top: 25px;
+}
+
+.article-tool .output textarea {
+    min-height: 450px;
+    background: white;
+    line-height: 1.6;
+}
+
+.article-tool button {
+    border: none;
+    border-radius: 5px;
+    padding: 11px 17px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 8px 5px 5px 0;
+}
+
+.article-tool .primary {
+    background: #0e68b3;
+    color: white;
+}
+
+.article-tool .secondary {
+    background: #e67e22;
+    color: white;
+}
+
+.article-tool .reset {
+    background: #e9edf2;
+    color: #333;
+}
+
+.article-tool .remove-evidence {
+    background: #e9edf2;
+    color: #333;
+    font-size: 12px;
+    padding: 7px 11px;
+}
+
+.article-tool button:hover {
+    opacity: .88;
+}
+
+.article-tool .small-note {
+    font-size: 13px;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+    .article-tool .section {
+        padding: 12px;
+    }
+
+    .article-tool .evidence-box {
+        padding: 11px;
+    }
+
+    .article-tool .info-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .article-tool .info-row > label {
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="article-tool">
+
+
+
+<h2>Article Research Notes Generator</h2>
+
+<div class="intro">
+    <strong>Purpose:</strong> Use this tool to organize information from each article you decide to keep for your research paper.
+
+    <p>Read the article, answer the questions, and record information in your own words. Use the dropdown menus to connect evidence to the specific subclaim it supports.</p>
+
+    <p><strong>Important:</strong> Record direct quotations accurately. You will use these notes when writing your argumentative paper.</p>
+</div>
+
+<!-- SECTION 1: ARTICLE INFORMATION -->
+
+<div class="section">
+    <h3>1. Article Information</h3>
+
+    <div class="info-row">
+        <label for="articleTitle">Article Title <span class="required">*</span></label>
+        <input id="articleTitle" placeholder="Enter the full article title">
+    </div>
+
+    <div class="info-row">
+        <label for="year">Publication Year</label>
+        <input id="year" placeholder="e.g., 2024">
+    </div>
+
+    <div class="info-row">
+        <label for="publication">Journal or Publication</label>
+        <input id="publication" placeholder="e.g., Journal of Applied Psychology, Harvard Business Review, Forbes">
+    </div>
+
+    <div class="info-row">
+        <label for="sourceType">Source Type</label>
+        <select id="sourceType">
+            <option value="">Select the type of source</option>
+            <option>Peer-reviewed scientific research</option>
+            <option>Academic book or book chapter</option>
+            <option>Government report or public-sector data</option>
+            <option>Internal company or organizational data</option>
+            <option>Industry or market research report</option>
+            <option>Professional association or standards publication</option>
+            <option>Company or organizational report / white paper</option>
+            <option>News article or media report</option>
+            <option>Expert interview or personal communication</option>
+            <option>Other / Not sure</option>
+        </select>
+    </div>
+
+    <div class="info-row">
+        <label for="url">Article Link</label>
+        <input id="url" placeholder="Paste a URL, HTML, or OneDrive link">
+    </div>
+</div>
+
+<!-- SECTION 2: STUDENT SUBCLAIMS -->
+
+<div class="section">
+    <h3>2. Your Three Subclaims</h3>
+
+    <p class="hint">
+        Enter the three subclaims from your argument map. These will appear in the evidence dropdown menus below so you can connect each quotation to the correct part of your argument.
+    </p>
+
+    <label>Subclaim A <span class="required">*</span></label>
+    <textarea id="subclaimA" placeholder="Enter your first subclaim."></textarea>
+
+    <label>Subclaim B <span class="required">*</span></label>
+    <textarea id="subclaimB" placeholder="Enter your second subclaim."></textarea>
+
+    <label>Subclaim C <span class="required">*</span></label>
+    <textarea id="subclaimC" placeholder="Enter your third subclaim."></textarea>
+</div>
+
+<!-- SECTION 3: PURPOSE -->
+
+<div class="section">
+    <h3>3. Purpose of the Article</h3>
+
+    <p class="hint">
+        Identify what the authors wanted to investigate, examine, or communicate.
+    </p>
+
+    <label>What is the primary purpose of this article?</label>
+
+    <select id="purposeType">
+        <option value="">Select the purpose that best describes the article</option>
+        <option>Investigates a research question or hypothesis</option>
+        <option>Examines a problem or issue</option>
+        <option>Evaluates a program, policy, or intervention</option>
+        <option>Explores relationships between variables</option>
+        <option>Reviews and summarizes existing research</option>
+        <option>Develops an argument or position</option>
+        <option>Provides professional recommendations or guidance</option>
+        <option>Other / Not sure</option>
+    </select>
+</div>
+
+<!-- SECTION 4: FINDINGS -->
+
+<div class="section">
+    <h3>4. Main Findings or Key Points</h3>
+
+    <textarea
+        id="findings"
+        style="min-height:180px;"
+        placeholder="Enter text here."
+    ></textarea>
+</div>
+
+<!-- SECTION 5: SUPPORTING EVIDENCE -->
+
+<div class="section">
+    <h3>5. Evidence That Supports My Argument</h3>
+
+    <p class="hint">
+        Identify direct quotations from the article that could support your argument. Connect each quotation to the specific subclaim it supports.
+    </p>
+
+    <p class="hint">
+        <strong>Remember:</strong> A quotation alone does not explain why your argument is correct. You must explain how the evidence supports the specific subclaim you select.
+    </p>
+
+    <div id="evidenceContainer"></div>
+
+    <button type="button" class="secondary" onclick="addEvidence()">
+        + Add Another Piece of Evidence
+    </button>
+
+    <p class="small-note">
+        Add as many pieces of evidence as you need. You do not need to find a specific number of quotations in every article.
+    </p>
+</div>
+
+<!-- SECTION 6: LIMITATIONS -->
+
+<div class="section">
+    <h3>6. Limitations and Considerations</h3>
+
+    <p class="hint">
+        The questions below change based on the source type you selected. Consider what might affect the source's accuracy, credibility, relevance, or usefulness. You do not need to answer questions that do not apply.
+    </p>
+
+    <div id="limitationsQuestions">
+        <p class="small-note">Select a source type in Section 1 to see relevant questions.</p>
+    </div>
+
+    <label>Other Limitations or Concerns (Optional)</label>
+    <textarea id="limitations" placeholder="Describe anything else that could affect the strength, relevance, or usefulness of this source."></textarea>
+</div>
+
+<!-- GENERATE NOTES -->
+
+<div class="button-row">
+    <button type="button" class="primary" onclick="generateNotes()">
+        Generate Research Notes
+    </button>
+
+    <button type="button" class="reset" onclick="resetNotes()">
+        Start Over
+    </button>
+</div>
+
+<!-- OUTPUT -->
+
+<div class="output" id="outputSection" style="display:none;">
+
+    <h3>Your Article Research Notes</h3>
+
+    <p class="small-note">
+        Review your notes below. You can edit the text directly before copying it into your research document.
+    </p>
+
+    <textarea id="generatedNotes"></textarea>
+
+    <button type="button" class="secondary" onclick="copyNotes()">
+        Copy Research Notes
+    </button>
+
+    <p id="copyMessage" class="small-note" aria-live="polite"></p>
+</div>
+
+</div>
+
+<script>
+
+// Track the number of evidence entries.
+let evidenceCount = 0;
+
+
+// GET FIELD VALUE
+
+function getValue(id) {
+    return document.getElementById(id).value.trim();
+}
+
+
+// SOURCE-SPECIFIC LIMITATION QUESTIONS
+
+const limitationQuestions = {
+    "Peer-reviewed scientific research": [
+        { label: "How large was the study sample?", options: ["Large", "Moderate", "Small", "Not reported / Not sure", "Not applicable"] },
+        { label: "How well does the sample represent the population being discussed?", options: ["Appears representative", "Somewhat representative", "May not be representative", "Not enough information", "Not applicable"] },
+        { label: "What type of research design was used?", options: ["Experimental", "Quasi-experimental", "Correlational / observational", "Qualitative", "Mixed methods", "Review / meta-analysis", "Not sure"] },
+        { label: "Are there concerns about the measures or data collection?", options: ["No obvious concerns", "Self-reported measures", "Measures may not fully capture the concept", "Limited or incomplete data", "Other concern", "Not enough information", "Not applicable"] },
+        { label: "Does the study acknowledge limitations?", options: ["Yes", "No", "Not sure"] }
+    ],
+    "Academic book or book chapter": [
+        { label: "What is the main basis for the information?", options: ["Research evidence and cited sources", "Professional expertise or theory", "A combination of research and expertise", "Personal perspective or interpretation", "Not clear"] },
+        { label: "Is the information current enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Does the author discuss perspectives or evidence that differ from their position?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Are the claims supported with references or examples?", options: ["Consistently", "Somewhat", "Rarely", "Not sure"] }
+    ],
+    "Government report or public-sector data": [
+        { label: "Is the data collection method explained?", options: ["Clearly explained", "Partly explained", "Not explained", "Not sure"] },
+        { label: "What population, location, or time period does the information cover?", options: ["Clearly defined and relevant", "Defined but limited", "Not clearly defined", "Not sure"] },
+        { label: "Is the data recent enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Are definitions, measures, or reporting procedures explained?", options: ["Clearly", "Partly", "No", "Not sure"] },
+        { label: "Are limitations or gaps in the data acknowledged?", options: ["Yes", "No", "Not sure"] }
+    ],
+    "Internal company or organizational data": [
+        { label: "What time period does the data cover?", options: ["Clearly identified and relevant", "Identified but limited", "Not identified", "Not sure"] },
+        { label: "Which employees, departments, locations, or operations are included?", options: ["Coverage is clearly described", "Some groups or areas are excluded", "Coverage is unclear", "Not sure"] },
+        { label: "Are the data collection and measurement procedures explained?", options: ["Clearly", "Partly", "No", "Not sure"] },
+        { label: "Could missing, incomplete, or selectively reported records affect the results?", options: ["Unlikely", "Possibly", "Likely", "Not enough information"] },
+        { label: "Could the organization's interests or goals influence how the data are presented?", options: ["Unlikely", "Possibly", "Likely", "Not enough information"] }
+    ],
+    "Industry or market research report": [
+        { label: "Does the report explain how information was collected?", options: ["Clearly", "Partly", "No", "Not sure"] },
+        { label: "Is the sample or data source appropriate for the industry or market being discussed?", options: ["Appears appropriate", "Somewhat", "May not be appropriate", "Not enough information"] },
+        { label: "Who funded or produced the report?", options: ["Independent research organization", "Industry organization", "Company with a business interest", "Not disclosed / Not sure"] },
+        { label: "Is the report recent enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Are the report's methods and limitations transparent?", options: ["Yes", "Partly", "No", "Not sure"] }
+    ],
+    "Professional association or standards publication": [
+        { label: "Who issued the guidance or standard?", options: ["Recognized professional or standards organization", "Industry membership organization", "Other organization", "Not sure"] },
+        { label: "What is the basis for the guidance?", options: ["Research evidence", "Professional consensus or expert practice", "Regulatory or technical requirements", "Combination of these", "Not explained"] },
+        { label: "Is the guidance current?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Does the guidance apply to the industry or situation in your argument?", options: ["Directly applies", "Partly applies", "Does not clearly apply", "Not sure"] }
+    ],
+    "Company or organizational report / white paper": [
+        { label: "Who produced or sponsored the report?", options: ["Organization discussing its own work", "Company selling a product or service", "Independent organization", "Not clear"] },
+        { label: "Does the report explain how its information or evidence was collected?", options: ["Clearly", "Partly", "No", "Not sure"] },
+        { label: "Are data, sources, or references provided so claims can be checked?", options: ["Yes, in detail", "Somewhat", "No", "Not sure"] },
+        { label: "Could the organization benefit from the conclusions it presents?", options: ["Unlikely", "Possibly", "Clearly", "Not enough information"] },
+        { label: "Is the report current and relevant to your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] }
+    ],
+    "News article or media report": [
+        { label: "Does the article identify its sources?", options: ["Yes, named sources and documents", "Some sources are identified", "Sources are vague or anonymous", "Not sure"] },
+        { label: "Does it distinguish verified facts from opinions or commentary?", options: ["Clearly", "Somewhat", "No", "Not sure"] },
+        { label: "Can the main claims be confirmed by other reliable sources?", options: ["Yes", "Somewhat", "No / Not found", "Not checked"] },
+        { label: "Is the article recent enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Does the article provide enough context to understand the issue?", options: ["Yes", "Somewhat", "No", "Not sure"] }
+    ],
+    "Expert interview or personal communication": [
+        { label: "How is the person's expertise relevant to your topic?", options: ["Direct professional or research experience", "Related experience", "Limited connection to the topic", "Not clear"] },
+        { label: "Is the information based on firsthand experience, professional judgment, or opinion?", options: ["Firsthand experience", "Professional judgment", "Personal opinion", "A combination", "Not clear"] },
+        { label: "Could the person's role, organization, or interests influence their perspective?", options: ["Unlikely", "Possibly", "Likely", "Not enough information"] },
+        { label: "Can important points from the interview be checked against other sources?", options: ["Yes", "Somewhat", "No", "Not checked"] },
+        { label: "Does the interview represent a wider range of perspectives?", options: ["Yes, multiple perspectives are included", "Only one perspective is included", "Not intended to represent a wider group", "Not sure"] }
+    ],
+    "Other / Not sure": [
+        { label: "Is the source's author or producing organization identified and credible?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Does the source explain where its information comes from?", options: ["Clearly", "Partly", "No", "Not sure"] },
+        { label: "Is the information current and relevant to your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
+        { label: "Can the main claims be checked against other reliable sources?", options: ["Yes", "Somewhat", "No", "Not checked"] }
+    ]
+};
+
+function renderSourceLimitations() {
+    const sourceType = getValue("sourceType");
+    const container = document.getElementById("limitationsQuestions");
+    container.innerHTML = "";
+
+    if (!sourceType) {
+        container.innerHTML = '<p class="small-note">Select a source type in Section 1 to see relevant questions.</p>';
+        return;
+    }
+
+    const questions = limitationQuestions[sourceType] || limitationQuestions["Other / Not sure"];
+
+    questions.forEach(function(question, index) {
+        const label = document.createElement("label");
+        label.textContent = question.label;
+
+        const select = document.createElement("select");
+        select.className = "source-limitation";
+        select.dataset.question = question.label;
+        select.id = "sourceLimitation" + index;
+
+        const blank = document.createElement("option");
+        blank.value = "";
+        blank.textContent = "Select an option";
+        select.appendChild(blank);
+
+        question.options.forEach(function(value) {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = value;
+            select.appendChild(option);
+        });
+
+        container.appendChild(label);
+        container.appendChild(select);
+    });
+}
+
+
+// UPDATE EVIDENCE DROPDOWNS USING STUDENT SUBCLAIMS
+
+function updateSubclaimDropdowns() {
+
+    const subclaims = [
+        {
+            label: "Subclaim A",
+            value: getValue("subclaimA")
+        },
+        {
+            label: "Subclaim B",
+            value: getValue("subclaimB")
+        },
+        {
+            label: "Subclaim C",
+            value: getValue("subclaimC")
+        }
+    ];
+
+    document.querySelectorAll(".argument-dropdown").forEach(function(dropdown) {
+
+        const currentValue = dropdown.value;
+
+        dropdown.innerHTML = '<option value="">Select ONE subclaim</option>';
+
+        subclaims.forEach(function(subclaim) {
+
+            if (subclaim.value) {
+
+                const option = document.createElement("option");
+
+                option.value = subclaim.label;
+
+                option.textContent =
+                    subclaim.label + ": " + subclaim.value;
+
+                dropdown.appendChild(option);
+            }
+        });
+
+        if ([...dropdown.options].some(function(option) {
+            return option.value === currentValue;
+        })) {
+            dropdown.value = currentValue;
+        }
+    });
+}
+
+
+// ADD AN EVIDENCE ENTRY
+
+function addEvidence() {
+
+    evidenceCount++;
+
+    const container = document.getElementById("evidenceContainer");
+
+    const evidenceBox = document.createElement("div");
+
+    evidenceBox.className = "evidence-box";
+
+    evidenceBox.id = "evidenceBox" + evidenceCount;
+
+    evidenceBox.innerHTML = `
+        <h4>Evidence ${evidenceCount}</h4>
+
+        <label>Direct Quotation <span class="required">*</span></label>
+        <textarea
+            id="evidence${evidenceCount}"
+            placeholder="Copy a direct quotation from the article. Use quotation marks."
+        ></textarea>
+
+        <label>Which subclaim does this support?</label>
+        <select
+            id="argumentPart${evidenceCount}"
+            class="argument-dropdown"
+        >
+            <option value="">Select ONE subclaim</option>
+        </select>
+
+        <label>Why Does This Evidence Support Your Selected Subclaim?</label>
+        <textarea
+            id="explanation${evidenceCount}"
+            placeholder="Explain how the information in this quotation supports the specific subclaim you selected."
+        ></textarea>
+
+        <button
+            type="button"
+            class="remove-evidence"
+            onclick="removeEvidence(${evidenceCount})"
+        >
+            Remove This Evidence
+        </button>
+    `;
+
+    container.appendChild(evidenceBox);
+
+    updateSubclaimDropdowns();
+
+    evidenceBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+
+// REMOVE AN EVIDENCE ENTRY
+
+function removeEvidence(number) {
+
+    const evidenceBox = document.getElementById("evidenceBox" + number);
+
+    if (evidenceBox) {
+        evidenceBox.remove();
+    }
+}
+
+
+// UPDATE DROPDOWNS WHEN STUDENTS EDIT THEIR SUBCLAIMS
+
+["subclaimA", "subclaimB", "subclaimC"].forEach(function(id) {
+
+    document.getElementById(id).addEventListener("input", function() {
+        updateSubclaimDropdowns();
+    });
+
+});
+
+
+// UPDATE LIMITATION QUESTIONS WHEN SOURCE TYPE CHANGES
+
+document.getElementById("sourceType").addEventListener("change", renderSourceLimitations);
+
+
+// ADD THE FIRST EVIDENCE ENTRY WHEN THE PAGE LOADS
+
+addEvidence();
+
+
+// GENERATE RESEARCH NOTES
+
+function generateNotes() {
+
+    if (!getValue("articleTitle")) {
+        alert("Please enter the article title first.");
+        document.getElementById("articleTitle").focus();
+        return;
+    }
+
+    // Require all three subclaims.
+    if (
+        !getValue("subclaimA") ||
+        !getValue("subclaimB") ||
+        !getValue("subclaimC")
+    ) {
+        alert("Please enter all three subclaims before generating your research notes.");
+        document.getElementById("subclaimA").focus();
+        return;
+    }
+
+    updateSubclaimDropdowns();
+
+    // Validate evidence entries.
+    const evidenceEntries = document.querySelectorAll(".evidence-box");
+
+    let completeEvidence = false;
+    let incompleteEvidence = [];
+
+    evidenceEntries.forEach(function(box) {
+
+        const textareas = box.querySelectorAll("textarea");
+        const dropdown = box.querySelector("select");
+
+        const quote = textareas[0].value.trim();
+        const explanation = textareas[1].value.trim();
+        const argumentPart = dropdown.value;
+
+        if (quote || explanation || argumentPart) {
+
+            if (!quote || !explanation || !argumentPart) {
+                incompleteEvidence.push(box.querySelector("h4").textContent);
+            } else {
+                completeEvidence = true;
+            }
+        }
+    });
+
+    if (!completeEvidence) {
+        alert("Please complete at least one evidence entry, including a direct quotation, one subclaim selection, and an explanation.");
+        return;
+    }
+
+    if (incompleteEvidence.length > 0) {
+        alert(
+            "Please complete or remove the following partially completed entries: " +
+            incompleteEvidence.join(", ") +
+            ". Each evidence entry must include a direct quotation, one subclaim selection, and an explanation."
+        );
+        return;
+    }
+
+    let sections = [];
+
+    function addSection(title, content) {
+        if (content.trim()) {
+            sections.push(title + "\n" + content.trim());
+        }
+    }
+
+
+    // SECTION 1: ARTICLE INFORMATION
+
+    let info = [
+        "Article Title: " + getValue("articleTitle"),
+        getValue("year") ?
+            "Publication Year: " + getValue("year") : "",
+        getValue("publication") ?
+            "Journal/Publication: " + getValue("publication") : "",
+        getValue("sourceType") ?
+            "Source Type: " + getValue("sourceType") : "",
+        getValue("url") ?
+            "Article Link: " + getValue("url") : ""
+    ].filter(Boolean).join("\n");
+
+    addSection("1. ARTICLE INFORMATION", info);
+
+
+    // SECTION 2: STUDENT SUBCLAIMS
+
+    let subclaims = [
+        "Subclaim A: " + getValue("subclaimA"),
+        "Subclaim B: " + getValue("subclaimB"),
+        "Subclaim C: " + getValue("subclaimC")
+    ].join("\n");
+
+    addSection("2. MY THREE SUBCLAIMS", subclaims);
+
+
+    // SECTION 3: PURPOSE
+
+    addSection(
+        "3. PURPOSE OF THE ARTICLE",
+        getValue("purposeType")
+    );
+
+
+    // SECTION 4: FINDINGS
+
+    addSection(
+        "4. MAIN FINDINGS OR KEY POINTS",
+        getValue("findings")
+    );
+
+
+    // SECTION 5: SUPPORTING EVIDENCE
+
+    let evidence = [];
+
+    document.querySelectorAll(".evidence-box").forEach(function(box, index) {
+
+        const quote = box.querySelectorAll("textarea")[0].value.trim();
+        const explanation = box.querySelectorAll("textarea")[1].value.trim();
+        const argumentPart = box.querySelector("select").value;
+
+        if (quote) {
+
+            const number = index + 1;
+
+            evidence.push(
+                "Evidence " + number + "\n" +
+                "Direct Quotation: " + quote + "\n" +
+                "Subclaim Supported: " + argumentPart + "\n" +
+                "Why This Evidence Supports the Subclaim: " + explanation
+            );
+        }
+    });
+
+    addSection(
+        "5. EVIDENCE THAT SUPPORTS MY ARGUMENT",
+        evidence.join("\n\n")
+    );
+
+
+    // SECTION 6: LIMITATIONS
+
+    let sourceLimitations = Array.from(
+        document.querySelectorAll(".source-limitation")
+    ).map(function(field) {
+        return field.value ? field.dataset.question + "\n" + field.value : "";
+    }).filter(Boolean).join("\n\n");
+
+    let limitations = [
+        sourceLimitations,
+        getValue("limitations") ?
+            "Additional Limitations or Concerns: " + getValue("limitations") : ""
+    ].filter(Boolean).join("\n\n");
+
+    addSection(
+        "6. LIMITATIONS AND CONSIDERATIONS",
+        limitations
+    );
+
+
+    // GENERATE OUTPUT
+
+    let output =
+        "ARTICLE RESEARCH NOTES\n" +
+        "========================================\n\n" +
+        sections.join("\n\n") +
+        "\n\n========================================";
+
+    document.getElementById("generatedNotes").value = output;
+
+    document.getElementById("outputSection").style.display = "block";
+
+    document.getElementById("copyMessage").textContent = "";
+
+    document.getElementById("outputSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+// COPY RESEARCH NOTES
+
+function copyNotes() {
+
+    let output = document.getElementById("generatedNotes");
+
+    output.select();
+    output.setSelectionRange(0, output.value.length);
+
+    function copied() {
+        document.getElementById("copyMessage").textContent =
+            "Research notes copied! Paste them into your document or research folder.";
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+
+        navigator.clipboard.writeText(output.value)
+            .then(copied)
+            .catch(function() {
+                document.execCommand("copy");
+                copied();
+            });
+
+    } else {
+
+        document.execCommand("copy");
+        copied();
+    }
+}
+
+
+// RESET
+
+function resetNotes() {
+
+    if (!confirm("Are you sure you want to clear all your entries?")) {
+        return;
+    }
+
+    document.querySelectorAll(
+        ".article-tool input, .article-tool textarea, .article-tool select"
+    ).forEach(function(field) {
+        field.value = "";
+    });
+
+    // Remove all evidence entries and add one blank entry.
+    document.getElementById("evidenceContainer").innerHTML = "";
+
+    evidenceCount = 0;
+
+    addEvidence();
+
+    renderSourceLimitations();
+
+    document.getElementById("outputSection").style.display = "none";
+
+    document.getElementById("copyMessage").textContent = "";
+
+    document.getElementById("articleTitle").focus();
+}
+
+</script>
+</body>
+</html>
