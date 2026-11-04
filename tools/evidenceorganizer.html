@@ -313,12 +313,16 @@
 <!-- SECTION 4: FINDINGS -->
 
 <div class="section">
-    <h3>4. Main Findings or Key Points</h3>
+    <h3>4. Short Summary of the Article</h3>
+
+    <p class="hint">
+        Write a short summary of the article. Focus on its main findings or key points.
+    </p>
 
     <textarea
         id="findings"
         style="min-height:180px;"
-        placeholder="Enter text here."
+        placeholder="Summarize the article's main findings or key points."
     ></textarea>
 </div>
 
@@ -328,7 +332,7 @@
     <h3>5. Evidence That Supports My Argument</h3>
 
     <p class="hint">
-        Identify direct quotations from the article that could support your argument. Connect each quotation to the specific subclaim it supports.
+        Identify facts, statistics, or quotations from experts in the article that could support your argument. Your direct quotation should include at least one of these types of information. Connect each quotation to the specific subclaim it supports.
     </p>
 
     <p class="hint">
@@ -584,12 +588,16 @@ function addEvidence() {
     evidenceBox.id = "evidenceBox" + evidenceCount;
 
     evidenceBox.innerHTML = `
-        <h4>Evidence ${evidenceCount}</h4>
-
-        <label>Direct Quotation <span class="required">*</span></label>
+        <label>Direct Quotation (Evidence) <span class="required">*</span></label>
         <textarea
             id="evidence${evidenceCount}"
             placeholder="Copy a direct quotation from the article. Use quotation marks."
+        ></textarea>
+
+        <label>Quotation in Your Own Words (Premise) <span class="required">*</span></label>
+        <textarea
+            id="premise${evidenceCount}"
+            placeholder="Explain the quotation in your own words. What information does it communicate?"
         ></textarea>
 
         <label>Which subclaim does this support?</label>
@@ -600,7 +608,7 @@ function addEvidence() {
             <option value="">Select ONE subclaim</option>
         </select>
 
-        <label>Why Does This Evidence Support Your Selected Subclaim?</label>
+        <label>Why does this evidence support your subclaim? (Warrant)</label>
         <textarea
             id="explanation${evidenceCount}"
             placeholder="Explain how the information in this quotation supports the specific subclaim you selected."
@@ -694,12 +702,13 @@ function generateNotes() {
         const dropdown = box.querySelector("select");
 
         const quote = textareas[0].value.trim();
-        const explanation = textareas[1].value.trim();
+        const premise = textareas[1].value.trim();
+        const explanation = textareas[2].value.trim();
         const argumentPart = dropdown.value;
 
-        if (quote || explanation || argumentPart) {
+        if (quote || premise || explanation || argumentPart) {
 
-            if (!quote || !explanation || !argumentPart) {
+            if (!quote || !premise || !explanation || !argumentPart) {
                 incompleteEvidence.push(box.querySelector("h4").textContent);
             } else {
                 completeEvidence = true;
@@ -780,8 +789,10 @@ function generateNotes() {
 
     document.querySelectorAll(".evidence-box").forEach(function(box, index) {
 
-        const quote = box.querySelectorAll("textarea")[0].value.trim();
-        const explanation = box.querySelectorAll("textarea")[1].value.trim();
+        const textareas = box.querySelectorAll("textarea");
+        const quote = textareas[0].value.trim();
+        const premise = textareas[1].value.trim();
+        const explanation = textareas[2].value.trim();
         const argumentPart = box.querySelector("select").value;
 
         if (quote) {
@@ -790,9 +801,10 @@ function generateNotes() {
 
             evidence.push(
                 "Evidence " + number + "\n" +
-                "Direct Quotation: " + quote + "\n" +
+                "Direct Quotation (Evidence): " + quote + "\n" +
+                "Quotation in Your Own Words (Premise): " + premise + "\n" +
                 "Subclaim Supported: " + argumentPart + "\n" +
-                "Why This Evidence Supports the Subclaim: " + explanation
+                "Why This Evidence Supports the Subclaim (Warrant): " + explanation
             );
         }
     });
