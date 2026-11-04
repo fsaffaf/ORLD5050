@@ -1,717 +1,250 @@
-<style>
-
-/* =========================
-   BASE
-========================= */
-
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
-}
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
-}
-
-
-/* =========================
-   LEARNING OBJECTIVES
-========================= */
-
-.learning-objectives{
-    background:#e8f4fc;
-    border-left:5px solid #084f8c;
-    padding:16px 20px;
-    border-radius:8px;
-    margin:20px 0;
-}
-
-.learning-objectives strong{
-    color:#0e68b3;
-}
-
-
-/* =========================
-   BLUE TEXT
-========================= */
-
-.blue-heading{
-    color:#0e68b3;
-}
-
-
-/* =========================
-   PAGE TITLE
-========================= */
-
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
-}
-
-
-/* =========================
-   CARD HEADINGS
-========================= */
-
-h2{
-    color:#0e68b3;
-    position:relative;
-    font-weight:500;
-    display:inline-block;
-    margin-top:0;
-    margin-bottom:22px;
-    padding-bottom:6px;
-}
-
-
-/* =========================
-   SUBHEADINGS
-========================= */
-
-h3{
-    color:#0e68b3;
-    font-weight:500;
-    margin-top:28px;
-    margin-bottom:12px;
-}
-
-
-/* =========================
-   BODY TEXT
-========================= */
-
-p{
-    line-height:1.8;
-}
-
-
-/* =========================
-   CARDS
-========================= */
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.05);
-
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 10px 25px rgba(14,104,179,.15);
-}
-
-
-/* =========================
-   CALLOUTS
-========================= */
-
-.highlight{
-    background:#ffffff;
-    border-left:3px solid #0e68b3;
-    padding:14px 18px;
-    border-radius:0;
-    margin:20px 0;
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.button{
-    display:inline-block;
-    background:linear-gradient(135deg,#0e68b3,#1c84d8);
-    color:#ffffff;
-    text-decoration:none;
-    font-weight:600;
-    padding:14px 32px;
-    border-radius:9999px;
-    box-shadow:0 8px 20px rgba(14,104,179,.20);
-    transition:all .25s ease;
-}
-
-.button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 25px rgba(14,104,179,.30);
-    background:linear-gradient(135deg,#095491,#0e68b3);
-}
-
-
-/* =========================
-   LISTS
-========================= */
-
-ul{
-    padding-left:25px;
-}
-
-ol{
-    padding-left:25px;
-}
-
-li{
-    margin-bottom:8px;
-}
-
-
-/* =========================
-   TABLES
-========================= */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
-}
-
-th{
-    background:#0e68b3;
-    color:white;
-    text-align:left;
-    padding:14px;
-}
-
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
-}
-
-tr:nth-child(even){
-    background:#f8fafc;
-}
-
-tr:hover{
-    background:#edf6ff;
-}
-
-
-/* =========================
-   SCATTERPLOTS
-========================= */
-
-.scatterplot{
-    text-align:center;
-    margin:25px 0;
-}
-
-.scatterplot img{
-    max-width:100%;
-    height:auto;
-    display:block;
-    margin:0 auto;
-    border-radius:8px;
-}
-
-.scatterplot-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
-    margin:25px 0;
-}
-
-.scatterplot-grid .scatterplot{
-    margin:0;
-}
-
-
-/* =========================
-   OUTLIER EXAMPLES
-========================= */
-
-.outlier-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:25px;
-    margin:25px 0;
-}
-
-.outlier-example{
-    text-align:center;
-}
-
-.outlier-example h3{
-    margin-top:0;
-}
-
-.outlier-example img{
-    width:100%;
-    height:auto;
-    display:block;
-    margin:20px auto 0;
-    border-radius:8px;
-}
-
-
-/* =========================
-   HORIZONTAL RULE
-========================= */
-
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
-}
-
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes fadeUp{
-
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    .card{
-        padding:20px;
-    }
-
-    th,
-    td{
-        padding:10px;
-        font-size:.95rem;
-    }
-
-    .scatterplot-grid,
-    .outlier-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-</style>
-<style>
-/* BASE */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    background: #f4f6f9;
-    color: #222222;
-}
-
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 50px 20px;
-}
-
-/* LEARNING OBJECTIVES */
-.learning-objectives {
-    background: #e8f4fc;
-    border-left: 5px solid #084f8c;
-    padding: 16px 20px;
-    border-radius: 8px;
-    margin: 20px 0;
-}
-
-.learning-objectives strong {
-    color: #0e68b3;
-}
-
-/* BLUE TEXT */
-.blue-heading {
-    color: #0e68b3;
-}
-
-/* PAGE TITLE */
-h1 {
-    text-align: left;
-    color: #666666;
-    font-size: 2.75rem;
-    font-weight: 200;
-    letter-spacing: .08em;
-    margin: 0 0 25px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #6b7280;
-    text-transform: uppercase;
-    letter-spacing: .15em;
-    margin-bottom: 40px;
-    font-size: .95rem;
-}
-
-/* CARD HEADINGS */
-h2 {
-    color: #0e68b3;
-    position: relative;
-    font-weight: 500;
-    display: inline-block;
-    margin-top: 0;
-    margin-bottom: 22px;
-    padding-bottom: 6px;
-}
-
-/* SUBHEADINGS */
-h3 {
-    color: #0e68b3;
-    font-weight: 500;
-    margin-top: 28px;
-    margin-bottom: 12px;
-}
-
-/* BODY TEXT */
-p {
-    line-height: 1.8;
-}
-
-/* CARDS */
-.card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 30px;
-    margin-bottom: 25px;
-    border: 1px solid #d9e2ec;
-    box-shadow: 0 3px 10px rgba(0,0,0,.05);
-    animation: fadeUp .6s ease forwards;
-    transition: box-shadow .25s ease;
-    min-width: 0;
-}
-
-.card:hover {
-    box-shadow: 0 10px 25px rgba(14,104,179,.15);
-}
-
-/* IMAGES */
-.card img {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin: 20px auto;
-    border-radius: 8px;
-}
-
-.image-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 20px 0;
-}
-
-.image-container img {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
-}
-
-/* CALLOUTS */
-.highlight {
-    background: #ffffff;
-    border-left: 3px solid #0e68b3;
-    padding: 14px 18px;
-    margin: 20px 0;
-    line-height: 1.8;
-}
-
-/* BUTTONS */
-.button {
-    display: inline-block;
-    background: linear-gradient(135deg, #0e68b3, #1c84d8);
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 14px 32px;
-    border-radius: 9999px;
-    box-shadow: 0 8px 20px rgba(14,104,179,.20);
-    transition: all .25s ease;
-}
-
-.button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(14,104,179,.30);
-    background: linear-gradient(135deg, #095491, #0e68b3);
-}
-
-/* LISTS */
-ul, ol {
-    padding-left: 25px;
-}
-
-li {
-    margin-bottom: 8px;
-    line-height: 1.7;
-}
-
-/* TABLES */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: #ffffff;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-th {
-    background: #0e68b3;
-    color: #ffffff;
-    text-align: left;
-    padding: 14px;
-}
-
-td {
-    padding: 14px;
-    border-bottom: 1px solid #e5e7eb;
-    vertical-align: top;
-}
-
-tr:nth-child(even) {
-    background: #f8fafc;
-}
-
-tr:hover {
-    background: #edf6ff;
-}
-
-/* SCATTERPLOTS */
-.scatterplot {
-    text-align: center;
-    margin: 25px 0;
-}
-
-.scatterplot img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 8px;
-}
-
-.scatterplot-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
-    margin: 25px 0;
-}
-
-.scatterplot-grid .scatterplot {
-    margin: 0;
-    min-width: 0;
-}
-
-/* OUTLIER EXAMPLES */
-.outlier-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
-    margin: 25px 0;
-}
-
-.outlier-example {
-    text-align: center;
-    min-width: 0;
-}
-
-.outlier-example h3 {
-    margin-top: 0;
-}
-
-.outlier-example img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto 0;
-    border-radius: 8px;
-}
-
-/* HORIZONTAL RULE */
-hr {
-    border: none;
-    height: 1px;
-    background: #d6e4f0;
-    margin: 30px 0;
-}
-
-/* ANIMATION */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    .container {
-        padding: 30px 14px;
-    }
-
-    .card {
-        padding: 20px;
-    }
-
-    th, td {
-        padding: 10px;
-        font-size: .95rem;
-    }
-
-    .scatterplot-grid,
-    .outlier-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-</style>
-
+```html
 <div class="container">
 
-    <h1>Premises</h1>
+    <h1>Understanding Premises</h1>
 
     <div class="card">
         <h2>Overview</h2>
 
         <p>
-            A <strong>premise</strong> is a statement that provides a reason to believe a claim is true.
-            In a Toulmin-style argument, premises support a subclaim by providing the facts,
-            findings, definitions, standards, or reasoning that make the subclaim convincing.
+            A <strong>premise</strong> is a statement that provides a specific reason to believe a claim is true.
+            In an argument, premises explain <strong>why a subclaim is reasonable and supported</strong>.
+            They identify the facts, research findings, patterns, or other points of reasoning that help establish the subclaim.
         </p>
 
         <div class="highlight">
             <strong>Main claim:</strong> The overall position you want your audience to accept.<br>
             <strong>Subclaims:</strong> The major reasons supporting your main claim.<br>
-            <strong>Premises:</strong> The specific statements that help establish each subclaim.
+            <strong>Premises:</strong> The specific statements that explain why each subclaim is reasonable.
         </div>
 
         <p>
-            Each premise identifies a specific point that can be investigated through research.
-            Together, the premises help establish the subclaim.
+            Think of premises as the building blocks of your argument. Your subclaims identify the major reasons
+            for your position, while your premises break those reasons into smaller, more specific statements
+            that can be investigated and supported through research.
         </p>
     </div>
 
     <div class="card">
-        <h2>How Do You Identify Premises?</h2>
+        <h2>How Do Premises Support a Subclaim?</h2>
 
         <p>
-            Start with one subclaim at a time and ask what a reasonable reader would need to
-            understand or believe before accepting that subclaim.
+            A subclaim is often broad enough to require several pieces of supporting reasoning.
+            A premise identifies one specific point that helps establish the subclaim.
+            Each premise should contribute something meaningful to the argument.
         </p>
 
-        <h3>Example Argument</h3>
-
-        <div class="image-container">
-            <img
-                src="../map/subclaims2.jpg"
-                alt="Argument map showing a main claim and its supporting subclaims"
-                loading="lazy"
-            >
-        </div>
-
-        <h3>Example Subclaim</h3>
+        <p>
+            For example, consider the following argument:
+        </p>
 
         <div class="highlight">
-            A four-day workweek can improve employee well-being.
+            <strong>Main Claim:</strong> Organizations should implement a four-day workweek.
         </div>
 
         <div class="highlight">
-            <strong>Useful Test:</strong> Ask, "What evidence would convince a reasonable reader that this statement is accurate?"
+            <strong>Subclaim:</strong> A four-day workweek can improve employee well-being.
         </div>
+
+        <p>
+            To support this subclaim, you need to identify specific reasons why a four-day workweek
+            might improve employee well-being.
+        </p>
+
+        <h3>Example Premises</h3>
+
+        <ol>
+            <li>Reducing the number of workdays can provide employees with more time for rest and recovery.</li>
+            <li>Additional time away from work can help employees manage personal and family responsibilities.</li>
+            <li>Reducing work-related demands can help decrease employee stress and improve work-life balance.</li>
+        </ol>
+
+        <p>
+            Notice that each premise identifies a different reason why the subclaim may be true.
+            Together, these premises provide multiple lines of reasoning that can be investigated through research.
+        </p>
     </div>
 
     <div class="card">
-        <h2>Questions to Guide Your Research</h2>
+        <h2>What Makes a Strong Premise?</h2>
 
-        <p>Ask questions such as:</p>
+        <p>
+            A strong premise is specific, relevant to its subclaim, and capable of being supported through evidence.
+            It should introduce a meaningful point rather than simply repeat the subclaim using different words.
+        </p>
+
+        <h3>1. It Is Specific</h3>
+
+        <p>
+            A premise should identify a particular reason or point of reasoning.
+            Avoid statements that are so broad that they do not explain anything about the subclaim.
+        </p>
+
+        <h3>2. It Directly Supports the Subclaim</h3>
+
+        <p>
+            Every premise should help establish the specific subclaim under which it is organized.
+            If a premise supports a different reason for your main claim, it may belong under another subclaim.
+        </p>
+
+        <h3>3. It Can Be Supported Through Evidence</h3>
+
+        <p>
+            You should be able to find credible research, statistics, expert statements, industry reports,
+            or other relevant information that supports the premise.
+            A premise is not simply an opinion. It is a statement that you can investigate and support.
+        </p>
+
+        <h3>4. It Adds a Distinct Reason</h3>
+
+        <p>
+            Your premises should not all make essentially the same point.
+            Each should contribute a different reason or perspective that strengthens the subclaim.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>How Do You Develop Premises From Research?</h2>
+
+        <p>
+            Research is not just something you collect after writing your argument.
+            Research can also help you identify and develop the premises that support your subclaims.
+            As you review your articles, look for specific findings, patterns, facts, and expert explanations
+            that help explain why your subclaim may be true.
+        </p>
+
+        <h3>Step 1: Start With Your Subclaim</h3>
+
+        <p>
+            Identify the specific subclaim you are trying to support.
+            Keep this statement in mind as you review your research.
+        </p>
+
+        <h3>Step 2: Identify Relevant Research Findings</h3>
+
+        <p>
+            Look for the main findings or key points in your articles.
+            Pay particular attention to statistics, research results, comparisons, and explanations
+            from experts that relate directly to your subclaim.
+        </p>
+
+        <h3>Step 3: Ask What the Findings Tell You</h3>
+
+        <p>
+            Do not simply copy a statistic or quotation and automatically treat it as a premise.
+            Instead, think about what the information demonstrates and why it matters to your argument.
+        </p>
+
+        <p>Ask yourself:</p>
 
         <ul>
-            <li>What problem is the organization trying to solve?</li>
-            <li>What limitations exist in current approaches?</li>
-            <li>How could the proposed solution address the problem?</li>
-            <li>What evidence would demonstrate usefulness?</li>
-            <li>What limitations or risks should decision-makers consider?</li>
+            <li>What does this research finding tell me?</li>
+            <li>What does it suggest about the issue I am investigating?</li>
+            <li>How does this information help explain why my subclaim may be true?</li>
+            <li>What specific point could I make based on this evidence?</li>
         </ul>
+
+        <h3>Step 4: Write a Premise</h3>
+
+        <p>
+            Use your interpretation of the research to develop a clear statement that identifies
+            the specific point you want to establish.
+            The premise should communicate the meaning of the evidence rather than simply repeat it.
+        </p>
+
+        <h3>Step 5: Check the Connection</h3>
+
+        <p>
+            Review the premise alongside your subclaim.
+            Make sure the premise directly contributes to establishing the subclaim and that
+            you can identify credible evidence to support it.
+        </p>
     </div>
 
     <div class="card">
-        <h2>Distinguish a Premise From a Subclaim</h2>
+        <h2>Distinguish Between Evidence and a Premise</h2>
 
         <p>
-            A subclaim is a major reason supporting your main claim. A premise directly supports
-            the subclaim. The premise identifies a more specific point that can be researched
-            and supported with evidence.
+            Evidence and premises are connected, but they serve different purposes in an argument.
+            Evidence provides the information you use to support your reasoning.
+            A premise is the statement you develop to communicate the specific point that helps establish your subclaim.
+        </p>
+
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td><strong>Subclaim</strong></td>
+                <td>Identifies a major reason supporting your main claim.</td>
+            </tr>
+            <tr>
+                <td><strong>Premise</strong></td>
+                <td>Identifies a specific point that helps establish the subclaim.</td>
+            </tr>
+            <tr>
+                <td><strong>Evidence</strong></td>
+                <td>Provides research findings, facts, statistics, or expert information that supports the premise.</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>Important:</strong> A research article does not automatically give you a premise.
+            You must interpret the information, determine what point it supports, and develop a statement
+            that connects the evidence to your subclaim.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>How Many Premises Do You Need?</h2>
+
+        <p>
+            Each subclaim should be supported by multiple premises.
+            Having several distinct premises allows you to build a more complete argument rather than
+            relying on one reason or one piece of evidence.
         </p>
 
         <p>
-            A strong argument requires more than a position and a list of reasons. You must identify
-            the specific statements that support each reason. The next step is to investigate
-            whether credible evidence establishes them.
+            For this project, you will develop <strong>three premises for each subclaim</strong>.
+            Each premise should identify a distinct point that helps establish the subclaim.
+            You will then use credible research to support each premise.
+        </p>
+
+        <div class="highlight">
+            <strong>Remember:</strong> Your goal is not to find three statistics and turn each one into a premise.
+            Your goal is to develop three meaningful reasons that support your subclaim and then use research
+            to establish those reasons.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Final Considerations</h2>
+
+        <p>
+            Developing premises requires you to think critically about your research.
+            You are moving beyond identifying what an article says and beginning to explain
+            what the information means for your argument.
+        </p>
+
+        <p>
+            Before finalizing a premise, ask yourself:
+        </p>
+
+        <ul>
+            <li>Does this statement identify a specific reason supporting my subclaim?</li>
+            <li>Is it different from my other premises?</li>
+            <li>Can I find credible evidence to support it?</li>
+            <li>Can I explain how the evidence supports the premise?</li>
+            <li>Does the premise help make my overall argument more convincing?</li>
+        </ul>
+
+        <p>
+            A strong argument is built by connecting specific premises to credible evidence.
+            Your premises explain the reasoning behind your subclaims, while your evidence
+            demonstrates why that reasoning should be accepted.
         </p>
     </div>
 
 </div>
+```
