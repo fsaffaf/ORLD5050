@@ -1,456 +1,720 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ethics</title>
+<title>Purpose of Argument Maps</title>
 
 <style>
-
-body{
-    margin:0;
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:#f4f6f9;
-    color:#222222;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:50px 20px;
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222222;
 }
 
-h1{
-    text-align:left;
-    color:#666666;
-    font-size:2.75rem;
-    font-weight:200;
-    letter-spacing:.08em;
-    margin-bottom:10px;
+.container {
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-.subtitle{
-    text-align:center;
-    color:#6b7280;
-    text-transform:uppercase;
-    letter-spacing:.15em;
-    margin-bottom:40px;
-    font-size:.95rem;
+h1 {
+    text-align: left;
+    color: #666666;
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: .04em;
+    margin: 0 0 25px;
 }
 
 h2,
-h3{
-    color:#0e68b3;
-    position:relative;
-    font-weight:500;
-    display:inline-block;
+h3 {
+    color: #0e68b3;
+    font-weight: 500;
 }
 
-h2::after,
-h3::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-4px;
-    width:0;
-    height:2px;
-    background:#0e68b3;
-    transition:.3s;
+h2 {
+    font-size: 1.4rem;
+    margin-top: 0;
 }
 
-.card:hover h2::after,
-.card:hover h3::after{
-    width:100%;
+p {
+    line-height: 1.8;
+    margin: 0 0 16px;
 }
 
-p{
-    line-height:1.8;
+/* Consistent card dimensions and alignment */
+
+.card {
+    display: block;
+    width: 100%;
+    margin: 0 0 24px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #d9e2ec;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
+    min-width: 0;
 }
 
-.card{
-    background:white;
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:25px;
-    border:1px solid #d9e2ec;
+/* Keep card contents within the card */
 
-    box-shadow:
-      0 3px 10px rgba(0,0,0,.05);
-
-    animation:fadeUp .6s ease forwards;
-    transition:all .25s ease;
+.card img,
+.card table {
+    max-width: 100%;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-    box-shadow:
-      0 10px 25px rgba(14,104,179,.15);
+.card ul,
+.card ol {
+    padding-left: 25px;
+    margin-bottom: 0;
 }
 
-.highlight{
-    background:#eef6fc;
-    border-left:5px solid #0e68b3;
-    padding:15px;
-    border-radius:8px;
-    margin:20px 0;
+.card li {
+    margin-bottom: 8px;
 }
 
-ul{
-    padding-left:25px;
+.highlight {
+    background: #eef6fc;
+    border-left: 5px solid #0e68b3;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
 }
 
-ol{
-    padding-left:25px;
+/* Table styling */
+
+.table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin-top: 16px;
 }
 
-li{
-    margin-bottom:8px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-    overflow:hidden;
-    border-radius:10px;
+th {
+    background: #0e68b3;
+    color: #ffffff;
+    text-align: left;
+    padding: 14px;
 }
 
-th{
-    background:#0e68b3;
-    color:white;
-    text-align:left;
-    padding:14px;
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
 }
 
-td{
-    padding:14px;
-    border-bottom:1px solid #e5e7eb;
-    vertical-align:top;
+tr:nth-child(even) {
+    background: #f8fafc;
 }
 
-tr:nth-child(even){
-    background:#f8fafc;
+/* Article buttons */
+
+.button {
+    display: inline-block;
+    background: #0e68b3;
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
 }
 
-tr:hover{
-    background:#edf6ff;
+.button:hover {
+    background: #084c87;
+    color: #ffffff;
 }
 
-.scatterplot{
-    text-align:center;
-    margin:25px 0;
+.button:focus-visible {
+    outline: 3px solid #e67e22;
+    outline-offset: 3px;
 }
 
-.scatterplot img{
-    max-width:100%;
-    height:auto;
-    display:block;
-    margin:0 auto;
-    border-radius:8px;
+/* Argument map image */
+
+.argument-map {
+    width: 100%;
+    margin: 0 0 24px;
+    padding: 0;
 }
 
-.scatterplot-grid{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:25px;
-    margin:25px 0;
+.argument-map img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
-.scatterplot-grid .scatterplot{
-    margin:0;
-}
+/* Mobile layout */
 
-.outlier-grid{
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:25px;
-    margin:25px 0;
-}
-
-.outlier-example{
-    text-align:center;
-}
-
-.outlier-example h3{
-    margin-top:0;
-}
-
-.outlier-example img{
-    width:100%;
-    height:auto;
-    display:block;
-    margin:20px auto 0;
-    border-radius:8px;
-}
-
-hr{
-    border:none;
-    height:1px;
-    background:#d6e4f0;
-    margin:30px 0;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
+@media (max-width: 768px) {
+    .container {
+        padding: 24px 14px;
     }
 
-    .card{
-        padding:20px;
+    h1 {
+        font-size: 2rem;
+    }
+
+    .card {
+        padding: 20px;
+        margin-bottom: 18px;
     }
 
     th,
-    td{
-        padding:10px;
-        font-size:.95rem;
+    td {
+        padding: 10px;
+        font-size: .9rem;
     }
-
-    .scatterplot-grid,
-    .outlier-grid{
-        grid-template-columns:1fr;
-    }
-
 }
-
 </style>
-
 </head>
 
+  
 <body>
 
 <div class="container">
 
-    <h1>Ethics</h1>
+    <article class="lecture-content">
 
-    <p>Lecture 4</p>
+    <h1>Ethics in Arguments</h1>
 
+    <h2>1. What Are Ethical Perspectives?</h2>
 
-    <div class="card">
+    <p>An ethical perspective is a way of thinking about what is right, wrong, fair, or responsible. When people make decisions, they often consider different values. However, people do not always agree about which values should matter most.</p>
 
-        <h2>Overview</h2>
+    <p>Ethical perspectives provide different ways to evaluate a decision. They help us look beyond what is easiest, cheapest, or most convenient and consider whether a decision is morally responsible.</p>
 
-        <p>
-            A key part of Ethical Evidence-Based Decision Making (EEBDM) is ethics.
-            Sometimes there is no clearly “right” choice, and we must balance competing
-            values to decide on a course of action that can be ethically defended.
-        </p>
+    <p>There are several common ethical perspectives used in organizational decision-making.</p>
 
-        <p>
-            Combining ethical thinking with evidence-based reasoning helps us solve
-            real-world problems more effectively. It increases the chances that our
-            decisions are both morally responsible and well-informed.
-        </p>
+    <h3>Consequences: Does the Decision Produce the Best Overall Outcome?</h3>
 
-        <p>
-            A common challenge is that people often place their morals and personal
-            values above evidence. When beliefs clash with facts, individuals may
-            ignore or reinterpret evidence to fit their views. Understanding this
-            tension is essential for strong decision making.
-        </p>
+    <p>The consequences perspective evaluates a decision by looking at its results. A decision is considered ethical when it produces more overall benefits than harm.</p>
 
-        <p>
-            People’s ideas of what is morally desirable can differ based on culture,
-            society, and personal values. As a result, individuals may reach different
-            ethical conclusions even when looking at the same evidence.
-        </p>
+    <p>When using this perspective, consider:</p>
+    <ul>
+        <li>Who will benefit from this decision?</li>
+        <li>Who might be negatively affected?</li>
+        <li>Will the decision improve the organization overall?</li>
+        <li>Will the positive outcomes outweigh the negative outcomes?</li>
+    </ul>
 
-    </div>
+    <p>In an organization, a manager might consider whether changing employee schedules will improve productivity while also affecting employee satisfaction. The manager must consider the overall impact of the decision rather than focusing on only one outcome.</p>
 
+    <p><strong>The main question:</strong> Does this decision produce the greatest overall benefit while minimizing harm?</p>
 
-    <div class="card">
+    <h3>Rights: Does the Decision Respect Individual Rights?</h3>
 
-        <h2>Key Concepts</h2>
+    <p>The rights perspective focuses on protecting the basic rights and freedoms of individuals. Even when a decision benefits an organization, it may still be unethical if it violates someone's rights.</p>
 
-        <table>
+    <p>When using this perspective, consider:</p>
+    <ul>
+        <li>Does the decision respect employees' privacy?</li>
+        <li>Are employees being treated with dignity?</li>
+        <li>Are individuals being given accurate information?</li>
+        <li>Does the decision protect people's ability to make informed choices?</li>
+        <li>Are individual rights being sacrificed for organizational convenience?</li>
+    </ul>
 
-            <thead>
-                <tr>
-                    <th>Term</th>
-                    <th>Definition</th>
-                </tr>
-            </thead>
+    <p>In an organization, a company might want to monitor employee computer activity to improve productivity. A rights-based perspective would consider whether the monitoring respects employee privacy and whether employees understand what information is being collected.</p>
 
-            <tbody>
+    <p><strong>The main question:</strong> Does this decision respect the rights and dignity of the people affected?</p>
 
-                <tr>
-                    <td><strong>Ethics</strong></td>
-                    <td>
-                        The study of moral principles used to evaluate right and wrong.
-                    </td>
-                </tr>
+    <h3>Fairness and Justice: Are People Being Treated Equally and Fairly?</h3>
 
-                <tr>
-                    <td><strong>Ethical Perspective</strong></td>
-                    <td>
-                        A formal set of principles used to evaluate ethical decisions.
-                    </td>
-                </tr>
+    <p>The fairness perspective examines whether people are being treated justly. It focuses on consistency, equal treatment, fair opportunities, and the fair distribution of benefits and responsibilities.</p>
 
-                <tr>
-                    <td><strong>Morals</strong></td>
-                    <td>
-                        Personal or cultural beliefs about what is right and wrong.
-                    </td>
-                </tr>
+    <p>Fairness does not always mean treating everyone exactly the same. Sometimes people have different needs or circumstances that should be considered when making a decision.</p>
 
-                <tr>
-                    <td><strong>Personal Values</strong></td>
-                    <td>
-                        What matters to us individually, including goals and preferences.
-                    </td>
-                </tr>
+    <p>When using this perspective, consider:</p>
+    <ul>
+        <li>Are organizational policies applied consistently?</li>
+        <li>Are employees given fair opportunities?</li>
+        <li>Are rewards and responsibilities distributed fairly?</li>
+        <li>Are decisions based on relevant information rather than favoritism?</li>
+        <li>Are employees being held to the same standards?</li>
+    </ul>
 
-                <tr>
-                    <td><strong>Hedonic Motivation</strong></td>
-                    <td>
-                        The tendency to seek pleasure and avoid discomfort.
-                    </td>
-                </tr>
+    <p>In an organization, a manager might have to decide which employees receive promotions. A fairness-based perspective would consider whether promotion decisions are based on relevant qualifications and performance rather than personal relationships or favoritism.</p>
 
-                <tr>
-                    <td><strong>Ethical Satisficing</strong></td>
-                    <td>
-                        Making decisions that balance ethics and evidence within
-                        real-world limits, while remaining aware of bias and impact
-                        on others.
-                    </td>
-                </tr>
+    <p><strong>The main question:</strong> Is this decision fair to the people affected?</p>
 
-            </tbody>
+    <h3>Community Well-Being: Does the Decision Support the Larger Community?</h3>
 
-        </table>
+    <p>The community well-being perspective considers how decisions affect the larger group. It recognizes that organizations are part of communities and have responsibilities beyond their immediate business goals.</p>
 
-    </div>
+    <p>The community can include employees, customers, business partners, local residents, and the general public.</p>
 
+    <p>When using this perspective, consider:</p>
+    <ul>
+        <li>Does the decision contribute positively to the community?</li>
+        <li>Could it create problems for people outside the organization?</li>
+        <li>Does it support a healthy and sustainable work environment?</li>
+        <li>Does the organization consider its responsibilities to society?</li>
+        <li>Will the decision create long-term benefits or problems?</li>
+    </ul>
 
-    <div class="card">
+    <p>In an organization, a company might consider outsourcing a department to reduce operating costs. A community well-being perspective would also consider the impact on employees, their families, the local economy, and the community.</p>
 
-        <h2>The Six Ethical Perspectives</h2>
+    <p><strong>The main question:</strong> Does this decision support the well-being of the larger community?</p>
 
-        <p>
-            Ethical perspectives provide different ways to evaluate decisions.
-            Considering multiple perspectives leads to more balanced and defensible choices.
-        </p>
+    <h3>Character: Does the Decision Reflect Good Values and Integrity?</h3>
 
-        <table>
+    <p>The character perspective focuses on the values and qualities that guide people's behavior. It asks whether a decision reflects the qualities of a responsible, trustworthy, and ethical person or organization.</p>
 
-            <thead>
-                <tr>
-                    <th>Perspective</th>
-                    <th>Key Question</th>
-                    <th>Main Focus</th>
-                </tr>
-            </thead>
+    <p>Important qualities include honesty, integrity, responsibility, courage, respect, and accountability.</p>
 
-            <tbody>
+    <p>When using this perspective, consider:</p>
+    <ul>
+        <li>Is the decision honest?</li>
+        <li>Does it demonstrate integrity?</li>
+        <li>Does it show responsibility?</li>
+        <li>Would a trustworthy leader make this decision?</li>
+        <li>Does the decision reflect the values the organization claims to support?</li>
+    </ul>
 
-                <tr>
-                    <td><strong>People’s Rights</strong></td>
-                    <td>Does this respect basic rights?</td>
-                    <td>Freedom, safety, privacy, consent</td>
-                </tr>
+    <p>In an organization, a manager might discover that a project has serious problems shortly before an important presentation. A character-based perspective would consider whether the manager should openly communicate the problems or hide them to protect the team's reputation.</p>
 
-                <tr>
-                    <td><strong>Fairness</strong></td>
-                    <td>Is this fair to everyone?</td>
-                    <td>Justice, equality, what people deserve</td>
-                </tr>
+    <p><strong>The main question:</strong> Does this decision reflect honesty, integrity, and responsible behavior?</p>
 
-                <tr>
-                    <td><strong>Consequences</strong></td>
-                    <td>Does this create the best outcome?</td>
-                    <td>Benefits vs. harms</td>
-                </tr>
+    <h3>Relationships: Does the Decision Respect and Protect Important Relationships?</h3>
 
-                <tr>
-                    <td><strong>Community Well-Being</strong></td>
-                    <td>How does this affect the group?</td>
-                    <td>Common good, shared resources, trust</td>
-                </tr>
+    <p>The relationships perspective focuses on how decisions affect the connections between people. It recognizes that organizations depend on trust, communication, cooperation, and responsibility toward others.</p>
 
-                <tr>
-                    <td><strong>Character</strong></td>
-                    <td>Does this reflect who I want to be?</td>
-                    <td>Integrity, honesty, moral consistency</td>
-                </tr>
+    <p>This perspective considers the importance of maintaining healthy relationships rather than treating people as interchangeable resources.</p>
 
-                <tr>
-                    <td><strong>Relationships</strong></td>
-                    <td>Does this consider others’ needs?</td>
-                    <td>Empathy, care, maintaining relationships</td>
-                </tr>
+    <p>When using this perspective, consider:</p>
+    <ul>
+        <li>Does the decision build or damage trust?</li>
+        <li>Are employees' concerns being taken seriously?</li>
+        <li>Does the decision demonstrate respect and consideration?</li>
+        <li>Are managers fulfilling their responsibilities to employees?</li>
+        <li>How might the decision affect teamwork and communication?</li>
+    </ul>
 
-            </tbody>
+    <p>In an organization, a manager might need to address an employee who is struggling with job performance. A relationship-based perspective would consider how the manager can address the problem while maintaining respect, communicating honestly, and supporting the employee's opportunity to improve.</p>
 
-        </table>
+    <p><strong>The main question:</strong> Does this decision demonstrate care, respect, and responsibility toward others?</p>
 
-    </div>
+    <h2>2. Understanding Ethics in Organizations</h2>
 
+    <p>Ethics in organizations refers to the values, principles, and standards that guide how an organization and its employees make decisions and behave.</p>
 
-    <div class="card">
+    <p>Organizational ethics is not limited to following laws or avoiding misconduct. A decision can be legal and still be considered unethical. For example, an organization might legally reduce employee benefits to lower operating costs, but the decision could raise ethical concerns about fairness, employee well-being, and organizational responsibility.</p>
 
-        <h2>Steps for Making an Ethical Decision</h2>
+    <p>Ethical organizations consider how their decisions affect the people involved, including employees, customers, managers, business partners, and the larger community.</p>
 
-        <div class="highlight">
+    <h3>Why Does Organizational Ethics Matter?</h3>
 
-            <strong>Ethical Decision Process</strong>
+    <p>Ethical decision-making affects several important parts of an organization.</p>
 
-            <ol>
-                <li>Identify the ethical issue.</li>
-                <li>Gather relevant and reliable evidence.</li>
-                <li>Evaluate the decision using all six ethical perspectives.</li>
-                <li>Select the most ethically defensible and evidence-supported choice.</li>
-            </ol>
+    <p><strong>1. Employee Trust and Morale</strong></p>
+    <p>Employees are more likely to trust their organization when they believe decisions are made honestly and fairly. Unethical practices, favoritism, and inconsistent policies can damage morale and reduce employee commitment.</p>
 
-        </div>
+    <p><strong>2. Organizational Reputation</strong></p>
+    <p>Customers, employees, and business partners form opinions about organizations based on how they behave. Organizations that demonstrate honesty and responsibility are more likely to build strong reputations.</p>
 
-    </div>
+    <p><strong>3. Decision-Making and Leadership</strong></p>
+    <p>Managers regularly make decisions that affect other people. Ethical principles help managers evaluate difficult situations, consider different perspectives, and explain why a decision is appropriate.</p>
 
+    <p><strong>4. Long-Term Organizational Success</strong></p>
+    <p>A decision that saves money or increases productivity in the short term may create larger problems over time. Ethical decision-making encourages organizations to consider long-term consequences rather than focusing only on immediate results.</p>
 
-    <div class="card">
+    <p><strong>5. Workplace Culture</strong></p>
+    <p>Organizational culture is shaped by the behaviors that leaders encourage, tolerate, and reward. If managers demonstrate honesty, fairness, and accountability, employees are more likely to recognize those behaviors as organizational expectations.</p>
 
-        <h2>Why This Matters</h2>
+    <h3>Who Is Responsible for Organizational Ethics?</h3>
 
-        <ul>
-            <li>Helps you navigate complex decisions with no clear “right” answer.</li>
-            <li>Improves the ethical quality of your decisions.</li>
-            <li>Encourages balanced thinking across multiple perspectives.</li>
-            <li>Reduces bias and strengthens accountability.</li>
-        </ul>
+    <p>Ethics is not just the responsibility of the human resources department or upper management. Everyone in an organization contributes to its ethical environment.</p>
 
-    </div>
+    <ul>
+        <li><strong>Organizational leaders</strong> establish expectations, make policies, and demonstrate acceptable behavior.</li>
+        <li><strong>Managers</strong> apply organizational policies, make decisions about employees, and influence workplace culture.</li>
+        <li><strong>Employees</strong> are responsible for following ethical standards, communicating concerns, and acting professionally.</li>
+        <li><strong>The organization as a whole</strong> is responsible for creating systems and practices that support ethical behavior.</li>
+    </ul>
 
+    <p>For example, an organization might have a written policy against favoritism. However, if managers consistently promote employees based on personal relationships, the organization's actual behavior does not match its stated values.</p>
 
-    <div class="card">
+    <p>This illustrates an important distinction: having an ethics policy does not automatically make an organization ethical. Ethical behavior must be demonstrated through everyday decisions and actions.</p>
 
-        <h2>Key Takeaways</h2>
+    <h2>3. Using Ethical Perspectives to Evaluate Organizational Decisions</h2>
 
-        <ul>
-            <li>Ethics and evidence must work together in decision making.</li>
-            <li>People may interpret the same facts differently based on values.</li>
-            <li>Using multiple ethical perspectives leads to stronger decisions.</li>
-            <li>Good decisions are both ethically defensible and evidence-based.</li>
-        </ul>
+    <p>When evaluating an organizational decision, it is helpful to consider more than one ethical perspective. Different perspectives may highlight different problems or benefits.</p>
 
-    </div>
+    <p>Consider the following organizational situation:</p>
 
-</div>
+    <p><strong>Scenario:</strong> A company is experiencing financial difficulties and is considering eliminating remote work. Leadership believes that requiring all employees to work in the office will improve collaboration and productivity. However, some employees rely on remote work to manage family responsibilities, transportation limitations, and other personal circumstances.</p>
 
-</body>
-</html>
+    <p>Different ethical perspectives may lead to different questions:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ethical Perspective</th>
+                <th>Questions to Consider</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Consequences</td>
+                <td>Will eliminating remote work improve productivity? What negative effects might it have on employee satisfaction and retention?</td>
+            </tr>
+            <tr>
+                <td>Rights</td>
+                <td>Does the decision respect employees' privacy, dignity, and ability to make informed choices?</td>
+            </tr>
+            <tr>
+                <td>Fairness</td>
+                <td>Are all employees being treated fairly? Are some employees affected more than others?</td>
+            </tr>
+            <tr>
+                <td>Community Well-Being</td>
+                <td>How might the decision affect employees' families and the larger community?</td>
+            </tr>
+            <tr>
+                <td>Character</td>
+                <td>Does the decision demonstrate responsible leadership, honesty, and integrity?</td>
+            </tr>
+            <tr>
+                <td>Relationships</td>
+                <td>Will the decision strengthen or damage trust between employees and management?</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Notice that each perspective examines the same decision but focuses on a different ethical concern.</p>
+
+    <p>A manager might determine that eliminating remote work could improve collaboration but also damage employee trust and increase turnover. Another manager might prioritize consistent workplace policies and believe that requiring everyone to work in person is the fairest approach.</p>
+
+    <p>The purpose of considering ethical perspectives is not necessarily to find one answer that everyone will agree with. It is to evaluate the decision carefully, recognize competing values, and develop a reasonable justification for the final decision.</p>
+
+    <h2>4. Connecting Ethical Perspectives to Toulmin-Style Arguments</h2>
+
+    <p>Ethical perspectives become especially useful when developing an argument about an organizational decision.</p>
+
+    <p>A Toulmin-style argument is a way of organizing reasoning to explain why a particular claim should be accepted. It helps you move beyond simply stating your opinion and instead demonstrate how your evidence and reasoning support your position.</p>
+
+    <p>A Toulmin-style argument includes six main components:</p>
+
+    <ol>
+        <li><strong>Claim:</strong> What position are you arguing for?</li>
+        <li><strong>Grounds (Evidence):</strong> What information supports your claim?</li>
+        <li><strong>Warrant:</strong> Why does your evidence support your claim?</li>
+        <li><strong>Backing:</strong> What additional information supports your warrant?</li>
+        <li><strong>Qualifier:</strong> How strongly or under what conditions are you making your claim?</li>
+        <li><strong>Rebuttal:</strong> What is a reasonable opposing argument, and how can you respond to it?</li>
+    </ol>
+
+    <p>Ethical perspectives are particularly useful when developing and evaluating these components. They help you examine not only whether your argument is supported by evidence but also whether your position and reasoning are ethically justifiable.</p>
+
+    <h3>How Ethical Perspectives Fit Into Each Part of an Argument</h3>
+
+    <p><strong>1. Claim: State Your Organizational Position</strong></p>
+
+    <p>Your claim identifies what you believe an organization should do.</p>
+
+    <p>An organizational claim should focus on a specific decision, policy, or action.</p>
+
+    <p>For example:</p>
+
+    <blockquote>
+        "Organizations should offer employees flexible work arrangements when their job responsibilities allow it."
+    </blockquote>
+
+    <p>This claim establishes a position that can be supported with research and ethical reasoning.</p>
+
+    <p><strong>2. Grounds: Provide Evidence</strong></p>
+
+    <p>Grounds are the facts, statistics, research findings, and other information that support your claim.</p>
+
+    <p>Evidence should come from credible sources, such as scientific research, government publications, professional reports, and organizational case studies.</p>
+
+    <p>For example, you might find research examining the relationship between flexible work arrangements and employee productivity, job satisfaction, or employee retention.</p>
+
+    <p>Evidence helps establish what is happening and what outcomes are associated with a particular organizational practice.</p>
+
+    <p><strong>3. Warrant: Explain Why the Evidence Supports Your Claim</strong></p>
+
+    <p>The warrant connects your evidence to your claim. It explains why the evidence provides a reasonable basis for accepting your position.</p>
+
+    <p>This is where ethical perspectives become particularly important.</p>
+
+    <p>For example, if research shows that flexible work arrangements are associated with higher employee satisfaction, you could use the consequences perspective to reason that organizations should consider policies that improve employee well-being.</p>
+
+    <p>You could also use the fairness perspective to argue that employees should have access to flexible arrangements when their job responsibilities and performance expectations allow it.</p>
+
+    <p>The ethical perspective helps explain the value or principle behind your reasoning.</p>
+
+    <p>A warrant should answer:</p>
+    <ul>
+        <li>Why does this evidence support my claim?</li>
+        <li>What organizational principle or ethical value makes this decision appropriate?</li>
+        <li>Why should the organization consider this evidence when making its decision?</li>
+    </ul>
+
+    <p><strong>4. Backing: Strengthen Your Reasoning</strong></p>
+
+    <p>Backing provides additional support for your warrant.</p>
+
+    <p>It can include ethical principles, professional standards, organizational policies, leadership theories, or additional research that explains why your reasoning is valid.</p>
+
+    <p>For example, you might use professional standards concerning employee well-being, research on organizational trust, or established principles of workplace fairness to strengthen your reasoning.</p>
+
+    <p>Backing helps demonstrate that your warrant is based on more than personal opinion.</p>
+
+    <p><strong>5. Qualifier: Establish the Conditions of Your Claim</strong></p>
+
+    <p>A qualifier identifies how strongly you are making your claim and recognizes that organizational decisions may depend on certain circumstances.</p>
+
+    <p>For example:</p>
+
+    <blockquote>
+        "Organizations should generally offer flexible work arrangements when employees can successfully perform their job responsibilities remotely."
+    </blockquote>
+
+    <p>The word "generally" and the condition about job responsibilities make the claim more reasonable. It recognizes that some positions require employees to be physically present.</p>
+
+    <p><strong>6. Rebuttal: Recognize and Respond to an Opposing Argument</strong></p>
+
+    <p>A rebuttal acknowledges a reasonable objection to your claim and explains why your position should still be considered.</p>
+
+    <p>For example, someone might argue that requiring employees to work in the office improves collaboration and makes it easier for managers to supervise performance.</p>
+
+    <p>You could respond by explaining that organizations can maintain collaboration and accountability through scheduled meetings, performance expectations, and other communication practices without requiring every employee to work in the office every day.</p>
+
+    <p>A strong rebuttal does not ignore opposing perspectives. It demonstrates that you understand the potential limitations of your argument and have considered alternative viewpoints.</p>
+
+    <h2>5. Using Ethical Perspectives Throughout Your Entire Argument</h2>
+
+    <p>Ethical perspectives are not limited to one part of a Toulmin-style argument. They can be used to evaluate every component of your argument, including your claim, evidence, reasoning, and opposing viewpoints.</p>
+
+    <p>Ethics provides a framework for examining whether your argument is not only supported by evidence but also reasonable, responsible, and fair.</p>
+
+    <p>Here is how ethical perspectives can be applied to each component:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Toulmin Component</th>
+                <th>How Ethical Perspectives Can Be Applied</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Claim</strong></td>
+                <td>Evaluate whether the organizational action you are recommending is ethical, fair, responsible, or beneficial.</td>
+            </tr>
+            <tr>
+                <td><strong>Grounds (Evidence)</strong></td>
+                <td>Consider whether the evidence is credible, accurately represented, and collected responsibly. Are the people affected fairly represented?</td>
+            </tr>
+            <tr>
+                <td><strong>Warrant</strong></td>
+                <td>Use ethical principles to explain why your evidence supports your claim. For example, explain why an organization has a responsibility to treat employees fairly.</td>
+            </tr>
+            <tr>
+                <td><strong>Backing</strong></td>
+                <td>Use ethical theories, professional standards, and organizational responsibilities to strengthen the ethical reasoning behind your warrant.</td>
+            </tr>
+            <tr>
+                <td><strong>Qualifier</strong></td>
+                <td>Consider whether there are ethical limitations or circumstances that might change whether your recommendation is appropriate.</td>
+            </tr>
+            <tr>
+                <td><strong>Rebuttal</strong></td>
+                <td>Evaluate opposing arguments using ethical perspectives. Consider whether an alternative position is fair, responsible, or beneficial and explain why your position may be more ethically justifiable.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Example: Should Organizations Monitor Employee Computer Activity?</h3>
+
+    <p>Consider how ethical perspectives can be used throughout an argument about employee monitoring.</p>
+
+    <ul>
+        <li><strong>Claim:</strong> Should organizations monitor employee computer activity? Use the rights perspective to consider whether monitoring respects employee privacy.</li>
+        <li><strong>Grounds:</strong> What does research show about employee monitoring and productivity? Use the consequences perspective to consider both the benefits and potential harms.</li>
+        <li><strong>Warrant:</strong> Why does the evidence support your recommendation? Use the fairness perspective to consider whether monitoring policies should be applied consistently and transparently.</li>
+        <li><strong>Backing:</strong> What principles strengthen your reasoning? Use the character perspective to consider whether honesty and integrity require organizations to inform employees about monitoring.</li>
+        <li><strong>Qualifier:</strong> Under what circumstances is monitoring appropriate? Use the rights perspective to consider whether monitoring should be limited to legitimate business purposes.</li>
+        <li><strong>Rebuttal:</strong> What might someone argue against your position? Use the consequences perspective to consider whether monitoring could improve security and reduce organizational risks.</li>
+    </ul>
+
+    <h3>Two Ways to Use Ethics in Your Argument</h3>
+
+    <p>There are two important ways to incorporate ethical reasoning into your argument.</p>
+
+    <p><strong>1. Ethics as a Foundation for Your Reasoning</strong></p>
+
+    <p>You can use ethical perspectives to explain why you believe an organizational decision is appropriate. For example, you might argue that organizations should provide fair promotion opportunities because employees deserve to be evaluated using consistent and relevant standards.</p>
+
+    <p><strong>2. Ethics as an Evaluation Tool</strong></p>
+
+    <p>You can also use ethical perspectives to examine whether your entire argument is reasonable and responsible. For example, you might evaluate whether your evidence fairly represents employees, whether your recommendation respects individual rights, and whether your rebuttal adequately considers the people who might be negatively affected.</p>
+
+    <p><strong>The main takeaway:</strong> Ethical perspectives can be applied throughout the entire Toulmin-style argument. They help you evaluate not only whether your argument is supported by evidence, but also whether the position you are defending and the reasoning you use are ethically justifiable in an organizational setting.</p>
+
+    <p>You do not need to use every ethical perspective in every component. Instead, select the perspectives that are most relevant to the issue and the reasoning you are developing.</p>
+
+    <h2>6. Putting It All Together: An Organizational Argument</h2>
+
+    <p>Consider how the components of a Toulmin-style argument work together when making a recommendation about an organizational policy.</p>
+
+    <p><strong>Organizational Issue:</strong> Should an organization offer flexible work arrangements?</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Toulmin Component</th>
+                <th>Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Claim</td>
+                <td>Organizations should offer flexible work arrangements when job responsibilities allow them.</td>
+            </tr>
+            <tr>
+                <td>Grounds</td>
+                <td>Research indicates that flexible work arrangements can be associated with improved employee satisfaction and retention.</td>
+            </tr>
+            <tr>
+                <td>Warrant</td>
+                <td>Organizations should consider practices that support employee well-being and produce positive organizational outcomes.</td>
+            </tr>
+            <tr>
+                <td>Backing</td>
+                <td>Ethical principles concerning employee well-being, fairness, and responsible organizational leadership support the importance of considering employee needs when developing workplace policies.</td>
+            </tr>
+            <tr>
+                <td>Qualifier</td>
+                <td>Flexible work arrangements should generally be offered when employees can meet their responsibilities and organizational performance expectations.</td>
+            </tr>
+            <tr>
+                <td>Rebuttal</td>
+                <td>Some managers may argue that employees need to work in person to maintain collaboration. However, organizations can establish communication expectations and scheduled in-person meetings to support collaboration while still allowing flexibility.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Notice how the ethical perspectives contribute to the argument:</strong></p>
+
+    <ul>
+        <li>The consequences perspective supports considering employee satisfaction, retention, and organizational outcomes.</li>
+        <li>The fairness perspective supports considering whether employees have reasonable and consistent access to workplace flexibility.</li>
+        <li>The relationships perspective supports maintaining trust between employees and management.</li>
+        <li>The character perspective supports responsible leadership and consideration of employee needs.</li>
+    </ul>
+
+    <p>The ethical perspectives help explain why the proposed policy is reasonable. The research evidence helps demonstrate whether the policy is likely to produce the outcomes described in the argument.</p>
+
+    <p>Importantly, ethical reasoning does not replace research evidence. You need both to develop a well-supported organizational argument.</p>
+
+    <h2>7. Applying Ethical Perspectives to Your Own Organizational Argument</h2>
+
+    <p>When developing an argument about an organizational issue, use the following process to incorporate ethical reasoning.</p>
+
+    <p><strong>Step 1: Identify the Organizational Decision</strong></p>
+
+    <p>Start by identifying the specific decision, policy, or practice you believe an organization should adopt, change, or avoid.</p>
+
+    <p>Ask yourself:</p>
+    <ul>
+        <li>What should the organization do?</li>
+        <li>Who will be affected by this decision?</li>
+        <li>Why is this decision important?</li>
+    </ul>
+
+    <p><strong>Step 2: Identify the Relevant Ethical Perspectives</strong></p>
+
+    <p>Consider which ethical perspectives are most relevant to your organizational issue.</p>
+
+    <p>You do not need to use all six perspectives in every argument. Instead, identify the perspectives that provide the strongest reasoning for your position.</p>
+
+    <p>Ask yourself:</p>
+    <ul>
+        <li>Does this issue involve employee rights?</li>
+        <li>Does it involve fairness or equal treatment?</li>
+        <li>Will the decision create benefits or harm?</li>
+        <li>Does it affect the larger community?</li>
+        <li>Does it involve honesty, integrity, or responsibility?</li>
+        <li>Could it affect trust and relationships?</li>
+    </ul>
+
+    <p><strong>Step 3: Connect Your Ethical Perspective to Your Evidence</strong></p>
+
+    <p>Review the research and information you collected for your subclaims.</p>
+
+    <p>Ask yourself:</p>
+    <ul>
+        <li>What does my evidence demonstrate?</li>
+        <li>How does this information relate to the ethical perspective I selected?</li>
+        <li>Why does this ethical principle support my position?</li>
+        <li>What additional research or professional standards could strengthen my reasoning?</li>
+    </ul>
+
+    <p><strong>Step 4: Develop Your Warrant</strong></p>
+
+    <p>Use your answers to explain why your evidence supports your position.</p>
+
+    <p>Remember that a warrant is not simply another piece of evidence. It is the reasoning that connects your evidence to your claim.</p>
+
+    <p>For example, research might demonstrate that a particular organizational practice improves employee satisfaction. Your warrant would explain why improving employee satisfaction is an important organizational responsibility and why that finding supports your proposed policy.</p>
+
+    <p><strong>Step 5: Consider Other Ethical Perspectives</strong></p>
+
+    <p>Before finalizing your argument, consider whether another ethical perspective might challenge your position.</p>
+
+    <p>For example, a decision that benefits the majority of employees might create disadvantages for a smaller group. A decision that improves organizational efficiency might raise concerns about employee rights or fairness.</p>
+
+    <p>Considering these competing values can help you develop a stronger, more balanced argument.</p>
+
+    <p><strong>Step 6: Address Opposing Arguments</strong></p>
+
+    <p>Identify a reasonable reason someone might disagree with your position. Consider what evidence or ethical perspective they might use to support their position.</p>
+
+    <p>Then develop a rebuttal that explains why your recommendation remains reasonable.</p>
+
+    <h2>8. Final Takeaway: Ethical Reasoning Strengthens Organizational Arguments</h2>
+
+    <p>Organizational decisions are rarely based on facts alone. Managers and employees must also consider values, responsibilities, and the potential impact of their decisions on other people.</p>
+
+    <p>Ethical perspectives provide a framework for evaluating these decisions. They help us consider consequences, individual rights, fairness, community well-being, character, and relationships.</p>
+
+    <p>Toulmin-style arguments provide a structure for turning this ethical reasoning into a clear, evidence-based position.</p>
+
+    <p>When developing your own organizational argument, remember:</p>
+
+    <ul>
+        <li>Your <strong>claim</strong> identifies what the organization should do.</li>
+        <li>Your <strong>grounds</strong> provide research and evidence supporting your position.</li>
+        <li>Your <strong>warrant</strong> explains why the evidence supports your position, often using ethical principles.</li>
+        <li>Your <strong>backing</strong> provides additional support for your reasoning.</li>
+        <li>Your <strong>qualifier</strong> recognizes the conditions or limitations of your position.</li>
+        <li>Your <strong>rebuttal</strong> acknowledges and responds to reasonable opposing arguments.</li>
+    </ul>
+
+    <p>The goal is not simply to argue that an organizational decision is right or wrong. The goal is to demonstrate why a particular decision is reasonable, responsible, and supported by evidence and ethical principles.</p>
+
+</article>
