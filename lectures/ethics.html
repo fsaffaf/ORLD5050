@@ -59,13 +59,18 @@ p {
 .card {
     display: block;
     width: 100%;
+    min-width: 0;
     margin: 0 0 24px;
     padding: 28px;
     background: #ffffff;
     border: 1px solid #d9e2ec;
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, .05);
-    min-width: 0;
+    overflow: hidden;
+}
+
+.card > :last-child {
+    margin-bottom: 0;
 }
 
 /* Keep card contents within the card */
@@ -85,6 +90,10 @@ p {
     margin-bottom: 8px;
 }
 
+.card li:last-child {
+    margin-bottom: 0;
+}
+
 .highlight {
     background: #eef6fc;
     border-left: 5px solid #0e68b3;
@@ -96,10 +105,16 @@ p {
 /* Table styling */
 
 .table-wrapper {
+    display: block;
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
-    margin-top: 16px;
+    margin: 16px 0 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper table {
+    min-width: 560px;
 }
 
 table {
@@ -199,7 +214,9 @@ tr:nth-child(even) {
 
     <h1>Ethics in Arguments</h1>
 
-    <h2>1. What Are Ethical Perspectives?</h2>
+    <div class="card">
+
+<h2>1. What Are Ethical Perspectives?</h2>
 
     <p>An ethical perspective is a way of thinking about what is right, wrong, fair, or responsible. When people make decisions, they often consider different values. However, people do not always agree about which values should matter most.</p>
 
@@ -316,7 +333,10 @@ tr:nth-child(even) {
 
     <p><strong>The main question:</strong> Does this decision demonstrate care, respect, and responsibility toward others?</p>
 
-    <h2>2. Understanding Ethics in Organizations</h2>
+</div>
+<div class="card">
+
+<h2>2. Understanding Ethics in Organizations</h2>
 
     <p>Ethics in organizations refers to the values, principles, and standards that guide how an organization and its employees make decisions and behave.</p>
 
@@ -358,7 +378,10 @@ tr:nth-child(even) {
 
     <p>This illustrates an important distinction: having an ethics policy does not automatically make an organization ethical. Ethical behavior must be demonstrated through everyday decisions and actions.</p>
 
-    <h2>3. Using Ethical Perspectives to Evaluate Organizational Decisions</h2>
+</div>
+<div class="card">
+
+<h2>3. Using Ethical Perspectives to Evaluate Organizational Decisions</h2>
 
     <p>When evaluating an organizational decision, it is helpful to consider more than one ethical perspective. Different perspectives may highlight different problems or benefits.</p>
 
@@ -368,7 +391,8 @@ tr:nth-child(even) {
 
     <p>Different ethical perspectives may lead to different questions:</p>
 
-    <table>
+    <div class="table-wrapper">
+<table>
         <thead>
             <tr>
                 <th>Ethical Perspective</th>
@@ -402,6 +426,7 @@ tr:nth-child(even) {
             </tr>
         </tbody>
     </table>
+</div>
 
     <p>Notice that each perspective examines the same decision but focuses on a different ethical concern.</p>
 
@@ -409,24 +434,25 @@ tr:nth-child(even) {
 
     <p>The purpose of considering ethical perspectives is not necessarily to find one answer that everyone will agree with. It is to evaluate the decision carefully, recognize competing values, and develop a reasonable justification for the final decision.</p>
 
-    <h2>4. Connecting Ethical Perspectives to Toulmin-Style Arguments</h2>
+</div>
+<div class="card">
+
+<h2>4. Connecting Ethical Perspectives to Toulmin-Style Arguments</h2>
 
     <p>Ethical perspectives become especially useful when developing an argument about an organizational decision.</p>
 
     <p>A Toulmin-style argument is a way of organizing reasoning to explain why a particular claim should be accepted. It helps you move beyond simply stating your opinion and instead demonstrate how your evidence and reasoning support your position.</p>
 
-    <p>A Toulmin-style argument includes six main components:</p>
+    <p>For this course, we will focus on four main components of a Toulmin-style argument:</p>
 
     <ol>
         <li><strong>Claim:</strong> What position are you arguing for?</li>
-        <li><strong>Grounds (Evidence):</strong> What information supports your claim?</li>
+        <li><strong>Evidence:</strong> What information supports your claim?</li>
         <li><strong>Warrant:</strong> Why does your evidence support your claim?</li>
-        <li><strong>Backing:</strong> What additional information supports your warrant?</li>
-        <li><strong>Qualifier:</strong> How strongly or under what conditions are you making your claim?</li>
         <li><strong>Rebuttal:</strong> What is a reasonable opposing argument, and how can you respond to it?</li>
     </ol>
 
-    <p>Ethical perspectives are particularly useful when developing and evaluating these components. They help you examine not only whether your argument is supported by evidence but also whether your position and reasoning are ethically justifiable.</p>
+    <p>Ethical perspectives are particularly useful when developing and evaluating these four components. They help you examine not only whether your argument is supported by evidence but also whether your position and reasoning are ethically justifiable.</p>
 
     <h3>How Ethical Perspectives Fit Into Each Part of an Argument</h3>
 
@@ -444,9 +470,9 @@ tr:nth-child(even) {
 
     <p>This claim establishes a position that can be supported with research and ethical reasoning.</p>
 
-    <p><strong>2. Grounds: Provide Evidence</strong></p>
+    <p><strong>2. Evidence: Support Your Claim</strong></p>
 
-    <p>Grounds are the facts, statistics, research findings, and other information that support your claim.</p>
+    <p>Evidence includes facts, statistics, research findings, and other credible information that support your claim.</p>
 
     <p>Evidence should come from credible sources, such as scientific research, government publications, professional reports, and organizational case studies.</p>
 
@@ -473,29 +499,7 @@ tr:nth-child(even) {
         <li>Why should the organization consider this evidence when making its decision?</li>
     </ul>
 
-    <p><strong>4. Backing: Strengthen Your Reasoning</strong></p>
-
-    <p>Backing provides additional support for your warrant.</p>
-
-    <p>It can include ethical principles, professional standards, organizational policies, leadership theories, or additional research that explains why your reasoning is valid.</p>
-
-    <p>For example, you might use professional standards concerning employee well-being, research on organizational trust, or established principles of workplace fairness to strengthen your reasoning.</p>
-
-    <p>Backing helps demonstrate that your warrant is based on more than personal opinion.</p>
-
-    <p><strong>5. Qualifier: Establish the Conditions of Your Claim</strong></p>
-
-    <p>A qualifier identifies how strongly you are making your claim and recognizes that organizational decisions may depend on certain circumstances.</p>
-
-    <p>For example:</p>
-
-    <blockquote>
-        "Organizations should generally offer flexible work arrangements when employees can successfully perform their job responsibilities remotely."
-    </blockquote>
-
-    <p>The word "generally" and the condition about job responsibilities make the claim more reasonable. It recognizes that some positions require employees to be physically present.</p>
-
-    <p><strong>6. Rebuttal: Recognize and Respond to an Opposing Argument</strong></p>
+    <p><strong>4. Rebuttal: Recognize and Respond to an Opposing Argument</strong></p>
 
     <p>A rebuttal acknowledges a reasonable objection to your claim and explains why your position should still be considered.</p>
 
@@ -505,15 +509,19 @@ tr:nth-child(even) {
 
     <p>A strong rebuttal does not ignore opposing perspectives. It demonstrates that you understand the potential limitations of your argument and have considered alternative viewpoints.</p>
 
-    <h2>5. Using Ethical Perspectives Throughout Your Entire Argument</h2>
+</div>
+<div class="card">
+
+<h2>5. Using Ethical Perspectives Throughout Your Entire Argument</h2>
 
     <p>Ethical perspectives are not limited to one part of a Toulmin-style argument. They can be used to evaluate every component of your argument, including your claim, evidence, reasoning, and opposing viewpoints.</p>
 
     <p>Ethics provides a framework for examining whether your argument is not only supported by evidence but also reasonable, responsible, and fair.</p>
 
-    <p>Here is how ethical perspectives can be applied to each component:</p>
+    <p>Here is how ethical perspectives can be applied to each of the four components:</p>
 
-    <table>
+    <div class="table-wrapper">
+<table>
         <thead>
             <tr>
                 <th>Toulmin Component</th>
@@ -526,7 +534,7 @@ tr:nth-child(even) {
                 <td>Evaluate whether the organizational action you are recommending is ethical, fair, responsible, or beneficial.</td>
             </tr>
             <tr>
-                <td><strong>Grounds (Evidence)</strong></td>
+                <td><strong>Evidence</strong></td>
                 <td>Consider whether the evidence is credible, accurately represented, and collected responsibly. Are the people affected fairly represented?</td>
             </tr>
             <tr>
@@ -534,19 +542,12 @@ tr:nth-child(even) {
                 <td>Use ethical principles to explain why your evidence supports your claim. For example, explain why an organization has a responsibility to treat employees fairly.</td>
             </tr>
             <tr>
-                <td><strong>Backing</strong></td>
-                <td>Use ethical theories, professional standards, and organizational responsibilities to strengthen the ethical reasoning behind your warrant.</td>
-            </tr>
-            <tr>
-                <td><strong>Qualifier</strong></td>
-                <td>Consider whether there are ethical limitations or circumstances that might change whether your recommendation is appropriate.</td>
-            </tr>
-            <tr>
                 <td><strong>Rebuttal</strong></td>
                 <td>Evaluate opposing arguments using ethical perspectives. Consider whether an alternative position is fair, responsible, or beneficial and explain why your position may be more ethically justifiable.</td>
             </tr>
         </tbody>
     </table>
+</div>
 
     <h3>Example: Should Organizations Monitor Employee Computer Activity?</h3>
 
@@ -554,10 +555,8 @@ tr:nth-child(even) {
 
     <ul>
         <li><strong>Claim:</strong> Should organizations monitor employee computer activity? Use the rights perspective to consider whether monitoring respects employee privacy.</li>
-        <li><strong>Grounds:</strong> What does research show about employee monitoring and productivity? Use the consequences perspective to consider both the benefits and potential harms.</li>
+        <li><strong>Evidence:</strong> What does research show about employee monitoring and productivity? Use the consequences perspective to consider both the benefits and potential harms.</li>
         <li><strong>Warrant:</strong> Why does the evidence support your recommendation? Use the fairness perspective to consider whether monitoring policies should be applied consistently and transparently.</li>
-        <li><strong>Backing:</strong> What principles strengthen your reasoning? Use the character perspective to consider whether honesty and integrity require organizations to inform employees about monitoring.</li>
-        <li><strong>Qualifier:</strong> Under what circumstances is monitoring appropriate? Use the rights perspective to consider whether monitoring should be limited to legitimate business purposes.</li>
         <li><strong>Rebuttal:</strong> What might someone argue against your position? Use the consequences perspective to consider whether monitoring could improve security and reduce organizational risks.</li>
     </ul>
 
@@ -577,13 +576,17 @@ tr:nth-child(even) {
 
     <p>You do not need to use every ethical perspective in every component. Instead, select the perspectives that are most relevant to the issue and the reasoning you are developing.</p>
 
-    <h2>6. Putting It All Together: An Organizational Argument</h2>
+</div>
+<div class="card">
+
+<h2>6. Putting It All Together: An Organizational Argument</h2>
 
     <p>Consider how the components of a Toulmin-style argument work together when making a recommendation about an organizational policy.</p>
 
     <p><strong>Organizational Issue:</strong> Should an organization offer flexible work arrangements?</p>
 
-    <table>
+    <div class="table-wrapper">
+<table>
         <thead>
             <tr>
                 <th>Toulmin Component</th>
@@ -596,7 +599,7 @@ tr:nth-child(even) {
                 <td>Organizations should offer flexible work arrangements when job responsibilities allow them.</td>
             </tr>
             <tr>
-                <td>Grounds</td>
+                <td>Evidence</td>
                 <td>Research indicates that flexible work arrangements can be associated with improved employee satisfaction and retention.</td>
             </tr>
             <tr>
@@ -604,19 +607,12 @@ tr:nth-child(even) {
                 <td>Organizations should consider practices that support employee well-being and produce positive organizational outcomes.</td>
             </tr>
             <tr>
-                <td>Backing</td>
-                <td>Ethical principles concerning employee well-being, fairness, and responsible organizational leadership support the importance of considering employee needs when developing workplace policies.</td>
-            </tr>
-            <tr>
-                <td>Qualifier</td>
-                <td>Flexible work arrangements should generally be offered when employees can meet their responsibilities and organizational performance expectations.</td>
-            </tr>
-            <tr>
                 <td>Rebuttal</td>
                 <td>Some managers may argue that employees need to work in person to maintain collaboration. However, organizations can establish communication expectations and scheduled in-person meetings to support collaboration while still allowing flexibility.</td>
             </tr>
         </tbody>
     </table>
+</div>
 
     <p><strong>Notice how the ethical perspectives contribute to the argument:</strong></p>
 
@@ -631,7 +627,10 @@ tr:nth-child(even) {
 
     <p>Importantly, ethical reasoning does not replace research evidence. You need both to develop a well-supported organizational argument.</p>
 
-    <h2>7. Applying Ethical Perspectives to Your Own Organizational Argument</h2>
+</div>
+<div class="card">
+
+<h2>7. Applying Ethical Perspectives to Your Own Organizational Argument</h2>
 
     <p>When developing an argument about an organizational issue, use the following process to incorporate ethical reasoning.</p>
 
@@ -696,7 +695,10 @@ tr:nth-child(even) {
 
     <p>Then develop a rebuttal that explains why your recommendation remains reasonable.</p>
 
-    <h2>8. Final Takeaway: Ethical Reasoning Strengthens Organizational Arguments</h2>
+</div>
+<div class="card">
+
+<h2>8. Final Takeaway: Ethical Reasoning Strengthens Organizational Arguments</h2>
 
     <p>Organizational decisions are rarely based on facts alone. Managers and employees must also consider values, responsibilities, and the potential impact of their decisions on other people.</p>
 
@@ -708,13 +710,13 @@ tr:nth-child(even) {
 
     <ul>
         <li>Your <strong>claim</strong> identifies what the organization should do.</li>
-        <li>Your <strong>grounds</strong> provide research and evidence supporting your position.</li>
+        <li>Your <strong>evidence</strong> provides research and information supporting your position.</li>
         <li>Your <strong>warrant</strong> explains why the evidence supports your position, often using ethical principles.</li>
-        <li>Your <strong>backing</strong> provides additional support for your reasoning.</li>
-        <li>Your <strong>qualifier</strong> recognizes the conditions or limitations of your position.</li>
         <li>Your <strong>rebuttal</strong> acknowledges and responds to reasonable opposing arguments.</li>
     </ul>
 
     <p>The goal is not simply to argue that an organizational decision is right or wrong. The goal is to demonstrate why a particular decision is reasonable, responsible, and supported by evidence and ethical principles.</p>
 
 </article>
+
+</div>
