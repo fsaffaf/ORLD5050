@@ -101,23 +101,6 @@
     min-height: 110px;
 }
 
-.article-tool .info-row {
-    display: grid;
-    grid-template-columns: 190px 1fr;
-    align-items: center;
-    gap: 15px;
-    margin: 12px 0;
-}
-
-.article-tool .info-row > label {
-    margin: 0;
-}
-
-.article-tool .info-row input,
-.article-tool .info-row select {
-    margin: 0;
-}
-
 .article-tool label {
     display: block;
     font-weight: bold;
@@ -240,33 +223,6 @@
     opacity: .88;
 }
 
-/* SOURCE-SPECIFIC LIMITATIONS */
-
-.article-tool #limitationsSection.limitations-locked {
-    opacity: 0.5;
-}
-
-.article-tool #limitationsSection.limitations-locked textarea,
-.article-tool #limitationsSection.limitations-locked select {
-    background-color: #eeeeee;
-    color: #777;
-    cursor: not-allowed;
-}
-
-.article-tool #limitationsSection textarea:disabled,
-.article-tool #limitationsSection select:disabled {
-    background-color: #eeeeee;
-    color: #777;
-    cursor: not-allowed;
-}
-
-.article-tool .locked-message {
-    color: #666;
-    font-size: 13px;
-    font-style: italic;
-    margin: 5px 0 12px;
-}
-
 @media (max-width: 600px) {
     .article-tool .section {
         padding: 12px;
@@ -276,17 +232,8 @@
         padding: 11px;
     }
 
-    .article-tool .info-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
-    }
-
     .article-tool .subclaim-grid {
         grid-template-columns: 1fr;
-    }
-
-    .article-tool .info-row > label {
-        margin-top: 10px;
     }
 }
 </style>
@@ -299,86 +246,16 @@
 <h2>Evidence Organizer</h2>
 
 <div class="intro">
-    <strong>Use this tool to organize information from each article you decide to keep for your research paper.</strong>
+    <strong>Use this tool to organize your main claim, subclaims, and supporting evidence from the articles you select for your research paper.</strong>
 </div>
 
-<!-- PART 1: ARGUMENT AND ARTICLE OVERVIEW -->
+<!-- PART 1: CLAIMS -->
 
-<h2 class="part-heading">Argument and Article Overview</h2>
+<h2 class="part-heading">Claims</h2>
 
 <p class="part-intro">
-    Enter your main claim and the three subclaims that make up your argument. Then record basic information about the article you are reviewing.
+    Enter your main claim and the three subclaims that make up your argument.
 </p>
-
-<div class="section">
-
-    <h3>Article Information</h3>
-
-    <div class="info-row">
-        <label for="firstAuthorLastName">First Author's Last Name</label>
-        <input type="text" id="firstAuthorLastName"
-            placeholder="Enter author's last name">
-    </div>
-
-    <div class="info-row">
-        <label for="articleTitle">Article Title <span class="required">*</span></label>
-        <input type="text" id="articleTitle"
-            placeholder="Enter the article title">
-    </div>
-
-    <div class="info-row">
-        <label for="year">Publication Year</label>
-        <input type="text" id="year"
-            placeholder="e.g., 2025">
-    </div>
-
-    <div class="info-row">
-        <label for="publication">Journal/Publication</label>
-        <input type="text" id="publication"
-            placeholder="Enter the journal or publication name">
-    </div>
-
-    <div class="info-row">
-        <label for="sourceType">Article Type</label>
-        <select id="sourceType">
-            <option value="">Select an article type</option>
-            <option value="Internal Company/Organizational Data">Internal Company/Organizational Data</option>
-            <option value="Government Report/Public-Sector Data">Government Report/Public-Sector Data</option>
-            <option value="Peer-Reviewed Scientific Research">Peer-Reviewed Scientific Research</option>
-            <option value="Industry/Market Report">Industry/Market Report</option>
-            <option value="Professional Association/Standards Publication">Professional Association/Standards Publication</option>
-            <option value="Company/Organizational Publication">Company/Organizational Publication</option>
-            <option value="News/Media Article">News/Media Article</option>
-            <option value="Other/Not Sure">Other/Not Sure</option>
-        </select>
-    </div>
-
-    <div class="info-row">
-        <label for="url">Article Link</label>
-        <input type="url" id="url"
-            placeholder="Paste the article URL">
-    </div>
-
-    <label for="purposeType">Article Purpose</label>
-    <select id="purposeType">
-        <option value="">Select the article's purpose</option>
-        <option value="Present original research or findings">Present original research or findings</option>
-        <option value="Summarize existing research or evidence">Summarize existing research or evidence</option>
-        <option value="Report data, statistics, or trends">Report data, statistics, or trends</option>
-        <option value="Explain an issue, concept, or process">Explain an issue, concept, or process</option>
-        <option value="Persuade or advocate a position">Persuade or advocate a position</option>
-        <option value="Provide recommendations or guidance">Provide recommendations or guidance</option>
-        <option value="Report news or current events">Report news or current events</option>
-        <option value="Other/Not sure">Other/Not sure</option>
-    </select>
-
-    <label for="findings">What are the article's main findings or takeaways?</label>
-    <textarea id="findings"
-        placeholder="Briefly summarize the most important information from the article."></textarea>
-
-</div>
-
-<!-- MAIN CLAIM AND SUBCLAIMS -->
 
 <div class="section">
 
@@ -409,19 +286,20 @@
         </div>
 
     </div>
+
 </div>
 
-<!-- PART 2: EVIDENCE AND EVALUATION -->
+<!-- PART 2: QUOTATION, PREMISE, AND WARRANT -->
 
-<h2 class="part-heading">Evidence and Evaluation</h2>
+<h2 class="part-heading">Quotation, Premise, and Warrant</h2>
 
 <p class="part-intro">
-    Use this section to identify evidence from an article and connect it to your subclaim(s).
+    Use this section to identify evidence from your article and connect it to your subclaims.
+
     Identify facts, statistics, or quotations from experts in the article that could support your argument. Your direct quotation should include at least one of these types of information. Connect each quotation to the specific subclaim it supports.
+
     <strong>Remember:</strong> A quotation alone does not explain why your argument is correct. You must explain how the evidence supports the specific subclaim you select.
 </p>
-
-<!-- SUPPORTING EVIDENCE -->
 
 <div class="section">
 
@@ -434,26 +312,6 @@
     <p class="small-note">
         Add as many pieces of evidence as you need. You do not need to find a specific number of quotations in every article.
     </p>
-
-</div>
-
-<!-- PART 3: LIMITATIONS -->
-
-<h2 class="part-heading">Article Limitations and Considerations</h2>
-
-<p class="part-intro">
-    Consider the limitations of the article or source. The questions below will change depending on the type of article you selected.
-</p>
-
-<div class="section limitations-locked" id="limitationsSection">
-
-    <h3>Evaluating Article Limitations</h3>
-
-    <p id="limitationsMessage" class="locked-message">
-        Article type must be selected first.
-    </p>
-
-    <div id="limitationsQuestions"></div>
 
 </div>
 
@@ -475,7 +333,7 @@
 
 <div class="output" id="outputSection" style="display:none;">
 
-    <h3>Your Article Research Notes</h3>
+    <h3>Your Research Notes</h3>
 
     <p class="small-note">
         Review your notes below. You can edit the text directly before copying it into your research document.
@@ -586,7 +444,7 @@ function addEvidence() {
         ></textarea>
 
         <label for="argumentPart${evidenceCount}">
-            Which subclaim does this evidence support?
+            Which subclaim does this evidence support? <span class="required">*</span>
         </label>
 
         <select
@@ -597,7 +455,7 @@ function addEvidence() {
         </select>
 
         <label for="explanation${evidenceCount}">
-            Why does this evidence support your subclaim? (Warrant)
+            Why does this evidence support your subclaim? (Warrant) <span class="required">*</span>
         </label>
 
         <textarea
@@ -650,156 +508,10 @@ function removeEvidence(number) {
 
 
 // ==========================================
-// SOURCE-SPECIFIC LIMITATIONS
-// ==========================================
-
-const limitationQuestions = {
-
-    "Internal Company/Organizational Data": [
-        "How was the information originally collected, and was it collected for a specific organizational purpose?",
-        "Does the information represent the entire organization or only certain employees, departments, or locations?",
-        "Could the organization's interests or goals influence how the information was collected or presented?",
-        "Are there important details about the data collection process or definitions of variables that are missing?"
-    ],
-
-    "Government Report/Public-Sector Data": [
-        "Who collected or published the information, and what was the purpose of the report?",
-        "What population, geographic area, or time period does the information represent?",
-        "Are there any limitations in the data collection methods, reporting process, or available information?",
-        "Is the information current enough to support the argument you are making?"
-    ],
-
-    "Peer-Reviewed Scientific Research": [
-        "Who or what was included in the study, and does the sample represent the population being discussed?",
-        "What research design was used, and does it allow the researchers to establish cause and effect?",
-        "Are there limitations involving the measurements, procedures, or data collection methods?",
-        "What limitations did the researchers identify in their own study?"
-    ],
-
-    "Industry/Market Report": [
-        "Who produced or funded the report, and could they have an interest in the findings?",
-        "How was the information collected, and is the methodology explained?",
-        "Does the report represent the entire industry or only selected organizations, markets, or participants?",
-        "Are the findings current, and could changes in the industry affect their accuracy?"
-    ],
-
-    "Professional Association/Standards Publication": [
-        "Who developed the standards or recommendations, and what expertise do they bring?",
-        "What evidence or professional knowledge supports the recommendations?",
-        "Do the standards apply broadly, or are they intended for a specific industry or situation?",
-        "Are the recommendations current and relevant to the organizational issue being discussed?"
-    ],
-
-    "Company/Organizational Publication": [
-        "Who published the information, and what does the organization hope to communicate?",
-        "Is the publication primarily informational, promotional, or intended to persuade its audience?",
-        "Are claims supported by independent evidence, data, or research?",
-        "Could the organization's interests influence how the information is presented?"
-    ],
-
-    "News/Media Article": [
-        "Does the article rely on original reporting, or does it summarize information from another source?",
-        "Are the claims supported by named experts, research, statistics, or other verifiable information?",
-        "Does the article provide enough context to understand the issue accurately?",
-        "Could the article's framing, publication interests, or reliance on limited sources influence its presentation?"
-    ],
-
-    "Other/Not Sure": [
-        "Who created or published the source, and what was its purpose?",
-        "What evidence supports the information presented?",
-        "Are there missing details, potential biases, or other concerns that affect the source's credibility?",
-        "Is the information relevant and current enough to support your argument?"
-    ]
-
-};
-
-
-// RENDER LIMITATIONS BASED ON ARTICLE TYPE
-
-function renderSourceLimitations() {
-
-    const sourceType = getValue("sourceType");
-
-    const section =
-        document.getElementById("limitationsSection");
-
-    const container =
-        document.getElementById("limitationsQuestions");
-
-    const message =
-        document.getElementById("limitationsMessage");
-
-    container.innerHTML = "";
-
-    if (!sourceType || !limitationQuestions[sourceType]) {
-
-        section.classList.add("limitations-locked");
-
-        message.textContent =
-            "Article type must be selected first.";
-
-        return;
-    }
-
-    section.classList.remove("limitations-locked");
-
-    message.textContent =
-        "Answer the questions below to evaluate the limitations of this source.";
-
-    const questions = limitationQuestions[sourceType];
-
-    questions.forEach(function(question, index) {
-
-        const label = document.createElement("label");
-
-        label.htmlFor = "sourceLimitation" + index;
-
-        label.textContent = question;
-
-        const textarea = document.createElement("textarea");
-
-        textarea.id = "sourceLimitation" + index;
-
-        textarea.className = "source-limitation";
-
-        textarea.dataset.question = question;
-
-        textarea.placeholder =
-            "Enter your response here...";
-
-        container.appendChild(label);
-
-        container.appendChild(textarea);
-
-    });
-}
-
-
-// UPDATE LIMITATIONS WHEN ARTICLE TYPE CHANGES
-
-document.getElementById("sourceType").addEventListener(
-    "change",
-    renderSourceLimitations
-);
-
-
-// ==========================================
 // GENERATE RESEARCH NOTES
 // ==========================================
 
 function generateNotes() {
-
-    // REQUIRE ARTICLE TITLE
-
-    if (!getValue("articleTitle")) {
-
-        alert("Please enter the article title first.");
-
-        document.getElementById("articleTitle").focus();
-
-        return;
-    }
-
 
     // REQUIRE MAIN CLAIM
 
@@ -899,68 +611,9 @@ function generateNotes() {
     }
 
 
-    // CREATE NOTE SECTIONS
+    // CREATE CLAIMS SECTION
 
-    let sections = [];
-
-    function addSection(title, content) {
-
-        if (content.trim()) {
-
-            sections.push(
-                title + "\n" + content.trim()
-            );
-
-        }
-    }
-
-
-    // SECTION 1: ARTICLE INFORMATION
-
-    let info = [
-
-        getValue("firstAuthorLastName") ?
-            "First Author's Last Name: " +
-            getValue("firstAuthorLastName") : "",
-
-        "Article Title: " + getValue("articleTitle"),
-
-        getValue("year") ?
-            "Publication Year: " + getValue("year") : "",
-
-        getValue("publication") ?
-            "Journal/Publication: " + getValue("publication") : "",
-
-        getValue("sourceType") ?
-            "Article Type: " + getValue("sourceType") : "",
-
-        getValue("url") ?
-            "Article Link: " + getValue("url") : ""
-
-    ].filter(Boolean).join("\n");
-
-    addSection("1. ARTICLE INFORMATION", info);
-
-
-    // SECTION 2: ARTICLE PURPOSE
-
-    addSection(
-        "2. PURPOSE OF THE ARTICLE",
-        getValue("purposeType")
-    );
-
-
-    // SECTION 3: ARTICLE SUMMARY
-
-    addSection(
-        "3. ARTICLE SUMMARY AND MAIN FINDINGS",
-        getValue("findings")
-    );
-
-
-    // SECTION 4: MAIN CLAIM AND SUBCLAIMS
-
-    let subclaims = [
+    let claims = [
 
         "Main Claim: " + getValue("mainClaim"),
 
@@ -972,13 +625,8 @@ function generateNotes() {
 
     ].join("\n");
 
-    addSection(
-        "4. MAIN CLAIM AND THREE SUBCLAIMS",
-        subclaims
-    );
 
-
-    // SECTION 5: SUPPORTING EVIDENCE
+    // CREATE EVIDENCE SECTION
 
     let evidence = [];
 
@@ -1021,42 +669,24 @@ function generateNotes() {
         }
     });
 
-    addSection(
-        "5. EVIDENCE THAT SUPPORTS MY ARGUMENT",
-        evidence.join("\n\n")
-    );
-
-
-    // SECTION 6: SOURCE-SPECIFIC LIMITATIONS
-
-    let sourceLimitations = Array.from(
-
-        document.querySelectorAll(".source-limitation")
-
-    ).map(function(field) {
-
-        return field.value.trim() ?
-
-            field.dataset.question + "\n" + field.value.trim() : "";
-
-    }).filter(Boolean).join("\n\n");
-
-
-    addSection(
-        "6. ARTICLE LIMITATIONS AND CONSIDERATIONS",
-        sourceLimitations
-    );
-
 
     // GENERATE FINAL OUTPUT
 
     let output =
 
-        "ARTICLE RESEARCH NOTES\n" +
+        "RESEARCH NOTES\n" +
 
         "========================================\n\n" +
 
-        sections.join("\n\n") +
+        "1. CLAIMS\n\n" +
+
+        claims +
+
+        "\n\n----------------------------------------\n\n" +
+
+        "2. QUOTATION, PREMISE, AND WARRANT\n\n" +
+
+        evidence.join("\n\n") +
 
         "\n\n========================================";
 
@@ -1163,11 +793,6 @@ function resetNotes() {
     addEvidence();
 
 
-    // LOCK AND CLEAR LIMITATIONS
-
-    renderSourceLimitations();
-
-
     // HIDE OUTPUT
 
     document.getElementById("outputSection").style.display = "none";
@@ -1175,9 +800,9 @@ function resetNotes() {
     document.getElementById("copyMessage").textContent = "";
 
 
-    // RETURN TO ARTICLE TITLE
+    // RETURN TO MAIN CLAIM
 
-    document.getElementById("articleTitle").focus();
+    document.getElementById("mainClaim").focus();
 
 }
 
@@ -1187,11 +812,8 @@ function resetNotes() {
 // ==========================================
 
 // Start with one blank evidence entry.
-// Limitations remain locked until an article type is selected.
 
 addEvidence();
-
-renderSourceLimitations();
 
 </script>
 
