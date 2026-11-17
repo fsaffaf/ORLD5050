@@ -466,17 +466,23 @@ function generateNotes() {
     }
 
     const articleInformation = [
-        getValue("firstAuthorLastName") ? "First Author's Last Name: " + getValue("firstAuthorLastName") : "",
+        getValue("firstAuthorLastName") ?
+            "First Author's Last Name: " + getValue("firstAuthorLastName") : "",
         "Article Title: " + getValue("articleTitle"),
-        getValue("year") ? "Publication Year: " + getValue("year") : "",
-        getValue("publication") ? "Journal/Publication: " + getValue("publication") : "",
-        getValue("sourceType") ? "Source Type: " + getValue("sourceType") : "",
-        getValue("url") ? "Article Link: " + getValue("url") : ""
+        getValue("year") ?
+            "Publication Year: " + getValue("year") : "",
+        getValue("publication") ?
+            "Journal/Publication: " + getValue("publication") : "",
+        getValue("sourceType") ?
+            "Source Type: " + getValue("sourceType") : "",
+        getValue("url") ?
+            "Article Link: " + getValue("url") : ""
     ].filter(Boolean).join("\n");
-    addSection("1. ARTICLE INFORMATION", articleInformation);
+        getValue("purposeType") ?
+            "Purpose:" + getValue("purposeType") : "",
+        getValue("findings") ?
+            "Summary:" + getValue("findings") : "",    
 
-    addSection("2. PURPOSE OF THE ARTICLE", getValue("purposeType"));
-    addSection("3. ARTICLE SUMMARY", getValue("findings"));
 
     const sourceLimitations = Array.from(document.querySelectorAll(".source-limitation"))
         .map(function(field) {
@@ -484,13 +490,11 @@ function generateNotes() {
         })
         .filter(Boolean)
         .join("\n\n");
-    addSection("4. LIMITATIONS AND CONSIDERATIONS", sourceLimitations);
+    addSection("LIMITATIONS AND CONSIDERATIONS", sourceLimitations);
 
-    const output = "ARTICLE RESEARCH NOTES\n" +
-        "========================================\n\n" +
-        sections.join("\n\n") +
-        "\n\n========================================";
-
+    const output = 
+        sections.join("\n\n")
+    
     document.getElementById("generatedNotes").value = output;
     document.getElementById("outputSection").style.display = "block";
     document.getElementById("copyMessage").textContent = "";
