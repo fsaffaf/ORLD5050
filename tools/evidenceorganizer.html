@@ -49,57 +49,6 @@
     background: white;
 }
 
-.article-tool .part-heading {
-    background: #174a73;
-    color: white;
-    border-radius: 7px;
-    padding: 12px 16px;
-    margin: 24px 0 14px;
-    font-size: 19px;
-}
-
-.article-tool .main-claim-box {
-    max-width: 720px;
-    margin: 0 auto 20px;
-    padding: 18px;
-    border: 2px solid #0e68b3;
-    border-radius: 8px;
-    background: #f4f9fe;
-    text-align: center;
-}
-
-.article-tool .main-claim-box label {
-    text-align: center;
-    margin-top: 0;
-}
-
-.article-tool .main-claim-box textarea {
-    min-height: 75px;
-    text-align: center;
-    font-size: 16px;
-}
-
-.article-tool .subclaim-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.article-tool .subclaim-card {
-    border: 1px solid #d9e2ec;
-    border-radius: 7px;
-    padding: 12px;
-    background: #fff;
-}
-
-.article-tool .subclaim-card label {
-    margin-top: 0;
-}
-
-.article-tool .subclaim-card textarea {
-    min-height: 110px;
-}
-
 .article-tool .summary-note {
     background: #f4f9fe;
     border-left: 4px solid #0e68b3;
@@ -186,14 +135,6 @@
     margin-top: 4px;
 }
 
-.article-tool .evidence-box {
-    border: 1px solid #d9e2ec;
-    border-radius: 6px;
-    padding: 15px;
-    margin: 16px 0;
-    background: #fafcfe;
-}
-
 .article-tool .required {
     color: #c45b18;
 }
@@ -237,13 +178,6 @@
     color: #333;
 }
 
-.article-tool .remove-evidence {
-    background: #e9edf2;
-    color: #333;
-    font-size: 12px;
-    padding: 7px 11px;
-}
-
 .article-tool button:hover {
     opacity: .88;
 }
@@ -258,38 +192,14 @@
         padding: 12px;
     }
 
-    .article-tool .evidence-box {
-        padding: 11px;
-    }
-
-    .article-tool .info-row {
+        .article-tool .info-row {
         grid-template-columns: 1fr;
         gap: 4px;
     }
 
-    .article-tool .subclaim-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .article-tool .info-row > label {
+        .article-tool .info-row > label {
         margin-top: 10px;
     }
-}
-
-/* Keep limitations unavailable until an article type is selected. */
-.article-tool #limitationsSection.limitations-locked {
-    opacity: 0.5;
-}
-.article-tool #limitationsSection.limitations-locked textarea,
-.article-tool #limitationsSection.limitations-locked select {
-    background-color: #eeeeee;
-    color: #777777;
-    cursor: not-allowed;
-}
-.article-tool #limitationsSection textarea:disabled {
-    background-color: #eeeeee;
-    color: #777777;
-    cursor: not-allowed;
 }
 
 </style>
@@ -379,10 +289,10 @@
 
 <!-- SECTION 6: LIMITATIONS -->
 
-<div class="section limitations-locked" id="limitationsSection">
+<div class="section" id="limitationsSection">
     <h3>3. Limitations and Considerations</h3>
     <div id="limitationsQuestions">
-        <p class="small-note">Select an article type first to unlock this section.</p>
+        <p class="small-note">Select a source type to display the questions relevant to that source.</p>
     </div>
 </div>
 
@@ -421,20 +331,13 @@
 </div>
 
 <script>
-
-// Track the number of evidence entries.
-let evidenceCount = 0;
-
-
-// GET FIELD VALUE
-
+// Return the trimmed value of a form field.
 function getValue(id) {
-    return document.getElementById(id).value.trim();
+    const field = document.getElementById(id);
+    return field ? field.value.trim() : "";
 }
 
-
-// SOURCE-SPECIFIC LIMITATION QUESTIONS
-
+// Questions are selected according to the source type.
 const limitationQuestions = {
     "Peer-reviewed scientific research": [
         { label: "How large was the study sample?", options: ["Large", "Moderate", "Small", "Not reported / Not sure", "Not applicable"] },
@@ -505,36 +408,30 @@ const limitationQuestions = {
     ]
 };
 
+// Display the appropriate limitations questions after a source type is selected.
 function renderSourceLimitations() {
     const sourceType = getValue("sourceType");
     const container = document.getElementById("limitationsQuestions");
-    const section = document.getElementById("limitationsSection");
-    const additionalLimitations = document.getElementById("limitations");
 
     container.innerHTML = "";
 
     if (!sourceType) {
-        section.classList.add("limitations-locked");
-        additionalLimitations.disabled = true;
-        additionalLimitations.placeholder = "Available after you select an article type.";
-        container.innerHTML = '<p class="small-note">Select an article type first to unlock this section.</p>';
+        container.innerHTML = '<p class="small-note">Select a source type to display the questions relevant to that source.</p>';
         return;
     }
-
-    section.classList.remove("limitations-locked");
-    additionalLimitations.disabled = false;
-    additionalLimitations.placeholder = "Describe anything else that could affect the strength, relevance, or usefulness of this source.";
 
     const questions = limitationQuestions[sourceType] || limitationQuestions["Other / Not sure"];
 
     questions.forEach(function(question, index) {
         const label = document.createElement("label");
+        const selectId = "sourceLimitation" + index;
+        label.htmlFor = selectId;
         label.textContent = question.label;
 
         const select = document.createElement("select");
         select.className = "source-limitation";
         select.dataset.question = question.label;
-        select.id = "sourceLimitation" + index;
+        select.id = selectId;
 
         const blank = document.createElement("option");
         blank.value = "";
@@ -553,355 +450,56 @@ function renderSourceLimitations() {
     });
 }
 
-
-// UPDATE EVIDENCE DROPDOWNS USING STUDENT SUBCLAIMS
-
-function updateSubclaimDropdowns() {
-
-    const subclaims = [
-        {
-            label: "Subclaim A",
-            value: getValue("subclaimA")
-        },
-        {
-            label: "Subclaim B",
-            value: getValue("subclaimB")
-        },
-        {
-            label: "Subclaim C",
-            value: getValue("subclaimC")
-        }
-    ];
-
-    document.querySelectorAll(".argument-dropdown").forEach(function(dropdown) {
-
-        const currentValue = dropdown.value;
-
-        dropdown.innerHTML = '<option value="">Select ONE subclaim</option>';
-
-        subclaims.forEach(function(subclaim) {
-
-            if (subclaim.value) {
-
-                const option = document.createElement("option");
-
-                option.value = subclaim.label;
-
-                option.textContent =
-                    subclaim.label + ": " + subclaim.value;
-
-                dropdown.appendChild(option);
-            }
-        });
-
-        if ([...dropdown.options].some(function(option) {
-            return option.value === currentValue;
-        })) {
-            dropdown.value = currentValue;
-        }
-    });
-}
-
-
-// ADD AN EVIDENCE ENTRY
-
-function addEvidence() {
-
-    evidenceCount++;
-
-    const container = document.getElementById("evidenceContainer");
-
-    const evidenceBox = document.createElement("div");
-
-    evidenceBox.className = "evidence-box";
-
-    evidenceBox.id = "evidenceBox" + evidenceCount;
-
-    evidenceBox.innerHTML = `
-        <label>Direct Quotation (Evidence) <span class="required">*</span></label>
-        <textarea
-            id="evidence${evidenceCount}"
-            placeholder="Copy a direct quotation from the article. Use quotation marks."
-        ></textarea>
-
-        <label>Quotation in Your Own Words (Premise) <span class="required">*</span></label>
-        <textarea
-            id="premise${evidenceCount}"
-            placeholder="Explain the quotation in your own words. What information does it communicate?"
-        ></textarea>
-
-        <label>Which subclaim does this evidence support?</label>
-        <select
-            id="argumentPart${evidenceCount}"
-            class="argument-dropdown"
-        >
-            <option value="">Select ONE subclaim</option>
-        </select>
-
-        <label>Why does this evidence support your subclaim? (Warrant)</label>
-        <textarea
-            id="explanation${evidenceCount}"
-            placeholder="Explain how the information in this quotation supports the specific subclaim you selected."
-        ></textarea>
-
-        <button
-            type="button"
-            class="remove-evidence"
-            onclick="removeEvidence(${evidenceCount})"
-        >
-            Remove This Evidence
-        </button>
-    `;
-
-    container.appendChild(evidenceBox);
-
-    updateSubclaimDropdowns();
-
-    evidenceBox.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-}
-
-
-// REMOVE AN EVIDENCE ENTRY
-
-function removeEvidence(number) {
-
-    const evidenceBox = document.getElementById("evidenceBox" + number);
-
-    if (evidenceBox) {
-        evidenceBox.remove();
-    }
-}
-
-
-// UPDATE DROPDOWNS WHEN STUDENTS EDIT THEIR SUBCLAIMS
-
-["subclaimA", "subclaimB", "subclaimC"].forEach(function(id) {
-
-    document.getElementById(id).addEventListener("input", function() {
-        updateSubclaimDropdowns();
-    });
-
-});
-
-
-// UPDATE LIMITATION QUESTIONS WHEN SOURCE TYPE CHANGES
-
-document.getElementById("sourceType").addEventListener("change", renderSourceLimitations);
-
-
-// ADD THE FIRST EVIDENCE ENTRY WHEN THE PAGE LOADS
-
-renderSourceLimitations();
-addEvidence();
-
-
-// GENERATE RESEARCH NOTES
-
+// Generate notes using only the fields present in the current form.
 function generateNotes() {
-
     if (!getValue("articleTitle")) {
         alert("Please enter the article title first.");
         document.getElementById("articleTitle").focus();
         return;
     }
 
-    // Require the main claim and all three subclaims.
-    if (!getValue("mainClaim")) {
-        alert("Please enter your main claim before generating your research notes.");
-        document.getElementById("mainClaim").focus();
-        return;
-    }
-
-    if (
-        !getValue("subclaimA") ||
-        !getValue("subclaimB") ||
-        !getValue("subclaimC")
-    ) {
-        alert("Please enter all three subclaims before generating your research notes.");
-        document.getElementById("subclaimA").focus();
-        return;
-    }
-
-    updateSubclaimDropdowns();
-
-    // Validate evidence entries.
-    const evidenceEntries = document.querySelectorAll(".evidence-box");
-
-    let completeEvidence = false;
-    let incompleteEvidence = [];
-
-    evidenceEntries.forEach(function(box) {
-
-        const textareas = box.querySelectorAll("textarea");
-        const dropdown = box.querySelector("select");
-
-        const quote = textareas[0].value.trim();
-        const premise = textareas[1].value.trim();
-        const explanation = textareas[2].value.trim();
-        const argumentPart = dropdown.value;
-
-        if (quote || premise || explanation || argumentPart) {
-
-            if (!quote || !premise || !explanation || !argumentPart) {
-                incompleteEvidence.push("Evidence entry " + (Array.from(evidenceEntries).indexOf(box) + 1));
-            } else {
-                completeEvidence = true;
-            }
-        }
-    });
-
-    if (!completeEvidence) {
-        alert("Please complete at least one evidence entry, including a direct quotation, one subclaim selection, and an explanation.");
-        return;
-    }
-
-    if (incompleteEvidence.length > 0) {
-        alert(
-            "Please complete or remove the following partially completed entries: " +
-            incompleteEvidence.join(", ") +
-            ". Each evidence entry must include a direct quotation, one subclaim selection, and an explanation."
-        );
-        return;
-    }
-
-    let sections = [];
-
+    const sections = [];
     function addSection(title, content) {
-        if (content.trim()) {
+        if (content && content.trim()) {
             sections.push(title + "\n" + content.trim());
         }
     }
 
-
-    // SECTION 1: ARTICLE INFORMATION
-
-    let info = [
-        getValue("firstAuthorLastName") ?
-            "First Author's Last Name: " + getValue("firstAuthorLastName") : "",
+    const articleInformation = [
+        getValue("firstAuthorLastName") ? "First Author's Last Name: " + getValue("firstAuthorLastName") : "",
         "Article Title: " + getValue("articleTitle"),
-        getValue("year") ?
-            "Publication Year: " + getValue("year") : "",
-        getValue("publication") ?
-            "Journal/Publication: " + getValue("publication") : "",
-        getValue("sourceType") ?
-            "Source Type: " + getValue("sourceType") : "",
-        getValue("url") ?
-            "Article Link: " + getValue("url") : ""
+        getValue("year") ? "Publication Year: " + getValue("year") : "",
+        getValue("publication") ? "Journal/Publication: " + getValue("publication") : "",
+        getValue("sourceType") ? "Source Type: " + getValue("sourceType") : "",
+        getValue("url") ? "Article Link: " + getValue("url") : ""
     ].filter(Boolean).join("\n");
+    addSection("1. ARTICLE INFORMATION", articleInformation);
 
-    addSection("1. ARTICLE INFORMATION", info);
+    addSection("2. PURPOSE OF THE ARTICLE", getValue("purposeType"));
+    addSection("3. ARTICLE SUMMARY", getValue("findings"));
 
+    const sourceLimitations = Array.from(document.querySelectorAll(".source-limitation"))
+        .map(function(field) {
+            return field.value ? field.dataset.question + "\n" + field.value : "";
+        })
+        .filter(Boolean)
+        .join("\n\n");
+    addSection("4. LIMITATIONS AND CONSIDERATIONS", sourceLimitations);
 
-    // SECTION 2: STUDENT SUBCLAIMS
-
-    let subclaims = [
-        "Main Claim: " + getValue("mainClaim"),
-        "Subclaim A: " + getValue("subclaimA"),
-        "Subclaim B: " + getValue("subclaimB"),
-        "Subclaim C: " + getValue("subclaimC")
-    ].join("\n");
-
-    addSection("2. MAIN CLAIM AND THREE SUBCLAIMS", subclaims);
-
-
-    // SECTION 3: PURPOSE
-
-    addSection(
-        "3. PURPOSE OF THE ARTICLE",
-        getValue("purposeType")
-    );
-
-
-    // SECTION 4: FINDINGS
-
-    addSection(
-        "4. ARTICLE SUMMARY",
-        getValue("findings")
-    );
-
-
-    // SECTION 5: SUPPORTING EVIDENCE
-
-    let evidence = [];
-
-    document.querySelectorAll(".evidence-box").forEach(function(box, index) {
-
-        const textareas = box.querySelectorAll("textarea");
-        const quote = textareas[0].value.trim();
-        const premise = textareas[1].value.trim();
-        const explanation = textareas[2].value.trim();
-        const argumentPart = box.querySelector("select").value;
-
-        if (quote) {
-
-            const number = index + 1;
-
-            evidence.push(
-                "Evidence " + number + "\n" +
-                "Direct Quotation (Evidence): " + quote + "\n" +
-                "Quotation in Your Own Words (Premise): " + premise + "\n" +
-                "Subclaim Supported: " + argumentPart + "\n" +
-                "Why This Evidence Supports the Subclaim (Warrant): " + explanation
-            );
-        }
-    });
-
-    addSection(
-        "5. EVIDENCE THAT SUPPORTS MY ARGUMENT",
-        evidence.join("\n\n")
-    );
-
-
-    // SECTION 6: LIMITATIONS
-
-    let sourceLimitations = Array.from(
-        document.querySelectorAll(".source-limitation")
-    ).map(function(field) {
-        return field.value ? field.dataset.question + "\n" + field.value : "";
-    }).filter(Boolean).join("\n\n");
-
-    let limitations = [
-        sourceLimitations,
-        getValue("limitations") ?
-            "Additional Limitations or Concerns: " + getValue("limitations") : ""
-    ].filter(Boolean).join("\n\n");
-
-    addSection(
-        "6. LIMITATIONS AND CONSIDERATIONS",
-        limitations
-    );
-
-
-    // GENERATE OUTPUT
-
-    let output =
-        "ARTICLE RESEARCH NOTES\n" +
+    const output = "ARTICLE RESEARCH NOTES\n" +
         "========================================\n\n" +
         sections.join("\n\n") +
         "\n\n========================================";
 
     document.getElementById("generatedNotes").value = output;
-
     document.getElementById("outputSection").style.display = "block";
-
     document.getElementById("copyMessage").textContent = "";
-
-    document.getElementById("outputSection").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    document.getElementById("outputSection").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-
-// COPY RESEARCH NOTES
-
+// Copy the generated notes.
 function copyNotes() {
-
-    let output = document.getElementById("generatedNotes");
-
+    const output = document.getElementById("generatedNotes");
     output.select();
     output.setSelectionRange(0, output.value.length);
 
@@ -911,26 +509,21 @@ function copyNotes() {
     }
 
     if (navigator.clipboard && window.isSecureContext) {
-
         navigator.clipboard.writeText(output.value)
             .then(copied)
             .catch(function() {
+                output.focus();
                 document.execCommand("copy");
                 copied();
             });
-
     } else {
-
         document.execCommand("copy");
         copied();
     }
 }
 
-
-// RESET
-
+// Clear the form and restore its initial state.
 function resetNotes() {
-
     if (!confirm("Are you sure you want to clear all your entries?")) {
         return;
     }
@@ -941,22 +534,17 @@ function resetNotes() {
         field.value = "";
     });
 
-    // Remove all evidence entries and add one blank entry.
-    document.getElementById("evidenceContainer").innerHTML = "";
-
-    evidenceCount = 0;
-
-    addEvidence();
-
     renderSourceLimitations();
-
     document.getElementById("outputSection").style.display = "none";
-
     document.getElementById("copyMessage").textContent = "";
-
     document.getElementById("articleTitle").focus();
 }
 
+// Connect the source-type dropdown to its matching limitations questions.
+document.getElementById("sourceType").addEventListener("change", renderSourceLimitations);
+
+// Display the initial prompt; the limitations section itself remains available.
+renderSourceLimitations();
 </script>
 </body>
 </html>
