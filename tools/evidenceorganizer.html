@@ -49,6 +49,70 @@
     background: white;
 }
 
+.article-tool .part-heading {
+    background: #174a73;
+    color: white;
+    border-radius: 7px;
+    padding: 12px 16px;
+    margin: 24px 0 14px;
+    font-size: 19px;
+}
+
+.article-tool .main-claim-box {
+    max-width: 720px;
+    margin: 0 auto 20px;
+    padding: 18px;
+    border: 2px solid #0e68b3;
+    border-radius: 8px;
+    background: #f4f9fe;
+    text-align: center;
+}
+
+.article-tool .main-claim-box label {
+    text-align: center;
+    margin-top: 0;
+}
+
+.article-tool .main-claim-box textarea {
+    min-height: 75px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.article-tool .subclaim-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.article-tool .subclaim-card {
+    border: 1px solid #d9e2ec;
+    border-radius: 7px;
+    padding: 12px;
+    background: #fff;
+}
+
+.article-tool .subclaim-card label {
+    margin-top: 0;
+}
+
+.article-tool .subclaim-card textarea {
+    min-height: 110px;
+}
+
+.article-tool .summary-note {
+    background: #f4f9fe;
+    border-left: 4px solid #0e68b3;
+    padding: 10px 12px;
+    margin: 8px 0 12px;
+    font-size: 13px;
+}
+
+.article-tool .part-intro {
+    color: #555;
+    margin: 0 0 14px;
+}
+
 /* ARTICLE INFORMATION: TWO-COLUMN LAYOUT */
 
 .article-tool .info-row {
@@ -203,10 +267,31 @@
         gap: 4px;
     }
 
+    .article-tool .subclaim-grid {
+        grid-template-columns: 1fr;
+    }
+
     .article-tool .info-row > label {
         margin-top: 10px;
     }
 }
+
+/* Keep limitations unavailable until an article type is selected. */
+.article-tool #limitationsSection.limitations-locked {
+    opacity: 0.5;
+}
+.article-tool #limitationsSection.limitations-locked textarea,
+.article-tool #limitationsSection.limitations-locked select {
+    background-color: #eeeeee;
+    color: #777777;
+    cursor: not-allowed;
+}
+.article-tool #limitationsSection textarea:disabled {
+    background-color: #eeeeee;
+    color: #777777;
+    cursor: not-allowed;
+}
+
 </style>
 </head>
 <body>
@@ -224,10 +309,48 @@
     <p><strong>Important:</strong> Record direct quotations accurately. You will use these notes when writing your argumentative paper.</p>
 </div>
 
-<!-- SECTION 1: ARTICLE INFORMATION -->
+<!-- PART 1: ARGUMENT AND ARTICLE OVERVIEW -->
+
+<h2 class="part-heading">Part 1: Argument and Article Overview</h2>
+<p class="part-intro">Start by entering your main claim and the three subclaims that make up your argument. Then record basic information about the article you are reviewing.</p>
+
+<!-- SECTION 1: MAIN CLAIM AND SUBCLAIMS -->
 
 <div class="section">
-    <h3>1. Article Information</h3>
+    <h3>1. Your Main Claim and Three Subclaims</h3>
+
+    <div class="main-claim-box">
+        <label for="mainClaim">Main Claim <span class="required">*</span></label>
+        <textarea id="mainClaim" placeholder="Organizations should ..."></textarea>
+    </div>
+
+    <div class="subclaim-grid">
+        <div class="subclaim-card">
+            <label for="subclaimA">Subclaim A <span class="required">*</span></label>
+            <textarea id="subclaimA" placeholder="Because ..."></textarea>
+        </div>
+
+        <div class="subclaim-card">
+            <label for="subclaimB">Subclaim B <span class="required">*</span></label>
+            <textarea id="subclaimB" placeholder="Because ..."></textarea>
+        </div>
+
+        <div class="subclaim-card">
+            <label for="subclaimC">Subclaim C <span class="required">*</span></label>
+            <textarea id="subclaimC" placeholder="Because ..."></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 2: ARTICLE INFORMATION -->
+
+<div class="section">
+    <h3>2. Article Information</h3>
+
+    <div class="info-row">
+        <label for="firstAuthorLastName">First Author's Last Name</label>
+        <input id="firstAuthorLastName" placeholder="e.g., Smith">
+    </div>
 
     <div class="info-row">
         <label for="articleTitle">Article Title <span class="required">*</span></label>
@@ -263,40 +386,14 @@
 
     <div class="info-row">
         <label for="url">Article Link</label>
-        <input id="url" placeholder="Paste a URL, HTML, or OneDrive link">
+        <input id="url" placeholder="Paste a URL or document link">
     </div>
-</div>
 
-<!-- SECTION 2: STUDENT SUBCLAIMS -->
 
-<div class="section">
-    <h3>2. Your Three Subclaims</h3>
+<!-- PURPOSE OF THE ARTICLE -->
 
-    <p class="hint">
-        Enter the three subclaims from your argument map. These will appear in the evidence dropdown menus below so you can connect each quotation to the correct part of your argument.
-    </p>
-
-    <label>Subclaim A <span class="required">*</span></label>
-    <textarea id="subclaimA" placeholder="Enter your first subclaim."></textarea>
-
-    <label>Subclaim B <span class="required">*</span></label>
-    <textarea id="subclaimB" placeholder="Enter your second subclaim."></textarea>
-
-    <label>Subclaim C <span class="required">*</span></label>
-    <textarea id="subclaimC" placeholder="Enter your third subclaim."></textarea>
-</div>
-
-<!-- SECTION 3: PURPOSE -->
-
-<div class="section">
-    <h3>3. Purpose of the Article</h3>
-
-    <p class="hint">
-        Identify what the authors wanted to investigate, examine, or communicate.
-    </p>
-
-    <label>What is the primary purpose of this article?</label>
-
+<div class="info-row">
+    <label for="purposeType">Article Purpose</label>
     <select id="purposeType">
         <option value="">Select the purpose that best describes the article</option>
         <option>Investigates a research question or hypothesis</option>
@@ -310,26 +407,48 @@
     </select>
 </div>
 
-<!-- SECTION 4: FINDINGS -->
+<!-- ARTICLE SUMMARY -->
 
-<div class="section">
-    <h3>4. Short Summary of the Article</h3>
+<div class="info-row" style="align-items:start;">
+    <label for="findings">Article Summary</label>
+    <div>
+        <textarea
+            id="findings"
+            style="min-height:110px;"
+            placeholder="Summarize the article in 1–3 sentences."
+        ></textarea>
+        <p class="hint">You may use AI to help develop your summary. Review it for accuracy and make sure it reflects what the article actually says.</p>
+    </div>
+</div>
+</div>
+
+<!-- SECTION 6: LIMITATIONS -->
+
+<div class="section limitations-locked" id="limitationsSection">
+    <h3>3. Limitations and Considerations</h3>
 
     <p class="hint">
-        Write a short summary of the article. Focus on its main findings or key points.
+        The questions below change based on the source type you selected. Consider what might affect the source's accuracy, credibility, relevance, or usefulness. You do not need to answer questions that do not apply.
     </p>
 
-    <textarea
-        id="findings"
-        style="min-height:180px;"
-        placeholder="Summarize the article's main findings or key points."
-    ></textarea>
+    <div id="limitationsQuestions">
+        <p class="small-note">Select an article type first to unlock this section.</p>
+    </div>
+
+    <label>Other Limitations or Concerns (Optional)</label>
+    <textarea id="limitations" disabled placeholder="Available after you select an article type."></textarea>
 </div>
+
+
+<!-- PART 2: EVIDENCE AND EVALUATION -->
+
+<h2 class="part-heading">Part 2: Evidence and Evaluation</h2>
+<p class="part-intro">Use this section to identify evidence from the article, connect it to one of your subclaims, and evaluate the source.</p>
 
 <!-- SECTION 5: SUPPORTING EVIDENCE -->
 
 <div class="section">
-    <h3>5. Evidence That Supports My Argument</h3>
+    <h3>4. Evidence That Supports My Argument</h3>
 
     <p class="hint">
         Identify facts, statistics, or quotations from experts in the article that could support your argument. Your direct quotation should include at least one of these types of information. Connect each quotation to the specific subclaim it supports.
@@ -348,23 +467,6 @@
     <p class="small-note">
         Add as many pieces of evidence as you need. You do not need to find a specific number of quotations in every article.
     </p>
-</div>
-
-<!-- SECTION 6: LIMITATIONS -->
-
-<div class="section">
-    <h3>6. Limitations and Considerations</h3>
-
-    <p class="hint">
-        The questions below change based on the source type you selected. Consider what might affect the source's accuracy, credibility, relevance, or usefulness. You do not need to answer questions that do not apply.
-    </p>
-
-    <div id="limitationsQuestions">
-        <p class="small-note">Select a source type in Section 1 to see relevant questions.</p>
-    </div>
-
-    <label>Other Limitations or Concerns (Optional)</label>
-    <textarea id="limitations" placeholder="Describe anything else that could affect the strength, relevance, or usefulness of this source."></textarea>
 </div>
 
 <!-- GENERATE NOTES -->
@@ -488,12 +590,22 @@ const limitationQuestions = {
 function renderSourceLimitations() {
     const sourceType = getValue("sourceType");
     const container = document.getElementById("limitationsQuestions");
+    const section = document.getElementById("limitationsSection");
+    const additionalLimitations = document.getElementById("limitations");
+
     container.innerHTML = "";
 
     if (!sourceType) {
-        container.innerHTML = '<p class="small-note">Select a source type in Section 1 to see relevant questions.</p>';
+        section.classList.add("limitations-locked");
+        additionalLimitations.disabled = true;
+        additionalLimitations.placeholder = "Available after you select an article type.";
+        container.innerHTML = '<p class="small-note">Select an article type first to unlock this section.</p>';
         return;
     }
+
+    section.classList.remove("limitations-locked");
+    additionalLimitations.disabled = false;
+    additionalLimitations.placeholder = "Describe anything else that could affect the strength, relevance, or usefulness of this source.";
 
     const questions = limitationQuestions[sourceType] || limitationQuestions["Other / Not sure"];
 
@@ -600,7 +712,7 @@ function addEvidence() {
             placeholder="Explain the quotation in your own words. What information does it communicate?"
         ></textarea>
 
-        <label>Which subclaim does this support?</label>
+        <label>Which subclaim does this evidence support?</label>
         <select
             id="argumentPart${evidenceCount}"
             class="argument-dropdown"
@@ -664,6 +776,7 @@ document.getElementById("sourceType").addEventListener("change", renderSourceLim
 
 // ADD THE FIRST EVIDENCE ENTRY WHEN THE PAGE LOADS
 
+renderSourceLimitations();
 addEvidence();
 
 
@@ -677,7 +790,13 @@ function generateNotes() {
         return;
     }
 
-    // Require all three subclaims.
+    // Require the main claim and all three subclaims.
+    if (!getValue("mainClaim")) {
+        alert("Please enter your main claim before generating your research notes.");
+        document.getElementById("mainClaim").focus();
+        return;
+    }
+
     if (
         !getValue("subclaimA") ||
         !getValue("subclaimB") ||
@@ -709,7 +828,7 @@ function generateNotes() {
         if (quote || premise || explanation || argumentPart) {
 
             if (!quote || !premise || !explanation || !argumentPart) {
-                incompleteEvidence.push(box.querySelector("h4").textContent);
+                incompleteEvidence.push("Evidence entry " + (Array.from(evidenceEntries).indexOf(box) + 1));
             } else {
                 completeEvidence = true;
             }
@@ -742,6 +861,8 @@ function generateNotes() {
     // SECTION 1: ARTICLE INFORMATION
 
     let info = [
+        getValue("firstAuthorLastName") ?
+            "First Author's Last Name: " + getValue("firstAuthorLastName") : "",
         "Article Title: " + getValue("articleTitle"),
         getValue("year") ?
             "Publication Year: " + getValue("year") : "",
@@ -759,12 +880,13 @@ function generateNotes() {
     // SECTION 2: STUDENT SUBCLAIMS
 
     let subclaims = [
+        "Main Claim: " + getValue("mainClaim"),
         "Subclaim A: " + getValue("subclaimA"),
         "Subclaim B: " + getValue("subclaimB"),
         "Subclaim C: " + getValue("subclaimC")
     ].join("\n");
 
-    addSection("2. MY THREE SUBCLAIMS", subclaims);
+    addSection("2. MAIN CLAIM AND THREE SUBCLAIMS", subclaims);
 
 
     // SECTION 3: PURPOSE
@@ -778,7 +900,7 @@ function generateNotes() {
     // SECTION 4: FINDINGS
 
     addSection(
-        "4. MAIN FINDINGS OR KEY POINTS",
+        "4. ARTICLE SUMMARY",
         getValue("findings")
     );
 
