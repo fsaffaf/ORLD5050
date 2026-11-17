@@ -150,6 +150,18 @@
     border-color: #0e68b3;
 }
 
+.article-tool .citation-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 14px;
+}
+
+.article-tool .conditional-citation {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #d9e2ec;
+}
+
 .article-tool .evidence-box {
     border: 1px solid #d9e2ec;
     border-radius: 6px;
@@ -229,6 +241,11 @@
     .article-tool .subclaim-grid {
         grid-template-columns: 1fr;
     }
+
+    .article-tool .citation-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
 </style>
 </head>
@@ -283,7 +300,90 @@
 
 </div>
 
-<!-- PART 2: EVIDENCE AND ARGUMENT CONNECTIONS -->
+<!-- PART 2: ARTICLE CITATION -->
+
+<h2 class="part-heading">Article Citation</h2>
+
+<p class="part-intro">
+    Enter the first author's last name and the year the article was published. Answer the questions below so the organizer can automatically format the in-text citation for your quotations and paraphrases.
+</p>
+
+<div class="section">
+
+    <div class="citation-grid">
+
+        <div>
+            <label for="citationAuthor">
+                First Author's Last Name <span class="required">*</span>
+            </label>
+            <input
+                type="text"
+                id="citationAuthor"
+                placeholder="e.g., Smith"
+            >
+        </div>
+
+        <div>
+            <label for="citationYear">
+                Year of Publication <span class="required">*</span>
+            </label>
+            <input
+                type="text"
+                id="citationYear"
+                inputmode="numeric"
+                placeholder="e.g., 2025"
+            >
+        </div>
+
+    </div>
+
+    <label for="multipleAuthors">
+        Does the article have more than one author?
+        <span class="required">*</span>
+    </label>
+
+    <select id="multipleAuthors">
+        <option value="">Select an answer</option>
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+
+    <div id="additionalAuthorQuestions" class="conditional-citation" style="display:none;">
+
+        <label for="threeOrMoreAuthors">
+            Does the article have three or more authors?
+            <span class="required">*</span>
+        </label>
+
+        <select id="threeOrMoreAuthors">
+            <option value="">Select an answer</option>
+            <option value="no">No, the article has exactly two authors</option>
+            <option value="yes">Yes, the article has three or more authors</option>
+        </select>
+
+        <div id="secondAuthorContainer" style="display:none;">
+
+            <label for="secondAuthor">
+                Second Author's Last Name <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="secondAuthor"
+                placeholder="e.g., Jones"
+            >
+
+        </div>
+
+    </div>
+
+    <p class="small-note">
+        The organizer will automatically format your citation according to the number of authors.
+    </p>
+
+</div>
+
+<!-- PART 3: EVIDENCE AND ARGUMENT CONNECTIONS -->
 
 <h2 class="part-heading">Evidence and Argument Connections</h2>
 
@@ -354,6 +454,61 @@
 function getValue(id) {
     return document.getElementById(id).value.trim();
 }
+
+
+// ==========================================
+// ARTICLE AUTHOR QUESTIONS
+// ==========================================
+
+function updateAuthorFields() {
+
+    const multipleAuthors = getValue("multipleAuthors");
+
+    const additionalQuestions =
+        document.getElementById("additionalAuthorQuestions");
+
+    const secondAuthorContainer =
+        document.getElementById("secondAuthorContainer");
+
+    const threeOrMoreAuthors =
+        getValue("threeOrMoreAuthors");
+
+    if (multipleAuthors === "yes") {
+
+        additionalQuestions.style.display = "block";
+
+    } else {
+
+        additionalQuestions.style.display = "none";
+
+        document.getElementById("threeOrMoreAuthors").value = "";
+        document.getElementById("secondAuthor").value = "";
+
+    }
+
+    if (multipleAuthors === "yes" && threeOrMoreAuthors === "no") {
+
+        secondAuthorContainer.style.display = "block";
+
+    } else {
+
+        secondAuthorContainer.style.display = "none";
+
+        document.getElementById("secondAuthor").value = "";
+
+    }
+}
+
+
+// LISTEN FOR AUTHOR QUESTION CHANGES
+
+document.getElementById("multipleAuthors").addEventListener("change", function() {
+    updateAuthorFields();
+});
+
+document.getElementById("threeOrMoreAuthors").addEventListener("change", function() {
+    updateAuthorFields();
+});
 
 
 // ==========================================
@@ -539,6 +694,83 @@ function generateNotes() {
     }
 
 
+    // REQUIRE ARTICLE CITATION INFORMATION
+
+    const citationAuthor = getValue("citationAuthor");
+    const citationYear = getValue("citationYear");
+    const multipleAuthors = getValue("multipleAuthors");
+    const threeOrMoreAuthors = getValue("threeOrMoreAuthors");
+    const secondAuthor = getValue("secondAuthor");
+
+    if (!citationAuthor || !citationYear) {
+
+        alert("Please enter the first author's last name and the publication year.");
+
+        if (!citationAuthor) {
+            document.getElementById("citationAuthor").focus();
+        } else {
+            document.getElementById("citationYear").focus();
+        }
+
+        return;
+    }
+
+
+    if (!multipleAuthors) {
+
+        alert("Please indicate whether the article has more than one author.");
+
+        document.getElementById("multipleAuthors").focus();
+
+        return;
+    }
+
+
+    if (multipleAuthors === "yes" && !threeOrMoreAuthors) {
+
+        alert("Please indicate whether the article has three or more authors.");
+
+        document.getElementById("threeOrMoreAuthors").focus();
+
+        return;
+    }
+
+
+    if (
+        multipleAuthors === "yes" &&
+        threeOrMoreAuthors === "no" &&
+        !secondAuthor
+    ) {
+
+        alert("Please enter the second author's last name.");
+
+        document.getElementById("secondAuthor").focus();
+
+        return;
+    }
+
+
+    // FORMAT APA IN-TEXT CITATION
+
+    let citation;
+
+    if (multipleAuthors === "no") {
+
+        citation = "(" + citationAuthor + ", " + citationYear + ")";
+
+    } else if (threeOrMoreAuthors === "no") {
+
+        citation =
+            "(" + citationAuthor + " & " + secondAuthor + ", " + citationYear + ")";
+
+    } else {
+
+        citation =
+            "(" + citationAuthor + " et al., " + citationYear + ")";
+
+    }
+
+
     // UPDATE EVIDENCE DROPDOWNS
 
     updateSubclaimDropdowns();
@@ -655,10 +887,10 @@ function generateNotes() {
                 argumentPart + "\n" +
 
                 "Direct Quotation (Evidence): " +
-                quote + "\n" +
+                quote + " " + citation + "\n" +
 
                 "Quotation in Your Own Words (Premise): " +
-                premise + "\n" +
+                premise + " " + citation + "\n" +
 
                 "Why This Evidence Supports the Subclaim (Warrant): " +
                 explanation
@@ -777,6 +1009,11 @@ function resetNotes() {
         field.value = "";
 
     });
+
+
+    // HIDE CONDITIONAL AUTHOR FIELDS
+
+    updateAuthorFields();
 
 
     // REMOVE ALL EVIDENCE ENTRIES
