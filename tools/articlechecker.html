@@ -677,7 +677,6 @@ function handleSourceTypeChange() {
 }
 
 
-
 function generateNotes() {
 
     if (!getValue("articleTitle")) {
@@ -686,80 +685,49 @@ function generateNotes() {
         return;
     }
 
-    const sections = [];
+    const notes = [];
 
-    function addSection(title, content) {
-        if (content && content.trim()) {
-            sections.push(
-                title.toUpperCase() + "\n" +
-                "------------------------------------------------------------\n" +
-                content.trim()
-            );
-        }
-    }
+    // ARTICLE TITLE
+    notes.push(getValue("articleTitle").trim());
 
     // SOURCE IDENTIFICATION
-
-    const sourceIdentification = [
-        getValue("articleTitle")
-            ? "Article Title: " + getValue("articleTitle")
-            : "",
-        getValue("authors")
-            ? "Author(s): " + getValue("authors")
-            : "",
-        getValue("year")
-            ? "Publication Year: " + getValue("year")
-            : "",
+    [
+        getValue("authors"),
+        getValue("year"),
         getValue("publication")
-            ? "Journal/Publication: " + getValue("publication")
-            : ""
-    ].filter(Boolean).join("\n\n");
-
-    addSection("Source Identification", sourceIdentification);
+    ].forEach(function(item) {
+        if (item && item.trim()) {
+            notes.push("- " + item.trim());
+        }
+    });
 
     // SOURCE LOCATION
+    const url = getValue("url");
+    if (url && url.trim()) {
+        notes.push("- " + url.trim());
+    }
 
-    const sourceLocation = getValue("url")
-        ? "Article Link:\n" + getValue("url")
-        : "";
+    // ARTICLE PURPOSE
+    const purpose = getValue("purposeType");
+    if (purpose && purpose.trim()) {
+        notes.push("- " + purpose.trim());
+    }
 
-    addSection("Source Location", sourceLocation);
-
-    // UNDERSTANDING THE SOURCE
-
-    const understandingSource = [
-        getValue("purposeType")
-            ? "Purpose:\n" + getValue("purposeType")
-            : "",
-        getValue("findings")
-            ? "Main Findings, Ideas, or Conclusions:\n" +
-              getValue("findings")
-            : ""
-    ].filter(Boolean).join("\n\n");
-
-    addSection("Understanding the Source", understandingSource);
+    // MAIN FINDINGS, IDEAS, OR CONCLUSIONS
+    const findings = getValue("findings");
+    if (findings && findings.trim()) {
+        notes.push("- " + findings.trim());
+    }
 
     // SOURCE EVALUATION
-
-    const sourceLimitations = Array.from(
-        document.querySelectorAll(".source-limitation")
-    )
-        .map(function(field) {
-            return field.value
-                ? field.dataset.question + "\n" + field.value
-                : "";
-        })
-        .filter(Boolean)
-        .join("\n\n");
-
-    addSection("Source Evaluation", sourceLimitations);
+    document.querySelectorAll(".source-limitation").forEach(function(field) {
+        if (field.value && field.value.trim()) {
+            notes.push("- " + field.value.trim());
+        }
+    });
 
     // FINAL OUTPUT
-
-    const output =
-        "RESEARCH SOURCE NOTES\n" +
-        "============================================================\n\n" +
-        sections.join("\n\n");
+    const output = notes.join("\n\n");
 
     document.getElementById("generatedNotes").value = output;
     document.getElementById("outputSection").style.display = "block";
