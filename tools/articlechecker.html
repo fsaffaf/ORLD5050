@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Article Quality Checker</title>
+
 <style>
 .article-tool {
     max-width: 900px;
@@ -49,20 +51,10 @@
     background: white;
 }
 
-.article-tool .summary-note {
-    background: #f4f9fe;
-    border-left: 4px solid #0e68b3;
-    padding: 10px 12px;
-    margin: 8px 0 12px;
-    font-size: 13px;
-}
-
 .article-tool .part-intro {
     color: #555;
     margin: 0 0 14px;
 }
-
-/* ARTICLE INFORMATION: TWO-COLUMN LAYOUT */
 
 .article-tool .info-row {
     display: grid;
@@ -73,10 +65,6 @@
 }
 
 .article-tool .info-row > label {
-    margin: 0;
-}
-
-.article-tool .info-row input {
     margin: 0;
 }
 
@@ -187,244 +175,456 @@
     color: #555;
 }
 
+.article-tool .hidden {
+    display: none;
+}
+
 @media (max-width: 600px) {
     .article-tool .section {
         padding: 12px;
     }
 
-        .article-tool .info-row {
+    .article-tool .info-row {
         grid-template-columns: 1fr;
         gap: 4px;
     }
 
-        .article-tool .info-row > label {
+    .article-tool .info-row > label {
         margin-top: 10px;
     }
 }
-
 </style>
 </head>
+
 <body>
+
 <div class="article-tool">
 
-
-
 <h2>Article Quality Checker</h2>
+
+<!-- STEP 1: SOURCE TYPE SELECTION -->
+
 <div class="section">
-    <h3>Article Information</h3>
+    <h3>1. Select Source Type</h3>
 
-    <div class="info-row">
-        <label for="firstAuthorLastName">First Author's Last Name</label>
-        <input id="firstAuthorLastName" placeholder="e.g., Smith">
-    </div>
+    <p>
+        Select the type of source you are evaluating.
+        The tool will create a research form with questions
+        specific to your source.
+    </p>
 
-    <div class="info-row">
-        <label for="articleTitle">Article Title <span class="required">*</span></label>
-        <input id="articleTitle" placeholder="Enter the full article title">
-    </div>
+    <label for="sourceType">
+        What type of source are you evaluating?
+        <span class="required">*</span>
+    </label>
 
-    <div class="info-row">
-        <label for="year">Publication Year</label>
-        <input id="year" placeholder="e.g., 2024">
-    </div>
-
-    <div class="info-row">
-        <label for="publication">Journal or Publication</label>
-        <input id="publication" placeholder="e.g., Journal of Applied Psychology, Harvard Business Review, Forbes">
-    </div>
-
-    <div class="info-row">
-        <label for="sourceType">Source Type</label>
-        <select id="sourceType">
-            <option value="">Select the type of source</option>
-            <option>Peer-reviewed scientific research</option>
-            <option>Academic book or book chapter</option>
-            <option>Government report or public-sector data</option>
-            <option>Internal company or organizational data</option>
-            <option>Industry or market research report</option>
-            <option>Professional association or standards publication</option>
-            <option>Company or organizational report / white paper</option>
-            <option>News article or media report</option>
-            <option>Expert interview or personal communication</option>
-            <option>Other / Not sure</option>
-        </select>
-    </div>
-
-    <div class="info-row">
-        <label for="url">Article Link</label>
-        <input id="url" placeholder="Paste a URL or document link">
-    </div>
-
-
-<!-- PURPOSE OF THE ARTICLE -->
-
-<div class="info-row">
-    <label for="purposeType">Article Purpose</label>
-    <select id="purposeType">
-        <option value="">Select the purpose that best describes the article</option>
-        <option>Investigates a research question or hypothesis</option>
-        <option>Examines a problem or issue</option>
-        <option>Evaluates a program, policy, or intervention</option>
-        <option>Explores relationships between variables</option>
-        <option>Reviews and summarizes existing research</option>
-        <option>Develops an argument or position</option>
-        <option>Provides professional recommendations or guidance</option>
+    <select id="sourceType">
+        <option value="">Select the type of source</option>
+        <option>Peer-reviewed scientific research</option>
+        <option>Academic book or book chapter</option>
+        <option>Government report or public-sector data</option>
+        <option>Internal company or organizational data</option>
+        <option>Industry or market research report</option>
+        <option>Professional association or standards publication</option>
+        <option>Company or organizational report / white paper</option>
+        <option>News article or media report</option>
+        <option>Expert interview or personal communication</option>
         <option>Other / Not sure</option>
     </select>
 </div>
 
-<!-- ARTICLE SUMMARY -->
+<!-- STEP 2: INDIVIDUALIZED FORM -->
 
-<div class="info-row" style="align-items:start;">
-    <label for="findings">Article Summary</label>
-    <div>
-        <textarea
-            id="findings"
-            style="min-height:110px;"
-            placeholder="Summarize the article in 1–3 sentences."
-        ></textarea>
+<div id="individualizedForm" class="hidden">
+
+    <!-- SOURCE IDENTIFICATION -->
+
+    <div class="section">
+
+        <h3>2. Source Identification</h3>
+
+        <div class="info-row">
+            <label for="articleTitle">
+                Article Title <span class="required">*</span>
+            </label>
+            <input id="articleTitle" placeholder="Enter the full article title">
+        </div>
+
+        <div class="info-row">
+            <label for="authors">Author(s)</label>
+            <input id="authors" placeholder="Enter the author name(s) as listed in the source">
+        </div>
+
+        <div class="info-row">
+            <label for="year">Publication Year</label>
+            <input id="year" placeholder="e.g., 2024">
+        </div>
+
+        <div class="info-row">
+            <label for="publication">Journal or Publication</label>
+            <input id="publication" placeholder="e.g., Journal of Applied Psychology, Harvard Business Review, Forbes">
+        </div>
+
     </div>
-</div>
-</div>
 
-<!-- SECTION 6: LIMITATIONS -->
+    <!-- SOURCE LOCATION -->
 
-<div class="section" id="limitationsSection">
-    <h3>3. Limitations and Considerations</h3>
-    <div id="limitationsQuestions">
-        <p class="small-note">Select a source type to display the questions relevant to that source.</p>
+    <div class="section">
+
+        <h3>3. Source Location</h3>
+
+        <div class="info-row">
+            <label for="url">Article Link</label>
+            <input id="url" placeholder="Paste a URL or document link">
+        </div>
+
     </div>
-</div>
 
+    <!-- UNDERSTANDING THE SOURCE -->
 
-<!-- GENERATE NOTES -->
+    <div class="section">
 
-<div class="button-row">
-    <button type="button" class="primary" onclick="generateNotes()">
-        Generate Research Notes
-    </button>
+        <h3>4. Understanding the Source</h3>
 
-    <button type="button" class="reset" onclick="resetNotes()">
-        Start Over
-    </button>
-</div>
+        <div class="info-row">
+            <label for="purposeType">What is the purpose of this source?</label>
+            <select id="purposeType">
+                <option value="">Select the purpose that best describes the source</option>
+                <option>Investigates a research question or hypothesis</option>
+                <option>Examines a problem or issue</option>
+                <option>Evaluates a program, policy, or intervention</option>
+                <option>Explores relationships between variables</option>
+                <option>Reviews and summarizes existing research</option>
+                <option>Develops an argument or position</option>
+                <option>Provides professional recommendations or guidance</option>
+                <option>Reports news or recent events</option>
+                <option>Presents data or statistics</option>
+                <option>Other / Not sure</option>
+            </select>
+        </div>
 
-<!-- OUTPUT -->
+        <div class="info-row" style="align-items:start;">
+            <label for="findings">Main Findings, Ideas, or Conclusions</label>
+            <div>
+                <textarea
+                    id="findings"
+                    style="min-height:110px;"
+                    placeholder="Summarize the most important findings, ideas, recommendations, or conclusions in 1–3 sentences. Focus on information that may help support or counter your main claim."
+                ></textarea>
+            </div>
+        </div>
 
-<div class="output" id="outputSection" style="display:none;">
+    </div>
 
-    <h3>Your Article Research Notes</h3>
+    <!-- SOURCE-SPECIFIC EVALUATION -->
 
-    <p class="small-note">
-        Review your notes below. You can edit the text directly before copying it into your research document.
-    </p>
+    <div class="section" id="limitationsSection">
 
-    <textarea id="generatedNotes"></textarea>
+        <h3>5. Limitations and Considerations</h3>
 
-    <button type="button" class="secondary" onclick="copyNotes()">
-        Copy Research Notes
-    </button>
+        <p class="part-intro">
+            Answer the questions below to evaluate the quality,
+            usefulness, and limitations of your source.
+        </p>
 
-    <p id="copyMessage" class="small-note" aria-live="polite"></p>
+        <div id="limitationsQuestions"></div>
+
+    </div>
+
+    <!-- GENERATE NOTES -->
+
+    <div class="button-row">
+
+        <button type="button" class="primary" onclick="generateNotes()">
+            Generate Research Notes
+        </button>
+
+        <button type="button" class="reset" onclick="resetNotes()">
+            Start Over
+        </button>
+
+    </div>
+
+    <!-- OUTPUT -->
+
+    <div class="output" id="outputSection" style="display:none;">
+
+        <h3>Your Article Research Notes</h3>
+
+        <p class="small-note">
+            Review your notes below. You can edit the text directly
+            before copying it into your research document.
+        </p>
+
+        <textarea id="generatedNotes"></textarea>
+
+        <button type="button" class="secondary" onclick="copyNotes()">
+            Copy Research Notes
+        </button>
+
+        <p id="copyMessage" class="small-note" aria-live="polite"></p>
+
+    </div>
+
 </div>
 
 </div>
 
 <script>
+
 // Return the trimmed value of a form field.
 function getValue(id) {
     const field = document.getElementById(id);
     return field ? field.value.trim() : "";
 }
 
-// Questions are selected according to the source type.
+
+// SOURCE-SPECIFIC QUESTIONS
+
 const limitationQuestions = {
+
     "Peer-reviewed scientific research": [
-        { label: "How large was the study sample?", options: ["Large", "Moderate", "Small", "Not reported / Not sure", "Not applicable"] },
-        { label: "How well does the sample represent the population being discussed?", options: ["Appears representative", "Somewhat representative", "May not be representative", "Not enough information", "Not applicable"] },
-        { label: "What type of research design was used?", options: ["Experimental", "Quasi-experimental", "Correlational / observational", "Qualitative", "Mixed methods", "Review / meta-analysis", "Not sure"] },
-        { label: "Are there concerns about the measures or data collection?", options: ["No obvious concerns", "Self-reported measures", "Measures may not fully capture the concept", "Limited or incomplete data", "Other concern", "Not enough information", "Not applicable"] },
-        { label: "Does the study acknowledge limitations?", options: ["Yes", "No", "Not sure"] }
+        {
+            label: "How large was the study sample?",
+            options: ["Large", "Moderate", "Small", "Not reported / Not sure", "Not applicable"]
+        },
+        {
+            label: "How well does the sample represent the population being discussed?",
+            options: ["Appears representative", "Somewhat representative", "May not be representative", "Not enough information", "Not applicable"]
+        },
+        {
+            label: "What type of research design was used?",
+            options: ["Experimental", "Quasi-experimental", "Correlational / observational", "Qualitative", "Mixed methods", "Review / meta-analysis", "Not sure"]
+        },
+        {
+            label: "Are there concerns about the measures or data collection?",
+            options: ["No obvious concerns", "Self-reported measures", "Measures may not fully capture the concept", "Limited or incomplete data", "Other concern", "Not enough information", "Not applicable"]
+        },
+        {
+            label: "Does the study acknowledge limitations?",
+            options: ["Yes", "No", "Not sure"]
+        }
     ],
+
     "Academic book or book chapter": [
-        { label: "What is the main basis for the information?", options: ["Research evidence and cited sources", "Professional expertise or theory", "A combination of research and expertise", "Personal perspective or interpretation", "Not clear"] },
-        { label: "Is the information current enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Does the author discuss perspectives or evidence that differ from their position?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Are the claims supported with references or examples?", options: ["Consistently", "Somewhat", "Rarely", "Not sure"] }
+        {
+            label: "What is the main basis for the information?",
+            options: ["Research evidence and cited sources", "Professional expertise or theory", "A combination of research and expertise", "Personal perspective or interpretation", "Not clear"]
+        },
+        {
+            label: "Is the information current enough for your topic?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Does the author discuss perspectives or evidence that differ from their position?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Are the claims supported with references or examples?",
+            options: ["Consistently", "Somewhat", "Rarely", "Not sure"]
+        }
     ],
+
     "Government report or public-sector data": [
-        { label: "Is the data collection method explained?", options: ["Clearly explained", "Partly explained", "Not explained", "Not sure"] },
-        { label: "What population, location, or time period does the information cover?", options: ["Clearly defined and relevant", "Defined but limited", "Not clearly defined", "Not sure"] },
-        { label: "Is the data recent enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Are definitions, measures, or reporting procedures explained?", options: ["Clearly", "Partly", "No", "Not sure"] },
-        { label: "Are limitations or gaps in the data acknowledged?", options: ["Yes", "No", "Not sure"] }
+        {
+            label: "Is the data collection method explained?",
+            options: ["Clearly explained", "Partly explained", "Not explained", "Not sure"]
+        },
+        {
+            label: "What population, location, or time period does the information cover?",
+            options: ["Clearly defined and relevant", "Defined but limited", "Not clearly defined", "Not sure"]
+        },
+        {
+            label: "Is the data recent enough for your topic?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Are definitions, measures, or reporting procedures explained?",
+            options: ["Clearly", "Partly", "No", "Not sure"]
+        },
+        {
+            label: "Are limitations or gaps in the data acknowledged?",
+            options: ["Yes", "No", "Not sure"]
+        }
     ],
+
     "Internal company or organizational data": [
-        { label: "What time period does the data cover?", options: ["Clearly identified and relevant", "Identified but limited", "Not identified", "Not sure"] },
-        { label: "Which employees, departments, locations, or operations are included?", options: ["Coverage is clearly described", "Some groups or areas are excluded", "Coverage is unclear", "Not sure"] },
-        { label: "Are the data collection and measurement procedures explained?", options: ["Clearly", "Partly", "No", "Not sure"] },
-        { label: "Could missing, incomplete, or selectively reported records affect the results?", options: ["Unlikely", "Possibly", "Likely", "Not enough information"] },
-        { label: "Could the organization's interests or goals influence how the data are presented?", options: ["Unlikely", "Possibly", "Likely", "Not enough information"] }
+        {
+            label: "What time period does the data cover?",
+            options: ["Clearly identified and relevant", "Identified but limited", "Not identified", "Not sure"]
+        },
+        {
+            label: "Which employees, departments, locations, or operations are included?",
+            options: ["Coverage is clearly described", "Some groups or areas are excluded", "Coverage is unclear", "Not sure"]
+        },
+        {
+            label: "Are the data collection and measurement procedures explained?",
+            options: ["Clearly", "Partly", "No", "Not sure"]
+        },
+        {
+            label: "Could missing, incomplete, or selectively reported records affect the results?",
+            options: ["Unlikely", "Possibly", "Likely", "Not enough information"]
+        },
+        {
+            label: "Could the organization's interests or goals influence how the data are presented?",
+            options: ["Unlikely", "Possibly", "Likely", "Not enough information"]
+        }
     ],
+
     "Industry or market research report": [
-        { label: "Does the report explain how information was collected?", options: ["Clearly", "Partly", "No", "Not sure"] },
-        { label: "Is the sample or data source appropriate for the industry or market being discussed?", options: ["Appears appropriate", "Somewhat", "May not be appropriate", "Not enough information"] },
-        { label: "Who funded or produced the report?", options: ["Independent research organization", "Industry organization", "Company with a business interest", "Not disclosed / Not sure"] },
-        { label: "Is the report recent enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Are the report's methods and limitations transparent?", options: ["Yes", "Partly", "No", "Not sure"] }
+        {
+            label: "Does the report explain how information was collected?",
+            options: ["Clearly", "Partly", "No", "Not sure"]
+        },
+        {
+            label: "Is the sample or data source appropriate for the industry or market being discussed?",
+            options: ["Appears appropriate", "Somewhat", "May not be appropriate", "Not enough information"]
+        },
+        {
+            label: "Who funded or produced the report?",
+            options: ["Independent research organization", "Industry organization", "Company with a business interest", "Not disclosed / Not sure"]
+        },
+        {
+            label: "Is the report recent enough for your topic?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Are the report's methods and limitations transparent?",
+            options: ["Yes", "Partly", "No", "Not sure"]
+        }
     ],
+
     "Professional association or standards publication": [
-        { label: "Who issued the guidance or standard?", options: ["Recognized professional or standards organization", "Industry membership organization", "Other organization", "Not sure"] },
-        { label: "What is the basis for the guidance?", options: ["Research evidence", "Professional consensus or expert practice", "Regulatory or technical requirements", "Combination of these", "Not explained"] },
-        { label: "Is the guidance current?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Does the guidance apply to the industry or situation in your argument?", options: ["Directly applies", "Partly applies", "Does not clearly apply", "Not sure"] }
+        {
+            label: "Who issued the guidance or standard?",
+            options: ["Recognized professional or standards organization", "Industry membership organization", "Other organization", "Not sure"]
+        },
+        {
+            label: "What is the basis for the guidance?",
+            options: ["Research evidence", "Professional consensus or expert practice", "Regulatory or technical requirements", "Combination of these", "Not explained"]
+        },
+        {
+            label: "Is the guidance current?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Does the guidance apply to the industry or situation in your argument?",
+            options: ["Directly applies", "Partly applies", "Does not clearly apply", "Not sure"]
+        }
     ],
+
     "Company or organizational report / white paper": [
-        { label: "Who produced or sponsored the report?", options: ["Organization discussing its own work", "Company selling a product or service", "Independent organization", "Not clear"] },
-        { label: "Does the report explain how its information or evidence was collected?", options: ["Clearly", "Partly", "No", "Not sure"] },
-        { label: "Are data, sources, or references provided so claims can be checked?", options: ["Yes, in detail", "Somewhat", "No", "Not sure"] },
-        { label: "Could the organization benefit from the conclusions it presents?", options: ["Unlikely", "Possibly", "Clearly", "Not enough information"] },
-        { label: "Is the report current and relevant to your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] }
+        {
+            label: "Who produced or sponsored the report?",
+            options: ["Organization discussing its own work", "Company selling a product or service", "Independent organization", "Not clear"]
+        },
+        {
+            label: "Does the report explain how its information or evidence was collected?",
+            options: ["Clearly", "Partly", "No", "Not sure"]
+        },
+        {
+            label: "Are data, sources, or references provided so claims can be checked?",
+            options: ["Yes, in detail", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Could the organization benefit from the conclusions it presents?",
+            options: ["Unlikely", "Possibly", "Clearly", "Not enough information"]
+        },
+        {
+            label: "Is the report current and relevant to your topic?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        }
     ],
+
     "News article or media report": [
-        { label: "Does the article identify its sources?", options: ["Yes, named sources and documents", "Some sources are identified", "Sources are vague or anonymous", "Not sure"] },
-        { label: "Does it distinguish verified facts from opinions or commentary?", options: ["Clearly", "Somewhat", "No", "Not sure"] },
-        { label: "Can the main claims be confirmed by other reliable sources?", options: ["Yes", "Somewhat", "No / Not found", "Not checked"] },
-        { label: "Is the article recent enough for your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Does the article provide enough context to understand the issue?", options: ["Yes", "Somewhat", "No", "Not sure"] }
+        {
+            label: "Does the article identify its sources?",
+            options: ["Yes, named sources and documents", "Some sources are identified", "Sources are vague or anonymous", "Not sure"]
+        },
+        {
+            label: "Does it distinguish verified facts from opinions or commentary?",
+            options: ["Clearly", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Can the main claims be confirmed by other reliable sources?",
+            options: ["Yes", "Somewhat", "No / Not found", "Not checked"]
+        },
+        {
+            label: "Is the article recent enough for your topic?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Does the article provide enough context to understand the issue?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        }
     ],
+
     "Expert interview or personal communication": [
-        { label: "How is the person's expertise relevant to your topic?", options: ["Direct professional or research experience", "Related experience", "Limited connection to the topic", "Not clear"] },
-        { label: "Is the information based on firsthand experience, professional judgment, or opinion?", options: ["Firsthand experience", "Professional judgment", "Personal opinion", "A combination", "Not clear"] },
-        { label: "Could the person's role, organization, or interests influence their perspective?", options: ["Unlikely", "Possibly", "Likely", "Not enough information"] },
-        { label: "Can important points from the interview be checked against other sources?", options: ["Yes", "Somewhat", "No", "Not checked"] },
-        { label: "Does the interview represent a wider range of perspectives?", options: ["Yes, multiple perspectives are included", "Only one perspective is included", "Not intended to represent a wider group", "Not sure"] }
+        {
+            label: "How is the person's expertise relevant to your topic?",
+            options: ["Direct professional or research experience", "Related experience", "Limited connection to the topic", "Not clear"]
+        },
+        {
+            label: "Is the information based on firsthand experience, professional judgment, or opinion?",
+            options: ["Firsthand experience", "Professional judgment", "Personal opinion", "A combination", "Not clear"]
+        },
+        {
+            label: "Could the person's role, organization, or interests influence their perspective?",
+            options: ["Unlikely", "Possibly", "Likely", "Not enough information"]
+        },
+        {
+            label: "Can important points from the interview be checked against other sources?",
+            options: ["Yes", "Somewhat", "No", "Not checked"]
+        },
+        {
+            label: "Does the interview represent a wider range of perspectives?",
+            options: ["Yes, multiple perspectives are included", "Only one perspective is included", "Not intended to represent a wider group", "Not sure"]
+        }
     ],
+
     "Other / Not sure": [
-        { label: "Is the source's author or producing organization identified and credible?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Does the source explain where its information comes from?", options: ["Clearly", "Partly", "No", "Not sure"] },
-        { label: "Is the information current and relevant to your topic?", options: ["Yes", "Somewhat", "No", "Not sure"] },
-        { label: "Can the main claims be checked against other reliable sources?", options: ["Yes", "Somewhat", "No", "Not checked"] }
+        {
+            label: "Is the source's author or producing organization identified and credible?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Does the source explain where its information comes from?",
+            options: ["Clearly", "Partly", "No", "Not sure"]
+        },
+        {
+            label: "Is the information current and relevant to your topic?",
+            options: ["Yes", "Somewhat", "No", "Not sure"]
+        },
+        {
+            label: "Can the main claims be checked against other reliable sources?",
+            options: ["Yes", "Somewhat", "No", "Not checked"]
+        }
     ]
 };
 
-// Display the appropriate limitations questions after a source type is selected.
+
+// DISPLAY THE INDIVIDUALIZED QUESTIONS
+
 function renderSourceLimitations() {
+
     const sourceType = getValue("sourceType");
     const container = document.getElementById("limitationsQuestions");
 
     container.innerHTML = "";
 
     if (!sourceType) {
-        container.innerHTML = '<p class="small-note">Select a source type to display the questions relevant to that source.</p>';
         return;
     }
 
-    const questions = limitationQuestions[sourceType] || limitationQuestions["Other / Not sure"];
+    const questions =
+        limitationQuestions[sourceType] ||
+        limitationQuestions["Other / Not sure"];
 
     questions.forEach(function(question, index) {
+
         const label = document.createElement("label");
         const selectId = "sourceLimitation" + index;
+
         label.htmlFor = selectId;
         label.textContent = question.label;
 
@@ -439,19 +639,47 @@ function renderSourceLimitations() {
         select.appendChild(blank);
 
         question.options.forEach(function(value) {
+
             const option = document.createElement("option");
             option.value = value;
             option.textContent = value;
             select.appendChild(option);
+
         });
 
         container.appendChild(label);
         container.appendChild(select);
+
     });
 }
 
-// Generate notes using only the fields present in the current form.
+
+// SHOW OR HIDE THE INDIVIDUALIZED FORM
+
+function handleSourceTypeChange() {
+
+    const sourceType = getValue("sourceType");
+    const form = document.getElementById("individualizedForm");
+
+    if (!sourceType) {
+        form.classList.add("hidden");
+        return;
+    }
+
+    form.classList.remove("hidden");
+
+    // Generate questions specific to the selected source type.
+    renderSourceLimitations();
+
+    // Hide previous output when source type changes.
+    document.getElementById("outputSection").style.display = "none";
+    document.getElementById("copyMessage").textContent = "";
+}
+
+
+
 function generateNotes() {
+
     if (!getValue("articleTitle")) {
         alert("Please enter the article title first.");
         document.getElementById("articleTitle").focus();
@@ -459,51 +687,98 @@ function generateNotes() {
     }
 
     const sections = [];
+
     function addSection(title, content) {
         if (content && content.trim()) {
-            sections.push(title + "\n" + content.trim());
+            sections.push(
+                title.toUpperCase() + "\n" +
+                "------------------------------------------------------------\n" +
+                content.trim()
+            );
         }
     }
 
-    const articleInformation = [
-        getValue("firstAuthorLastName") ?
-            "First Author's Last Name: " + getValue("firstAuthorLastName") : "",
-        "Article Title: " + getValue("articleTitle"),
-        getValue("year") ?
-            "Publication Year: " + getValue("year") : "",
-        getValue("publication") ?
-            "Journal/Publication: " + getValue("publication") : "",
-        getValue("sourceType") ?
-            "Source Type: " + getValue("sourceType") : "",
-        getValue("url") ?
-            "Article Link: " + getValue("url") : ""
-    ].filter(Boolean).join("\n");
-        getValue("purposeType") ?
-            "Purpose:" + getValue("purposeType") : "",
-        getValue("findings") ?
-            "Summary:" + getValue("findings") : "",    
+    // SOURCE IDENTIFICATION
 
+    const sourceIdentification = [
+        getValue("articleTitle")
+            ? "Article Title: " + getValue("articleTitle")
+            : "",
+        getValue("authors")
+            ? "Author(s): " + getValue("authors")
+            : "",
+        getValue("year")
+            ? "Publication Year: " + getValue("year")
+            : "",
+        getValue("publication")
+            ? "Journal/Publication: " + getValue("publication")
+            : ""
+    ].filter(Boolean).join("\n\n");
 
-    const sourceLimitations = Array.from(document.querySelectorAll(".source-limitation"))
+    addSection("Source Identification", sourceIdentification);
+
+    // SOURCE LOCATION
+
+    const sourceLocation = getValue("url")
+        ? "Article Link:\n" + getValue("url")
+        : "";
+
+    addSection("Source Location", sourceLocation);
+
+    // UNDERSTANDING THE SOURCE
+
+    const understandingSource = [
+        getValue("purposeType")
+            ? "Purpose:\n" + getValue("purposeType")
+            : "",
+        getValue("findings")
+            ? "Main Findings, Ideas, or Conclusions:\n" +
+              getValue("findings")
+            : ""
+    ].filter(Boolean).join("\n\n");
+
+    addSection("Understanding the Source", understandingSource);
+
+    // SOURCE EVALUATION
+
+    const sourceLimitations = Array.from(
+        document.querySelectorAll(".source-limitation")
+    )
         .map(function(field) {
-            return field.value ? field.dataset.question + "\n" + field.value : "";
+            return field.value
+                ? field.dataset.question + "\n" + field.value
+                : "";
         })
         .filter(Boolean)
         .join("\n\n");
-    addSection("LIMITATIONS AND CONSIDERATIONS", sourceLimitations);
 
-    const output = 
-        sections.join("\n\n")
-    
+    addSection("Source Evaluation", sourceLimitations);
+
+    // FINAL OUTPUT
+
+    const output =
+        "RESEARCH SOURCE NOTES\n" +
+        "============================================================\n\n" +
+        sections.join("\n\n");
+
     document.getElementById("generatedNotes").value = output;
     document.getElementById("outputSection").style.display = "block";
     document.getElementById("copyMessage").textContent = "";
-    document.getElementById("outputSection").scrollIntoView({ behavior: "smooth", block: "start" });
+
+    document.getElementById("outputSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
 }
 
-// Copy the generated notes.
+
+// COPY GENERATED NOTES
+
 function copyNotes() {
+
     const output = document.getElementById("generatedNotes");
+
     output.select();
     output.setSelectionRange(0, output.value.length);
 
@@ -513,6 +788,7 @@ function copyNotes() {
     }
 
     if (navigator.clipboard && window.isSecureContext) {
+
         navigator.clipboard.writeText(output.value)
             .then(copied)
             .catch(function() {
@@ -520,14 +796,20 @@ function copyNotes() {
                 document.execCommand("copy");
                 copied();
             });
+
     } else {
+
         document.execCommand("copy");
         copied();
+
     }
 }
 
-// Clear the form and restore its initial state.
+
+// RESET THE TOOL
+
 function resetNotes() {
+
     if (!confirm("Are you sure you want to clear all your entries?")) {
         return;
     }
@@ -538,17 +820,28 @@ function resetNotes() {
         field.value = "";
     });
 
-    renderSourceLimitations();
+    // Hide the form until a source type is selected again.
+    document.getElementById("individualizedForm").classList.add("hidden");
+
+    // Clear the individualized questions.
+    document.getElementById("limitationsQuestions").innerHTML = "";
+
+    // Hide generated notes.
     document.getElementById("outputSection").style.display = "none";
     document.getElementById("copyMessage").textContent = "";
-    document.getElementById("articleTitle").focus();
+
+    // Return focus to source type selection.
+    document.getElementById("sourceType").focus();
+
 }
 
-// Connect the source-type dropdown to its matching limitations questions.
-document.getElementById("sourceType").addEventListener("change", renderSourceLimitations);
 
-// Display the initial prompt; the limitations section itself remains available.
-renderSourceLimitations();
+// CONNECT SOURCE TYPE DROPDOWN
+
+document.getElementById("sourceType")
+    .addEventListener("change", handleSourceTypeChange);
+
 </script>
+
 </body>
 </html>
