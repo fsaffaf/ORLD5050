@@ -154,6 +154,19 @@
     background: #fff;
 }
 .article-tool .saved-article p { margin: 3px 0; }
+.article-tool .saved-article .edit-article { margin-top: 9px; }
+.article-tool .review-notes-row {
+    border-top: 2px solid #d9e2ec;
+    margin-top: 16px;
+    padding-top: 13px;
+}
+.article-tool .review-notes-row button {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 13px 17px;
+    font-size: 15px;
+}
 .article-tool .output {
     background: #f4f9fe;
     border: 1px solid #b9d3e8;
@@ -246,8 +259,12 @@
             <p class="part-intro">Your saved articles remain listed here while you work. You can add another article at any time or review all your research notes.</p>
             <div id="savedArticlesList"></div>
             <p class="status-message" id="savedStatus" aria-live="polite"></p>
-            <button type="button" class="secondary" onclick="startAnotherArticle()">+ Add Another Article</button>
-            <button type="button" class="primary" onclick="showAllNotes()">Review All Research Notes</button>
+            <div class="button-row">
+                <button type="button" class="secondary" onclick="startAnotherArticle()">+ Add Another Article</button>
+            </div>
+            <div class="review-notes-row">
+                <button type="button" class="primary" onclick="showAllNotes()">Review All Research Notes</button>
+            </div>
         </div>
 
         <div id="articleForm">
@@ -296,8 +313,8 @@
                 <button type="button" class="secondary" onclick="addEvidence()">+ Add Another Quote from the Same Article</button>
                             </div>
             <div class="button-row">
-                <button type="button" class="primary" onclick="saveArticleNotes(false)">Save This Article's Notes</button>
-                <button type="button" class="secondary" onclick="saveArticleNotes(true)">Save Article and Add Another</button>
+                <button type="button" class="primary" id="saveArticleButton" onclick="saveArticleNotes(false)">Save This Article's Notes</button>
+                <button type="button" class="secondary" id="saveAndAddButton" onclick="saveArticleNotes(true)">Save Article and Add Another</button>
             </div>
         </div>
 
@@ -327,6 +344,7 @@ const claims = {
 let evidenceCount = 0;
 let articleCount = 1;
 let savedArticles = [];
+let editingArticleNumber = null;
 
 const STORAGE_KEY = "orld5050_evidence_organizer_v1";
 
@@ -365,6 +383,7 @@ function saveProgress() {
             },
             savedArticles: savedArticles,
             articleCount: articleCount,
+            editingArticleNumber: editingArticleNumber,
             currentArticle: {
                 author: document.getElementById("citationAuthor").value,
                 year: document.getElementById("citationYear").value,
@@ -413,7 +432,11 @@ function restoreProgress() {
     claims.B = state.claims?.B || "";
     claims.C = state.claims?.C || "";
     savedArticles = Array.isArray(state.savedArticles) ? state.savedArticles : [];
-    articleCount = Number(state.articleCount) || Math.max(1, savedArticles.length + 1);
+    const nextSavedNumber = savedArticles.length
+        ? Math.max(...savedArticles.map(article => Number(article.number) || 0)) + 1
+        : 1;
+    articleCount = Math.max(Number(state.articleCount) || 1, nextSavedNumber);
+    editingArticleNumber = state.editingArticleNumber ?? null;
 
     document.getElementById("displayMainClaim").textContent = claims.main;
     document.getElementById("displaySubclaimA").textContent = claims.A;
@@ -453,7 +476,9 @@ function restoreProgress() {
     document.getElementById("savedArticlesSection").hidden = !(savedArticles.length > 0 && view.savedArticlesSection);
     document.getElementById("outputSection").hidden = !view.outputSection;
     document.getElementById("generatedNotes").value = view.generatedNotes || "";
-    document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
+    document.getElementById("articleFormHeading").textContent =
+        editingArticleNumber !== null ? "Edit Article " + editingArticleNumber : "Article " + articleCount;
+    updateArticleSaveButtonLabels();
     updateSubclaimDropdowns();
     setStorageStatus("Previous progress restored from this browser on this device.");
     return true;
@@ -560,6 +585,7 @@ function addEvidence() {
     evidenceBox.id = "evidenceBox" + evidenceCount;
 
     evidenceBox.innerHTML = `
+        <h3>Quote ${evidenceCount}</h3>
         <label for="argumentPart${evidenceCount}">1. Which subclaim are you trying to support? <span class="required">*</span></label>
         <select id="argumentPart${evidenceCount}" class="argument-dropdown">
             <option value="">Select ONE subclaim</option>
@@ -574,7 +600,7 @@ function addEvidence() {
         <label for="explanation${evidenceCount}">4. Why Does This Evidence Support Your Subclaim? (Warrant) <span class="required">*</span></label>
         <textarea id="explanation${evidenceCount}" placeholder="Explain how the information in this quotation supports the specific subclaim you selected."></textarea>
 
-        <button type="button" class="remove-evidence" onclick="removeEvidence(${evidenceCount})">Remove This Evidence</button>
+        <button type="button" class="remove-evidence" onclick="removeEvidence(${evidenceCount})">Remove This Quote</button>
     `;
     container.appendChild(evidenceBox);
     updateSubclaimDropdowns();
@@ -584,6 +610,20 @@ function addEvidence() {
 function removeEvidence(number) {
     const evidenceBox = document.getElementById("evidenceBox" + number);
     if (evidenceBox) evidenceBox.remove();
+}
+
+function updateArticleSaveButtonLabels() {
+    const saveButton = document.getElementById("saveArticleButton");
+    const saveNextButton = document.getElementById("saveAndAddButton");
+    if (!saveButton || !saveNextButton) return;
+
+    if (editingArticleNumber !== null) {
+        saveButton.textContent = "Save Changes to Article";
+        saveNextButton.textContent = "Save Changes and Add Another Article";
+    } else {
+        saveButton.textContent = "Save This Article's Notes";
+        saveNextButton.textContent = "Save Article and Add Another";
+    }
 }
 
 function getCitation() {
@@ -638,7 +678,7 @@ function saveArticleNotes(addAnotherAfterSaving) {
         if (quote || premise || explanation || argumentPart) {
             entryNumber++;
             if (!quote || !premise || !explanation || !argumentPart) {
-                incompleteEvidence.push("Evidence entry " + entryNumber);
+                incompleteEvidence.push("Quote " + entryNumber);
             } else {
                 evidence.push({
                     subclaim: argumentPart,
@@ -652,32 +692,53 @@ function saveArticleNotes(addAnotherAfterSaving) {
     });
 
     if (evidence.length === 0) {
-        alert("Please complete at least one evidence entry, including a subclaim selection, direct quotation, premise, and warrant.");
+        alert("Please complete at least one quote entry, including a subclaim selection, direct quotation, premise, and warrant.");
         return;
     }
     if (incompleteEvidence.length > 0) {
         alert("Please complete or remove the following partially completed entries: " +
             incompleteEvidence.join(", ") +
-            ". Each evidence entry must include a subclaim selection, direct quotation, premise, and warrant.");
+            ". Each quote must include a subclaim selection, direct quotation, premise, and warrant.");
         return;
     }
 
-    savedArticles.push({
-        number: articleCount,
+    const articleData = {
+        number: editingArticleNumber !== null ? editingArticleNumber : articleCount,
         author: getValue("citationAuthor"),
         year: getValue("citationYear"),
+        multipleAuthors: getValue("multipleAuthors"),
+        threeOrMoreAuthors: getValue("threeOrMoreAuthors"),
+        secondAuthor: getValue("secondAuthor"),
         citation: citation,
         evidence: evidence
-    });
+    };
 
+    const wasEditing = editingArticleNumber !== null;
+
+    if (wasEditing) {
+        const existingIndex = savedArticles.findIndex(article => article.number === editingArticleNumber);
+        if (existingIndex >= 0) {
+            savedArticles[existingIndex] = articleData;
+        } else {
+            savedArticles.push(articleData);
+        }
+    } else {
+        savedArticles.push(articleData);
+    }
+
+    // Keep articleCount set to the next unused article number.
+    articleCount = Math.max(1, ...savedArticles.map(article => Number(article.number) + 1));
+
+    const savedNumber = articleData.number;
+    editingArticleNumber = null;
     renderSavedArticles();
     document.getElementById("savedArticlesSection").hidden = false;
     document.getElementById("outputSection").hidden = true;
     document.getElementById("savedStatus").textContent =
-        "Article " + articleCount + " saved. Your claims and this article's notes are saved in the organizer.";
+        "Article " + savedNumber + (wasEditing ? " updated." : " saved.") +
+        " Your saved article collection is available above.";
 
     if (addAnotherAfterSaving) {
-        articleCount++;
         clearCurrentArticleForm();
         document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
         document.getElementById("articleForm").hidden = false;
@@ -686,11 +747,11 @@ function saveArticleNotes(addAnotherAfterSaving) {
         document.getElementById("articleForm").hidden = true;
     }
 
+    updateArticleSaveButtonLabels();
     saveProgress();
     document.getElementById(addAnotherAfterSaving ? "articleForm" : "savedArticlesSection")
         .scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
 function renderSavedArticles() {
     const list = document.getElementById("savedArticlesList");
     list.innerHTML = "";
@@ -698,20 +759,105 @@ function renderSavedArticles() {
     savedArticles.forEach(function(article) {
         const item = document.createElement("div");
         item.className = "saved-article";
+
         const heading = document.createElement("strong");
-        heading.textContent = "Article " + article.number + " — " + article.author + " (" + article.year + ")";
+        heading.textContent = "Article " + article.number + " — " + (article.citation || "(" + article.author + ", " + article.year + ")");
         const details = document.createElement("p");
-        details.textContent = article.evidence.length + (article.evidence.length === 1 ? " evidence entry saved" : " evidence entries saved");
+        details.textContent = article.evidence.length +
+            (article.evidence.length === 1 ? " quote saved" : " quotes saved");
+
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.className = "secondary edit-article";
+        editButton.textContent = "Edit This Article";
+        editButton.addEventListener("click", function() {
+            editArticle(article.number);
+        });
+
         item.appendChild(heading);
         item.appendChild(details);
+        item.appendChild(editButton);
         list.appendChild(item);
     });
 }
 
+function currentArticleFormHasContent() {
+    const citationFields = [
+        "citationAuthor", "citationYear", "multipleAuthors",
+        "threeOrMoreAuthors", "secondAuthor"
+    ];
+    if (citationFields.some(id => document.getElementById(id).value.trim() !== "")) return true;
+
+    return collectCurrentEvidence().some(entry =>
+        entry.subclaim || entry.quote.trim() || entry.premise.trim() || entry.explanation.trim()
+    );
+}
+
+function editArticle(number) {
+    if (document.getElementById("articleForm").hidden === false &&
+        currentArticleFormHasContent() &&
+        editingArticleNumber !== number) {
+        const message = editingArticleNumber !== null
+            ? "Discard your unsaved changes to Article " + editingArticleNumber + " and edit Article " + number + "?"
+            : "Discard the unfinished article form and edit Article " + number + "?";
+        if (!confirm(message)) return;
+    }
+
+    const article = savedArticles.find(item => item.number === number);
+    if (!article) {
+        alert("That saved article could not be found.");
+        return;
+    }
+
+    editingArticleNumber = number;
+    document.getElementById("citationAuthor").value = article.author || "";
+    document.getElementById("citationYear").value = article.year || "";
+    document.getElementById("multipleAuthors").value = article.multipleAuthors ||
+        (article.citation && article.citation.includes(" et al.") ? "yes" :
+        (article.citation && article.citation.includes(" & ") ? "yes" : "no"));
+    document.getElementById("threeOrMoreAuthors").value = article.threeOrMoreAuthors ||
+        (article.citation && article.citation.includes(" et al.") ? "yes" :
+        (document.getElementById("multipleAuthors").value === "yes" ? "no" : ""));
+    document.getElementById("secondAuthor").value = article.secondAuthor || "";
+    updateAuthorFields();
+
+    document.getElementById("evidenceContainer").innerHTML = "";
+    evidenceCount = 0;
+
+    article.evidence.forEach(function(entry) {
+        addEvidence();
+        const box = document.querySelector(".evidence-entry:last-child");
+        box.querySelector("select").value = entry.subclaim || "";
+        box.querySelector('textarea[id^="evidence"]').value = entry.quote || "";
+        box.querySelector('textarea[id^="premise"]').value = entry.premise || "";
+        box.querySelector('textarea[id^="explanation"]').value = entry.explanation || "";
+    });
+
+    if (!article.evidence.length) addEvidence();
+
+    document.getElementById("articleFormHeading").textContent = "Edit Article " + number;
+    document.getElementById("articleForm").hidden = false;
+    document.getElementById("savedArticlesSection").hidden = false;
+    document.getElementById("outputSection").hidden = true;
+    document.getElementById("savedStatus").textContent =
+        "You are editing Article " + number + ". Save your changes to update the saved version.";
+    updateArticleSaveButtonLabels();
+    updateSubclaimDropdowns();
+    saveProgress();
+    document.getElementById("articleForm").scrollIntoView({ behavior: "smooth", block: "start" });
+}
 function startAnotherArticle() {
-    articleCount++;
+    if (document.getElementById("articleForm").hidden === false && currentArticleFormHasContent()) {
+        const message = editingArticleNumber !== null
+            ? "Discard your unsaved changes to Article " + editingArticleNumber + " and start a new article?"
+            : "Clear the unfinished article form and start a new article?";
+        if (!confirm(message)) return;
+    }
+
+    editingArticleNumber = null;
     clearCurrentArticleForm();
     document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
+    updateArticleSaveButtonLabels();
     document.getElementById("savedArticlesSection").hidden = false;
     document.getElementById("outputSection").hidden = true;
     document.getElementById("articleForm").hidden = false;
@@ -745,10 +891,10 @@ function buildAllNotes() {
         "2. EVIDENCE AND ARGUMENT CONNECTIONS\n\n";
 
     savedArticles.forEach(function(article) {
-        output += "ARTICLE " + article.number + " — " + article.author + " (" + article.year + ")\n\n";
+        output += "ARTICLE " + article.number + " — " + article.citation + "\n\n";
 
         article.evidence.forEach(function(entry, index) {
-            output += "Evidence " + (index + 1) + "\n" +
+            output += "Quote " + (index + 1) + "\n" +
                 "Subclaim Supported: " + entry.subclaim + "\n" +
                 "Direct Quotation (Evidence): " + entry.quote + " " + entry.citation + "\n" +
                 "Quotation in Your Own Words (Premise): " + entry.premise + " " + entry.citation + "\n" +
@@ -812,6 +958,7 @@ function resetNotes() {
     savedArticles = [];
     articleCount = 1;
     evidenceCount = 0;
+    editingArticleNumber = null;
     try { localStorage.removeItem(STORAGE_KEY); } catch (error) {}
 
     ["mainClaim", "subclaimA", "subclaimB", "subclaimC"].forEach(id => {
@@ -820,6 +967,7 @@ function resetNotes() {
 
     clearCurrentArticleForm();
     document.getElementById("articleFormHeading").textContent = "Article 1";
+    updateArticleSaveButtonLabels();
     document.getElementById("savedArticlesList").innerHTML = "";
     document.getElementById("savedStatus").textContent = "";
     document.getElementById("generatedNotes").value = "";
@@ -838,6 +986,7 @@ function resetNotes() {
 // Restore prior work if it exists. Otherwise, begin with one blank evidence entry.
 if (!restoreProgress()) {
     addEvidence();
+    updateArticleSaveButtonLabels();
     saveProgress();
 }
 </script>
