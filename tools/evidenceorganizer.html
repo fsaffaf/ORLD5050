@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Evidence Organizer</title>
-
 <style>
 .article-tool {
     max-width: 900px;
@@ -14,29 +12,15 @@
     color: #333;
     line-height: 1.5;
 }
-
-.article-tool h2 {
-    color: #174a73;
-    font-size: 22px;
-}
-
-.article-tool h3 {
-    color: #0e68b3;
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-.article-tool p {
-    margin: 5px 0 12px;
-}
-
+.article-tool h2 { color: #174a73; font-size: 22px; }
+.article-tool h3 { color: #0e68b3; font-size: 16px; margin-bottom: 8px; }
+.article-tool p { margin: 5px 0 12px; }
 .article-tool .intro {
     background: #f4f9fe;
     border-left: 4px solid #0e68b3;
     padding: 14px;
     margin-bottom: 20px;
 }
-
 .article-tool .section {
     border: 1px solid #d9e2ec;
     border-radius: 7px;
@@ -44,7 +28,6 @@
     margin-bottom: 16px;
     background: white;
 }
-
 .article-tool .part-heading {
     background: #174a73;
     color: white;
@@ -53,12 +36,7 @@
     margin: 24px 0 14px;
     font-size: 19px;
 }
-
-.article-tool .part-intro {
-    color: #555;
-    margin: 0 0 14px;
-}
-
+.article-tool .part-intro { color: #555; margin: 0 0 14px; }
 .article-tool .main-claim-box {
     max-width: 720px;
     margin: 0 auto 20px;
@@ -68,46 +46,31 @@
     background: #f4f9fe;
     text-align: center;
 }
-
-.article-tool .main-claim-box label {
-    text-align: center;
-    margin-top: 0;
-}
-
+.article-tool .main-claim-box label { text-align: center; margin-top: 0; }
 .article-tool .main-claim-box textarea {
     min-height: 75px;
     text-align: center;
     font-size: 16px;
 }
-
 .article-tool .subclaim-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
 }
-
 .article-tool .subclaim-card {
     border: 1px solid #d9e2ec;
     border-radius: 7px;
     padding: 12px;
     background: #fff;
 }
-
-.article-tool .subclaim-card label {
-    margin-top: 0;
-}
-
-.article-tool .subclaim-card textarea {
-    min-height: 110px;
-}
-
+.article-tool .subclaim-card label { margin-top: 0; }
+.article-tool .subclaim-card textarea { min-height: 110px; }
 .article-tool label {
     display: block;
     font-weight: bold;
     color: #174a73;
     margin: 12px 0 5px;
 }
-
 .article-tool input,
 .article-tool textarea,
 .article-tool select {
@@ -122,46 +85,27 @@
     color: #333;
     margin-bottom: 5px;
 }
-
-.article-tool select {
-    cursor: pointer;
-}
-
-.article-tool select option {
-    color: #333;
-    background-color: #fff;
-}
-
+.article-tool select { cursor: pointer; }
+.article-tool select option { color: #333; background-color: #fff; }
 .article-tool input::placeholder,
-.article-tool textarea::placeholder {
-    color: #777;
-    opacity: 1;
-}
-
-.article-tool textarea {
-    min-height: 85px;
-    resize: vertical;
-}
-
+.article-tool textarea::placeholder { color: #777; opacity: 1; }
+.article-tool textarea { min-height: 85px; resize: vertical; }
 .article-tool input:focus,
 .article-tool textarea:focus,
 .article-tool select:focus {
     outline: 2px solid #0e68b3;
     border-color: #0e68b3;
 }
-
 .article-tool .citation-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 14px;
 }
-
 .article-tool .conditional-citation {
     margin-top: 12px;
     padding-top: 10px;
     border-top: 1px solid #d9e2ec;
 }
-
 .article-tool .evidence-box {
     border: 1px solid #d9e2ec;
     border-radius: 6px;
@@ -169,30 +113,9 @@
     margin: 16px 0;
     background: #fafcfe;
 }
-
-.article-tool .required {
-    color: #c45b18;
-}
-
-.article-tool .small-note {
-    font-size: 13px;
-    color: #555;
-}
-
-.article-tool .output {
-    background: #f4f9fe;
-    border: 1px solid #b9d3e8;
-    border-radius: 7px;
-    padding: 18px;
-    margin-top: 25px;
-}
-
-.article-tool .output textarea {
-    min-height: 450px;
-    background: white;
-    line-height: 1.6;
-}
-
+.article-tool .required { color: #c45b18; }
+.article-tool .small-note { font-size: 13px; color: #555; }
+.article-tool .button-row { margin: 18px 0; }
 .article-tool button {
     border: none;
     border-radius: 5px;
@@ -202,500 +125,326 @@
     cursor: pointer;
     margin: 8px 5px 5px 0;
 }
-
-.article-tool .primary {
-    background: #0e68b3;
-    color: white;
+.article-tool button:hover { opacity: .88; }
+.article-tool button:focus {
+    outline: 2px solid #174a73;
+    outline-offset: 2px;
 }
-
-.article-tool .secondary {
-    background: #e67e22;
-    color: white;
+.article-tool .primary { background: #0e68b3; color: white; }
+.article-tool .secondary { background: #e67e22; color: white; }
+.article-tool .reset,
+.article-tool .remove-evidence { background: #e9edf2; color: #333; }
+.article-tool .remove-evidence { font-size: 12px; padding: 7px 11px; }
+.article-tool .locked-claims {
+    background: #f4f9fe;
+    border: 1px solid #b9d3e8;
+    border-radius: 7px;
+    padding: 16px;
+    margin-bottom: 18px;
 }
-
-.article-tool .reset {
-    background: #e9edf2;
-    color: #333;
+.article-tool .locked-claims h3 { margin-top: 0; }
+.article-tool .locked-claims p { margin: 8px 0; }
+.article-tool .claim-label { color: #174a73; font-weight: bold; }
+.article-tool .saved-article {
+    border: 1px solid #d9e2ec;
+    border-left: 4px solid #0e68b3;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin: 12px 0;
+    background: #fff;
 }
-
-.article-tool .remove-evidence {
-    background: #e9edf2;
-    color: #333;
-    font-size: 12px;
-    padding: 7px 11px;
+.article-tool .saved-article p { margin: 3px 0; }
+.article-tool .output {
+    background: #f4f9fe;
+    border: 1px solid #b9d3e8;
+    border-radius: 7px;
+    padding: 18px;
+    margin-top: 25px;
 }
-
-.article-tool button:hover {
-    opacity: .88;
+.article-tool .output textarea {
+    min-height: 450px;
+    background: white;
+    line-height: 1.6;
 }
+.article-tool .status-message {
+    color: #174a73;
+    font-weight: bold;
+    margin: 12px 0;
+}
+.article-tool [hidden] { display: none !important; }
 
 @media (max-width: 600px) {
-    .article-tool .section {
-        padding: 12px;
-    }
-
-    .article-tool .evidence-box {
-        padding: 11px;
-    }
-
-    .article-tool .subclaim-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .article-tool .citation-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
+    .article-tool .section { padding: 12px; }
+    .article-tool .evidence-box { padding: 11px; }
+    .article-tool .subclaim-grid { grid-template-columns: 1fr; }
+    .article-tool .citation-grid { grid-template-columns: 1fr; gap: 0; }
 }
 </style>
 </head>
-
 <body>
-
 <div class="article-tool">
 
-<h2>Evidence Organizer</h2>
-
-<div class="intro">
-    <strong>Use this tool to organize your main claim, subclaims, and supporting evidence from the articles you select for your research paper.</strong>
-</div>
-
-<!-- PART 1: CLAIMS -->
-
-<h2 class="part-heading">Claims</h2>
-
-<p class="part-intro">
-    Enter your main claim and the three subclaims that make up your argument.
-</p>
-
-<div class="section">
-
-    <div class="main-claim-box">
-        <label for="mainClaim">Main Claim <span class="required">*</span></label>
-        <textarea id="mainClaim"
-            placeholder="Organizations should ..."></textarea>
-    </div>
-
-    <div class="subclaim-grid">
-
-        <div class="subclaim-card">
-            <label for="subclaimA">Subclaim A <span class="required">*</span></label>
-            <textarea id="subclaimA"
-                placeholder="Because ..."></textarea>
+    <!-- PAGE 1: CLAIMS -->
+    <section id="claimsPage">
+        <h2>Evidence Organizer</h2>
+        <div class="intro">
+            <strong>First, enter your main claim and the three subclaims that make up your argument. You will only need to do this once. After you continue, your claims will stay visible as a reference while you organize evidence from multiple articles.</strong>
         </div>
 
-        <div class="subclaim-card">
-            <label for="subclaimB">Subclaim B <span class="required">*</span></label>
-            <textarea id="subclaimB"
-                placeholder="Because ..."></textarea>
+        <h2 class="part-heading">Step 1: Main Claim and Subclaims</h2>
+        <p class="part-intro">Enter your main claim and the three subclaims that support it. Review your statements before continuing because they will be locked in on the next page.</p>
+
+        <div class="section">
+            <div class="main-claim-box">
+                <label for="mainClaim">Main Claim <span class="required">*</span></label>
+                <textarea id="mainClaim" placeholder="Organizations should ..."></textarea>
+            </div>
+            <div class="subclaim-grid">
+                <div class="subclaim-card">
+                    <label for="subclaimA">Subclaim A <span class="required">*</span></label>
+                    <textarea id="subclaimA" placeholder="Because ..."></textarea>
+                </div>
+                <div class="subclaim-card">
+                    <label for="subclaimB">Subclaim B <span class="required">*</span></label>
+                    <textarea id="subclaimB" placeholder="Because ..."></textarea>
+                </div>
+                <div class="subclaim-card">
+                    <label for="subclaimC">Subclaim C <span class="required">*</span></label>
+                    <textarea id="subclaimC" placeholder="Because ..."></textarea>
+                </div>
+            </div>
         </div>
 
-        <div class="subclaim-card">
-            <label for="subclaimC">Subclaim C <span class="required">*</span></label>
-            <textarea id="subclaimC"
-                placeholder="Because ..."></textarea>
+        <div class="button-row">
+            <button type="button" class="primary" onclick="lockClaimsAndContinue()">Lock In Claims and Continue</button>
+        </div>
+        <p class="small-note">Your claims will be saved for this organizer session. Use <strong>Start Over</strong> on the research page only if you want to clear the entire organizer and begin again.</p>
+    </section>
+
+    <!-- PAGE 2: ARTICLES AND EVIDENCE -->
+    <section id="researchPage" hidden>
+        <h2>Evidence Organizer</h2>
+        <div class="intro">
+            <strong>Your main claim and subclaims are locked in below. You do not need to re-enter them for each article. Add the citation information and evidence for one article at a time, then save that article and move on to the next one.</strong>
         </div>
 
-    </div>
-
-</div>
-
-<!-- PART 2: ARTICLE CITATION -->
-
-<h2 class="part-heading">Article Citation</h2>
-
-<p class="part-intro">
-    Enter the first author's last name and the year the article was published. Answer the questions below so the organizer can automatically format the in-text citation for your quotations and paraphrases.
-</p>
-
-<div class="section">
-
-    <div class="citation-grid">
-
-        <div>
-            <label for="citationAuthor">
-                First Author's Last Name <span class="required">*</span>
-            </label>
-            <input
-                type="text"
-                id="citationAuthor"
-                placeholder="e.g., Smith"
-            >
+        <div class="locked-claims" id="lockedClaims">
+            <h3>Your Locked-In Claims</h3>
+            <p><span class="claim-label">Main Claim:</span> <span id="displayMainClaim"></span></p>
+            <p><span class="claim-label">Subclaim A:</span> <span id="displaySubclaimA"></span></p>
+            <p><span class="claim-label">Subclaim B:</span> <span id="displaySubclaimB"></span></p>
+            <p><span class="claim-label">Subclaim C:</span> <span id="displaySubclaimC"></span></p>
         </div>
 
-        <div>
-            <label for="citationYear">
-                Year of Publication <span class="required">*</span>
-            </label>
-            <input
-                type="text"
-                id="citationYear"
-                inputmode="numeric"
-                placeholder="e.g., 2025"
-            >
+        <h2 class="part-heading">Step 2: Article Citation</h2>
+        <p class="part-intro">Enter the first author's last name and the year the article was published. Answer the questions below so the organizer can automatically format the in-text citation for your quotations and paraphrases.</p>
+
+        <div id="articleForm">
+            <div class="section">
+                <h3 id="articleFormHeading">Article 1</h3>
+                <div class="citation-grid">
+                    <div>
+                        <label for="citationAuthor">First Author's Last Name <span class="required">*</span></label>
+                        <input type="text" id="citationAuthor" placeholder="e.g., Smith">
+                    </div>
+                    <div>
+                        <label for="citationYear">Year of Publication <span class="required">*</span></label>
+                        <input type="text" id="citationYear" inputmode="numeric" placeholder="e.g., 2025">
+                    </div>
+                </div>
+
+                <label for="multipleAuthors">Does the article have more than one author? <span class="required">*</span></label>
+                <select id="multipleAuthors">
+                    <option value="">Select an answer</option>
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+
+                <div id="additionalAuthorQuestions" class="conditional-citation" hidden>
+                    <label for="threeOrMoreAuthors">Does the article have three or more authors? <span class="required">*</span></label>
+                    <select id="threeOrMoreAuthors">
+                        <option value="">Select an answer</option>
+                        <option value="no">No, the article has exactly two authors</option>
+                        <option value="yes">Yes, the article has three or more authors</option>
+                    </select>
+                    <div id="secondAuthorContainer" hidden>
+                        <label for="secondAuthor">Second Author's Last Name <span class="required">*</span></label>
+                        <input type="text" id="secondAuthor" placeholder="e.g., Jones">
+                    </div>
+                </div>
+                <p class="small-note">The organizer will automatically format your citation according to the number of authors.</p>
+            </div>
+
+            <h2 class="part-heading">Step 3: Evidence and Argument Connections</h2>
+            <p class="part-intro">
+                Select the subclaim you want to support. Then find a relevant quotation, explain what the quotation communicates in your own words, and describe why the evidence supports your selected subclaim.
+                <strong>Remember:</strong> A quotation alone does not explain why your argument is correct. You must explain how the evidence supports the specific subclaim you selected.
+            </p>
+            <div class="section">
+                <div id="evidenceContainer"></div>
+                <button type="button" class="secondary" onclick="addEvidence()">+ Add Another Quote from the Same Article</button>
+                            </div>
+            <div class="button-row">
+                <button type="button" class="primary" onclick="saveArticleNotes()">Save This Article's Notes</button>
+            </div>
         </div>
 
-    </div>
-
-    <label for="multipleAuthors">
-        Does the article have more than one author?
-        <span class="required">*</span>
-    </label>
-
-    <select id="multipleAuthors">
-        <option value="">Select an answer</option>
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-    </select>
-
-    <div id="additionalAuthorQuestions" class="conditional-citation" style="display:none;">
-
-        <label for="threeOrMoreAuthors">
-            Does the article have three or more authors?
-            <span class="required">*</span>
-        </label>
-
-        <select id="threeOrMoreAuthors">
-            <option value="">Select an answer</option>
-            <option value="no">No, the article has exactly two authors</option>
-            <option value="yes">Yes, the article has three or more authors</option>
-        </select>
-
-        <div id="secondAuthorContainer" style="display:none;">
-
-            <label for="secondAuthor">
-                Second Author's Last Name <span class="required">*</span>
-            </label>
-
-            <input
-                type="text"
-                id="secondAuthor"
-                placeholder="e.g., Jones"
-            >
-
+        <div id="savedArticlesSection" class="section" hidden>
+            <h2>Saved Article Notes</h2>
+            <p class="part-intro">These articles have been saved. You can add another article or review and copy all your research notes.</p>
+            <div id="savedArticlesList"></div>
+            <p class="status-message" id="savedStatus" aria-live="polite"></p>
+            <button type="button" class="secondary" onclick="startAnotherArticle()">+ Add Another Article</button>
+            <button type="button" class="primary" onclick="showAllNotes()">Review All Research Notes</button>
         </div>
 
-    </div>
+        <div class="output" id="outputSection" hidden>
+            <h3>Your Complete Research Notes</h3>
+            <p class="small-note">Your locked-in claims and notes from every saved article are included below. You can edit the text directly before copying it into your research document.</p>
+            <textarea id="generatedNotes"></textarea>
+            <button type="button" class="secondary" onclick="copyNotes()">Copy All Research Notes</button>
+            <p id="copyMessage" class="small-note" aria-live="polite"></p>
+        </div>
 
-    <p class="small-note">
-        The organizer will automatically format your citation according to the number of authors.
-    </p>
-
-</div>
-
-<!-- PART 3: EVIDENCE AND ARGUMENT CONNECTIONS -->
-
-<h2 class="part-heading">Evidence and Argument Connections</h2>
-
-<p class="part-intro">
-    Use this section to identify evidence from your article and explain how it supports your argument.
-
-    Start by selecting the subclaim you want to support. Then find a relevant quotation, explain what the quotation communicates in your own words, and describe why the evidence supports your selected subclaim.
-
-    <strong>Remember:</strong> A quotation alone does not explain why your argument is correct. You must explain how the evidence supports the specific subclaim you selected.
-</p>
-
-<div class="section">
-
-    <div id="evidenceContainer"></div>
-
-    <button type="button" class="secondary" onclick="addEvidence()">
-        + Add Another Piece of Evidence
-    </button>
-
-    <p class="small-note">
-        Add as many pieces of evidence as you need. You do not need to find a specific number of quotations in every article.
-    </p>
-
-</div>
-
-<!-- GENERATE NOTES -->
-
-<div class="button-row">
-
-    <button type="button" class="primary" onclick="generateNotes()">
-        Generate Research Notes
-    </button>
-
-    <button type="button" class="reset" onclick="resetNotes()">
-        Start Over
-    </button>
-
-</div>
-
-<!-- OUTPUT -->
-
-<div class="output" id="outputSection" style="display:none;">
-
-    <h3>Your Research Notes</h3>
-
-    <p class="small-note">
-        Review your notes below. You can edit the text directly before copying it into your research document.
-    </p>
-
-    <textarea id="generatedNotes"></textarea>
-
-    <button type="button" class="secondary" onclick="copyNotes()">
-        Copy Research Notes
-    </button>
-
-    <p id="copyMessage" class="small-note" aria-live="polite"></p>
-
-</div>
-
+        <div class="button-row">
+            <button type="button" class="reset" onclick="resetNotes()">Start Over and Clear Everything</button>
+        </div>
+    </section>
 </div>
 
 <script>
+const claims = {
+    main: "",
+    A: "",
+    B: "",
+    C: ""
+};
 
-// ==========================================
-// GENERAL HELPER FUNCTION
-// ==========================================
+let evidenceCount = 0;
+let articleCount = 1;
+let savedArticles = [];
 
 function getValue(id) {
     return document.getElementById(id).value.trim();
 }
 
+function lockClaimsAndContinue() {
+    const main = getValue("mainClaim");
+    const a = getValue("subclaimA");
+    const b = getValue("subclaimB");
+    const c = getValue("subclaimC");
 
-// ==========================================
-// ARTICLE AUTHOR QUESTIONS
-// ==========================================
-
-function updateAuthorFields() {
-
-    const multipleAuthors = getValue("multipleAuthors");
-
-    const additionalQuestions =
-        document.getElementById("additionalAuthorQuestions");
-
-    const secondAuthorContainer =
-        document.getElementById("secondAuthorContainer");
-
-    const threeOrMoreAuthors =
-        getValue("threeOrMoreAuthors");
-
-    if (multipleAuthors === "yes") {
-
-        additionalQuestions.style.display = "block";
-
-    } else {
-
-        additionalQuestions.style.display = "none";
-
-        document.getElementById("threeOrMoreAuthors").value = "";
-        document.getElementById("secondAuthor").value = "";
-
+    if (!main) {
+        alert("Please enter your main claim before continuing.");
+        document.getElementById("mainClaim").focus();
+        return;
+    }
+    if (!a || !b || !c) {
+        alert("Please enter all three subclaims before continuing.");
+        document.getElementById(!a ? "subclaimA" : (!b ? "subclaimB" : "subclaimC")).focus();
+        return;
     }
 
-    if (multipleAuthors === "yes" && threeOrMoreAuthors === "no") {
+    claims.main = main;
+    claims.A = a;
+    claims.B = b;
+    claims.C = c;
 
-        secondAuthorContainer.style.display = "block";
+    document.getElementById("displayMainClaim").textContent = claims.main;
+    document.getElementById("displaySubclaimA").textContent = claims.A;
+    document.getElementById("displaySubclaimB").textContent = claims.B;
+    document.getElementById("displaySubclaimC").textContent = claims.C;
 
-    } else {
+    document.getElementById("claimsPage").hidden = true;
+    document.getElementById("researchPage").hidden = false;
+    document.getElementById("citationAuthor").focus();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-        secondAuthorContainer.style.display = "none";
+function updateAuthorFields() {
+    const multipleAuthors = getValue("multipleAuthors");
+    const additionalQuestions = document.getElementById("additionalAuthorQuestions");
+    const secondAuthorContainer = document.getElementById("secondAuthorContainer");
+    const threeOrMoreAuthors = getValue("threeOrMoreAuthors");
 
+    additionalQuestions.hidden = multipleAuthors !== "yes";
+    if (multipleAuthors !== "yes") {
+        document.getElementById("threeOrMoreAuthors").value = "";
         document.getElementById("secondAuthor").value = "";
+    }
 
+    secondAuthorContainer.hidden = !(multipleAuthors === "yes" && threeOrMoreAuthors === "no");
+    if (multipleAuthors !== "yes" || threeOrMoreAuthors !== "no") {
+        document.getElementById("secondAuthor").value = "";
     }
 }
 
-
-// LISTEN FOR AUTHOR QUESTION CHANGES
-
-document.getElementById("multipleAuthors").addEventListener("change", function() {
-    updateAuthorFields();
-});
-
-document.getElementById("threeOrMoreAuthors").addEventListener("change", function() {
-    updateAuthorFields();
-});
-
-
-// ==========================================
-// EVIDENCE ENTRIES
-// ==========================================
-
-let evidenceCount = 0;
-
-
-// UPDATE SUBCLAIM DROPDOWNS
+document.getElementById("multipleAuthors").addEventListener("change", updateAuthorFields);
+document.getElementById("threeOrMoreAuthors").addEventListener("change", updateAuthorFields);
 
 function updateSubclaimDropdowns() {
-
+    // These values come from Page 1 after the student selects
+    // "Lock In Claims and Continue."
     const subclaims = [
-        { label: "Subclaim A", value: getValue("subclaimA") },
-        { label: "Subclaim B", value: getValue("subclaimB") },
-        { label: "Subclaim C", value: getValue("subclaimC") }
+        { label: "Subclaim A", value: claims.A },
+        { label: "Subclaim B", value: claims.B },
+        { label: "Subclaim C", value: claims.C }
     ];
 
     document.querySelectorAll(".argument-dropdown").forEach(function(dropdown) {
-
         const currentValue = dropdown.value;
-
-        dropdown.innerHTML =
-            '<option value="">Select ONE subclaim</option>';
+        dropdown.innerHTML = '<option value="">Select ONE subclaim</option>';
 
         subclaims.forEach(function(subclaim) {
+            if (!subclaim.value) return;
 
-            if (subclaim.value) {
-
-                const option = document.createElement("option");
-
-                option.value = subclaim.label;
-
-                option.textContent =
-                    subclaim.label + ": " + subclaim.value;
-
-                dropdown.appendChild(option);
-            }
+            const option = document.createElement("option");
+            option.value = subclaim.label;
+            option.textContent = subclaim.label + ": " + subclaim.value;
+            dropdown.appendChild(option);
         });
 
-        if ([...dropdown.options].some(function(option) {
-            return option.value === currentValue;
-        })) {
+        if ([...dropdown.options].some(option => option.value === currentValue)) {
             dropdown.value = currentValue;
         }
     });
 }
 
-
-// ADD AN EVIDENCE ENTRY
-
 function addEvidence() {
-
     evidenceCount++;
-
     const container = document.getElementById("evidenceContainer");
-
     const evidenceBox = document.createElement("div");
-
     evidenceBox.className = "evidence-box evidence-entry";
-
     evidenceBox.id = "evidenceBox" + evidenceCount;
 
     evidenceBox.innerHTML = `
-        <label for="argumentPart${evidenceCount}">
-            1. Which subclaim are you trying to support?
-            <span class="required">*</span>
-        </label>
-
-        <select
-            id="argumentPart${evidenceCount}"
-            class="argument-dropdown"
-        >
+        <label for="argumentPart${evidenceCount}">1. Which subclaim are you trying to support? <span class="required">*</span></label>
+        <select id="argumentPart${evidenceCount}" class="argument-dropdown">
             <option value="">Select ONE subclaim</option>
         </select>
 
-        <label for="evidence${evidenceCount}">
-            2. Direct Quotation (Evidence)
-            <span class="required">*</span>
-        </label>
+        <label for="evidence${evidenceCount}">2. Direct Quotation (Evidence) <span class="required">*</span></label>
+        <textarea id="evidence${evidenceCount}" placeholder="Copy a direct quotation from the article. Include a relevant fact, statistic, or expert statement."></textarea>
 
-        <textarea
-            id="evidence${evidenceCount}"
-            placeholder="Copy a direct quotation from the article. Include a relevant fact, statistic, or expert statement."
-        ></textarea>
+        <label for="premise${evidenceCount}">3. Quotation in Your Own Words (Premise) <span class="required">*</span></label>
+        <textarea id="premise${evidenceCount}" placeholder="Explain the quotation in your own words. What information does it communicate?"></textarea>
 
-        <label for="premise${evidenceCount}">
-            3. Quotation in Your Own Words (Premise)
-            <span class="required">*</span>
-        </label>
+        <label for="explanation${evidenceCount}">4. Why Does This Evidence Support Your Subclaim? (Warrant) <span class="required">*</span></label>
+        <textarea id="explanation${evidenceCount}" placeholder="Explain how the information in this quotation supports the specific subclaim you selected."></textarea>
 
-        <textarea
-            id="premise${evidenceCount}"
-            placeholder="Explain the quotation in your own words. What information does it communicate?"
-        ></textarea>
-
-        <label for="explanation${evidenceCount}">
-            4. Why Does This Evidence Support Your Subclaim? (Warrant)
-            <span class="required">*</span>
-        </label>
-
-        <textarea
-            id="explanation${evidenceCount}"
-            placeholder="Explain how the information in this quotation supports the specific subclaim you selected."
-        ></textarea>
-
-        <button
-            type="button"
-            class="remove-evidence"
-            onclick="removeEvidence(${evidenceCount})"
-        >
-            Remove This Evidence
-        </button>
+        <button type="button" class="remove-evidence" onclick="removeEvidence(${evidenceCount})">Remove This Evidence</button>
     `;
-
     container.appendChild(evidenceBox);
-
     updateSubclaimDropdowns();
-
-    evidenceBox.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+    evidenceBox.scrollIntoView({ behavior: "smooth", block: "center" });
 }
-
-
-// REMOVE AN EVIDENCE ENTRY
 
 function removeEvidence(number) {
-
-    const evidenceBox =
-        document.getElementById("evidenceBox" + number);
-
-    if (evidenceBox) {
-        evidenceBox.remove();
-    }
+    const evidenceBox = document.getElementById("evidenceBox" + number);
+    if (evidenceBox) evidenceBox.remove();
 }
 
-
-// UPDATE DROPDOWNS WHEN SUBCLAIMS CHANGE
-
-["subclaimA", "subclaimB", "subclaimC"].forEach(function(id) {
-
-    document.getElementById(id).addEventListener("input", function() {
-        updateSubclaimDropdowns();
-    });
-
-});
-
-
-// ==========================================
-// GENERATE RESEARCH NOTES
-// ==========================================
-
-function generateNotes() {
-
-    // REQUIRE MAIN CLAIM
-
-    if (!getValue("mainClaim")) {
-
-        alert("Please enter your main claim before generating your research notes.");
-
-        document.getElementById("mainClaim").focus();
-
-        return;
-    }
-
-
-    // REQUIRE ALL THREE SUBCLAIMS
-
-    if (
-        !getValue("subclaimA") ||
-        !getValue("subclaimB") ||
-        !getValue("subclaimC")
-    ) {
-
-        alert("Please enter all three subclaims before generating your research notes.");
-
-        document.getElementById("subclaimA").focus();
-
-        return;
-    }
-
-
-    // REQUIRE ARTICLE CITATION INFORMATION
-
+function getCitation() {
     const citationAuthor = getValue("citationAuthor");
     const citationYear = getValue("citationYear");
     const multipleAuthors = getValue("multipleAuthors");
@@ -703,354 +452,219 @@ function generateNotes() {
     const secondAuthor = getValue("secondAuthor");
 
     if (!citationAuthor || !citationYear) {
-
         alert("Please enter the first author's last name and the publication year.");
-
-        if (!citationAuthor) {
-            document.getElementById("citationAuthor").focus();
-        } else {
-            document.getElementById("citationYear").focus();
-        }
-
-        return;
+        document.getElementById(!citationAuthor ? "citationAuthor" : "citationYear").focus();
+        return null;
     }
-
-
     if (!multipleAuthors) {
-
         alert("Please indicate whether the article has more than one author.");
-
         document.getElementById("multipleAuthors").focus();
-
-        return;
+        return null;
     }
-
-
     if (multipleAuthors === "yes" && !threeOrMoreAuthors) {
-
         alert("Please indicate whether the article has three or more authors.");
-
         document.getElementById("threeOrMoreAuthors").focus();
-
-        return;
+        return null;
     }
-
-
-    if (
-        multipleAuthors === "yes" &&
-        threeOrMoreAuthors === "no" &&
-        !secondAuthor
-    ) {
-
+    if (multipleAuthors === "yes" && threeOrMoreAuthors === "no" && !secondAuthor) {
         alert("Please enter the second author's last name.");
-
         document.getElementById("secondAuthor").focus();
-
-        return;
+        return null;
     }
 
+    if (multipleAuthors === "no") return "(" + citationAuthor + ", " + citationYear + ")";
+    if (threeOrMoreAuthors === "no") return "(" + citationAuthor + " & " + secondAuthor + ", " + citationYear + ")";
+    return "(" + citationAuthor + " et al., " + citationYear + ")";
+}
 
-    // FORMAT APA IN-TEXT CITATION
-
-    let citation;
-
-    if (multipleAuthors === "no") {
-
-        citation = "(" + citationAuthor + ", " + citationYear + ")";
-
-    } else if (threeOrMoreAuthors === "no") {
-
-        citation =
-            "(" + citationAuthor + " & " + secondAuthor + ", " + citationYear + ")";
-
-    } else {
-
-        citation =
-            "(" + citationAuthor + " et al., " + citationYear + ")";
-
-    }
-
-
-    // UPDATE EVIDENCE DROPDOWNS
+function saveArticleNotes() {
+    const citation = getCitation();
+    if (!citation) return;
 
     updateSubclaimDropdowns();
-
-
-    // VALIDATE EVIDENCE ENTRIES
-
-    const evidenceEntries =
-        document.querySelectorAll(".evidence-entry");
-
-    let completeEvidence = false;
-
+    const evidenceEntries = [...document.querySelectorAll(".evidence-entry")];
+    let evidence = [];
     let incompleteEvidence = [];
+    let entryNumber = 0;
 
-    evidenceEntries.forEach(function(box, index) {
-
-        const quote = box.querySelector(
-            'textarea[id^="evidence"]'
-        ).value.trim();
-
-        const premise = box.querySelector(
-            'textarea[id^="premise"]'
-        ).value.trim();
-
-        const explanation = box.querySelector(
-            'textarea[id^="explanation"]'
-        ).value.trim();
-
-        const argumentPart =
-            box.querySelector("select").value;
+    evidenceEntries.forEach(function(box) {
+        const quote = box.querySelector('textarea[id^="evidence"]').value.trim();
+        const premise = box.querySelector('textarea[id^="premise"]').value.trim();
+        const explanation = box.querySelector('textarea[id^="explanation"]').value.trim();
+        const argumentPart = box.querySelector("select").value;
 
         if (quote || premise || explanation || argumentPart) {
-
+            entryNumber++;
             if (!quote || !premise || !explanation || !argumentPart) {
-
-                incompleteEvidence.push(
-                    "Evidence entry " + (index + 1)
-                );
-
+                incompleteEvidence.push("Evidence entry " + entryNumber);
             } else {
-
-                completeEvidence = true;
-
+                evidence.push({
+                    subclaim: argumentPart,
+                    quote: quote,
+                    premise: premise,
+                    explanation: explanation,
+                    citation: citation
+                });
             }
         }
     });
 
-
-    if (!completeEvidence) {
-
-        alert(
-            "Please complete at least one evidence entry, including a subclaim selection, direct quotation, premise, and warrant."
-        );
-
+    if (evidence.length === 0) {
+        alert("Please complete at least one evidence entry, including a subclaim selection, direct quotation, premise, and warrant.");
         return;
     }
-
-
     if (incompleteEvidence.length > 0) {
-
-        alert(
-            "Please complete or remove the following partially completed entries: " +
+        alert("Please complete or remove the following partially completed entries: " +
             incompleteEvidence.join(", ") +
-            ". Each evidence entry must include a subclaim selection, direct quotation, premise, and warrant."
-        );
-
+            ". Each evidence entry must include a subclaim selection, direct quotation, premise, and warrant.");
         return;
     }
 
-
-    // CREATE CLAIMS SECTION
-
-    let claims = [
-
-        "Main Claim: " + getValue("mainClaim"),
-
-        "Subclaim A: " + getValue("subclaimA"),
-
-        "Subclaim B: " + getValue("subclaimB"),
-
-        "Subclaim C: " + getValue("subclaimC")
-
-    ].join("\n");
-
-
-    // CREATE EVIDENCE SECTION
-
-    let evidence = [];
-
-    evidenceEntries.forEach(function(box, index) {
-
-        const quote = box.querySelector(
-            'textarea[id^="evidence"]'
-        ).value.trim();
-
-        const premise = box.querySelector(
-            'textarea[id^="premise"]'
-        ).value.trim();
-
-        const explanation = box.querySelector(
-            'textarea[id^="explanation"]'
-        ).value.trim();
-
-        const argumentPart =
-            box.querySelector("select").value;
-
-        if (quote) {
-
-            evidence.push(
-
-                "Evidence " + (index + 1) + "\n" +
-
-                "Subclaim Supported: " +
-                argumentPart + "\n" +
-
-                "Direct Quotation (Evidence): " +
-                quote + " " + citation + "\n" +
-
-                "Quotation in Your Own Words (Premise): " +
-                premise + " " + citation + "\n" +
-
-                "Why This Evidence Supports the Subclaim (Warrant): " +
-                explanation
-
-            );
-        }
+    savedArticles.push({
+        number: articleCount,
+        author: getValue("citationAuthor"),
+        year: getValue("citationYear"),
+        citation: citation,
+        evidence: evidence
     });
 
-
-    // GENERATE FINAL OUTPUT
-
-    let output =
-
-        "RESEARCH NOTES\n" +
-
-        "========================================\n\n" +
-
-        "1. CLAIMS\n\n" +
-
-        claims +
-
-        "\n\n----------------------------------------\n\n" +
-
-        "2. EVIDENCE AND ARGUMENT CONNECTIONS\n\n" +
-
-        evidence.join("\n\n") +
-
-        "\n\n========================================";
-
-
-    document.getElementById("generatedNotes").value = output;
-
-    document.getElementById("outputSection").style.display = "block";
-
-    document.getElementById("copyMessage").textContent = "";
-
-    document.getElementById("outputSection").scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "start"
-
-    });
-
+    renderSavedArticles();
+    document.getElementById("articleForm").hidden = true;
+    document.getElementById("savedArticlesSection").hidden = false;
+    document.getElementById("outputSection").hidden = true;
+    document.getElementById("savedStatus").textContent =
+        "Article " + articleCount + " saved. Your claims and this article's notes are saved in the organizer.";
+    document.getElementById("savedArticlesSection").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function renderSavedArticles() {
+    const list = document.getElementById("savedArticlesList");
+    list.innerHTML = "";
 
-// ==========================================
-// COPY RESEARCH NOTES
-// ==========================================
+    savedArticles.forEach(function(article) {
+        const item = document.createElement("div");
+        item.className = "saved-article";
+        const heading = document.createElement("strong");
+        heading.textContent = "Article " + article.number + " — " + article.author + " (" + article.year + ")";
+        const details = document.createElement("p");
+        details.textContent = article.evidence.length + (article.evidence.length === 1 ? " evidence entry saved" : " evidence entries saved");
+        item.appendChild(heading);
+        item.appendChild(details);
+        list.appendChild(item);
+    });
+}
+
+function startAnotherArticle() {
+    articleCount++;
+    clearCurrentArticleForm();
+    document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
+    document.getElementById("savedArticlesSection").hidden = true;
+    document.getElementById("outputSection").hidden = true;
+    document.getElementById("articleForm").hidden = false;
+    document.getElementById("citationAuthor").focus();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function clearCurrentArticleForm() {
+    [
+        "citationAuthor", "citationYear", "multipleAuthors",
+        "threeOrMoreAuthors", "secondAuthor"
+    ].forEach(id => document.getElementById(id).value = "");
+
+    updateAuthorFields();
+    document.getElementById("evidenceContainer").innerHTML = "";
+    evidenceCount = 0;
+    addEvidence();
+}
+
+function buildAllNotes() {
+    let output = "RESEARCH NOTES\n" +
+        "========================================\n\n" +
+        "1. CLAIMS\n\n" +
+        "Main Claim: " + claims.main + "\n\n" +
+        "Subclaim A: " + claims.A + "\n\n" +
+        "Subclaim B: " + claims.B + "\n\n" +
+        "Subclaim C: " + claims.C + "\n\n" +
+        "----------------------------------------\n\n" +
+        "2. EVIDENCE AND ARGUMENT CONNECTIONS\n\n";
+
+    savedArticles.forEach(function(article) {
+        output += "ARTICLE " + article.number + " — " + article.author + " (" + article.year + ")\n\n";
+
+        article.evidence.forEach(function(entry, index) {
+            output += "Evidence " + (index + 1) + "\n" +
+                "Subclaim Supported: " + entry.subclaim + "\n" +
+                "Direct Quotation (Evidence): " + entry.quote + " " + entry.citation + "\n" +
+                "Quotation in Your Own Words (Premise): " + entry.premise + " " + entry.citation + "\n" +
+                "Why This Evidence Supports the Subclaim (Warrant): " + entry.explanation + "\n\n";
+        });
+        output += "----------------------------------------\n\n";
+    });
+
+    return output + "========================================";
+}
+
+function showAllNotes() {
+    document.getElementById("generatedNotes").value = buildAllNotes();
+    document.getElementById("outputSection").hidden = false;
+    document.getElementById("copyMessage").textContent = "";
+    document.getElementById("outputSection").scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 function copyNotes() {
-
-    const output =
-        document.getElementById("generatedNotes");
-
+    const output = document.getElementById("generatedNotes");
     output.select();
-
     output.setSelectionRange(0, output.value.length);
 
     function copied() {
-
         document.getElementById("copyMessage").textContent =
-
             "Research notes copied! Paste them into your document or research folder.";
-
     }
-
 
     if (navigator.clipboard && window.isSecureContext) {
-
-        navigator.clipboard.writeText(output.value)
-
-            .then(copied)
-
-            .catch(function() {
-
-                document.execCommand("copy");
-
-                copied();
-
-            });
-
+        navigator.clipboard.writeText(output.value).then(copied).catch(function() {
+            document.execCommand("copy");
+            copied();
+        });
     } else {
-
         document.execCommand("copy");
-
         copied();
-
     }
-
 }
-
-
-// ==========================================
-// RESET
-// ==========================================
 
 function resetNotes() {
+    if (!confirm("Are you sure you want to clear your claims and all saved article notes? This cannot be undone.")) return;
 
-    if (!confirm("Are you sure you want to clear all your entries?")) {
-
-        return;
-
-    }
-
-
-    // CLEAR ALL INPUTS
-
-    document.querySelectorAll(
-
-        ".article-tool input, .article-tool textarea, .article-tool select"
-
-    ).forEach(function(field) {
-
-        field.value = "";
-
-    });
-
-
-    // HIDE CONDITIONAL AUTHOR FIELDS
-
-    updateAuthorFields();
-
-
-    // REMOVE ALL EVIDENCE ENTRIES
-
-    document.getElementById("evidenceContainer").innerHTML = "";
-
+    claims.main = "";
+    claims.A = "";
+    claims.B = "";
+    claims.C = "";
+    savedArticles = [];
+    articleCount = 1;
     evidenceCount = 0;
 
+    ["mainClaim", "subclaimA", "subclaimB", "subclaimC"].forEach(id => {
+        document.getElementById(id).value = "";
+    });
 
-    // RESTORE ONE BLANK EVIDENCE ENTRY
-
-    addEvidence();
-
-
-    // HIDE OUTPUT
-
-    document.getElementById("outputSection").style.display = "none";
-
+    clearCurrentArticleForm();
+    document.getElementById("articleFormHeading").textContent = "Article 1";
+    document.getElementById("savedArticlesList").innerHTML = "";
+    document.getElementById("savedStatus").textContent = "";
+    document.getElementById("generatedNotes").value = "";
     document.getElementById("copyMessage").textContent = "";
 
-
-    // RETURN TO MAIN CLAIM
-
+    document.getElementById("researchPage").hidden = true;
+    document.getElementById("claimsPage").hidden = false;
+    document.getElementById("articleForm").hidden = false;
+    document.getElementById("savedArticlesSection").hidden = true;
+    document.getElementById("outputSection").hidden = true;
     document.getElementById("mainClaim").focus();
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-
-// ==========================================
-// INITIALIZE PAGE
-// ==========================================
-
-// Start with one blank evidence entry.
-
+// Begin with one blank evidence entry for the first article.
 addEvidence();
-
 </script>
-
 </body>
 </html>
