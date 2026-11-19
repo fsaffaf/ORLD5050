@@ -204,7 +204,6 @@
             <strong>First, enter your main claim and the three subclaims that make up your argument. You will only need to do this once. After you continue, your claims will stay visible as a reference while you organize evidence from multiple articles.</strong>
         </div>
 
-        <h2 class="part-heading">Step 1: Main Claim and Subclaims</h2>
         <p class="part-intro">Enter your main claim and the three subclaims that support it. Review your statements before continuing because they will be locked in on the next page.</p>
 
         <div class="section">
@@ -251,12 +250,11 @@
             <p><span class="claim-label">Subclaim C:</span> <span id="displaySubclaimC"></span></p>
         </div>
 
-        <h2 class="part-heading">Step 2: Article Citation</h2>
         <p class="part-intro">Enter the first author's last name and the year the article was published. Answer the questions below so the organizer can automatically format the in-text citation for your quotations and paraphrases.</p>
 
         <div id="savedArticlesSection" class="section" hidden>
-            <h2>Saved Article Notes</h2>
-            <p class="part-intro">Your saved articles remain listed here while you work. You can add another article at any time or review all your research notes.</p>
+            <h2>Your Saved Articles</h2>
+            <p class="part-intro">Your saved articles are listed here. You can edit an article, add a new article, or review all your research notes.</p>
             <div id="savedArticlesList"></div>
             <p class="status-message" id="savedStatus" aria-live="polite"></p>
             <div class="button-row">
@@ -303,18 +301,16 @@
                 <p class="small-note">The organizer will automatically format your citation according to the number of authors.</p>
             </div>
 
-            <h2 class="part-heading">Step 3: Evidence and Argument Connections</h2>
             <p class="part-intro">
                 Select the subclaim you want to support. Then find a relevant quotation, explain what the quotation communicates in your own words, and describe why the evidence supports your selected subclaim.
                 <strong>Remember:</strong> A quotation alone does not explain why your argument is correct. You must explain how the evidence supports the specific subclaim you selected.
             </p>
             <div class="section">
                 <div id="evidenceContainer"></div>
-                <button type="button" class="secondary" onclick="addEvidence()">+ Add Another Quote from the Same Article</button>
+                <button type="button" class="secondary" onclick="addEvidence()">+ Add Another Quote</button>
                             </div>
             <div class="button-row">
-                <button type="button" class="primary" id="saveArticleButton" onclick="saveArticleNotes(false)">Save This Article's Notes</button>
-                <button type="button" class="secondary" id="saveAndAddButton" onclick="saveArticleNotes(true)">Save Article and Add Another</button>
+                <button type="button" class="primary" id="saveArticleButton" onclick="saveArticleNotes()">Save Article</button>
             </div>
         </div>
 
@@ -614,16 +610,11 @@ function removeEvidence(number) {
 
 function updateArticleSaveButtonLabels() {
     const saveButton = document.getElementById("saveArticleButton");
-    const saveNextButton = document.getElementById("saveAndAddButton");
-    if (!saveButton || !saveNextButton) return;
+    if (!saveButton) return;
 
-    if (editingArticleNumber !== null) {
-        saveButton.textContent = "Save Changes to Article";
-        saveNextButton.textContent = "Save Changes and Add Another Article";
-    } else {
-        saveButton.textContent = "Save This Article's Notes";
-        saveNextButton.textContent = "Save Article and Add Another";
-    }
+    saveButton.textContent = editingArticleNumber !== null
+        ? "Save Changes to Article"
+        : "Save Article";
 }
 
 function getCitation() {
@@ -659,7 +650,7 @@ function getCitation() {
     return "(" + citationAuthor + " et al., " + citationYear + ")";
 }
 
-function saveArticleNotes(addAnotherAfterSaving) {
+function saveArticleNotes() {
     const citation = getCitation();
     if (!citation) return;
 
@@ -738,18 +729,13 @@ function saveArticleNotes(addAnotherAfterSaving) {
         "Article " + savedNumber + (wasEditing ? " updated." : " saved.") +
         " Your saved article collection is available above.";
 
-    if (addAnotherAfterSaving) {
-        clearCurrentArticleForm();
-        document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
-        document.getElementById("articleForm").hidden = false;
-        document.getElementById("savedStatus").textContent += " A blank form for Article " + articleCount + " is ready below.";
-    } else {
-        document.getElementById("articleForm").hidden = true;
-    }
+    // Saving always returns students to the saved-articles list.
+    // They can start a separate article using the Add Another Article button.
+    document.getElementById("articleForm").hidden = true;
 
     updateArticleSaveButtonLabels();
     saveProgress();
-    document.getElementById(addAnotherAfterSaving ? "articleForm" : "savedArticlesSection")
+    document.getElementById("savedArticlesSection")
         .scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function renderSavedArticles() {
