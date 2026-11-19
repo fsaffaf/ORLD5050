@@ -218,7 +218,8 @@
         <div class="button-row">
             <button type="button" class="primary" onclick="lockClaimsAndContinue()">Lock In Claims and Continue</button>
         </div>
-        <p class="small-note">Your claims will be saved for this organizer session. Use <strong>Start Over</strong> on the research page only if you want to clear the entire organizer and begin again.</p>
+        <p class="small-note">Your work is automatically saved in this browser on this device. You can close the page and return later using the same browser. Use <strong>Start Over</strong> only if you want to clear the entire organizer.</p>
+        <p class="small-note status-message" id="storageStatus" aria-live="polite">Your work will be saved automatically on this device.</p>
     </section>
 
     <!-- PAGE 2: ARTICLES AND EVIDENCE -->
@@ -227,6 +228,7 @@
         <div class="intro">
             <strong>Your main claim and subclaims are locked in below. You do not need to re-enter them for each article. Add the citation information and evidence for one article at a time, then save that article and move on to the next one.</strong>
         </div>
+        <p class="small-note status-message" id="storageStatusResearch" aria-live="polite">Your work is automatically saved in this browser on this device.</p>
 
         <div class="locked-claims" id="lockedClaims">
             <h3>Your Locked-In Claims</h3>
@@ -238,6 +240,15 @@
 
         <h2 class="part-heading">Step 2: Article Citation</h2>
         <p class="part-intro">Enter the first author's last name and the year the article was published. Answer the questions below so the organizer can automatically format the in-text citation for your quotations and paraphrases.</p>
+
+        <div id="savedArticlesSection" class="section" hidden>
+            <h2>Saved Article Notes</h2>
+            <p class="part-intro">Your saved articles remain listed here while you work. You can add another article at any time or review all your research notes.</p>
+            <div id="savedArticlesList"></div>
+            <p class="status-message" id="savedStatus" aria-live="polite"></p>
+            <button type="button" class="secondary" onclick="startAnotherArticle()">+ Add Another Article</button>
+            <button type="button" class="primary" onclick="showAllNotes()">Review All Research Notes</button>
+        </div>
 
         <div id="articleForm">
             <div class="section">
@@ -285,17 +296,9 @@
                 <button type="button" class="secondary" onclick="addEvidence()">+ Add Another Quote from the Same Article</button>
                             </div>
             <div class="button-row">
-                <button type="button" class="primary" onclick="saveArticleNotes()">Save This Article's Notes</button>
+                <button type="button" class="primary" onclick="saveArticleNotes(false)">Save This Article's Notes</button>
+                <button type="button" class="secondary" onclick="saveArticleNotes(true)">Save Article and Add Another</button>
             </div>
-        </div>
-
-        <div id="savedArticlesSection" class="section" hidden>
-            <h2>Saved Article Notes</h2>
-            <p class="part-intro">These articles have been saved. You can add another article or review and copy all your research notes.</p>
-            <div id="savedArticlesList"></div>
-            <p class="status-message" id="savedStatus" aria-live="polite"></p>
-            <button type="button" class="secondary" onclick="startAnotherArticle()">+ Add Another Article</button>
-            <button type="button" class="primary" onclick="showAllNotes()">Review All Research Notes</button>
         </div>
 
         <div class="output" id="outputSection" hidden>
@@ -303,6 +306,7 @@
             <p class="small-note">Your locked-in claims and notes from every saved article are included below. You can edit the text directly before copying it into your research document.</p>
             <textarea id="generatedNotes"></textarea>
             <button type="button" class="secondary" onclick="copyNotes()">Copy All Research Notes</button>
+            <button type="button" class="primary" onclick="downloadNotes()">Download Research Notes</button>
             <p id="copyMessage" class="small-note" aria-live="polite"></p>
         </div>
 
@@ -324,9 +328,144 @@ let evidenceCount = 0;
 let articleCount = 1;
 let savedArticles = [];
 
+const STORAGE_KEY = "orld5050_evidence_organizer_v1";
+
+function setStorageStatus(message) {
+    ["storageStatus", "storageStatusResearch"].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = message;
+    });
+}
+
+function collectCurrentEvidence() {
+    return [...document.querySelectorAll(".evidence-entry")].map(function(box) {
+        return {
+            subclaim: box.querySelector("select")?.value || "",
+            quote: box.querySelector('textarea[id^="evidence"]')?.value || "",
+            premise: box.querySelector('textarea[id^="premise"]')?.value || "",
+            explanation: box.querySelector('textarea[id^="explanation"]')?.value || ""
+        };
+    });
+}
+
+function saveProgress() {
+    try {
+        const state = {
+            claims: {
+                main: claims.main,
+                A: claims.A,
+                B: claims.B,
+                C: claims.C
+            },
+            claimInputs: {
+                main: document.getElementById("mainClaim").value,
+                A: document.getElementById("subclaimA").value,
+                B: document.getElementById("subclaimB").value,
+                C: document.getElementById("subclaimC").value
+            },
+            savedArticles: savedArticles,
+            articleCount: articleCount,
+            currentArticle: {
+                author: document.getElementById("citationAuthor").value,
+                year: document.getElementById("citationYear").value,
+                multipleAuthors: document.getElementById("multipleAuthors").value,
+                threeOrMoreAuthors: document.getElementById("threeOrMoreAuthors").value,
+                secondAuthor: document.getElementById("secondAuthor").value,
+                evidence: collectCurrentEvidence()
+            },
+            view: {
+                claimsPage: !document.getElementById("claimsPage").hidden,
+                articleForm: !document.getElementById("articleForm").hidden,
+                savedArticlesSection: !document.getElementById("savedArticlesSection").hidden,
+                outputSection: !document.getElementById("outputSection").hidden,
+                generatedNotes: document.getElementById("generatedNotes").value
+            }
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        setStorageStatus("Progress saved automatically on this device.");
+        return true;
+    } catch (error) {
+        setStorageStatus("Automatic saving is unavailable in this browser. Download a copy of your research notes regularly.");
+        return false;
+    }
+}
+
+function restoreProgress() {
+    let state;
+    try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) return false;
+        state = JSON.parse(stored);
+    } catch (error) {
+        setStorageStatus("Saved progress could not be read. You can start a new organizer or use a downloaded backup.");
+        return false;
+    }
+
+    if (!state || !state.claimInputs || !state.currentArticle) return false;
+
+    document.getElementById("mainClaim").value = state.claimInputs.main || "";
+    document.getElementById("subclaimA").value = state.claimInputs.A || "";
+    document.getElementById("subclaimB").value = state.claimInputs.B || "";
+    document.getElementById("subclaimC").value = state.claimInputs.C || "";
+
+    claims.main = state.claims?.main || "";
+    claims.A = state.claims?.A || "";
+    claims.B = state.claims?.B || "";
+    claims.C = state.claims?.C || "";
+    savedArticles = Array.isArray(state.savedArticles) ? state.savedArticles : [];
+    articleCount = Number(state.articleCount) || Math.max(1, savedArticles.length + 1);
+
+    document.getElementById("displayMainClaim").textContent = claims.main;
+    document.getElementById("displaySubclaimA").textContent = claims.A;
+    document.getElementById("displaySubclaimB").textContent = claims.B;
+    document.getElementById("displaySubclaimC").textContent = claims.C;
+
+    const current = state.currentArticle;
+    document.getElementById("citationAuthor").value = current.author || "";
+    document.getElementById("citationYear").value = current.year || "";
+    document.getElementById("multipleAuthors").value = current.multipleAuthors || "";
+    document.getElementById("threeOrMoreAuthors").value = current.threeOrMoreAuthors || "";
+    document.getElementById("secondAuthor").value = current.secondAuthor || "";
+    updateAuthorFields();
+
+    document.getElementById("evidenceContainer").innerHTML = "";
+    evidenceCount = 0;
+    const entries = Array.isArray(current.evidence) ? current.evidence : [];
+    if (entries.length) {
+        entries.forEach(function(entry) {
+            addEvidence();
+            const box = document.querySelector(".evidence-entry:last-child");
+            box.querySelector("select").value = entry.subclaim || "";
+            box.querySelector('textarea[id^="evidence"]').value = entry.quote || "";
+            box.querySelector('textarea[id^="premise"]').value = entry.premise || "";
+            box.querySelector('textarea[id^="explanation"]').value = entry.explanation || "";
+        });
+    } else {
+        addEvidence();
+    }
+
+    renderSavedArticles();
+    const view = state.view || {};
+    const claimsLocked = !!(claims.main && claims.A && claims.B && claims.C);
+    document.getElementById("claimsPage").hidden = claimsLocked;
+    document.getElementById("researchPage").hidden = !claimsLocked;
+    document.getElementById("articleForm").hidden = view.articleForm === false && savedArticles.length > 0;
+    document.getElementById("savedArticlesSection").hidden = !(savedArticles.length > 0 && view.savedArticlesSection);
+    document.getElementById("outputSection").hidden = !view.outputSection;
+    document.getElementById("generatedNotes").value = view.generatedNotes || "";
+    document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
+    updateSubclaimDropdowns();
+    setStorageStatus("Previous progress restored from this browser on this device.");
+    return true;
+}
+
 function getValue(id) {
     return document.getElementById(id).value.trim();
 }
+
+// Save form changes as students type or make selections, including unfinished articles.
+document.querySelector(".article-tool").addEventListener("input", saveProgress);
+document.querySelector(".article-tool").addEventListener("change", saveProgress);
 
 function lockClaimsAndContinue() {
     const main = getValue("mainClaim");
@@ -357,6 +496,9 @@ function lockClaimsAndContinue() {
 
     document.getElementById("claimsPage").hidden = true;
     document.getElementById("researchPage").hidden = false;
+    // Populate the first evidence entry with the claims just locked in.
+    updateSubclaimDropdowns();
+    saveProgress();
     document.getElementById("citationAuthor").focus();
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -477,7 +619,7 @@ function getCitation() {
     return "(" + citationAuthor + " et al., " + citationYear + ")";
 }
 
-function saveArticleNotes() {
+function saveArticleNotes(addAnotherAfterSaving) {
     const citation = getCitation();
     if (!citation) return;
 
@@ -529,12 +671,24 @@ function saveArticleNotes() {
     });
 
     renderSavedArticles();
-    document.getElementById("articleForm").hidden = true;
     document.getElementById("savedArticlesSection").hidden = false;
     document.getElementById("outputSection").hidden = true;
     document.getElementById("savedStatus").textContent =
         "Article " + articleCount + " saved. Your claims and this article's notes are saved in the organizer.";
-    document.getElementById("savedArticlesSection").scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (addAnotherAfterSaving) {
+        articleCount++;
+        clearCurrentArticleForm();
+        document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
+        document.getElementById("articleForm").hidden = false;
+        document.getElementById("savedStatus").textContent += " A blank form for Article " + articleCount + " is ready below.";
+    } else {
+        document.getElementById("articleForm").hidden = true;
+    }
+
+    saveProgress();
+    document.getElementById(addAnotherAfterSaving ? "articleForm" : "savedArticlesSection")
+        .scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderSavedArticles() {
@@ -558,10 +712,11 @@ function startAnotherArticle() {
     articleCount++;
     clearCurrentArticleForm();
     document.getElementById("articleFormHeading").textContent = "Article " + articleCount;
-    document.getElementById("savedArticlesSection").hidden = true;
+    document.getElementById("savedArticlesSection").hidden = false;
     document.getElementById("outputSection").hidden = true;
     document.getElementById("articleForm").hidden = false;
     document.getElementById("citationAuthor").focus();
+    saveProgress();
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -575,6 +730,7 @@ function clearCurrentArticleForm() {
     document.getElementById("evidenceContainer").innerHTML = "";
     evidenceCount = 0;
     addEvidence();
+    saveProgress();
 }
 
 function buildAllNotes() {
@@ -608,7 +764,21 @@ function showAllNotes() {
     document.getElementById("generatedNotes").value = buildAllNotes();
     document.getElementById("outputSection").hidden = false;
     document.getElementById("copyMessage").textContent = "";
+    saveProgress();
     document.getElementById("outputSection").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function downloadNotes() {
+    const content = document.getElementById("generatedNotes").value || buildAllNotes();
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "ORLD5050_Research_Notes.txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
 
 function copyNotes() {
@@ -642,6 +812,7 @@ function resetNotes() {
     savedArticles = [];
     articleCount = 1;
     evidenceCount = 0;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (error) {}
 
     ["mainClaim", "subclaimA", "subclaimB", "subclaimC"].forEach(id => {
         document.getElementById(id).value = "";
@@ -659,12 +830,16 @@ function resetNotes() {
     document.getElementById("articleForm").hidden = false;
     document.getElementById("savedArticlesSection").hidden = true;
     document.getElementById("outputSection").hidden = true;
+    setStorageStatus("Organizer cleared. New work will be saved automatically on this device.");
     document.getElementById("mainClaim").focus();
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Begin with one blank evidence entry for the first article.
-addEvidence();
+// Restore prior work if it exists. Otherwise, begin with one blank evidence entry.
+if (!restoreProgress()) {
+    addEvidence();
+    saveProgress();
+}
 </script>
 </body>
 </html>
